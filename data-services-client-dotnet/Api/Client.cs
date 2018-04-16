@@ -6,21 +6,25 @@ namespace Quadient.DataServices.Api
 {
     public class Client
     {
-        readonly IService _service;
+        private ICredentials Credentials {get; set;}
+        private IConfiguration Configuration {get; set;}
 
         public Client(ICredentials credentials)
         {
-            _service = new Service(credentials, new Configuration());
+            Credentials = credentials ;
+            Configuration = new Configuration();
         }
 
         public Client(ICredentials credentials, IConfiguration configuration)
         {
-            _service = new Service(credentials, configuration);
+            Credentials = credentials ;
+            Configuration = configuration;
         }
 
-        public async Task<IResponse> Execute(IRequest request)
+        public async Task<IResponse<R>> Execute<T,R>(IRequest<T,R> request)
         {
-            return await request.Invoke(_service);
+            request.Initialize(Credentials, Configuration);
+            return await request.Invoke();
         }
     }
 }

@@ -12,34 +12,38 @@ namespace Quadient.DataServices.Api
 {
     public interface IService
     {
-        Task<T> Get<T>(string uri);
-        Task Delete(string uri);
-        Task<R> Post<T, R>(string uri, T body);
-        Task<T> Post<T>(string uri, Dictionary<string, string> body);
-        Task<T> Post<T>(string uri, MultipartFormDataContent body);
-        Task<R> Put<T, R>(string uri, T body);
+        Task<T> Get<T>();
+        Task Delete();
+        Task<R> Post<T, R>(T body);
+        Task<T> Post<T>(Dictionary<string, string> body);
+        Task<T> Post<T>(MultipartFormDataContent body);
+        Task<R> Put<T, R>(T body);
     }
 
-    internal class Service: IService
+    public abstract class Service : IService
     {
-        readonly IConfiguration _configuration;
-        readonly ICredentials _credentials;
-        readonly HttpClient _httpClient;
+        private IConfiguration _configuration;
+        private ICredentials _credentials;
+        private HttpClient _httpClient;
+        protected string ServicePath {private get; set;}
 
-        internal Service(ICredentials credentials, IConfiguration configuration)
+        public void Initialize(ICredentials credentials, IConfiguration configuration)
         {
-            _credentials = credentials;
-            _configuration = configuration;
-            var handler = new HttpClientHandler
+            if (_httpClient == null)
             {
-                PreAuthenticate = true,               
-                ClientCertificateOptions = ClientCertificateOption.Automatic                
-            };
-            _httpClient = new HttpClient(handler)
-            {
-                Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
-                BaseAddress = new Uri(configuration.BaseAddress)
-            };
+                _credentials = credentials;
+                _configuration = configuration;
+                var handler = new HttpClientHandler
+                {
+                    PreAuthenticate = true,
+                    ClientCertificateOptions = ClientCertificateOption.Automatic
+                };
+                _httpClient = new HttpClient(handler)
+                {
+                    Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                    BaseAddress = new Uri(configuration.BaseAddress)
+                };
+            }
         }
 
         private Session _session;
@@ -48,69 +52,74 @@ namespace Quadient.DataServices.Api
             return _session ?? (_session = await Post<ICredentials, Session>(_configuration.CloudAddress, _credentials));
         }
 
-        public async Task<T> Get<T>(string uri)
+        public async Task<T> Get<T>()
         {
             var session = await GetSession();
-            using (var request = new HttpRequestMessage(HttpMethod.Get, uri))
+            using (var request = new HttpRequestMessage(HttpMethod.Get, ServicePath))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
                 using (var result = await _httpClient.SendAsync(request))
                 {
-                    result.EnsureNessSuccessStatusCode();
+                    result.EnsureSuccessStatusCode();
                     var resultContent = await result.Content.ReadAsStringAsync();
                     return DeserializeObject<T>(resultContent);
                 }
             }
         }
 
-        async Task<T> Post<T>(string uri, HttpContent content, HttpMethod method)
+        private async Task<T> Send<T>(string servicePath, HttpContent content, HttpMethod method)
         {
             var session = await GetSession();
-            using (var request = new HttpRequestMessage(method, uri))
+            using (var request = new HttpRequestMessage(method, servicePath))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
                 request.Content = content;
                 using (var result = await _httpClient.SendAsync(request))
                 {
-                    result.EnsureNessSuccessStatusCode();
+                    result.EnsureSuccessStatusCode();
                     var resultContent = await result.Content.ReadAsStringAsync();
                     return DeserializeObject<T>(resultContent);
                 }
             }
         }
 
-        public async Task Delete(string uri)
+        public async Task Delete()
         {
             var session = await GetSession();
-            using (var request = new HttpRequestMessage(HttpMethod.Delete, uri))
+            using (var request = new HttpRequestMessage(HttpMethod.Delete, ServicePath))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
                 request.Content = new StringContent("", Encoding.UTF8, "application/json");
                 using (var result = await _httpClient.SendAsync(request))
                 {
-                    result.EnsureNessSuccessStatusCode();
+                    result.EnsureSuccessStatusCode();
                 }
             }
         }
 
-        public async Task<R> Post<T, R>(string uri, T body)
+        protected async Task<R> Post<T, R>(string servicePath, T body)
         {
-            return await Post<R>(uri, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Post);
+            return await Send<R>(servicePath, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Post);
         }
 
-        public async Task<T> Post<T>(string uri, Dictionary<string, string> body)
+        public async Task<R> Post<T, R>(T body)
         {
-            return await Post<T>(uri, new FormUrlEncodedContent(body), HttpMethod.Post);
+            return await Send<R>(ServicePath, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Post);
         }
 
-        public async Task<T> Post<T>(string uri, MultipartFormDataContent body)
+        public async Task<T> Post<T>(Dictionary<string, string> body)
         {
-            return await Post<T>(uri, body, HttpMethod.Post);
+            return await Send<T>(ServicePath, new FormUrlEncodedContent(body), HttpMethod.Post);
         }
 
-        public async Task<R> Put<T, R>(string uri, T body)
+        public async Task<T> Post<T>(MultipartFormDataContent body)
         {
-            return await Post<R>(uri, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Put);
+            return await Send<T>(ServicePath, body, HttpMethod.Post);
+        }
+
+        public async Task<R> Put<T, R>(T body)
+        {
+            return await Send<R>(ServicePath, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Put);
         }
 
         private static string SerializeObject(object value)

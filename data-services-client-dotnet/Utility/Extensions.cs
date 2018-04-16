@@ -8,7 +8,7 @@ namespace Quadient.DataServices.Utility
 {
     public static class Extensions
     {
-        public static HttpResponseMessage EnsureNessSuccessStatusCode(this HttpResponseMessage message)
+        public static HttpResponseMessage EnsureSuccessStatusCode(this HttpResponseMessage message)
         {
             if (!message.IsSuccessStatusCode)
             {
