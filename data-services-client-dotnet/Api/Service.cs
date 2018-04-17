@@ -1,125 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Quadient.DataServices.Api.User;
 using Quadient.DataServices.Model;
 using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
-    public interface IService
-    {
-        Task<T> Get<T>();
-        Task Delete();
-        Task<R> Post<T, R>(T body);
-        Task<T> Post<T>(Dictionary<string, string> body);
-        Task<T> Post<T>(MultipartFormDataContent body);
-        Task<R> Put<T, R>(T body);
-    }
+    public abstract class Service
+    {               
+        private readonly int TokenExpiration = 8 * 60 * 1000;
+        private readonly HttpClient _httpClient;
+        protected ICredentials Credentials {get;}
+        protected IConfiguration Configuration {get;}
 
-    public abstract class Service : IService
-    {
-        private IConfiguration _configuration;
-        private ICredentials _credentials;
-        private HttpClient _httpClient;
-        protected string ServicePath {private get; set;}
-
-        public void Initialize(ICredentials credentials, IConfiguration configuration)
+        protected Service(ICredentials credentials, IConfiguration configuration)
         {
-            if (_httpClient == null)
-            {
-                _credentials = credentials;
-                _configuration = configuration;
-                var handler = new HttpClientHandler
-                {
-                    PreAuthenticate = true,
-                    ClientCertificateOptions = ClientCertificateOption.Automatic
-                };
-                _httpClient = new HttpClient(handler)
-                {
-                    Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
-                    BaseAddress = new Uri(configuration.BaseAddress)
-                };
+            if (_httpClient != null) return;
+            Credentials = credentials;
+            if (string.IsNullOrWhiteSpace(configuration.BaseAddress))
+            {                
+                configuration.BaseAddress = $"https://data.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}";
             }
+            if(string.IsNullOrWhiteSpace(configuration.CloudAddress) && !string.IsNullOrWhiteSpace(credentials.Company))
+            {
+                configuration.CloudAddress = $"https://{credentials.Company}.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}";
+            }
+            Configuration = configuration;
+            
+            var handler = new HttpClientHandler
+            {
+                PreAuthenticate = true,
+                ClientCertificateOptions = ClientCertificateOption.Automatic
+            };
+            _httpClient = new HttpClient(handler)
+            {
+                Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                BaseAddress = new Uri(configuration.BaseAddress)
+            };
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
         }
 
-        private Session _session;
-        private async Task<Session> GetSession()
-        {
-            return _session ?? (_session = await Post<ICredentials, Session>(_configuration.CloudAddress, _credentials));
+        protected Service(ICredentials credentials): this(credentials, new Configuration())
+        {}
+
+        private ISession _session;
+        private DateTime _expiration;
+        private async Task<ISession> GetSession()
+        {           
+            var isAdmin = string.IsNullOrWhiteSpace(Configuration.CloudAddress);
+            if (_session != null && _expiration < DateTime.Now) return _session;
+            _session = await Execute(new AuthToken(Credentials, isAdmin));
+            if (isAdmin) _session.Token = _session.AccessToken;
+            _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
+            return _session;
         }
 
-        public async Task<T> Get<T>()
+        public async Task<R> Execute<T,R>(IRequest<T,R> request)
         {
             var session = await GetSession();
-            using (var request = new HttpRequestMessage(HttpMethod.Get, ServicePath))
+            using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
-                using (var result = await _httpClient.SendAsync(request))
+                httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
+                if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
+                {
+                    httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
+                }
+                using (var result = await _httpClient.SendAsync(httpRequest))
                 {
                     result.EnsureSuccessStatusCode();
                     var resultContent = await result.Content.ReadAsStringAsync();
-                    return DeserializeObject<T>(resultContent);
+                    return DeserializeObject<R>(resultContent);
                 }
             }
-        }
-
-        private async Task<T> Send<T>(string servicePath, HttpContent content, HttpMethod method)
-        {
-            var session = await GetSession();
-            using (var request = new HttpRequestMessage(method, servicePath))
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
-                request.Content = content;
-                using (var result = await _httpClient.SendAsync(request))
-                {
-                    result.EnsureSuccessStatusCode();
-                    var resultContent = await result.Content.ReadAsStringAsync();
-                    return DeserializeObject<T>(resultContent);
-                }
-            }
-        }
-
-        public async Task Delete()
-        {
-            var session = await GetSession();
-            using (var request = new HttpRequestMessage(HttpMethod.Delete, ServicePath))
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
-                request.Content = new StringContent("", Encoding.UTF8, "application/json");
-                using (var result = await _httpClient.SendAsync(request))
-                {
-                    result.EnsureSuccessStatusCode();
-                }
-            }
-        }
-
-        protected async Task<R> Post<T, R>(string servicePath, T body)
-        {
-            return await Send<R>(servicePath, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Post);
-        }
-
-        public async Task<R> Post<T, R>(T body)
-        {
-            return await Send<R>(ServicePath, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Post);
-        }
-
-        public async Task<T> Post<T>(Dictionary<string, string> body)
-        {
-            return await Send<T>(ServicePath, new FormUrlEncodedContent(body), HttpMethod.Post);
-        }
-
-        public async Task<T> Post<T>(MultipartFormDataContent body)
-        {
-            return await Send<T>(ServicePath, body, HttpMethod.Post);
-        }
-
-        public async Task<R> Put<T, R>(T body)
-        {
-            return await Send<R>(ServicePath, new StringContent(SerializeObject(body), Encoding.UTF8, "application/json"), HttpMethod.Put);
         }
 
         private static string SerializeObject(object value)

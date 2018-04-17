@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Quadient.DataServices.Model.AddressCorrection {
+namespace Quadient.DataServices.Model.Address {
 
   /// <summary>
   /// Defines an additional output group of fields for geocoding, enabled using the &#x60;output_groups&#x60; configuration setting.

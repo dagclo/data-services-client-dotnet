@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServices", "data-servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServicesExample", "data-services-client-samples\DataServicesExample.csproj", "{6CC73E5A-AC51-4588-9DBD-6C44D2C09B5C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServicesModel", "data-services-client-model\DataServicesModel.csproj", "{ECD5B370-A99A-4E27-B241-684F52EE1E33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6CC73E5A-AC51-4588-9DBD-6C44D2C09B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC73E5A-AC51-4588-9DBD-6C44D2C09B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC73E5A-AC51-4588-9DBD-6C44D2C09B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD5B370-A99A-4E27-B241-684F52EE1E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD5B370-A99A-4E27-B241-684F52EE1E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD5B370-A99A-4E27-B241-684F52EE1E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD5B370-A99A-4E27-B241-684F52EE1E33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

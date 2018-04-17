@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Quadient.DataServices.Model.AddressCorrection {
+namespace Quadient.DataServices.Model.Address {
 
   /// <summary>
   /// 

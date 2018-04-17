@@ -12,13 +12,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
     <PackageReference Include="System.Net.Http" Version="4.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\AddressCorrection\" />
+    <Folder Include="Api\Country\" />
+    <Folder Include="Api\Email\" />
+    <Folder Include="Api\Name\" />
+    <Folder Include="Api\Phone\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\data-services-client-model\DataServicesModel.csproj" />
   </ItemGroup>
 
 </Project>

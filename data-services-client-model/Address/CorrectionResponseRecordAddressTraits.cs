@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Quadient.DataServices.Model.AddressCorrection {
+namespace Quadient.DataServices.Model.Address {
 
   /// <summary>
   /// Defines an output group that contains additional address elements, enabled using the &#x60;output_groups&#x60; configuration setting. The availability of individual properties of this group varies depending on country.

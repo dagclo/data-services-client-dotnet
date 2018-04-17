@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Quadient.DataServices.Model.AddressCorrection {
+namespace Quadient.DataServices.Model.Address {
 
   /// <summary>
   /// The address that results and is output after correction. This object contains the information needed to represent the address in a variety of ways, but the printed address always contains  the following fields, separated on individual lines: * organization * address_lines * regional_lines * country

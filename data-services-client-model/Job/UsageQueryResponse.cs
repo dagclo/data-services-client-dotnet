@@ -1,28 +1,30 @@
+using System;
+using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 using Newtonsoft.Json;
 
-namespace Quadient.DataServices.Model.AddressCorrection {
+namespace Quadient.DataServices.Model.Job {
 
   /// <summary>
   /// 
   /// </summary>
   [DataContract]
-  public class CorrectionRequest {
+  public class UsageQueryResponse {
     /// <summary>
-    /// Gets or Sets Addresses
+    /// Gets or Sets Total
     /// </summary>
-    [DataMember(Name="addresses", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "addresses")]
-    public List<CorrectionRequestAddress> Addresses { get; set; }
+    [DataMember(Name="total", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "total")]
+    public UsageQueryResponseTotal Total { get; set; }
 
     /// <summary>
-    /// Gets or Sets Configuration
+    /// Gets or Sets Groups
     /// </summary>
-    [DataMember(Name="configuration", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "configuration")]
-    public CorrectionRequestConfiguration Configuration { get; set; }
+    [DataMember(Name="groups", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "groups")]
+    public List<UsageQueryGroupItem> Groups { get; set; }
 
 
     /// <summary>
@@ -31,9 +33,9 @@ namespace Quadient.DataServices.Model.AddressCorrection {
     /// <returns>String presentation of the object</returns>
     public override string ToString()  {
       var sb = new StringBuilder();
-      sb.Append("class CorrectionRequest {\n");
-      sb.Append("  Addresses: ").Append(Addresses).Append("\n");
-      sb.Append("  Configuration: ").Append(Configuration).Append("\n");
+      sb.Append("class UsageQueryResponse {\n");
+      sb.Append("  Total: ").Append(Total).Append("\n");
+      sb.Append("  Groups: ").Append(Groups).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

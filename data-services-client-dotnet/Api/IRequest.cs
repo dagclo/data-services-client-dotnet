@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using Quadient.DataServices.Model;
+﻿using System.Net.Http;
 
 namespace Quadient.DataServices.Api
 {
     public interface IRequest<T,R>
     {
-        Task<IResponse<R>> Invoke();
-        void Initialize(ICredentials credentials, IConfiguration configuration);
+        string ServicePath {get;}
+        HttpMethod Method {get;}
+        T Content {get; set;}
     }
 }
