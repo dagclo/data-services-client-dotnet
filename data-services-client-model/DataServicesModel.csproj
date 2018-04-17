@@ -9,4 +9,11 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Country\" />
+    <Folder Include="Email\" />
+    <Folder Include="Name\" />
+    <Folder Include="Phone\" />
+  </ItemGroup>
+
 </Project>
