@@ -18,13 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\Country\" />
-    <Folder Include="Api\Email\" />
-    <Folder Include="Api\Name\" />
-    <Folder Include="Api\Phone\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\data-services-client-model\DataServicesModel.csproj" />
   </ItemGroup>
 

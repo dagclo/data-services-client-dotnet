@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -59,12 +60,19 @@ namespace Quadient.DataServices.Api
             return _session;
         }
 
-        public async Task<R> Execute<T,R>(IRequest<T,R> request)
+        protected async Task<R> Execute<T,R>(IRequest<T,R> request, IDictionary<string, string> headers = null)
         {
             var session = await GetSession();
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
+                if (headers != null)
+                {
+                    foreach(var key in headers.Keys)
+                    {
+                        httpRequest.Headers.TryAddWithoutValidation(key, headers[key]);
+                    }
+                }
                 if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
                 {
                     httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
