@@ -9,14 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Country
 {
@@ -74,7 +78,7 @@ namespace Quadient.DataServices.Model.Country
         /// <summary>
         /// Initializes a new instance of the <see cref="CountryOutcome" /> class.
         /// </summary>
-        [JsonConstructor]
+        [JsonConstructorAttribute]
         protected CountryOutcome() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CountryOutcome" /> class.

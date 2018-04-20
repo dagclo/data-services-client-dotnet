@@ -9,11 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Job
 {
@@ -21,17 +28,45 @@ namespace Quadient.DataServices.Model.Job
     /// HourlyUsageAggregation
     /// </summary>
     [DataContract]
-    public partial class HourlyUsageAggregation : DailyUsageAggregation,  IEquatable<HourlyUsageAggregation>, IValidatableObject
+    public partial class HourlyUsageAggregation :  IEquatable<HourlyUsageAggregation>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HourlyUsageAggregation" /> class.
         /// </summary>
+        /// <param name="Finalized">Are the usage metrics finalized (true) or just a point-in-time snapshot (false)..</param>
+        /// <param name="ServiceUse">Defines a set of usage metrics for each of the services that has been consumed during the job..</param>
+        /// <param name="Date">The date of the usage (UTC timezone).</param>
         /// <param name="Hour">The hour of the usage (values 0 to 23, UTC timezone).</param>
-        public HourlyUsageAggregation(int? Hour = default(int?), bool? Finalized = default(bool?), Object ServiceUse = default(Object), DateTime? Date = default(DateTime?)) : base()
+        public HourlyUsageAggregation(bool? Finalized = default(bool?), Object ServiceUse = default(Object), DateTime? Date = default(DateTime?), int? Hour = default(int?))
         {
+            this.Finalized = Finalized;
+            this.ServiceUse = ServiceUse;
+            this.Date = Date;
             this.Hour = Hour;
         }
         
+        /// <summary>
+        /// Are the usage metrics finalized (true) or just a point-in-time snapshot (false).
+        /// </summary>
+        /// <value>Are the usage metrics finalized (true) or just a point-in-time snapshot (false).</value>
+        [DataMember(Name="finalized", EmitDefaultValue=false)]
+        public bool? Finalized { get; set; }
+
+        /// <summary>
+        /// Defines a set of usage metrics for each of the services that has been consumed during the job.
+        /// </summary>
+        /// <value>Defines a set of usage metrics for each of the services that has been consumed during the job.</value>
+        [DataMember(Name="service-use", EmitDefaultValue=false)]
+        public Object ServiceUse { get; set; }
+
+        /// <summary>
+        /// The date of the usage (UTC timezone)
+        /// </summary>
+        /// <value>The date of the usage (UTC timezone)</value>
+        [DataMember(Name="date", EmitDefaultValue=false)]
+        [JsonConverter(typeof(SwaggerDateConverter))]
+        public DateTime? Date { get; set; }
+
         /// <summary>
         /// The hour of the usage (values 0 to 23, UTC timezone)
         /// </summary>
@@ -47,7 +82,9 @@ namespace Quadient.DataServices.Model.Job
         {
             var sb = new StringBuilder();
             sb.Append("class HourlyUsageAggregation {\n");
-            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  Finalized: ").Append(Finalized).Append("\n");
+            sb.Append("  ServiceUse: ").Append(ServiceUse).Append("\n");
+            sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  Hour: ").Append(Hour).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -57,7 +94,7 @@ namespace Quadient.DataServices.Model.Job
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public override string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -82,7 +119,22 @@ namespace Quadient.DataServices.Model.Job
             if (input == null)
                 return false;
 
-            return base.Equals(input) && 
+            return 
+                (
+                    this.Finalized == input.Finalized ||
+                    (this.Finalized != null &&
+                    this.Finalized.Equals(input.Finalized))
+                ) && 
+                (
+                    this.ServiceUse == input.ServiceUse ||
+                    (this.ServiceUse != null &&
+                    this.ServiceUse.Equals(input.ServiceUse))
+                ) && 
+                (
+                    this.Date == input.Date ||
+                    (this.Date != null &&
+                    this.Date.Equals(input.Date))
+                ) && 
                 (
                     this.Hour == input.Hour ||
                     (this.Hour != null &&
@@ -98,7 +150,13 @@ namespace Quadient.DataServices.Model.Job
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = base.GetHashCode();
+                int hashCode = 41;
+                if (this.Finalized != null)
+                    hashCode = hashCode * 59 + this.Finalized.GetHashCode();
+                if (this.ServiceUse != null)
+                    hashCode = hashCode * 59 + this.ServiceUse.GetHashCode();
+                if (this.Date != null)
+                    hashCode = hashCode * 59 + this.Date.GetHashCode();
                 if (this.Hour != null)
                     hashCode = hashCode * 59 + this.Hour.GetHashCode();
                 return hashCode;

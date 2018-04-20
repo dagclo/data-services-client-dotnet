@@ -18,27 +18,19 @@ namespace Quadient.DataServices.Api.Phone
             Content = content;
         }
 
-        public PhoneValidation(PhoneValidationRequestConfiguration configuration, List<PhoneValidationRequestRecord> records)
+        public PhoneValidation(PhoneValidationRequestConfiguration configuration, List<PhoneValidationRequestRecord> phoneNumbers)
         {
-            Content = new PhoneValidationRequest
-            {
-                Configuration = configuration,
-                PhoneNumbers = records
-            };
+            Content = new PhoneValidationRequest(configuration, phoneNumbers);
         }
 
         public PhoneValidation(PhoneValidationRequestConfiguration configuration, IEnumerable<string> numbers)
         {
-            var records = numbers.Select(number => new PhoneValidationRequestRecord
+            var phoneNumbers = numbers.Select(number => new PhoneValidationRequestRecord
                 {
                     PhoneNumber = number
                 })
                 .ToList();
-            Content = new PhoneValidationRequest
-            {
-                Configuration = configuration,
-                PhoneNumbers = records
-            };
+            Content = new PhoneValidationRequest(configuration, phoneNumbers);
         }
     }
 }

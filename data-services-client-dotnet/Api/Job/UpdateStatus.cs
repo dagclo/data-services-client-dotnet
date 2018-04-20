@@ -5,7 +5,7 @@ namespace Quadient.DataServices.Api.Job
 {
     public class UpdateStatus: IRequest<JobStatusUpdateRequest, JobStatusInformationResponse>
     {
-        public string ServicePath {get; private set;} = $"services/jobs/v1/{0}/job_status";
+        public string ServicePath {get; private set;}
         public HttpMethod Method {get;} = HttpMethod.Put;
         public JobStatusUpdateRequest Content {get; set;}
 
@@ -16,7 +16,7 @@ namespace Quadient.DataServices.Api.Job
 
         public UpdateStatus(string jobId, JobStatus status)
         {
-            ServicePath = string.Format(ServicePath, jobId);
+            ServicePath = $"jobs/v1/{jobId}/job_status";
             Content = new JobStatusUpdateRequest
             {
                 JobStatus = status

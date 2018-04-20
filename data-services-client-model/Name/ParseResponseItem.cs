@@ -9,12 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Name
 {
@@ -30,7 +36,7 @@ namespace Quadient.DataServices.Model.Name
         /// <param name="Id">The optional identifier provided for this name on input..</param>
         /// <param name="Names">The name(s) identified in the input. Usually the array has just one value, but depending on the settomg of the &#x60;multi_entity_handling&#x60; configuration property, the service may return more than one. It will return zero in case of empty or skipped input..</param>
         /// <param name="Outcome">Outcome.</param>
-        public ParseResponseItem(string Id = default(string), List<NameDetailsOut> Names = default(List<NameDetailsOut>), Quadient.DataServices.Model.Phone.OutcomeDefinition Outcome = default(Quadient.DataServices.Model.Phone.OutcomeDefinition))
+        public ParseResponseItem(string Id = default(string), List<NameDetailsOut> Names = default(List<NameDetailsOut>), OutcomeDefinition Outcome = default(OutcomeDefinition))
         {
             this.Id = Id;
             this.Names = Names;
@@ -55,7 +61,7 @@ namespace Quadient.DataServices.Model.Name
         /// Gets or Sets Outcome
         /// </summary>
         [DataMember(Name="outcome", EmitDefaultValue=false)]
-        public Quadient.DataServices.Model.Phone.OutcomeDefinition Outcome { get; set; }
+        public OutcomeDefinition Outcome { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

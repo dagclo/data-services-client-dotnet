@@ -6,7 +6,7 @@ namespace Quadient.DataServices.Api.Country
 {
     public class CountryStandardization: IRequest<CountryStandardizationRequest, CountryStandardizationResponse>
     {
-        public string ServicePath {get;} = "/services/country-standardization/v1";
+        public string ServicePath {get;} = "/services/country-standardization/v1/find";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public CountryStandardizationRequest Content { get; set; }
 
@@ -19,10 +19,7 @@ namespace Quadient.DataServices.Api.Country
 
         public CountryStandardization(List<string> countries)
         {
-            Content = new CountryStandardizationRequest
-            {
-                Countries = countries
-            };
+            Content = new CountryStandardizationRequest("en", countries);
         }
     }
 }

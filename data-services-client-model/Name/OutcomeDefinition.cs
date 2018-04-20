@@ -9,14 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Name
 {
@@ -24,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// OutcomeDefinition
     /// </summary>
     [DataContract]
-    public partial class OutcomeDefinition :  IEquatable<Quadient.DataServices.Model.Phone.OutcomeDefinition>, IValidatableObject
+    public partial class OutcomeDefinition :  IEquatable<OutcomeDefinition>, IValidatableObject
     {
         /// <summary>
         /// The final status of the object. 
@@ -72,12 +76,12 @@ namespace Quadient.DataServices.Model.Name
         [DataMember(Name="category", EmitDefaultValue=false)]
         public CategoryEnum Category { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Quadient.DataServices.Model.Phone.OutcomeDefinition" /> class.
+        /// Initializes a new instance of the <see cref="OutcomeDefinition" /> class.
         /// </summary>
-        [JsonConstructor]
+        [JsonConstructorAttribute]
         protected OutcomeDefinition() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Quadient.DataServices.Model.Phone.OutcomeDefinition" /> class.
+        /// Initializes a new instance of the <see cref="OutcomeDefinition" /> class.
         /// </summary>
         /// <param name="Category">The final status of the object.  (required).</param>
         /// <param name="Codes">An object that contains correction codes as keys and messages as values.  (required).</param>
@@ -141,7 +145,7 @@ namespace Quadient.DataServices.Model.Name
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Quadient.DataServices.Model.Phone.OutcomeDefinition);
+            return this.Equals(input as OutcomeDefinition);
         }
 
         /// <summary>
@@ -149,13 +153,14 @@ namespace Quadient.DataServices.Model.Name
         /// </summary>
         /// <param name="input">Instance of OutcomeDefinition to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Quadient.DataServices.Model.Phone.OutcomeDefinition input)
+        public bool Equals(OutcomeDefinition input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
+                    this.Category == input.Category ||
                     (this.Category != null &&
                     this.Category.Equals(input.Category))
                 ) && 

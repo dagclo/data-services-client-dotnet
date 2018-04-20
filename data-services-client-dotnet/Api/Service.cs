@@ -15,6 +15,7 @@ namespace Quadient.DataServices.Api
     {               
         private readonly int TokenExpiration = 8 * 60 * 1000;
         private readonly HttpClient _httpClient;
+        private readonly HttpClient _authClient;
         protected ICredentials Credentials {get;}
         protected IConfiguration Configuration {get;}
 
@@ -26,9 +27,9 @@ namespace Quadient.DataServices.Api
             {                
                 configuration.BaseAddress = $"https://data.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}";
             }
-            if(string.IsNullOrWhiteSpace(configuration.CloudAddress) && !string.IsNullOrWhiteSpace(credentials.Company))
+            if(string.IsNullOrWhiteSpace(configuration.CloudAddress))
             {
-                configuration.CloudAddress = $"https://{credentials.Company}.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}";
+                configuration.CloudAddress = !string.IsNullOrWhiteSpace(credentials.Company) ? $"https://{credentials.Company}.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}" : configuration.BaseAddress;
             }
             Configuration = configuration;
             
@@ -37,12 +38,20 @@ namespace Quadient.DataServices.Api
                 PreAuthenticate = true,
                 ClientCertificateOptions = ClientCertificateOption.Automatic
             };
+
             _httpClient = new HttpClient(handler)
             {
                 Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
-                BaseAddress = new Uri(configuration.BaseAddress)
+                BaseAddress = new Uri(configuration.BaseAddress)                
             };
             _httpClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
+
+            _authClient = new HttpClient(handler)
+            {
+                Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                BaseAddress = new Uri(configuration.CloudAddress)      
+            };
+            _authClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
         }
 
         protected Service(ICredentials credentials): this(credentials, new Configuration())
@@ -53,8 +62,18 @@ namespace Quadient.DataServices.Api
         private async Task<ISession> GetSession()
         {           
             var isAdmin = string.IsNullOrWhiteSpace(Configuration.CloudAddress);
-            if (_session != null && _expiration < DateTime.Now) return _session;
-            _session = await Execute(new AuthToken(Credentials, isAdmin));
+            if (_session != null && _expiration > DateTime.Now) return _session;
+            var request = new AuthToken(Credentials, isAdmin);
+            using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
+            {
+                httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
+                using (var result = await _authClient.SendAsync(httpRequest))
+                {
+                    result.EnsureSuccessStatusCode();
+                    var resultContent = await result.Content.ReadAsStringAsync();
+                    _session = DeserializeObject<Session>(resultContent);
+                }
+            }
             if (isAdmin) _session.Token = _session.AccessToken;
             _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
             return _session;

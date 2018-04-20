@@ -9,11 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Name
 {
@@ -29,7 +36,7 @@ namespace Quadient.DataServices.Model.Name
         /// <param name="Id">The optional identifier provided for this name on input..</param>
         /// <param name="Name">Name.</param>
         /// <param name="Outcome">Outcome.</param>
-        public ProcessResponseItem(string Id = default(string), NameDetailsOut Name = default(NameDetailsOut), Quadient.DataServices.Model.Phone.OutcomeDefinition Outcome = default(Quadient.DataServices.Model.Phone.OutcomeDefinition))
+        public ProcessResponseItem(string Id = default(string), NameDetailsOut Name = default(NameDetailsOut), OutcomeDefinition Outcome = default(OutcomeDefinition))
         {
             this.Id = Id;
             this.Name = Name;
@@ -53,7 +60,7 @@ namespace Quadient.DataServices.Model.Name
         /// Gets or Sets Outcome
         /// </summary>
         [DataMember(Name="outcome", EmitDefaultValue=false)]
-        public Quadient.DataServices.Model.Phone.OutcomeDefinition Outcome { get; set; }
+        public OutcomeDefinition Outcome { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

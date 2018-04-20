@@ -9,11 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Job
 {
@@ -21,15 +28,33 @@ namespace Quadient.DataServices.Model.Job
     /// JobTotalUsageResponse
     /// </summary>
     [DataContract]
-    public partial class JobTotalUsageResponse : UsageAggregation,  IEquatable<JobTotalUsageResponse>, IValidatableObject
+    public partial class JobTotalUsageResponse :  IEquatable<JobTotalUsageResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JobTotalUsageResponse" /> class.
         /// </summary>
-        public JobTotalUsageResponse(bool? Finalized = default(bool?), Object ServiceUse = default(Object)) : base()
+        /// <param name="Finalized">Are the usage metrics finalized (true) or just a point-in-time snapshot (false)..</param>
+        /// <param name="ServiceUse">Defines a set of usage metrics for each of the services that has been consumed during the job..</param>
+        public JobTotalUsageResponse(bool? Finalized = default(bool?), Object ServiceUse = default(Object))
         {
+            this.Finalized = Finalized;
+            this.ServiceUse = ServiceUse;
         }
         
+        /// <summary>
+        /// Are the usage metrics finalized (true) or just a point-in-time snapshot (false).
+        /// </summary>
+        /// <value>Are the usage metrics finalized (true) or just a point-in-time snapshot (false).</value>
+        [DataMember(Name="finalized", EmitDefaultValue=false)]
+        public bool? Finalized { get; set; }
+
+        /// <summary>
+        /// Defines a set of usage metrics for each of the services that has been consumed during the job.
+        /// </summary>
+        /// <value>Defines a set of usage metrics for each of the services that has been consumed during the job.</value>
+        [DataMember(Name="service-use", EmitDefaultValue=false)]
+        public Object ServiceUse { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -38,7 +63,8 @@ namespace Quadient.DataServices.Model.Job
         {
             var sb = new StringBuilder();
             sb.Append("class JobTotalUsageResponse {\n");
-            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  Finalized: ").Append(Finalized).Append("\n");
+            sb.Append("  ServiceUse: ").Append(ServiceUse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -47,7 +73,7 @@ namespace Quadient.DataServices.Model.Job
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public override string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -72,7 +98,17 @@ namespace Quadient.DataServices.Model.Job
             if (input == null)
                 return false;
 
-            return base.Equals(input);
+            return 
+                (
+                    this.Finalized == input.Finalized ||
+                    (this.Finalized != null &&
+                    this.Finalized.Equals(input.Finalized))
+                ) && 
+                (
+                    this.ServiceUse == input.ServiceUse ||
+                    (this.ServiceUse != null &&
+                    this.ServiceUse.Equals(input.ServiceUse))
+                );
         }
 
         /// <summary>
@@ -83,7 +119,11 @@ namespace Quadient.DataServices.Model.Job
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = base.GetHashCode();
+                int hashCode = 41;
+                if (this.Finalized != null)
+                    hashCode = hashCode * 59 + this.Finalized.GetHashCode();
+                if (this.ServiceUse != null)
+                    hashCode = hashCode * 59 + this.ServiceUse.GetHashCode();
                 return hashCode;
             }
         }

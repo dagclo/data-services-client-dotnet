@@ -9,13 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Job
 {
@@ -28,7 +33,7 @@ namespace Quadient.DataServices.Model.Job
         /// <summary>
         /// Initializes a new instance of the <see cref="JobCreationRequest" /> class.
         /// </summary>
-        [JsonConstructor]
+        [JsonConstructorAttribute]
         protected JobCreationRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="JobCreationRequest" /> class.
@@ -52,15 +57,7 @@ namespace Quadient.DataServices.Model.Job
             {
                 this.Origin = Origin;
             }
-            // to ensure "Owner" is required (not null)
-            if (Owner == null)
-            {
-                throw new InvalidDataException("Owner is a required property for JobCreationRequest and cannot be null");
-            }
-            else
-            {
-                this.Owner = Owner;
-            }
+            this.Owner = Owner;
             this.Tenant = Tenant;
             this.ParentJob = ParentJob;
             this.ExpectedServices = ExpectedServices;

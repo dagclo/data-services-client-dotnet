@@ -20,11 +20,7 @@ namespace Quadient.DataServices.Api.Email
 
         public EmailValidation(EmailValidationRequestConfiguration configuration, List<EmailAddress> emails)
         {
-            Content = new EmailValidationRequest
-            {
-                Configuration = configuration,
-                EmailRecords = emails                
-            };
+            Content = new EmailValidationRequest(configuration, emails);
         }
 
         public EmailValidation(EmailValidationRequestConfiguration configuration, IEnumerable<string> emails)
@@ -34,11 +30,7 @@ namespace Quadient.DataServices.Api.Email
                     Email = email
                 })
                 .ToList();
-            Content = new EmailValidationRequest
-            {
-                Configuration = configuration,
-                EmailRecords = emailAddresses                
-            };
+            Content = new EmailValidationRequest(configuration, emailAddresses);
         }
     }
 }

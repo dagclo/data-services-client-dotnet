@@ -9,12 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Name
 {
@@ -22,15 +28,15 @@ namespace Quadient.DataServices.Model.Name
     /// Describes an error object.
     /// </summary>
     [DataContract]
-    public partial class Error :  IEquatable<Quadient.DataServices.Model.Phone.Error>, IValidatableObject
+    public partial class Error :  IEquatable<Error>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Quadient.DataServices.Model.Phone.Error" /> class.
+        /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
-        [JsonConstructor]
+        [JsonConstructorAttribute]
         protected Error() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Quadient.DataServices.Model.Phone.Error" /> class.
+        /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
         /// <param name="Code">The HTTP status code. (required).</param>
         /// <param name="Message">A human-readable error message. (required).</param>
@@ -110,7 +116,7 @@ namespace Quadient.DataServices.Model.Name
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Quadient.DataServices.Model.Phone.Error);
+            return this.Equals(input as Error);
         }
 
         /// <summary>
@@ -118,7 +124,7 @@ namespace Quadient.DataServices.Model.Name
         /// </summary>
         /// <param name="input">Instance of Error to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Quadient.DataServices.Model.Phone.Error input)
+        public bool Equals(Error input)
         {
             if (input == null)
                 return false;

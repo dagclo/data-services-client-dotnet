@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Quadient.DataServices.Model
 {
     public enum Region
@@ -10,9 +7,26 @@ namespace Quadient.DataServices.Model
         EU = 1
     }
 
+    public interface IAuthCredentials
+    {
+        string Password {get; set;}
+    }
+
+    public class UserCredentials: IAuthCredentials
+    {
+        public string Email {get; set;}
+        public string Password {get; set;}
+    }
+
+    public class AdminCredentials: IAuthCredentials
+    {
+        public string Username {get; set;}
+        public string Password {get; set;}
+    }
+
     public interface ICredentials
     {
-        Region Region {get; set;}
+        Region Region {get;set;}
         string Company {get; set;}
         string Username {get; set;}
         string Password {get; set;}

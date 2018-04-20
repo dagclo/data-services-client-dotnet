@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Quadient.DataServices.Api.Job;
+using Quadient.DataServices.Api.User;
 using Quadient.DataServices.Model;
 using Quadient.DataServices.Model.Job;
 

@@ -20,11 +20,7 @@ namespace Quadient.DataServices.Api.Name
 
         public NameValidation(ParseRequestConfiguration configuration, List<ParseRequestItem> records)
         {
-            Content = new ParseRequest
-            {
-              Configuration = configuration,
-              Records = records
-            };
+            Content = new ParseRequest(configuration, records);
         }
 
         public NameValidation(ParseRequestConfiguration configuration, IEnumerable<string> names)
@@ -34,11 +30,7 @@ namespace Quadient.DataServices.Api.Name
                     UnstructuredName = name
                 })
                 .ToList();
-            Content = new ParseRequest
-            {
-                Configuration = configuration,
-                Records = records
-            };
+            Content = new ParseRequest(configuration, records);
         }
     }
 }

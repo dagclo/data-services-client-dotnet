@@ -9,12 +9,18 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
 namespace Quadient.DataServices.Model.Job
 {
@@ -22,24 +28,34 @@ namespace Quadient.DataServices.Model.Job
     /// JobDetailedResponse
     /// </summary>
     [DataContract]
-    public partial class JobDetailedResponse : JobInformationResponse,  IEquatable<JobDetailedResponse>, IValidatableObject
+    public partial class JobDetailedResponse :  IEquatable<JobDetailedResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JobDetailedResponse" /> class.
         /// </summary>
+        /// <param name="JobId">The job&#39;s unique ID..</param>
+        /// <param name="Origin">The originating product/application/service for which this job was created..</param>
+        /// <param name="Owner">The user_id of the job&#39;s owner..</param>
+        /// <param name="ParentJob">The parent job&#39;s job_id. May be null if the job does not have a parent job..</param>
+        /// <param name="CreatedAt">The time of job creation.</param>
+        /// <param name="JobStatus">JobStatus.</param>
         /// <param name="JobStatusDetails">Any additional details pertaining to the most recent job status change.</param>
         /// <param name="CreatedBy">The user_id of the user who created the job..</param>
-        /// <param name="CreatedAt">The time of job creation.</param>
         /// <param name="UpdatedAt">The last time of updating the job.</param>
         /// <param name="ExpectedServices">An array of the expected services that this job will be consuming, referred to by their service_id..</param>
         /// <param name="ExpectedRecordCount">The expected amount of records that will be processed by the &#x60;expected_services&#x60; in this job.</param>
         /// <param name="AdditionalDetails">Any additional details about the job..</param>
         /// <param name="Usage">Usage.</param>
-        public JobDetailedResponse(Object JobStatusDetails = default(Object), string CreatedBy = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), List<string> ExpectedServices = default(List<string>), long? ExpectedRecordCount = default(long?), Object AdditionalDetails = default(Object), UsageAggregation Usage = default(UsageAggregation), string JobId = default(string), string Origin = default(string), string Owner = default(string), string ParentJob = default(string), JobStatus JobStatus = default(JobStatus)) : base()
+        public JobDetailedResponse(string JobId = default(string), string Origin = default(string), string Owner = default(string), string ParentJob = default(string), DateTime? CreatedAt = default(DateTime?), JobStatus JobStatus = default(JobStatus), Object JobStatusDetails = default(Object), string CreatedBy = default(string), DateTime? UpdatedAt = default(DateTime?), List<string> ExpectedServices = default(List<string>), long? ExpectedRecordCount = default(long?), Object AdditionalDetails = default(Object), UsageAggregation Usage = default(UsageAggregation))
         {
+            this.JobId = JobId;
+            this.Origin = Origin;
+            this.Owner = Owner;
+            this.ParentJob = ParentJob;
+            this.CreatedAt = CreatedAt;
+            this.JobStatus = JobStatus;
             this.JobStatusDetails = JobStatusDetails;
             this.CreatedBy = CreatedBy;
-            this.CreatedAt = CreatedAt;
             this.UpdatedAt = UpdatedAt;
             this.ExpectedServices = ExpectedServices;
             this.ExpectedRecordCount = ExpectedRecordCount;
@@ -47,6 +63,47 @@ namespace Quadient.DataServices.Model.Job
             this.Usage = Usage;
         }
         
+        /// <summary>
+        /// The job&#39;s unique ID.
+        /// </summary>
+        /// <value>The job&#39;s unique ID.</value>
+        [DataMember(Name="job_id", EmitDefaultValue=false)]
+        public string JobId { get; set; }
+
+        /// <summary>
+        /// The originating product/application/service for which this job was created.
+        /// </summary>
+        /// <value>The originating product/application/service for which this job was created.</value>
+        [DataMember(Name="origin", EmitDefaultValue=false)]
+        public string Origin { get; set; }
+
+        /// <summary>
+        /// The user_id of the job&#39;s owner.
+        /// </summary>
+        /// <value>The user_id of the job&#39;s owner.</value>
+        [DataMember(Name="owner", EmitDefaultValue=false)]
+        public string Owner { get; set; }
+
+        /// <summary>
+        /// The parent job&#39;s job_id. May be null if the job does not have a parent job.
+        /// </summary>
+        /// <value>The parent job&#39;s job_id. May be null if the job does not have a parent job.</value>
+        [DataMember(Name="parent_job", EmitDefaultValue=false)]
+        public string ParentJob { get; set; }
+
+        /// <summary>
+        /// The time of job creation
+        /// </summary>
+        /// <value>The time of job creation</value>
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets JobStatus
+        /// </summary>
+        [DataMember(Name="job_status", EmitDefaultValue=false)]
+        public JobStatus JobStatus { get; set; }
+
         /// <summary>
         /// Any additional details pertaining to the most recent job status change
         /// </summary>
@@ -60,13 +117,6 @@ namespace Quadient.DataServices.Model.Job
         /// <value>The user_id of the user who created the job.</value>
         [DataMember(Name="created_by", EmitDefaultValue=false)]
         public string CreatedBy { get; set; }
-
-        /// <summary>
-        /// The time of job creation
-        /// </summary>
-        /// <value>The time of job creation</value>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// The last time of updating the job
@@ -110,10 +160,14 @@ namespace Quadient.DataServices.Model.Job
         {
             var sb = new StringBuilder();
             sb.Append("class JobDetailedResponse {\n");
-            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  JobId: ").Append(JobId).Append("\n");
+            sb.Append("  Origin: ").Append(Origin).Append("\n");
+            sb.Append("  Owner: ").Append(Owner).Append("\n");
+            sb.Append("  ParentJob: ").Append(ParentJob).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  JobStatus: ").Append(JobStatus).Append("\n");
             sb.Append("  JobStatusDetails: ").Append(JobStatusDetails).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  ExpectedServices: ").Append(ExpectedServices).Append("\n");
             sb.Append("  ExpectedRecordCount: ").Append(ExpectedRecordCount).Append("\n");
@@ -152,42 +206,67 @@ namespace Quadient.DataServices.Model.Job
             if (input == null)
                 return false;
 
-            return base.Equals(input) && 
+            return 
                 (
-                    this.JobStatusDetails == input.JobStatusDetails ||
-                    (this.JobStatusDetails != null &&
-                    this.JobStatusDetails.Equals(input.JobStatusDetails))
-                ) && base.Equals(input) && 
+                    this.JobId == input.JobId ||
+                    (this.JobId != null &&
+                    this.JobId.Equals(input.JobId))
+                ) && 
                 (
-                    this.CreatedBy == input.CreatedBy ||
-                    (this.CreatedBy != null &&
-                    this.CreatedBy.Equals(input.CreatedBy))
-                ) && base.Equals(input) && 
+                    this.Origin == input.Origin ||
+                    (this.Origin != null &&
+                    this.Origin.Equals(input.Origin))
+                ) && 
+                (
+                    this.Owner == input.Owner ||
+                    (this.Owner != null &&
+                    this.Owner.Equals(input.Owner))
+                ) && 
+                (
+                    this.ParentJob == input.ParentJob ||
+                    (this.ParentJob != null &&
+                    this.ParentJob.Equals(input.ParentJob))
+                ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
-                ) && base.Equals(input) && 
+                ) && 
+                (
+                    this.JobStatus == input.JobStatus ||
+                    (this.JobStatus != null &&
+                    this.JobStatus.Equals(input.JobStatus))
+                ) && 
+                (
+                    this.JobStatusDetails == input.JobStatusDetails ||
+                    (this.JobStatusDetails != null &&
+                    this.JobStatusDetails.Equals(input.JobStatusDetails))
+                ) && 
+                (
+                    this.CreatedBy == input.CreatedBy ||
+                    (this.CreatedBy != null &&
+                    this.CreatedBy.Equals(input.CreatedBy))
+                ) && 
                 (
                     this.UpdatedAt == input.UpdatedAt ||
                     (this.UpdatedAt != null &&
                     this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && base.Equals(input) && 
+                ) && 
                 (
                     this.ExpectedServices == input.ExpectedServices ||
                     this.ExpectedServices != null &&
                     this.ExpectedServices.SequenceEqual(input.ExpectedServices)
-                ) && base.Equals(input) && 
+                ) && 
                 (
                     this.ExpectedRecordCount == input.ExpectedRecordCount ||
                     (this.ExpectedRecordCount != null &&
                     this.ExpectedRecordCount.Equals(input.ExpectedRecordCount))
-                ) && base.Equals(input) && 
+                ) && 
                 (
                     this.AdditionalDetails == input.AdditionalDetails ||
                     (this.AdditionalDetails != null &&
                     this.AdditionalDetails.Equals(input.AdditionalDetails))
-                ) && base.Equals(input) && 
+                ) && 
                 (
                     this.Usage == input.Usage ||
                     (this.Usage != null &&
@@ -203,13 +282,23 @@ namespace Quadient.DataServices.Model.Job
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = base.GetHashCode();
+                int hashCode = 41;
+                if (this.JobId != null)
+                    hashCode = hashCode * 59 + this.JobId.GetHashCode();
+                if (this.Origin != null)
+                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
+                if (this.Owner != null)
+                    hashCode = hashCode * 59 + this.Owner.GetHashCode();
+                if (this.ParentJob != null)
+                    hashCode = hashCode * 59 + this.ParentJob.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.JobStatus != null)
+                    hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
                 if (this.JobStatusDetails != null)
                     hashCode = hashCode * 59 + this.JobStatusDetails.GetHashCode();
                 if (this.CreatedBy != null)
                     hashCode = hashCode * 59 + this.CreatedBy.GetHashCode();
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.UpdatedAt != null)
                     hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.ExpectedServices != null)
