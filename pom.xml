@@ -15,7 +15,8 @@
 					<generateApis>false</generateApis>
                     <generateModelTests>false</generateModelTests >
                     <generateModelDocumentation>false</generateModelDocumentation>
-                    <generateSupportingFiles>false</generateSupportingFiles>                    
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <templateDirectory>swagger-templates</templateDirectory>                 
 				</configuration>
 				<executions>
 					<execution>

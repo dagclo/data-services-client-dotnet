@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Email
     /// EmailValidationRequest
     /// </summary>
     [DataContract]
-    public partial class EmailValidationRequest :  IEquatable<EmailValidationRequest>, IValidatableObject
+    public partial class EmailValidationRequest : IEquatable<EmailValidationRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailValidationRequest" /> class.

@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// Response item containing the results of processing.
     /// </summary>
     [DataContract]
-    public partial class ProcessResponseItem :  IEquatable<ProcessResponseItem>, IValidatableObject
+    public partial class ProcessResponseItem : IEquatable<ProcessResponseItem>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessResponseItem" /> class.

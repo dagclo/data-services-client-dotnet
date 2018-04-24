@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Email
     /// Configuration of the correction request.
     /// </summary>
     [DataContract]
-    public partial class EmailValidationRequestConfiguration :  IEquatable<EmailValidationRequestConfiguration>, IValidatableObject
+    public partial class EmailValidationRequestConfiguration : IEquatable<EmailValidationRequestConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Defines which validation method to use. \&quot;Full\&quot; (default) validates an email address  against multiple registries of email addresses, good and bad,  that are confirmed to be in use. \&quot;Fast\&quot; validates an email address only against Quadient-based information.

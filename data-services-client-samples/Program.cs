@@ -20,14 +20,9 @@ namespace Quadient.DataServices.Example
 
             var creds = new Credentials
             {
-                Company = "sweetlemon",
-                Username = "sweetlemon@sweetlemon.cz",
-                Password = "Pass2013*"
-            };
-            var config = new Configuration
-            {
-                BaseAddress = "http://SEADVNESSFE001.satorisoftware.com/",
-                CloudAddress = "http://seanessinspire.sseng.local/"
+                Company = args[0],
+                Username = args[1],
+                Password = args[3]
             };
 
             var correction = new AddressCorrection(new List<CorrectionRequestAddress>
@@ -42,7 +37,7 @@ namespace Quadient.DataServices.Example
             Task.Run(async () =>
             {
                 Console.WriteLine("Running address correction sample 1");
-                var client = new Client(creds, config);
+                var client = new Client(creds);
                 var resp = await client.Execute(correction);
                 Console.WriteLine($"address correction sample 1 output\n {resp.ToJson()}");
 

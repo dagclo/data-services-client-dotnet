@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// NicknameItem
     /// </summary>
     [DataContract]
-    public partial class NicknameItem :  IEquatable<NicknameItem>, IValidatableObject
+    public partial class NicknameItem : IEquatable<NicknameItem>, IValidatableObject
     {
         /// <summary>
         /// Describes in which field the potential nickname was found.

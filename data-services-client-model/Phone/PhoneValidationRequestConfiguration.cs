@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Phone
     /// Configuration options to set for the data quality engine. Omit if you want to use the default behavior. The default behavior assumes that the phone number includes a country code.
     /// </summary>
     [DataContract]
-    public partial class PhoneValidationRequestConfiguration :  IEquatable<PhoneValidationRequestConfiguration>, IValidatableObject
+    public partial class PhoneValidationRequestConfiguration : IEquatable<PhoneValidationRequestConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneValidationRequestConfiguration" /> class.

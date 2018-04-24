@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// NameDetailsIn
     /// </summary>
     [DataContract]
-    public partial class NameDetailsIn :  IEquatable<NameDetailsIn>, IValidatableObject
+    public partial class NameDetailsIn : IEquatable<NameDetailsIn>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NameDetailsIn" /> class.

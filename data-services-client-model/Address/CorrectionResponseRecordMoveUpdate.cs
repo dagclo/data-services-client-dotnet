@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// Defines an additional output group of fields for move_update processing, enabled using the &#x60;output_groups&#x60; configuration setting.
     /// </summary>
     [DataContract]
-    public partial class CorrectionResponseRecordMoveUpdate :  IEquatable<CorrectionResponseRecordMoveUpdate>, IValidatableObject
+    public partial class CorrectionResponseRecordMoveUpdate : IEquatable<CorrectionResponseRecordMoveUpdate>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CorrectionResponseRecordMoveUpdate" /> class.

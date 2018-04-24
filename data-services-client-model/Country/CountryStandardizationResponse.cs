@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Country
     /// Results from country standardization.
     /// </summary>
     [DataContract]
-    public partial class CountryStandardizationResponse :  IEquatable<CountryStandardizationResponse>, IValidatableObject
+    public partial class CountryStandardizationResponse : IEquatable<CountryStandardizationResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CountryStandardizationResponse" /> class.

@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// The address that results and is output after correction. This object contains the information needed to represent the address in a variety of ways, but the printed address always contains  the following fields, separated on individual lines: * organization * address_lines * regional_lines * country
     /// </summary>
     [DataContract]
-    public partial class CorrectionResponseAddress :  IEquatable<CorrectionResponseAddress>, IValidatableObject
+    public partial class CorrectionResponseAddress : IEquatable<CorrectionResponseAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CorrectionResponseAddress" /> class.

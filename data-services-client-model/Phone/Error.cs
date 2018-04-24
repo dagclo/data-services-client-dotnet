@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Phone
     /// Describes an error object.
     /// </summary>
     [DataContract]
-    public partial class Error :  IEquatable<Error>, IValidatableObject
+    public partial class Error : IEquatable<Error>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Error" /> class.

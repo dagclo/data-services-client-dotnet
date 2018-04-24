@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Email
     /// EmailAddress
     /// </summary>
     [DataContract]
-    public partial class EmailAddress :  IEquatable<EmailAddress>, IValidatableObject
+    public partial class EmailAddress : IEquatable<EmailAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailAddress" /> class.

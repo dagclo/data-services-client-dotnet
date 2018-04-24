@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Phone
     /// OutcomeDefinition
     /// </summary>
     [DataContract]
-    public partial class OutcomeDefinition :  IEquatable<OutcomeDefinition>, IValidatableObject
+    public partial class OutcomeDefinition : IEquatable<OutcomeDefinition>, IValidatableObject
     {
         /// <summary>
         /// The final status of the object. The rules for selecting a &#x60;category&#x60; are as follows:  * Skipped: If the input &#x60;phone_number&#x60; is missing, null, blank, or entirely white spaces, &#x60;Skipped&#x60; is returned. * Invalid: If the input &#x60;phone_number&#x60; is not recognized, &#x60;Invalid&#x60; is returned. * Valid: If the input &#x60;phone_number&#x60; is recognized and matches exactly one or more of the formats, &#x60;Valid&#x60; is returned. * Corrected: If the input &#x60;phone_number&#x60;is recognized, but it does not match any of the formats, &#x60;Corrected&#x60; is returned. * Doubtful: Currently &#x60;Doubtful&#x60; is not an expected outcome category. It may be activated in later versions of the service in case a phone number is recognized but is deemed to be suspicious or otherwise unqualified. 

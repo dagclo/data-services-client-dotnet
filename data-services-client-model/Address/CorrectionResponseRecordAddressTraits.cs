@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// Defines an output group that contains additional address elements, enabled using the &#x60;output_groups&#x60; configuration setting. The availability of individual properties of this group varies depending on country.
     /// </summary>
     [DataContract]
-    public partial class CorrectionResponseRecordAddressTraits :  IEquatable<CorrectionResponseRecordAddressTraits>, IValidatableObject
+    public partial class CorrectionResponseRecordAddressTraits : IEquatable<CorrectionResponseRecordAddressTraits>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CorrectionResponseRecordAddressTraits" /> class.

@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// ProcessRequestConfiguration
     /// </summary>
     [DataContract]
-    public partial class ProcessRequestConfiguration :  IEquatable<ProcessRequestConfiguration>, IValidatableObject
+    public partial class ProcessRequestConfiguration : IEquatable<ProcessRequestConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessRequestConfiguration" /> class.

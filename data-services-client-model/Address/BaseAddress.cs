@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// BaseAddress
     /// </summary>
     [DataContract]
-    public partial class BaseAddress :  IEquatable<BaseAddress>, IValidatableObject
+    public partial class BaseAddress : IEquatable<BaseAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseAddress" /> class.

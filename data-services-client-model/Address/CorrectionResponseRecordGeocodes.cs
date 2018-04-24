@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// Defines an additional output group of fields for geocoding, enabled using the &#x60;output_groups&#x60; configuration setting.
     /// </summary>
     [DataContract]
-    public partial class CorrectionResponseRecordGeocodes :  IEquatable<CorrectionResponseRecordGeocodes>, IValidatableObject
+    public partial class CorrectionResponseRecordGeocodes : IEquatable<CorrectionResponseRecordGeocodes>, IValidatableObject
     {
         /// <summary>
         /// Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). 

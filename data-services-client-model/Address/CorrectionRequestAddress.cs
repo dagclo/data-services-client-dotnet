@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// CorrectionRequestAddress
     /// </summary>
     [DataContract]
-    public partial class CorrectionRequestAddress :  IEquatable<CorrectionRequestAddress>, IValidatableObject
+    public partial class CorrectionRequestAddress : IEquatable<CorrectionRequestAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CorrectionRequestAddress" /> class.

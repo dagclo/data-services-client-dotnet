@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// ParseRequestItem
     /// </summary>
     [DataContract]
-    public partial class ParseRequestItem :  IEquatable<ParseRequestItem>, IValidatableObject
+    public partial class ParseRequestItem : IEquatable<ParseRequestItem>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseRequestItem" /> class.

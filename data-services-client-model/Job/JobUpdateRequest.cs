@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Job
     /// JobUpdateRequest
     /// </summary>
     [DataContract]
-    public partial class JobUpdateRequest :  IEquatable<JobUpdateRequest>, IValidatableObject
+    public partial class JobUpdateRequest : IEquatable<JobUpdateRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JobUpdateRequest" /> class.

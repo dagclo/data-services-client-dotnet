@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Email
     /// EmailValidationOutcome
     /// </summary>
     [DataContract]
-    public partial class EmailValidationOutcome : Dictionary<String, string>,  IEquatable<EmailValidationOutcome>, IValidatableObject
+    public partial class EmailValidationOutcome : IEquatable<EmailValidationOutcome>, IValidatableObject
     {
         /// <summary>
         /// The final status of the object.

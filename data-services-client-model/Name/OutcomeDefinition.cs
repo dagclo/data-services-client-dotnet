@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// OutcomeDefinition
     /// </summary>
     [DataContract]
-    public partial class OutcomeDefinition :  IEquatable<OutcomeDefinition>, IValidatableObject
+    public partial class OutcomeDefinition : IEquatable<OutcomeDefinition>, IValidatableObject
     {
         /// <summary>
         /// The final status of the object. 

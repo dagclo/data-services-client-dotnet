@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Job
     /// JobDetailedResponse
     /// </summary>
     [DataContract]
-    public partial class JobDetailedResponse :  IEquatable<JobDetailedResponse>, IValidatableObject
+    public partial class JobDetailedResponse : IEquatable<JobDetailedResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JobDetailedResponse" /> class.

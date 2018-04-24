@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// Response to the parse endpoint.
     /// </summary>
     [DataContract]
-    public partial class ParseResponse :  IEquatable<ParseResponse>, IValidatableObject
+    public partial class ParseResponse : IEquatable<ParseResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseResponse" /> class.

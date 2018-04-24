@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// ParseRequestConfiguration
     /// </summary>
     [DataContract]
-    public partial class ParseRequestConfiguration :  IEquatable<ParseRequestConfiguration>, IValidatableObject
+    public partial class ParseRequestConfiguration : IEquatable<ParseRequestConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Defines how to handle unstructured name input that seems to contain multiple entities (persons, companies, and so forth). You can choose to either keep input names as a &#x60;Single&#x60; output item, or to &#x60;Split&#x60; them, which outputs multiple elements in the &#x60;names&#x60; response attribute. 

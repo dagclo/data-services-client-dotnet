@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Address
     /// The configuration of the correction request. These values are ignored for uncorrected addresses.
     /// </summary>
     [DataContract]
-    public partial class CorrectionRequestConfiguration :  IEquatable<CorrectionRequestConfiguration>, IValidatableObject
+    public partial class CorrectionRequestConfiguration : IEquatable<CorrectionRequestConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CorrectionRequestConfiguration" /> class.

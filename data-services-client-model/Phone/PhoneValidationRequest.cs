@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Phone
     /// PhoneValidationRequest
     /// </summary>
     [DataContract]
-    public partial class PhoneValidationRequest :  IEquatable<PhoneValidationRequest>, IValidatableObject
+    public partial class PhoneValidationRequest : IEquatable<PhoneValidationRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneValidationRequest" /> class.

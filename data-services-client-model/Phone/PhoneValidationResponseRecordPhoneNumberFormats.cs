@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Phone
     /// PhoneValidationResponseRecordPhoneNumberFormats
     /// </summary>
     [DataContract]
-    public partial class PhoneValidationResponseRecordPhoneNumberFormats :  IEquatable<PhoneValidationResponseRecordPhoneNumberFormats>, IValidatableObject
+    public partial class PhoneValidationResponseRecordPhoneNumberFormats : IEquatable<PhoneValidationResponseRecordPhoneNumberFormats>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneValidationResponseRecordPhoneNumberFormats" /> class.

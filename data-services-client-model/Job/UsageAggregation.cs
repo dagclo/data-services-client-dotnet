@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Job
     /// UsageAggregation
     /// </summary>
     [DataContract]
-    public partial class UsageAggregation :  IEquatable<UsageAggregation>, IValidatableObject
+    public partial class UsageAggregation : IEquatable<UsageAggregation>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UsageAggregation" /> class.

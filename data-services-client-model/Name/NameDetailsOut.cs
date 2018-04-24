@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Name
     /// NameDetailsOut
     /// </summary>
     [DataContract]
-    public partial class NameDetailsOut :  IEquatable<NameDetailsOut>, IValidatableObject
+    public partial class NameDetailsOut : IEquatable<NameDetailsOut>, IValidatableObject
     {
         /// <summary>
         /// The gender of the person. This field only applies when &#x60;entity_type&#x60; is &#x60;person&#x60;. 

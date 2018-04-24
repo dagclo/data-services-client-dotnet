@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Country
     /// CountryOutcome
     /// </summary>
     [DataContract]
-    public partial class CountryOutcome : Dictionary<String, string>,  IEquatable<CountryOutcome>, IValidatableObject
+    public partial class CountryOutcome : IEquatable<CountryOutcome>, IValidatableObject
     {
         /// <summary>
         /// The final status of the object

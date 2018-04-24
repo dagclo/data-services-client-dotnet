@@ -28,7 +28,7 @@ namespace Quadient.DataServices.Model.Country
     /// OutputCountry
     /// </summary>
     [DataContract]
-    public partial class OutputCountry :  IEquatable<OutputCountry>, IValidatableObject
+    public partial class OutputCountry : IEquatable<OutputCountry>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OutputCountry" /> class.
