@@ -3,12 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Quadient.DataServices.Model</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>False</Deterministic>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="User\**" />
     <EmbeddedResource Remove="User\**" />
     <None Remove="User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs" Link="AssemblyInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
