@@ -1,5 +1,7 @@
 # Quadient Data Services Client for C# and .NET
 
+[![Build Status: Linux](https://travis-ci.org/quadient/data-services-client-dotnet.svg?branch=master)](https://travis-ci.org/quadient/data-services-client-dotnet)
+
 This project provides a client package for [Quadient Data Services](https://www.quadient.com/products/quadient-data-services) for the C# programming language.
 
 The client relies heavily on the following dependencies:
