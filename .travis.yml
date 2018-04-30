@@ -1,0 +1,9 @@
+sudo: false
+language: csharp
+solution: DataServices.sln
+mono: none
+dotnet: 2.1.105
+script:
+ - dotnet restore
+notifications:
+  email: false
