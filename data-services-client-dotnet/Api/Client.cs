@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Quadient.DataServices.Api.Job;
 using Quadient.DataServices.Model;
-using Quadient.DataServices.Model.Job;
 
 namespace Quadient.DataServices.Api
 {

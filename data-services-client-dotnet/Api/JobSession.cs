@@ -13,6 +13,7 @@ namespace Quadient.DataServices.Api
         private JobInformationResponse JobInformation {get; set;}
         private IDictionary<string, string> Headers {get; set;}
         public string JobId {get; set;}
+        public string Origin {get; set;}
 
         public JobSession (ICredentials credentials, IConfiguration configuration): base(credentials, configuration)
         {}
@@ -23,9 +24,11 @@ namespace Quadient.DataServices.Api
             var job = await Execute(request);
             JobInformation = job;
             JobId = job.JobId;
+            Origin = job.Origin;
             Headers = new Dictionary<string, string>
             {
-                { "Job-ID", JobId }
+                { "Job-ID", JobId },
+                { "Origin", Origin }
             };
             return job;
         }

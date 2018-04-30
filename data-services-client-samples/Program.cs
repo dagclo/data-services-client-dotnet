@@ -22,7 +22,7 @@ namespace Quadient.DataServices.Example
             {
                 Company = args[0],
                 Username = args[1],
-                Password = args[3]
+                Password = args[2]
             };
 
             var correction = new AddressCorrection(new List<CorrectionRequestAddress>

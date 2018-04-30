@@ -7,7 +7,7 @@ namespace Quadient.DataServices.Api.Name
 {
     public class NameValidation: IRequest<ParseRequest, ParseResponse>
     {
-        public string ServicePath {get;} = "/services/name-validation/v1/parse";
+        public string ServicePath {get;} = "services/name-validation/v1/parse";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public ParseRequest Content { get; set; }
 

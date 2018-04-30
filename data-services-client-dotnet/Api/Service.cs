@@ -23,14 +23,6 @@ namespace Quadient.DataServices.Api
         {
             if (_httpClient != null) return;
             Credentials = credentials;
-            if (string.IsNullOrWhiteSpace(configuration.BaseAddress))
-            {                
-                configuration.BaseAddress = $"https://data.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}";
-            }
-            if(string.IsNullOrWhiteSpace(configuration.CloudAddress))
-            {
-                configuration.CloudAddress = !string.IsNullOrWhiteSpace(credentials.Company) ? $"https://{credentials.Company}.quadientcloud.{(credentials.Region == Region.US ? "us": "eu")}" : configuration.BaseAddress;
-            }
             Configuration = configuration;
             
             var handler = new HttpClientHandler
@@ -42,14 +34,14 @@ namespace Quadient.DataServices.Api
             _httpClient = new HttpClient(handler)
             {
                 Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
-                BaseAddress = new Uri(configuration.BaseAddress)                
+                BaseAddress = GetBaseAddress()
             };
             _httpClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
 
             _authClient = new HttpClient(handler)
             {
                 Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
-                BaseAddress = new Uri(configuration.CloudAddress)      
+                BaseAddress = GetBaseAddress(true)
             };
             _authClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
         }
@@ -61,9 +53,16 @@ namespace Quadient.DataServices.Api
         private DateTime _expiration;
         private async Task<ISession> GetSession()
         {           
-            var isAdmin = string.IsNullOrWhiteSpace(Configuration.CloudAddress);
+
             if (_session != null && _expiration > DateTime.Now) return _session;
-            var request = new AuthToken(Credentials, isAdmin);
+            AuthToken request = null;
+            if (Configuration.IsAdmin)
+            {
+                request = new DataServicesToken(Credentials);
+            } else
+            {
+                request = new QuadientCloudToken(Credentials);
+            }
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
                 httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
@@ -74,7 +73,7 @@ namespace Quadient.DataServices.Api
                     _session = DeserializeObject<Session>(resultContent);
                 }
             }
-            if (isAdmin) _session.Token = _session.AccessToken;
+            if (Configuration.IsAdmin) _session.Token = _session.AccessToken;
             _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
             return _session;
         }
@@ -103,6 +102,34 @@ namespace Quadient.DataServices.Api
                     return DeserializeObject<R>(resultContent);
                 }
             }
+        }
+
+        private Uri GetBaseAddress(bool isCloud = false)
+        {
+            var address = $"https://data.quadientcloud.{(Credentials.Region == Region.US ? "com": "eu")}/";
+            if (isCloud)
+            {
+                if (!string.IsNullOrWhiteSpace(Configuration.QuadientCloudAddress))
+                {
+                    address = Configuration.QuadientCloudAddress;
+                }
+                else if (!string.IsNullOrWhiteSpace(Credentials.Company))
+                {
+                    address = $"https://{Credentials.Company}.quadientcloud.{(Credentials.Region == Region.US ? "com": "eu")}/";
+                }
+                else
+                {
+                    Configuration.IsAdmin = true;
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(Configuration.DataServicesAddress))
+                {
+                    address = Configuration.DataServicesAddress;
+                }
+            }
+            return new Uri(address);
         }
 
         private static string SerializeObject(object value)

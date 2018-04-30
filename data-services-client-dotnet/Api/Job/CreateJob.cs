@@ -14,5 +14,10 @@ namespace Quadient.DataServices.Api.Job
         {
             Content = new JobCreationRequest(Constants.Origin);
         }
+
+        public CreateJob(string origin)
+        {
+            Content = new JobCreationRequest(origin);
+        }
     }
 }

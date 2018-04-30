@@ -3,31 +3,36 @@ using Quadient.DataServices.Model;
 
 namespace Quadient.DataServices.Api.User
 {
-    public class AuthToken: IRequest<IAuthCredentials, Session>
+    public abstract class AuthToken: IRequest<IAuthCredentials, Session>
     {
-        public string ServicePath {get; private set;} = "api/query/Users/AuthTokenByLogin";
-        private readonly string AdminServicePath = "/oauth/token";
+        public string ServicePath {get;set;}
         public HttpMethod Method {get;} = HttpMethod.Post;
         public IAuthCredentials Content { get; set; }
+    }
 
-        public AuthToken(ICredentials credentials, bool isAdmin = false)
+    public class QuadientCloudToken: AuthToken
+    {
+        public QuadientCloudToken(ICredentials credentials)
         {
-            if (isAdmin)
+            ServicePath = "api/query/Users/AuthTokenByLogin";
+            Content = new UserCredentials
             {
-                ServicePath = AdminServicePath;
-                Content = new AdminCredentials
-                {
-                    Username = credentials.Username,
-                    Password = credentials.Password
-                };
-            } else
+                Email = credentials.Username,
+                Password = credentials.Password
+            };
+        }
+    }
+
+    public class DataServicesToken: AuthToken
+    {
+        public DataServicesToken(ICredentials credentials)
+        {
+            ServicePath = "oauth/token";
+            Content = new AdminCredentials
             {
-                Content = new UserCredentials 
-                {
-                    Email = credentials.Username,
-                    Password = credentials.Password
-                };
-            }
+                Username = credentials.Username,
+                Password = credentials.Password
+            };
         }
     }
 }

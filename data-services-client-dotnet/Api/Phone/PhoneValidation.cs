@@ -7,7 +7,7 @@ namespace Quadient.DataServices.Api.Phone
 {
     public class PhoneValidation: IRequest<PhoneValidationRequest, PhoneValidationResponse>
     {
-        public string ServicePath {get;} = "/services/phone-validation/v1/validate";
+        public string ServicePath {get;} = "services/phone-validation/v1/validate";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public PhoneValidationRequest Content { get; set; }
 

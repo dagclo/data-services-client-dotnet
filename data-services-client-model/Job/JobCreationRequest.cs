@@ -48,15 +48,7 @@ namespace Quadient.DataServices.Model.Job
         /// <param name="AdditionalDetails">Any additional details about the job..</param>
         public JobCreationRequest(string Origin = default(string), string Owner = default(string), string Tenant = default(string), string ParentJob = default(string), List<string> ExpectedServices = default(List<string>), long? ExpectedRecordCount = default(long?), JobStatus JobStatus = default(JobStatus), Object AdditionalDetails = default(Object))
         {
-            // to ensure "Origin" is required (not null)
-            if (Origin == null)
-            {
-                throw new InvalidDataException("Origin is a required property for JobCreationRequest and cannot be null");
-            }
-            else
-            {
-                this.Origin = Origin;
-            }
+            this.Origin = Origin;
             this.Owner = Owner;
             this.Tenant = Tenant;
             this.ParentJob = ParentJob;
