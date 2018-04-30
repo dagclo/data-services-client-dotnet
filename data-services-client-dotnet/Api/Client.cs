@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Quadient.DataServices.Model;
+using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
@@ -11,16 +12,16 @@ namespace Quadient.DataServices.Api
         public Client(ICredentials credentials, IConfiguration configuration): base(credentials, configuration)
         {}
 
-        public async Task<JobSession> CreateJob()
+        public async Task<JobSession> CreateJob(string origin = Constants.Origin)
         {
-            var session = new JobSession(Credentials, Configuration);
+            var session = new JobSession(Credentials, Configuration, origin);
             await session.Initialize();
             return session;
         }
 
-        public JobSession ResumeJob(string jobId)
+        public JobSession ResumeJob(string jobId, string origin = Constants.Origin)
         {
-            return new JobSession(Credentials, Configuration)
+            return new JobSession(Credentials, Configuration, origin)
             {
                 JobId = jobId
             };

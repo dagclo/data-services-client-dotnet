@@ -13,14 +13,16 @@ namespace Quadient.DataServices.Api
         private JobInformationResponse JobInformation {get; set;}
         private IDictionary<string, string> Headers {get; set;}
         public string JobId {get; set;}
-        public string Origin {get; set;}
+        private string Origin {get; set;}
 
-        public JobSession (ICredentials credentials, IConfiguration configuration): base(credentials, configuration)
-        {}
+        public JobSession (ICredentials credentials, IConfiguration configuration, string origin): base(credentials, configuration)
+        {
+            Origin = origin;
+        }
 
         public async Task<JobInformationResponse> Initialize()
         {
-            var request = new CreateJob();
+            var request = new CreateJob(Origin);
             var job = await Execute(request);
             JobInformation = job;
             JobId = job.JobId;
