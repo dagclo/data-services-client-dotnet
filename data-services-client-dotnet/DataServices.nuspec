@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Quadient.DataServices.Api</id>
+    <version>1.0.0</version>
+    <title>Quadient Data Services Dotnet SDK</title>
+    <authors>Quadient Data USA</authors>
+    <owners>Quadient Data USA</owners>
+    <copyright>Copyright Quadient Data USA ©2018</copyright>
+    <tags>Quadient DataServices</tags>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Quadient Data Services Client</description>
+    <releaseNotes>1.0.0</releaseNotes>
+    <projectUrl>https://github.com/quadient/data-services-client-dotnet</projectUrl>
+    <iconUrl><![CDATA[https://avatars3.githubusercontent.com/u/37059652?s=400&u=b5005630afd828b872d7c98115f2ac5a30897103&v=4]]></iconUrl>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Annotations" version="4.4.1" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\release\netstandard2.0\DataServices.dll" target="lib\netstandard2.0\DataServices.dll" />
+    <file src="bin\release\netstandard2.0\DataServicesModel.dll" target="lib\netstandard2.0\DataServicesModel.dll" />
+  </files>
+</package>
