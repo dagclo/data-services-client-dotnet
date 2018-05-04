@@ -8,7 +8,7 @@ namespace Quadient.DataServices.Api.Pricebook
 {
     public class GetServicePrices : IRequest<object, Pricesheet>
     {
-        public string ServicePath { get; } = "pricebook/v1/{0}";
+        public string ServicePath { get; } = "pricebook/v1/prices/{0}";
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IEnumerable<string> PathParams { get; }

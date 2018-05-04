@@ -12,7 +12,7 @@ namespace Quadient.DataServices.Api.Pricebook
 
         public DeleteServicePrice(string id)
         {
-            ServicePath = $"/prices/pricelines/{id}";
+            ServicePath = $"pricebook/v1/prices/pricelines/{id}";
         }
     }
 }

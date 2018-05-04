@@ -8,7 +8,7 @@ namespace Quadient.DataServices.Api.Pricebook
 {
     public class SaveServicePrice : IRequest<PriceLineRequest, Id>
     {
-        public string ServicePath { get; } = "/prices/pricelines/";
+        public string ServicePath { get; } = "pricebook/v1/prices/pricelines/";
         public HttpMethod Method { get; } = HttpMethod.Post;
         public PriceLineRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
@@ -19,7 +19,7 @@ namespace Quadient.DataServices.Api.Pricebook
 
         public SaveServicePrice(string id)
         {
-            ServicePath = $"/prices/pricelines/{id}";
+            ServicePath = $"pricebook/v1/prices/pricelines/{id}";
         }
     }
 }
