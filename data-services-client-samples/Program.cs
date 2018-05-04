@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Quadient.DataServices.Api;
 using Quadient.DataServices.Api.Address;
 using Quadient.DataServices.Api.Country;
+using Quadient.DataServices.Api.Job;
 using Quadient.DataServices.Model;
 using Quadient.DataServices.Model.Address;
 
@@ -52,8 +53,12 @@ namespace Quadient.DataServices.Example
                     Console.WriteLine($"standardization sample 1 output\n {resp3.ToJson()}");
                     var resp4 = await session.Execute(standardization2);
                     Console.WriteLine($"standardization sample 2 output\n {resp4.ToJson()}");
+
+                    var jobSummary = await session.Execute(new GetJob(session.JobId));
+                    Console.WriteLine($"job summary output\n {jobSummary.ToJson()}");
+
                     Console.WriteLine($"Finished JobSession {session.JobId}");
-                }     
+                }
             }).GetAwaiter().GetResult();
             Console.ReadLine();
         }

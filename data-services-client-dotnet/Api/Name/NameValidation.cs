@@ -10,6 +10,7 @@ namespace Quadient.DataServices.Api.Name
         public string ServicePath {get;} = "services/name-validation/v1/parse";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public ParseRequest Content { get; set; }
+        public IDictionary<string, string> QueryStringParams { get; }
 
         public NameValidation() {}
 

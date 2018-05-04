@@ -10,6 +10,7 @@ namespace Quadient.DataServices.Api.Phone
         public string ServicePath {get;} = "services/phone-validation/v1/validate";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public PhoneValidationRequest Content { get; set; }
+        public IDictionary<string, string> QueryStringParams { get; }
 
         public PhoneValidation() {}
 

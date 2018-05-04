@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using Quadient.DataServices.Model;
 
 namespace Quadient.DataServices.Api.User
@@ -8,6 +9,7 @@ namespace Quadient.DataServices.Api.User
         public string ServicePath {get;set;}
         public HttpMethod Method {get;} = HttpMethod.Post;
         public IAuthCredentials Content { get; set; }
+        public IDictionary<string, string> QueryStringParams { get; }
     }
 
     public class QuadientCloudToken: AuthToken

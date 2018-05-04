@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using Quadient.DataServices.Model.Job;
 using Quadient.DataServices.Utility;
 
@@ -9,6 +10,7 @@ namespace Quadient.DataServices.Api.Job
         public string ServicePath {get;} = "jobs/v1";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public JobCreationRequest Content {get; set;}
+        public IDictionary<string, string> QueryStringParams { get; }
 
         public CreateJob()
         {
