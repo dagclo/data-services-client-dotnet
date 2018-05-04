@@ -8,5 +8,6 @@ namespace Quadient.DataServices.Api
         string ServicePath {get;}
         HttpMethod Method {get;}
         T Content {get; set;}
+        IDictionary<string, string> QueryStringParams { get; }
     }
 }

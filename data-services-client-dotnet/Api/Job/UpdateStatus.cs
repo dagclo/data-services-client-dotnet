@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using Quadient.DataServices.Model.Job;
 
 namespace Quadient.DataServices.Api.Job
@@ -8,6 +9,7 @@ namespace Quadient.DataServices.Api.Job
         public string ServicePath {get; private set;}
         public HttpMethod Method {get;} = HttpMethod.Put;
         public JobStatusUpdateRequest Content {get; set;}
+        public IDictionary<string, string> QueryStringParams { get; }
 
         public UpdateStatus(string jobId)
         {

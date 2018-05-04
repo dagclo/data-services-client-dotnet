@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json;
 using Quadient.DataServices.Api.User;
 using Quadient.DataServices.Model;
@@ -12,8 +14,9 @@ using Quadient.DataServices.Utility;
 namespace Quadient.DataServices.Api
 {
     public abstract class Service
-    {               
-        private readonly int TokenExpiration = 8 * 60 * 1000;
+    {
+        private const int TokenExpiration = 8 * 60 * 1000;
+        private const string TokenType = "Bearer";
         private readonly HttpClient _httpClient;
         private readonly HttpClient _authClient;
         protected ICredentials Credentials {get;}
@@ -81,9 +84,9 @@ namespace Quadient.DataServices.Api
         protected async Task<R> Execute<T,R>(IRequest<T,R> request, IDictionary<string, string> headers = null)
         {
             var session = await GetSession();
-            using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
+            using (var httpRequest = new HttpRequestMessage(request.Method, GetRequestUri(request)))
             {
-                httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", session.Token);
+                httpRequest.Headers.Authorization = new AuthenticationHeaderValue(TokenType, session.Token);
                 if (headers != null)
                 {
                     foreach(var key in headers.Keys)
@@ -140,6 +143,14 @@ namespace Quadient.DataServices.Api
         private static T DeserializeObject<T>(string value)
         {
             return JsonConvert.DeserializeObject<T>(value);
+        }
+
+        private static string GetRequestUri<T, R>(IRequest<T, R> request)
+        {
+            return request.QueryStringParams?.Count > 0
+                ? string.Format(
+                    $"{request.ServicePath}?{string.Join("&", request.QueryStringParams?.Select(p => $"{p.Key}={HttpUtility.UrlEncode(p.Value)}"))}")
+                : request.ServicePath;
         }
     }
 }

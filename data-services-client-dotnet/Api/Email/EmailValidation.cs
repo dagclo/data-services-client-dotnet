@@ -10,6 +10,7 @@ namespace Quadient.DataServices.Api.Email
         public string ServicePath {get;} = "services/email-validation/v1/validate";
         public HttpMethod Method {get;} = HttpMethod.Post;
         public EmailValidationRequest Content { get; set; }
+        public IDictionary<string, string> QueryStringParams { get; }
 
         public EmailValidation() {}
 
