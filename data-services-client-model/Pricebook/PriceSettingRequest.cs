@@ -22,21 +22,21 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
-    /// PriceLineRequest
+    /// PriceSettingRequest
     /// </summary>
     [DataContract]
-    public partial class PriceLineRequest :  IEquatable<PriceLineRequest>, IValidatableObject
+    public partial class PriceSettingRequest :  IEquatable<PriceSettingRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PriceLineRequest" /> class.
+        /// Initializes a new instance of the <see cref="PriceSettingRequest" /> class.
         /// </summary>
         /// <param name="Tenant">(Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant..</param>
         /// <param name="UserId">(Optional) Identify a user id this price applies to..</param>
         /// <param name="Prices">Prices.</param>
-        public PriceLineRequest(string Tenant = default(string), string UserId = default(string), List<Price> Prices = default(List<Price>))
+        public PriceSettingRequest(string Tenant = default(string), string UserId = default(string), List<Price> Prices = default(List<Price>))
         {
             this.Tenant = Tenant;
             this.UserId = UserId;
@@ -70,7 +70,7 @@ namespace Quadient.DataServices.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PriceLineRequest {\n");
+            sb.Append("class PriceSettingRequest {\n");
             sb.Append("  Tenant: ").Append(Tenant).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  Prices: ").Append(Prices).Append("\n");
@@ -94,15 +94,15 @@ namespace Quadient.DataServices.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PriceLineRequest);
+            return this.Equals(input as PriceSettingRequest);
         }
 
         /// <summary>
-        /// Returns true if PriceLineRequest instances are equal
+        /// Returns true if PriceSettingRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PriceLineRequest to be compared</param>
+        /// <param name="input">Instance of PriceSettingRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PriceLineRequest input)
+        public bool Equals(PriceSettingRequest input)
         {
             if (input == null)
                 return false;

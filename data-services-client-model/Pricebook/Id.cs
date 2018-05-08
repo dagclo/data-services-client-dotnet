@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
     /// Id
@@ -35,7 +35,7 @@ namespace Quadient.DataServices.Model
         /// </summary>
         /// <param name="Name">Name.</param>
         /// <param name="_Id">_Id.</param>
-        public Id(string Name = default(string), decimal? _Id = default(decimal?))
+        public Id(string Name = default(string), string _Id = default(string))
         {
             this.Name = Name;
             this._Id = _Id;
@@ -51,7 +51,7 @@ namespace Quadient.DataServices.Model
         /// Gets or Sets _Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? _Id { get; set; }
+        public string _Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
     /// Price
@@ -33,16 +33,34 @@ namespace Quadient.DataServices.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Price" /> class.
         /// </summary>
-        /// <param name="Name">The tier name of the price line item..</param>
+        [JsonConstructorAttribute]
+        protected Price() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Price" /> class.
+        /// </summary>
+        /// <param name="Name">The tier name of the price line item. (required).</param>
+        /// <param name="Tenant">(Optional) Identifies the tenant this adjustment applies to..</param>
+        /// <param name="UserId">(Optional) Identify a user id this price applies to..</param>
         /// <param name="IncludeInEstimates">Should this price-line item be factored into estimated price calculations? (default to true).</param>
         /// <param name="PricePerUnit">The price of this line item..</param>
+        /// <param name="RecordsPerUnit">The number of records that make up 1 unit..</param>
         /// <param name="FloorPricePerUnit">The minimum price per unit possible, after applying discount..</param>
         /// <param name="PercentDiscount">A % discount applied to the effective base price..</param>
-        /// <param name="Enabled">Is this price currently active. Prices may be disabled, overriding their time frame of effectivness..</param>
+        /// <param name="Enabled">Is this price currently active? Prices may be disabled, overriding their time frame of effectivness..</param>
         /// <param name="TimeFrame">TimeFrame.</param>
-        public Price(string Name = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), TimeFrame TimeFrame = default(TimeFrame))
+        public Price(string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), TimeFrame TimeFrame = default(TimeFrame))
         {
-            this.Name = Name;
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for Price and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
+            this.Tenant = Tenant;
+            this.UserId = UserId;
             // use default value if no "IncludeInEstimates" provided
             if (IncludeInEstimates == null)
             {
@@ -53,6 +71,7 @@ namespace Quadient.DataServices.Model
                 this.IncludeInEstimates = IncludeInEstimates;
             }
             this.PricePerUnit = PricePerUnit;
+            this.RecordsPerUnit = RecordsPerUnit;
             this.FloorPricePerUnit = FloorPricePerUnit;
             this.PercentDiscount = PercentDiscount;
             this.Enabled = Enabled;
@@ -65,6 +84,20 @@ namespace Quadient.DataServices.Model
         /// <value>The tier name of the price line item.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// (Optional) Identifies the tenant this adjustment applies to.
+        /// </summary>
+        /// <value>(Optional) Identifies the tenant this adjustment applies to.</value>
+        [DataMember(Name="tenant", EmitDefaultValue=false)]
+        public string Tenant { get; set; }
+
+        /// <summary>
+        /// (Optional) Identify a user id this price applies to.
+        /// </summary>
+        /// <value>(Optional) Identify a user id this price applies to.</value>
+        [DataMember(Name="user_id", EmitDefaultValue=false)]
+        public string UserId { get; set; }
 
         /// <summary>
         /// Should this price-line item be factored into estimated price calculations?
@@ -81,6 +114,13 @@ namespace Quadient.DataServices.Model
         public decimal? PricePerUnit { get; set; }
 
         /// <summary>
+        /// The number of records that make up 1 unit.
+        /// </summary>
+        /// <value>The number of records that make up 1 unit.</value>
+        [DataMember(Name="records_per_unit", EmitDefaultValue=false)]
+        public decimal? RecordsPerUnit { get; set; }
+
+        /// <summary>
         /// The minimum price per unit possible, after applying discount.
         /// </summary>
         /// <value>The minimum price per unit possible, after applying discount.</value>
@@ -95,9 +135,9 @@ namespace Quadient.DataServices.Model
         public decimal? PercentDiscount { get; set; }
 
         /// <summary>
-        /// Is this price currently active. Prices may be disabled, overriding their time frame of effectivness.
+        /// Is this price currently active? Prices may be disabled, overriding their time frame of effectivness.
         /// </summary>
-        /// <value>Is this price currently active. Prices may be disabled, overriding their time frame of effectivness.</value>
+        /// <value>Is this price currently active? Prices may be disabled, overriding their time frame of effectivness.</value>
         [DataMember(Name="enabled", EmitDefaultValue=false)]
         public bool? Enabled { get; set; }
 
@@ -116,8 +156,11 @@ namespace Quadient.DataServices.Model
             var sb = new StringBuilder();
             sb.Append("class Price {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Tenant: ").Append(Tenant).Append("\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  IncludeInEstimates: ").Append(IncludeInEstimates).Append("\n");
             sb.Append("  PricePerUnit: ").Append(PricePerUnit).Append("\n");
+            sb.Append("  RecordsPerUnit: ").Append(RecordsPerUnit).Append("\n");
             sb.Append("  FloorPricePerUnit: ").Append(FloorPricePerUnit).Append("\n");
             sb.Append("  PercentDiscount: ").Append(PercentDiscount).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
@@ -162,6 +205,16 @@ namespace Quadient.DataServices.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.Tenant == input.Tenant ||
+                    (this.Tenant != null &&
+                    this.Tenant.Equals(input.Tenant))
+                ) && 
+                (
+                    this.UserId == input.UserId ||
+                    (this.UserId != null &&
+                    this.UserId.Equals(input.UserId))
+                ) && 
+                (
                     this.IncludeInEstimates == input.IncludeInEstimates ||
                     (this.IncludeInEstimates != null &&
                     this.IncludeInEstimates.Equals(input.IncludeInEstimates))
@@ -170,6 +223,11 @@ namespace Quadient.DataServices.Model
                     this.PricePerUnit == input.PricePerUnit ||
                     (this.PricePerUnit != null &&
                     this.PricePerUnit.Equals(input.PricePerUnit))
+                ) && 
+                (
+                    this.RecordsPerUnit == input.RecordsPerUnit ||
+                    (this.RecordsPerUnit != null &&
+                    this.RecordsPerUnit.Equals(input.RecordsPerUnit))
                 ) && 
                 (
                     this.FloorPricePerUnit == input.FloorPricePerUnit ||
@@ -204,10 +262,16 @@ namespace Quadient.DataServices.Model
                 int hashCode = 41;
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Tenant != null)
+                    hashCode = hashCode * 59 + this.Tenant.GetHashCode();
+                if (this.UserId != null)
+                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.IncludeInEstimates != null)
                     hashCode = hashCode * 59 + this.IncludeInEstimates.GetHashCode();
                 if (this.PricePerUnit != null)
                     hashCode = hashCode * 59 + this.PricePerUnit.GetHashCode();
+                if (this.RecordsPerUnit != null)
+                    hashCode = hashCode * 59 + this.RecordsPerUnit.GetHashCode();
                 if (this.FloorPricePerUnit != null)
                     hashCode = hashCode * 59 + this.FloorPricePerUnit.GetHashCode();
                 if (this.PercentDiscount != null)

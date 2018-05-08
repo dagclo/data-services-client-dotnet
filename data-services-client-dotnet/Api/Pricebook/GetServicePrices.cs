@@ -1,8 +1,8 @@
-﻿using Quadient.DataServices.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
+using Quadient.DataServices.Model.Pricebook;
 
 namespace Quadient.DataServices.Api.Pricebook
 {

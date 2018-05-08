@@ -27,6 +27,7 @@
     <Folder Include="Email\" />
     <Folder Include="Name\" />
     <Folder Include="Phone\" />
+    <Folder Include="Pricebook\" />
   </ItemGroup>
 
 </Project>

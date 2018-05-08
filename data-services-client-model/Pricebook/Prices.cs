@@ -22,21 +22,38 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
-    /// PriceTier
+    /// Prices
     /// </summary>
     [DataContract]
-    public partial class PriceTier : Price,  IEquatable<PriceTier>, IValidatableObject
+    public partial class Prices :  IEquatable<Prices>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PriceTier" /> class.
+        /// Initializes a new instance of the <see cref="Prices" /> class.
         /// </summary>
-        public PriceTier(string Name = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), TimeFrame TimeFrame = default(TimeFrame)) : base(Name, IncludeInEstimates, PricePerUnit, FloorPricePerUnit, PercentDiscount, Enabled, TimeFrame)
+        /// <param name="ServiceName">ServiceName.</param>
+        /// <param name="_Prices">The price rules that exits for the service.</param>
+        public Prices(string ServiceName = default(string), List<PriceLine> _Prices = default(List<PriceLine>))
         {
+            this.ServiceName = ServiceName;
+            this._Prices = _Prices;
         }
         
+        /// <summary>
+        /// Gets or Sets ServiceName
+        /// </summary>
+        [DataMember(Name="service_name", EmitDefaultValue=false)]
+        public string ServiceName { get; set; }
+
+        /// <summary>
+        /// The price rules that exits for the service
+        /// </summary>
+        /// <value>The price rules that exits for the service</value>
+        [DataMember(Name="prices", EmitDefaultValue=false)]
+        public List<PriceLine> _Prices { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -44,8 +61,9 @@ namespace Quadient.DataServices.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PriceTier {\n");
-            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("class Prices {\n");
+            sb.Append("  ServiceName: ").Append(ServiceName).Append("\n");
+            sb.Append("  _Prices: ").Append(_Prices).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -54,7 +72,7 @@ namespace Quadient.DataServices.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public override string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -66,20 +84,30 @@ namespace Quadient.DataServices.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PriceTier);
+            return this.Equals(input as Prices);
         }
 
         /// <summary>
-        /// Returns true if PriceTier instances are equal
+        /// Returns true if Prices instances are equal
         /// </summary>
-        /// <param name="input">Instance of PriceTier to be compared</param>
+        /// <param name="input">Instance of Prices to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PriceTier input)
+        public bool Equals(Prices input)
         {
             if (input == null)
                 return false;
 
-            return base.Equals(input);
+            return 
+                (
+                    this.ServiceName == input.ServiceName ||
+                    (this.ServiceName != null &&
+                    this.ServiceName.Equals(input.ServiceName))
+                ) && 
+                (
+                    this._Prices == input._Prices ||
+                    this._Prices != null &&
+                    this._Prices.SequenceEqual(input._Prices)
+                );
         }
 
         /// <summary>
@@ -90,7 +118,11 @@ namespace Quadient.DataServices.Model
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = base.GetHashCode();
+                int hashCode = 41;
+                if (this.ServiceName != null)
+                    hashCode = hashCode * 59 + this.ServiceName.GetHashCode();
+                if (this._Prices != null)
+                    hashCode = hashCode * 59 + this._Prices.GetHashCode();
                 return hashCode;
             }
         }

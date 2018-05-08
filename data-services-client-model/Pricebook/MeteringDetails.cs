@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
     /// MeteringDetails
@@ -33,10 +33,14 @@ namespace Quadient.DataServices.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MeteringDetails" /> class.
         /// </summary>
+        /// <param name="Tenant">(Optional) The tenant doing the work. Any tenant-specific pricing rules will be factored into the calculation..</param>
+        /// <param name="UserId">(Optional) The user doing the work. Any user-specific pricing rules will be factored into the calculation..</param>
         /// <param name="UseStrict">Indicate whether strict validation should be used. Strict validation will reject unknown services. (default to true).</param>
         /// <param name="ServiceUse">ServiceUse.</param>
-        public MeteringDetails(bool? UseStrict = true, Dictionary<string, Object> ServiceUse = default(Dictionary<string, Object>))
+        public MeteringDetails(string Tenant = default(string), string UserId = default(string), bool? UseStrict = true, Dictionary<string, Object> ServiceUse = default(Dictionary<string, Object>))
         {
+            this.Tenant = Tenant;
+            this.UserId = UserId;
             // use default value if no "UseStrict" provided
             if (UseStrict == null)
             {
@@ -49,6 +53,20 @@ namespace Quadient.DataServices.Model
             this.ServiceUse = ServiceUse;
         }
         
+        /// <summary>
+        /// (Optional) The tenant doing the work. Any tenant-specific pricing rules will be factored into the calculation.
+        /// </summary>
+        /// <value>(Optional) The tenant doing the work. Any tenant-specific pricing rules will be factored into the calculation.</value>
+        [DataMember(Name="tenant", EmitDefaultValue=false)]
+        public string Tenant { get; set; }
+
+        /// <summary>
+        /// (Optional) The user doing the work. Any user-specific pricing rules will be factored into the calculation.
+        /// </summary>
+        /// <value>(Optional) The user doing the work. Any user-specific pricing rules will be factored into the calculation.</value>
+        [DataMember(Name="user_id", EmitDefaultValue=false)]
+        public string UserId { get; set; }
+
         /// <summary>
         /// Indicate whether strict validation should be used. Strict validation will reject unknown services.
         /// </summary>
@@ -70,6 +88,8 @@ namespace Quadient.DataServices.Model
         {
             var sb = new StringBuilder();
             sb.Append("class MeteringDetails {\n");
+            sb.Append("  Tenant: ").Append(Tenant).Append("\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  UseStrict: ").Append(UseStrict).Append("\n");
             sb.Append("  ServiceUse: ").Append(ServiceUse).Append("\n");
             sb.Append("}\n");
@@ -107,6 +127,16 @@ namespace Quadient.DataServices.Model
 
             return 
                 (
+                    this.Tenant == input.Tenant ||
+                    (this.Tenant != null &&
+                    this.Tenant.Equals(input.Tenant))
+                ) && 
+                (
+                    this.UserId == input.UserId ||
+                    (this.UserId != null &&
+                    this.UserId.Equals(input.UserId))
+                ) && 
+                (
                     this.UseStrict == input.UseStrict ||
                     (this.UseStrict != null &&
                     this.UseStrict.Equals(input.UseStrict))
@@ -127,6 +157,10 @@ namespace Quadient.DataServices.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Tenant != null)
+                    hashCode = hashCode * 59 + this.Tenant.GetHashCode();
+                if (this.UserId != null)
+                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.UseStrict != null)
                     hashCode = hashCode * 59 + this.UseStrict.GetHashCode();
                 if (this.ServiceUse != null)
