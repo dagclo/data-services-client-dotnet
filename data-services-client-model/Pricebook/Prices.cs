@@ -22,23 +22,23 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
-    /// PricesheetServices
+    /// Prices
     /// </summary>
     [DataContract]
-    public partial class PricesheetServices :  IEquatable<PricesheetServices>, IValidatableObject
+    public partial class Prices :  IEquatable<Prices>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PricesheetServices" /> class.
+        /// Initializes a new instance of the <see cref="Prices" /> class.
         /// </summary>
         /// <param name="ServiceName">ServiceName.</param>
-        /// <param name="Prices">The price rules that exits for the service.</param>
-        public PricesheetServices(string ServiceName = default(string), List<PriceTier> Prices = default(List<PriceTier>))
+        /// <param name="_Prices">The price rules that exits for the service.</param>
+        public Prices(string ServiceName = default(string), List<PriceLine> _Prices = default(List<PriceLine>))
         {
             this.ServiceName = ServiceName;
-            this.Prices = Prices;
+            this._Prices = _Prices;
         }
         
         /// <summary>
@@ -52,7 +52,7 @@ namespace Quadient.DataServices.Model
         /// </summary>
         /// <value>The price rules that exits for the service</value>
         [DataMember(Name="prices", EmitDefaultValue=false)]
-        public List<PriceTier> Prices { get; set; }
+        public List<PriceLine> _Prices { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +61,9 @@ namespace Quadient.DataServices.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PricesheetServices {\n");
+            sb.Append("class Prices {\n");
             sb.Append("  ServiceName: ").Append(ServiceName).Append("\n");
-            sb.Append("  Prices: ").Append(Prices).Append("\n");
+            sb.Append("  _Prices: ").Append(_Prices).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,15 +84,15 @@ namespace Quadient.DataServices.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PricesheetServices);
+            return this.Equals(input as Prices);
         }
 
         /// <summary>
-        /// Returns true if PricesheetServices instances are equal
+        /// Returns true if Prices instances are equal
         /// </summary>
-        /// <param name="input">Instance of PricesheetServices to be compared</param>
+        /// <param name="input">Instance of Prices to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PricesheetServices input)
+        public bool Equals(Prices input)
         {
             if (input == null)
                 return false;
@@ -104,9 +104,9 @@ namespace Quadient.DataServices.Model
                     this.ServiceName.Equals(input.ServiceName))
                 ) && 
                 (
-                    this.Prices == input.Prices ||
-                    this.Prices != null &&
-                    this.Prices.SequenceEqual(input.Prices)
+                    this._Prices == input._Prices ||
+                    this._Prices != null &&
+                    this._Prices.SequenceEqual(input._Prices)
                 );
         }
 
@@ -121,8 +121,8 @@ namespace Quadient.DataServices.Model
                 int hashCode = 41;
                 if (this.ServiceName != null)
                     hashCode = hashCode * 59 + this.ServiceName.GetHashCode();
-                if (this.Prices != null)
-                    hashCode = hashCode * 59 + this.Prices.GetHashCode();
+                if (this._Prices != null)
+                    hashCode = hashCode * 59 + this._Prices.GetHashCode();
                 return hashCode;
             }
         }

@@ -22,54 +22,43 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
     /// PriceLine
     /// </summary>
     [DataContract]
-    public partial class PriceLine :  IEquatable<PriceLine>, IValidatableObject
+    public partial class PriceLine : Price,  IEquatable<PriceLine>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PriceLine" /> class.
         /// </summary>
-        /// <param name="Tenant">(Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant..</param>
-        /// <param name="UserId">(Optional) Identify a user id this price applies to..</param>
-        /// <param name="TimePeriod">TimePeriod.</param>
-        /// <param name="Prices">Prices.</param>
-        public PriceLine(string Tenant = default(string), string UserId = default(string), TimeFrame TimePeriod = default(TimeFrame), List<PriceTier> Prices = default(List<PriceTier>))
+        [JsonConstructorAttribute]
+        protected PriceLine() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PriceLine" /> class.
+        /// </summary>
+        /// <param name="Id">The unique id of this item..</param>
+        /// <param name="Deleted">Has this price been deleted?.</param>
+        public PriceLine(string Id = default(string), bool? Deleted = default(bool?), string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), string Currency = default(string), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), bool? OverrideRemaining = default(bool?), TimeFrame TimeFrame = default(TimeFrame)) : base(Name, Tenant, UserId, IncludeInEstimates, PricePerUnit, Currency, RecordsPerUnit, FloorPricePerUnit, PercentDiscount, Enabled, OverrideRemaining, TimeFrame)
         {
-            this.Tenant = Tenant;
-            this.UserId = UserId;
-            this.TimePeriod = TimePeriod;
-            this.Prices = Prices;
+            this.Id = Id;
+            this.Deleted = Deleted;
         }
         
         /// <summary>
-        /// (Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant.
+        /// The unique id of this item.
         /// </summary>
-        /// <value>(Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant.</value>
-        [DataMember(Name="tenant", EmitDefaultValue=false)]
-        public string Tenant { get; set; }
+        /// <value>The unique id of this item.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
 
         /// <summary>
-        /// (Optional) Identify a user id this price applies to.
+        /// Has this price been deleted?
         /// </summary>
-        /// <value>(Optional) Identify a user id this price applies to.</value>
-        [DataMember(Name="user_id", EmitDefaultValue=false)]
-        public string UserId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TimePeriod
-        /// </summary>
-        [DataMember(Name="time_period", EmitDefaultValue=false)]
-        public TimeFrame TimePeriod { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Prices
-        /// </summary>
-        [DataMember(Name="prices", EmitDefaultValue=false)]
-        public List<PriceTier> Prices { get; set; }
+        /// <value>Has this price been deleted?</value>
+        [DataMember(Name="deleted", EmitDefaultValue=false)]
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,10 +68,9 @@ namespace Quadient.DataServices.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PriceLine {\n");
-            sb.Append("  Tenant: ").Append(Tenant).Append("\n");
-            sb.Append("  UserId: ").Append(UserId).Append("\n");
-            sb.Append("  TimePeriod: ").Append(TimePeriod).Append("\n");
-            sb.Append("  Prices: ").Append(Prices).Append("\n");
+            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,7 +79,7 @@ namespace Quadient.DataServices.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public override string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -116,26 +104,16 @@ namespace Quadient.DataServices.Model
             if (input == null)
                 return false;
 
-            return 
+            return base.Equals(input) && 
                 (
-                    this.Tenant == input.Tenant ||
-                    (this.Tenant != null &&
-                    this.Tenant.Equals(input.Tenant))
-                ) && 
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && base.Equals(input) && 
                 (
-                    this.UserId == input.UserId ||
-                    (this.UserId != null &&
-                    this.UserId.Equals(input.UserId))
-                ) && 
-                (
-                    this.TimePeriod == input.TimePeriod ||
-                    (this.TimePeriod != null &&
-                    this.TimePeriod.Equals(input.TimePeriod))
-                ) && 
-                (
-                    this.Prices == input.Prices ||
-                    this.Prices != null &&
-                    this.Prices.SequenceEqual(input.Prices)
+                    this.Deleted == input.Deleted ||
+                    (this.Deleted != null &&
+                    this.Deleted.Equals(input.Deleted))
                 );
         }
 
@@ -147,15 +125,11 @@ namespace Quadient.DataServices.Model
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Tenant != null)
-                    hashCode = hashCode * 59 + this.Tenant.GetHashCode();
-                if (this.UserId != null)
-                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
-                if (this.TimePeriod != null)
-                    hashCode = hashCode * 59 + this.TimePeriod.GetHashCode();
-                if (this.Prices != null)
-                    hashCode = hashCode * 59 + this.Prices.GetHashCode();
+                int hashCode = base.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Deleted != null)
+                    hashCode = hashCode * 59 + this.Deleted.GetHashCode();
                 return hashCode;
             }
         }

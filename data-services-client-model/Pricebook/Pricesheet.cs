@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
     /// Pricesheet
@@ -35,11 +35,11 @@ namespace Quadient.DataServices.Model
         /// </summary>
         /// <param name="FromDate">The start of the time frame these results fall within. If missing/null, the start of the time frame is the earliest item present..</param>
         /// <param name="ToDate">The end of the time frame these results fall withing. If missing/null, all items after the start of the time frame are included..</param>
-        /// <param name="IncludesAllPrices">*When true*, the price sheet returned will contain expired and disabled priceline items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  .</param>
+        /// <param name="IncludesAllPrices">*When true*, the price sheet returned will contain expired and disabled price line items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  .</param>
         /// <param name="Tenant">The tenant the results are scoped to, if any.    *If null/missing*, pricing that pertains to any particular tenant are not included. .</param>
         /// <param name="UserId">The user the results are scoped to, if any.  *If null/missing*, pricing  pertaining to any particular user are not included. .</param>
         /// <param name="Services">Services.</param>
-        public Pricesheet(DateTime? FromDate = default(DateTime?), DateTime? ToDate = default(DateTime?), bool? IncludesAllPrices = default(bool?), string Tenant = default(string), string UserId = default(string), List<PricesheetServices> Services = default(List<PricesheetServices>))
+        public Pricesheet(DateTime? FromDate = default(DateTime?), DateTime? ToDate = default(DateTime?), bool? IncludesAllPrices = default(bool?), string Tenant = default(string), string UserId = default(string), List<Prices> Services = default(List<Prices>))
         {
             this.FromDate = FromDate;
             this.ToDate = ToDate;
@@ -64,9 +64,9 @@ namespace Quadient.DataServices.Model
         public DateTime? ToDate { get; set; }
 
         /// <summary>
-        /// *When true*, the price sheet returned will contain expired and disabled priceline items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  
+        /// *When true*, the price sheet returned will contain expired and disabled price line items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  
         /// </summary>
-        /// <value>*When true*, the price sheet returned will contain expired and disabled priceline items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  </value>
+        /// <value>*When true*, the price sheet returned will contain expired and disabled price line items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  </value>
         [DataMember(Name="includes_all_prices", EmitDefaultValue=false)]
         public bool? IncludesAllPrices { get; set; }
 
@@ -88,7 +88,7 @@ namespace Quadient.DataServices.Model
         /// Gets or Sets Services
         /// </summary>
         [DataMember(Name="services", EmitDefaultValue=false)]
-        public List<PricesheetServices> Services { get; set; }
+        public List<Prices> Services { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

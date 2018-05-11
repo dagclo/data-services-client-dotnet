@@ -25,22 +25,14 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
-    /// Price
+    /// PriceUpdate
     /// </summary>
     [DataContract]
-    public partial class Price :  IEquatable<Price>, IValidatableObject
+    public partial class PriceUpdate :  IEquatable<PriceUpdate>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Price" /> class.
+        /// Initializes a new instance of the <see cref="PriceUpdate" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Price() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Price" /> class.
-        /// </summary>
-        /// <param name="Name">The tier name of the price line item. (required).</param>
-        /// <param name="Tenant">(Optional) Identifies the tenant this adjustment applies to..</param>
-        /// <param name="UserId">(Optional) Identify a user id this price applies to..</param>
         /// <param name="IncludeInEstimates">Should this price-line item be factored into estimated price calculations? (default to true).</param>
         /// <param name="PricePerUnit">The price of this line item..</param>
         /// <param name="Currency">The currency of the price.</param>
@@ -50,19 +42,8 @@ namespace Quadient.DataServices.Model.Pricebook
         /// <param name="Enabled">Is this price currently active? Prices may be disabled, overriding their time frame of effectivness..</param>
         /// <param name="OverrideRemaining">When an estimate request includes tier specifications, this indicates that the remainder of *count - specifiedTiersTotal* should be used. This will be true in cases where the tiers are expected to be mutually exclusive..</param>
         /// <param name="TimeFrame">TimeFrame.</param>
-        public Price(string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), string Currency = default(string), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), bool? OverrideRemaining = default(bool?), TimeFrame TimeFrame = default(TimeFrame))
+        public PriceUpdate(bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), string Currency = default(string), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), bool? OverrideRemaining = default(bool?), TimeFrame TimeFrame = default(TimeFrame))
         {
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for Price and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
-            }
-            this.Tenant = Tenant;
-            this.UserId = UserId;
             // use default value if no "IncludeInEstimates" provided
             if (IncludeInEstimates == null)
             {
@@ -82,27 +63,6 @@ namespace Quadient.DataServices.Model.Pricebook
             this.TimeFrame = TimeFrame;
         }
         
-        /// <summary>
-        /// The tier name of the price line item.
-        /// </summary>
-        /// <value>The tier name of the price line item.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// (Optional) Identifies the tenant this adjustment applies to.
-        /// </summary>
-        /// <value>(Optional) Identifies the tenant this adjustment applies to.</value>
-        [DataMember(Name="tenant", EmitDefaultValue=false)]
-        public string Tenant { get; set; }
-
-        /// <summary>
-        /// (Optional) Identify a user id this price applies to.
-        /// </summary>
-        /// <value>(Optional) Identify a user id this price applies to.</value>
-        [DataMember(Name="user_id", EmitDefaultValue=false)]
-        public string UserId { get; set; }
-
         /// <summary>
         /// Should this price-line item be factored into estimated price calculations?
         /// </summary>
@@ -172,10 +132,7 @@ namespace Quadient.DataServices.Model.Pricebook
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Price {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Tenant: ").Append(Tenant).Append("\n");
-            sb.Append("  UserId: ").Append(UserId).Append("\n");
+            sb.Append("class PriceUpdate {\n");
             sb.Append("  IncludeInEstimates: ").Append(IncludeInEstimates).Append("\n");
             sb.Append("  PricePerUnit: ").Append(PricePerUnit).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
@@ -193,7 +150,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -205,35 +162,20 @@ namespace Quadient.DataServices.Model.Pricebook
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Price);
+            return this.Equals(input as PriceUpdate);
         }
 
         /// <summary>
-        /// Returns true if Price instances are equal
+        /// Returns true if PriceUpdate instances are equal
         /// </summary>
-        /// <param name="input">Instance of Price to be compared</param>
+        /// <param name="input">Instance of PriceUpdate to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Price input)
+        public bool Equals(PriceUpdate input)
         {
             if (input == null)
                 return false;
 
             return 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Tenant == input.Tenant ||
-                    (this.Tenant != null &&
-                    this.Tenant.Equals(input.Tenant))
-                ) && 
-                (
-                    this.UserId == input.UserId ||
-                    (this.UserId != null &&
-                    this.UserId.Equals(input.UserId))
-                ) && 
                 (
                     this.IncludeInEstimates == input.IncludeInEstimates ||
                     (this.IncludeInEstimates != null &&
@@ -290,12 +232,6 @@ namespace Quadient.DataServices.Model.Pricebook
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.Tenant != null)
-                    hashCode = hashCode * 59 + this.Tenant.GetHashCode();
-                if (this.UserId != null)
-                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.IncludeInEstimates != null)
                     hashCode = hashCode * 59 + this.IncludeInEstimates.GetHashCode();
                 if (this.PricePerUnit != null)

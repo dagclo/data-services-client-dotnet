@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServices.Model
+namespace Quadient.DataServices.Model.Pricebook
 {
     /// <summary>
     /// Tenant
@@ -34,11 +34,11 @@ namespace Quadient.DataServices.Model
         /// Initializes a new instance of the <see cref="Tenant" /> class.
         /// </summary>
         /// <param name="TenantName">TenantName.</param>
-        /// <param name="Users">Users.</param>
-        public Tenant(string TenantName = default(string), List<string> Users = default(List<string>))
+        /// <param name="UserIds">UserIds.</param>
+        public Tenant(string TenantName = default(string), List<string> UserIds = default(List<string>))
         {
             this.TenantName = TenantName;
-            this.Users = Users;
+            this.UserIds = UserIds;
         }
         
         /// <summary>
@@ -48,10 +48,10 @@ namespace Quadient.DataServices.Model
         public string TenantName { get; set; }
 
         /// <summary>
-        /// Gets or Sets Users
+        /// Gets or Sets UserIds
         /// </summary>
-        [DataMember(Name="users", EmitDefaultValue=false)]
-        public List<string> Users { get; set; }
+        [DataMember(Name="user_ids", EmitDefaultValue=false)]
+        public List<string> UserIds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,7 +62,7 @@ namespace Quadient.DataServices.Model
             var sb = new StringBuilder();
             sb.Append("class Tenant {\n");
             sb.Append("  TenantName: ").Append(TenantName).Append("\n");
-            sb.Append("  Users: ").Append(Users).Append("\n");
+            sb.Append("  UserIds: ").Append(UserIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,9 +103,9 @@ namespace Quadient.DataServices.Model
                     this.TenantName.Equals(input.TenantName))
                 ) && 
                 (
-                    this.Users == input.Users ||
-                    this.Users != null &&
-                    this.Users.SequenceEqual(input.Users)
+                    this.UserIds == input.UserIds ||
+                    this.UserIds != null &&
+                    this.UserIds.SequenceEqual(input.UserIds)
                 );
         }
 
@@ -120,8 +120,8 @@ namespace Quadient.DataServices.Model
                 int hashCode = 41;
                 if (this.TenantName != null)
                     hashCode = hashCode * 59 + this.TenantName.GetHashCode();
-                if (this.Users != null)
-                    hashCode = hashCode * 59 + this.Users.GetHashCode();
+                if (this.UserIds != null)
+                    hashCode = hashCode * 59 + this.UserIds.GetHashCode();
                 return hashCode;
             }
         }
