@@ -40,7 +40,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// </summary>
         /// <param name="Id">The unique id of this item..</param>
         /// <param name="Deleted">Has this price been deleted?.</param>
-        public PriceLine(string Id = default(string), bool? Deleted = default(bool?), string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), TimeFrame TimeFrame = default(TimeFrame)) : base(Name, Tenant, UserId, IncludeInEstimates, PricePerUnit, RecordsPerUnit, FloorPricePerUnit, PercentDiscount, Enabled, TimeFrame)
+        public PriceLine(string Id = default(string), bool? Deleted = default(bool?), string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), string Currency = default(string), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), bool? OverrideRemaining = default(bool?), TimeFrame TimeFrame = default(TimeFrame)) : base(Name, Tenant, UserId, IncludeInEstimates, PricePerUnit, Currency, RecordsPerUnit, FloorPricePerUnit, PercentDiscount, Enabled, OverrideRemaining, TimeFrame)
         {
             this.Id = Id;
             this.Deleted = Deleted;

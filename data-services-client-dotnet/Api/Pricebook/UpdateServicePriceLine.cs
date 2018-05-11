@@ -4,21 +4,21 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.Pricebook
 {
-    public class UpdateServicePrice : IRequest<PriceLine, Id>
+    public class UpdateServicePriceLine : IRequest<PriceUpdate, object>
     {
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Post;
-        public PriceLine Content { get; set; }
+        public HttpMethod Method { get; } = HttpMethod.Put;
+        public PriceUpdate Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
 
-        public UpdateServicePrice(string id)
+        public UpdateServicePriceLine(string id)
         {
             ServicePath = $"pricebook/v1/prices/pricelines/{id}";
         }
 
-        public UpdateServicePrice(string id, PriceLine priceLine) : this(id)
+        public UpdateServicePriceLine(string id, PriceUpdate priceUpdate) : this(id)
         {
-            Content = priceLine;
+            Content = priceUpdate;
         }
     }
 }

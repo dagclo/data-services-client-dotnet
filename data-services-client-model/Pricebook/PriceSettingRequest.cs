@@ -33,30 +33,12 @@ namespace Quadient.DataServices.Model.Pricebook
         /// <summary>
         /// Initializes a new instance of the <see cref="PriceSettingRequest" /> class.
         /// </summary>
-        /// <param name="Tenant">(Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant..</param>
-        /// <param name="UserId">(Optional) Identify a user id this price applies to..</param>
         /// <param name="Prices">Prices.</param>
-        public PriceSettingRequest(string Tenant = default(string), string UserId = default(string), List<Price> Prices = default(List<Price>))
+        public PriceSettingRequest(List<Price> Prices = default(List<Price>))
         {
-            this.Tenant = Tenant;
-            this.UserId = UserId;
             this.Prices = Prices;
         }
         
-        /// <summary>
-        /// (Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant.
-        /// </summary>
-        /// <value>(Optional) Identifies the tenant this adjustment applies to. This is only optional when a user_id is given, and that user_id does not have a tenant.</value>
-        [DataMember(Name="tenant", EmitDefaultValue=false)]
-        public string Tenant { get; set; }
-
-        /// <summary>
-        /// (Optional) Identify a user id this price applies to.
-        /// </summary>
-        /// <value>(Optional) Identify a user id this price applies to.</value>
-        [DataMember(Name="user_id", EmitDefaultValue=false)]
-        public string UserId { get; set; }
-
         /// <summary>
         /// Gets or Sets Prices
         /// </summary>
@@ -71,8 +53,6 @@ namespace Quadient.DataServices.Model.Pricebook
         {
             var sb = new StringBuilder();
             sb.Append("class PriceSettingRequest {\n");
-            sb.Append("  Tenant: ").Append(Tenant).Append("\n");
-            sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  Prices: ").Append(Prices).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -109,16 +89,6 @@ namespace Quadient.DataServices.Model.Pricebook
 
             return 
                 (
-                    this.Tenant == input.Tenant ||
-                    (this.Tenant != null &&
-                    this.Tenant.Equals(input.Tenant))
-                ) && 
-                (
-                    this.UserId == input.UserId ||
-                    (this.UserId != null &&
-                    this.UserId.Equals(input.UserId))
-                ) && 
-                (
                     this.Prices == input.Prices ||
                     this.Prices != null &&
                     this.Prices.SequenceEqual(input.Prices)
@@ -134,10 +104,6 @@ namespace Quadient.DataServices.Model.Pricebook
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Tenant != null)
-                    hashCode = hashCode * 59 + this.Tenant.GetHashCode();
-                if (this.UserId != null)
-                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.Prices != null)
                     hashCode = hashCode * 59 + this.Prices.GetHashCode();
                 return hashCode;

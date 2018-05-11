@@ -6,7 +6,7 @@ using Quadient.DataServices.Model.Pricebook;
 
 namespace Quadient.DataServices.Api.Pricebook
 {
-    public class GetServicePrices : IRequest<object, Pricesheet>
+    public class GetServicePrices : IRequest<object, Prices>
     {
         public string ServicePath { get; } = "pricebook/v1/prices/{0}";
         public HttpMethod Method { get; } = HttpMethod.Get;
