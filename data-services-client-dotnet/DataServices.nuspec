@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>Quadient.DataServices.Api</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>Quadient Data Services Dotnet SDK</title>
     <authors>Quadient Data USA</authors>
     <owners>Quadient Data USA</owners>
@@ -10,15 +10,15 @@
     <tags>Quadient DataServices</tags>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Quadient Data Services Client</description>
-    <releaseNotes>1.0.0</releaseNotes>
+    <releaseNotes>Downgrading dependency version.</releaseNotes>
     <projectUrl>https://github.com/quadient/data-services-client-dotnet</projectUrl>
     <iconUrl><![CDATA[https://avatars3.githubusercontent.com/u/37059652?s=400&u=b5005630afd828b872d7c98115f2ac5a30897103&v=4]]></iconUrl>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <dependencies>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
         <dependency id="System.ComponentModel.Annotations" version="4.4.1" exclude="Build,Analyzers" />
-        <dependency id="System.Net.Http" version="4.3.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.1" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
