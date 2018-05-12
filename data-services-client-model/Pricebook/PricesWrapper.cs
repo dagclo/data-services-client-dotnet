@@ -28,17 +28,17 @@ namespace Quadient.DataServices.Model.Pricebook
     /// Prices
     /// </summary>
     [DataContract]
-    public partial class Prices :  IEquatable<Prices>, IValidatableObject
+    public partial class PricesWrapper :  IEquatable<PricesWrapper>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Prices" /> class.
+        /// Initializes a new instance of the <see cref="PricesWrapper" /> class.
         /// </summary>
         /// <param name="ServiceName">ServiceName.</param>
-        /// <param name="_Prices">The price rules that exits for the service.</param>
-        public Prices(string ServiceName = default(string), List<PriceLine> _Prices = default(List<PriceLine>))
+        /// <param name="Prices">The price rules that exits for the service.</param>
+        public PricesWrapper(string ServiceName = default(string), List<PriceLine> Prices = default(List<PriceLine>))
         {
             this.ServiceName = ServiceName;
-            this._Prices = _Prices;
+            this.Prices = Prices;
         }
         
         /// <summary>
@@ -52,7 +52,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// </summary>
         /// <value>The price rules that exits for the service</value>
         [DataMember(Name="prices", EmitDefaultValue=false)]
-        public List<PriceLine> _Prices { get; set; }
+        public List<PriceLine> Prices { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,7 +63,7 @@ namespace Quadient.DataServices.Model.Pricebook
             var sb = new StringBuilder();
             sb.Append("class Prices {\n");
             sb.Append("  ServiceName: ").Append(ServiceName).Append("\n");
-            sb.Append("  _Prices: ").Append(_Prices).Append("\n");
+            sb.Append("  Prices: ").Append(Prices).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,7 +84,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Prices);
+            return this.Equals(input as PricesWrapper);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// </summary>
         /// <param name="input">Instance of Prices to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Prices input)
+        public bool Equals(PricesWrapper input)
         {
             if (input == null)
                 return false;
@@ -104,9 +104,9 @@ namespace Quadient.DataServices.Model.Pricebook
                     this.ServiceName.Equals(input.ServiceName))
                 ) && 
                 (
-                    this._Prices == input._Prices ||
-                    this._Prices != null &&
-                    this._Prices.SequenceEqual(input._Prices)
+                    this.Prices == input.Prices ||
+                    this.Prices != null &&
+                    this.Prices.SequenceEqual(input.Prices)
                 );
         }
 
@@ -121,8 +121,8 @@ namespace Quadient.DataServices.Model.Pricebook
                 int hashCode = 41;
                 if (this.ServiceName != null)
                     hashCode = hashCode * 59 + this.ServiceName.GetHashCode();
-                if (this._Prices != null)
-                    hashCode = hashCode * 59 + this._Prices.GetHashCode();
+                if (this.Prices != null)
+                    hashCode = hashCode * 59 + this.Prices.GetHashCode();
                 return hashCode;
             }
         }
