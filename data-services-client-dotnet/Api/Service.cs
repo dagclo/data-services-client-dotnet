@@ -17,17 +17,40 @@ namespace Quadient.DataServices.Api
     {
         private const int TokenExpiration = 8 * 60 * 1000;
         private const string TokenType = "Bearer";
-        private readonly HttpClient _httpClient;
-        private readonly HttpClient _authClient;
+        private HttpClient _httpClient;
+        private HttpClient _authClient;
         protected ICredentials Credentials {get;}
         protected IConfiguration Configuration {get;}
+        protected ISessionToken SessionToken { get; }
 
         protected Service(ICredentials credentials, IConfiguration configuration)
         {
             if (_httpClient != null) return;
             Credentials = credentials;
             Configuration = configuration;
-            
+
+            InitializeHttpClients(configuration);
+        }
+
+        protected Service(ICredentials credentials): this(credentials, new Configuration())
+        {}
+
+        protected Service(ISessionToken sessionToken, IConfiguration configuration = null)
+        {
+            SessionToken = sessionToken;
+            if (configuration == null)
+            {
+                configuration = new Configuration();
+            }
+            Configuration = configuration;
+
+            _session = new Session {Token = SessionToken.Token};
+            _expiration = DateTime.MaxValue;
+            InitializeHttpClients(configuration);
+        }
+
+        private void InitializeHttpClients(IConfiguration configuration)
+        {
             var handler = new HttpClientHandler
             {
                 PreAuthenticate = true,
@@ -49,23 +72,12 @@ namespace Quadient.DataServices.Api
             _authClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
         }
 
-        protected Service(ICredentials credentials): this(credentials, new Configuration())
-        {}
-
         private ISession _session;
         private DateTime _expiration;
         private async Task<ISession> GetSession()
-        {           
-
+        {
             if (_session != null && _expiration > DateTime.Now) return _session;
-            AuthToken request = null;
-            if (Configuration.IsAdmin)
-            {
-                request = new DataServicesToken(Credentials);
-            } else
-            {
-                request = new QuadientCloudToken(Credentials);
-            }
+            var request = Configuration.IsAdmin ? (AuthToken)new DataServicesToken(Credentials) : new QuadientCloudToken(Credentials);
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
                 httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
@@ -109,14 +121,14 @@ namespace Quadient.DataServices.Api
 
         private Uri GetBaseAddress(bool isCloud = false)
         {
-            var address = $"https://data.quadientcloud.{(Credentials.Region == Region.US ? "com": "eu")}/";
+            var address = $"https://data.quadientcloud.{((Credentials?.Region ?? SessionToken.Region) == Region.US ? "com": "eu")}/";
             if (isCloud)
             {
                 if (!string.IsNullOrWhiteSpace(Configuration.QuadientCloudAddress))
                 {
                     address = Configuration.QuadientCloudAddress;
                 }
-                else if (!string.IsNullOrWhiteSpace(Credentials.Company))
+                else if (!string.IsNullOrWhiteSpace(Credentials?.Company))
                 {
                     address = $"https://{Credentials.Company}.quadientcloud.{(Credentials.Region == Region.US ? "com": "eu")}/";
                 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Quadient.DataServices.Api.Job;
-using Quadient.DataServices.Api.User;
 using Quadient.DataServices.Model;
 using Quadient.DataServices.Model.Job;
 
@@ -10,7 +9,6 @@ namespace Quadient.DataServices.Api
 {
     public class JobSession: Service, IDisposable
     {
-        private JobInformationResponse JobInformation {get; set;}
         private IDictionary<string, string> Headers {get; set;}
         public string JobId {get; set;}
         private string Origin {get; set;}
@@ -20,11 +18,15 @@ namespace Quadient.DataServices.Api
             Origin = origin;
         }
 
+        public JobSession(ISessionToken token, IConfiguration configuration, string origin) : base(token, configuration)
+        {
+            Origin = origin;
+        }
+
         public async Task<JobInformationResponse> Initialize()
         {
             var request = new CreateJob(Origin);
             var job = await Execute(request);
-            JobInformation = job;
             JobId = job.JobId;
             Origin = job.Origin;
             Headers = new Dictionary<string, string>
