@@ -13,7 +13,7 @@ namespace Quadient.DataServices.Api.Pricebook
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
 
-        public GetServicePrices(GetServiceRequest request)
+        public GetServicePrices(GetServicePricesRequest request)
         {
             ServicePath = $"pricebook/v1/prices/{request.Service}";
             QueryStringParams = new Dictionary<string, string>
@@ -25,7 +25,7 @@ namespace Quadient.DataServices.Api.Pricebook
         }
     }
 
-    public class GetServiceRequest
+    public class GetServicePricesRequest
     {
         /// <summary>
         /// The service to get pricing details for.
