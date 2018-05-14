@@ -23,8 +23,8 @@ namespace Quadient.DataServices.Api.Pricebook
                 {"tenant", request.Tenant },
                 {"user_id", request.UserId },
                 {"service", request.Service },
-                {"include_disabled_prices", request.IncludeDisabledPrices ? bool.TrueString : bool.FalseString },
-                {"include_deleted_prices", request.IncludeDeletedPrices ? bool.TrueString : bool.FalseString }
+                {"include_disabled_prices", request.IncludeDisabledPrices ? "true" : "false" },
+                {"include_deleted_prices", request.IncludeDeletedPrices ? "true" : "false" }
             };
         }
     }
@@ -60,5 +60,10 @@ namespace Quadient.DataServices.Api.Pricebook
         /// Receive a sheet that includes deleted price lines?
         /// </summary>
         public bool IncludeDeletedPrices { get; set; } = false;
+
+        public GetPricesRequest(string service)
+        {
+            Service = service;
+        }
     }
 }

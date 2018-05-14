@@ -161,7 +161,7 @@ namespace Quadient.DataServices.Api
         {
             return request.QueryStringParams?.Count > 0
                 ? string.Format(
-                    $"{request.ServicePath}?{string.Join("&", request.QueryStringParams?.Select(p => $"{p.Key}={HttpUtility.UrlEncode(p.Value)}"))}")
+                    $"{request.ServicePath}?{string.Join("&", request.QueryStringParams?.Where(p => !string.IsNullOrEmpty(p.Value)).Select(p => $"{p.Key}={HttpUtility.UrlEncode(p.Value)}"))}")
                 : request.ServicePath;
         }
     }

@@ -43,5 +43,10 @@ namespace Quadient.DataServices.Api.Pricebook
         /// The user to get pricing for. The user must belong to the tenant if used in conjunction with a tenant parameter. Base pricing will be returned if no user specific pricing exists.
         /// </summary>
         public string UserId { get; set; }
+
+        public GetServicePricesRequest(string service)
+        {
+            Service = service;
+        }
     }
 }
