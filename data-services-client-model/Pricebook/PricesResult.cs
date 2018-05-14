@@ -28,14 +28,14 @@ namespace Quadient.DataServices.Model.Pricebook
     /// Prices
     /// </summary>
     [DataContract]
-    public partial class PricesWrapper :  IEquatable<PricesWrapper>, IValidatableObject
+    public partial class PricesResult :  IEquatable<PricesResult>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PricesWrapper" /> class.
+        /// Initializes a new instance of the <see cref="PricesResult" /> class.
         /// </summary>
         /// <param name="ServiceName">ServiceName.</param>
         /// <param name="Prices">The price rules that exits for the service.</param>
-        public PricesWrapper(string ServiceName = default(string), List<PriceLine> Prices = default(List<PriceLine>))
+        public PricesResult(string ServiceName = default(string), List<PriceLine> Prices = default(List<PriceLine>))
         {
             this.ServiceName = ServiceName;
             this.Prices = Prices;
@@ -84,7 +84,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PricesWrapper);
+            return this.Equals(input as PricesResult);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// </summary>
         /// <param name="input">Instance of Prices to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PricesWrapper input)
+        public bool Equals(PricesResult input)
         {
             if (input == null)
                 return false;
