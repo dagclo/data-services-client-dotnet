@@ -8,15 +8,14 @@ namespace Quadient.DataServices.Api.Pricebook
 {
     public class GetServicePrices : IRequest<object, Prices>
     {
-        public string ServicePath { get; } = "pricebook/v1/prices/{0}";
+        public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
-        public IEnumerable<string> PathParams { get; }
         public IDictionary<string, string> QueryStringParams { get; }
 
         public GetServicePrices(GetServiceRequest request)
         {
-            PathParams = new []{ request.Service };
+            ServicePath = $"pricebook/v1/prices/{request.Service}";
             QueryStringParams = new Dictionary<string, string>
             {
                 {"date", request.PriceDate?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
