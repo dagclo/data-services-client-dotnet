@@ -8,15 +8,14 @@ namespace Quadient.DataServices.Api.Pricebook
 {
     public class GetServicePrices : IRequest<object, Prices>
     {
-        public string ServicePath { get; } = "pricebook/v1/prices/{0}";
+        public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
-        public IEnumerable<string> PathParams { get; }
         public IDictionary<string, string> QueryStringParams { get; }
 
-        public GetServicePrices(GetServiceRequest request)
+        public GetServicePrices(GetServicePricesRequest request)
         {
-            PathParams = new []{ request.Service };
+            ServicePath = $"pricebook/v1/prices/{request.Service}";
             QueryStringParams = new Dictionary<string, string>
             {
                 {"date", request.PriceDate?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
@@ -26,7 +25,7 @@ namespace Quadient.DataServices.Api.Pricebook
         }
     }
 
-    public class GetServiceRequest
+    public class GetServicePricesRequest
     {
         /// <summary>
         /// The service to get pricing details for.
@@ -44,5 +43,10 @@ namespace Quadient.DataServices.Api.Pricebook
         /// The user to get pricing for. The user must belong to the tenant if used in conjunction with a tenant parameter. Base pricing will be returned if no user specific pricing exists.
         /// </summary>
         public string UserId { get; set; }
+
+        public GetServicePricesRequest(string service)
+        {
+            Service = service;
+        }
     }
 }
