@@ -5,6 +5,7 @@
     <RootNamespace>Quadient.DataServices.Model</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>False</Deterministic>
+    <AssemblyName>Quadient.DataServices.Client.Model</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
