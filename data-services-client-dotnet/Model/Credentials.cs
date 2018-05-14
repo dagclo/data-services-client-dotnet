@@ -24,13 +24,9 @@ namespace Quadient.DataServices.Model
         public string Password {get; set;}
     }
 
-    public interface ICredentialsRegion
+    public interface ICredentials
     {
         Region Region { get; set; }
-    }
-
-    public interface ICredentials : ICredentialsRegion
-    {
         string Company {get; set;}
         string Username {get; set;}
         string Password {get; set;}
@@ -44,8 +40,9 @@ namespace Quadient.DataServices.Model
         public string Password {get; set;}
     }
 
-    public interface ISessionToken : ICredentialsRegion
+    public interface ISessionToken
     {
+        Region Region { get; set; }
         string Token { get; set; }
     }
 
