@@ -23,7 +23,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\release\netstandard2.0\DataServices.dll" target="lib\netstandard2.0\DataServices.dll" />
-    <file src="bin\release\netstandard2.0\DataServicesModel.dll" target="lib\netstandard2.0\DataServicesModel.dll" />
+    <file src="bin\release\netstandard2.0\Quadient.DataServices.Client.dll" target="lib\netstandard2.0\Quadient.DataServices.Client.dll" />
+    <file src="bin\release\netstandard2.0\Quadient.DataServices.Client.Model.dll" target="lib\netstandard2.0\Quadient.DataServices.Client.Model.dll" />
   </files>
 </package>
