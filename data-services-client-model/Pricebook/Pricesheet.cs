@@ -39,7 +39,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// <param name="Tenant">The tenant the results are scoped to, if any.    *If null/missing*, pricing that pertains to any particular tenant are not included. .</param>
         /// <param name="UserId">The user the results are scoped to, if any.  *If null/missing*, pricing  pertaining to any particular user are not included. .</param>
         /// <param name="Services">Services.</param>
-        public Pricesheet(DateTime? FromDate = default(DateTime?), DateTime? ToDate = default(DateTime?), bool? IncludesAllPrices = default(bool?), string Tenant = default(string), string UserId = default(string), List<PricesResult> Services = default(List<PricesResult>))
+        public Pricesheet(DateTime? FromDate = default(DateTime?), DateTime? ToDate = default(DateTime?), bool? IncludesAllPrices = default(bool?), string Tenant = default(string), string UserId = default(string), List<Prices> Services = default(List<Prices>))
         {
             this.FromDate = FromDate;
             this.ToDate = ToDate;
@@ -88,7 +88,7 @@ namespace Quadient.DataServices.Model.Pricebook
         /// Gets or Sets Services
         /// </summary>
         [DataMember(Name="services", EmitDefaultValue=false)]
-        public List<PricesResult> Services { get; set; }
+        public List<Prices> Services { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

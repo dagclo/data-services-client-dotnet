@@ -4,7 +4,7 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.Pricebook
 {
-    public class SaveServicePrices : IRequest<PriceSettingRequest, PricesResult>
+    public class SaveServicePrices : IRequest<PriceSettingRequest, Prices>
     {
         public string ServicePath { get; } = "pricebook/v1/prices/";
         public HttpMethod Method { get; } = HttpMethod.Post;
