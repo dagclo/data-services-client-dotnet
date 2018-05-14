@@ -15,7 +15,7 @@ namespace Quadient.DataServices.Api.Pricebook
 
         public GetPrices(GetPricesRequest request)
         {
-            ServicePath = $"pricebook/v1/prices/{request.Service}";
+            ServicePath = $"pricebook/v1/prices";
             QueryStringParams = new Dictionary<string, string>
             {
                 {"valid_from", request.ValidFrom?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
