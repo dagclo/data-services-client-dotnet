@@ -83,7 +83,7 @@ namespace Quadient.DataServices.Api
                 httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
                 using (var result = await _authClient.SendAsync(httpRequest))
                 {
-                    result.EnsureSuccessStatusCode();
+                    result.EnsureSuccess();
                     var resultContent = await result.Content.ReadAsStringAsync();
                     _session = DeserializeObject<Session>(resultContent);
                 }
@@ -112,7 +112,7 @@ namespace Quadient.DataServices.Api
                 }
                 using (var result = await _httpClient.SendAsync(httpRequest))
                 {
-                    result.EnsureSuccessStatusCode();
+                    result.EnsureSuccess();
                     var resultContent = await result.Content.ReadAsStringAsync();
                     return DeserializeObject<R>(resultContent);
                 }
