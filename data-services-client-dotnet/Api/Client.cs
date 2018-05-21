@@ -4,7 +4,7 @@ using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
-    public class Client: Service
+    public class Client: Service, IClient
     {
         public Client(ICredentials credentials): base (credentials)
         {}
