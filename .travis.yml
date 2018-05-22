@@ -1,6 +1,6 @@
 sudo: false
 language: csharp
-solution: DataServices.sln
+solution: Quadient.DataServices.Client.sln
 mono: none
 dotnet: 2.1.105
 script:
