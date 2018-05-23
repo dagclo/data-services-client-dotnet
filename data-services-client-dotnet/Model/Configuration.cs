@@ -7,15 +7,15 @@ namespace Quadient.DataServices.Model
     {
         string DataServicesAddress { get; set; }
         string QuadientCloudAddress { get; set; }
-        bool IsAdmin {get; set;}
         string UserAgent { get; }
+        Region Region { get; set; }
     }
 
     public class Configuration: IConfiguration
     {
         public string DataServicesAddress { get; set; }
         public string QuadientCloudAddress { get; set; }
-        public bool IsAdmin {get; set;}
         public string UserAgent { get; } = Constants.Origin;
+        public Region Region { get; set; } = Region.US;
     }
 }

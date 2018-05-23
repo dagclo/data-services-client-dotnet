@@ -85,12 +85,10 @@ namespace Quadient.DataServices.Api
         private async Task<ISession> GetSession()
         {
             if (_session != null && _expiration > DateTime.Now) return _session;
-            var request = Configuration.IsAdmin
-                ? (AuthToken) new DataServicesToken(Credentials)
-                : new QuadientCloudToken(Credentials);
+            var request = GetAuthToken(Credentials);
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
-                httpRequest.Content = request.GetContent() ??
+                httpRequest.Content = request.GetHttpContent() ??
                     new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
                 using (var result = await _authClient.SendAsync(httpRequest))
                 {
@@ -100,9 +98,24 @@ namespace Quadient.DataServices.Api
                 }
             }
 
-            if (Configuration.IsAdmin) _session.Token = _session.AccessToken;
+            if (!(Credentials is QuadientCloudCredentials)) _session.Token = _session.AccessToken;
             _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
             return _session;
+        }
+
+        private static AuthToken GetAuthToken(ICredentials credentials)
+        {
+            switch (credentials)
+            {
+                case QuadientCloudCredentials cloudCredentials:
+                    return new QuadientCloudToken(cloudCredentials);
+                case AdminCredentials adminCredentials:
+                    return new DataServicesToken(adminCredentials);
+                case AdminApiKey apiKey:
+                    return new DataServicesApiKeyToken(apiKey);
+            }
+
+            throw new NotSupportedException();
         }
 
         public async Task<R> Execute<T, R>(IRequest<T, R> request, IDictionary<string, string> headers = null)
@@ -136,29 +149,19 @@ namespace Quadient.DataServices.Api
 
         private Uri GetBaseAddress(bool isCloud = false)
         {
-            var address =
-                $"https://data.quadientcloud.{((Credentials?.Region ?? SessionToken.Region) == Region.US ? "com" : "eu")}/";
-            if (isCloud)
+            var address = string.IsNullOrWhiteSpace(Configuration?.DataServicesAddress)
+                ? $"https://data.quadientcloud.{(Configuration?.Region == Region.US ? "com" : "eu")}/"
+                : Configuration?.DataServicesAddress;
+            if (isCloud && Credentials is QuadientCloudCredentials cloudCredentials)
             {
-                if (!string.IsNullOrWhiteSpace(Configuration.QuadientCloudAddress))
+                if (!string.IsNullOrWhiteSpace(Configuration?.QuadientCloudAddress))
                 {
-                    address = Configuration.QuadientCloudAddress;
+                    address = Configuration?.QuadientCloudAddress;
                 }
-                else if (!string.IsNullOrWhiteSpace(Credentials?.Company))
+                else if (!string.IsNullOrWhiteSpace(cloudCredentials.Company))
                 {
                     address =
-                        $"https://{Credentials.Company}.quadientcloud.{(Credentials.Region == Region.US ? "com" : "eu")}/";
-                }
-                else
-                {
-                    Configuration.IsAdmin = true;
-                }
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(Configuration.DataServicesAddress))
-                {
-                    address = Configuration.DataServicesAddress;
+                        $"https://{cloudCredentials.Company}.quadientcloud.{(Configuration?.Region == Region.US ? "com" : "eu")}/";
                 }
             }
 

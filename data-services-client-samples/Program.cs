@@ -19,7 +19,7 @@ namespace Quadient.DataServices.Example
                 Console.WriteLine("Args are missing args[0] Company args[1] Username args[2] Password");
             }
 
-            var creds = new Credentials
+            var creds = new QuadientCloudCredentials
             {
                 Company = args[0],
                 Username = args[1],
