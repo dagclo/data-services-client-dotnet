@@ -13,35 +13,42 @@ using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
-    public abstract class Service
+    internal class Service
     {
         private const int TokenExpiration = 8 * 60 * 1000;
         private const string TokenType = "Bearer";
         private HttpClient _httpClient;
         private HttpClient _authClient;
-        protected ICredentials Credentials {get;}
-        protected IConfiguration Configuration {get;}
+        protected ICredentials Credentials { get; }
+        protected IConfiguration Configuration { get; }
         protected ISessionToken SessionToken { get; }
 
-        protected Service(ICredentials credentials, IConfiguration configuration)
+        public Service(ICredentials credentials, IConfiguration configuration)
         {
-            if (_httpClient != null) return;
+            if (_httpClient != null)
+            {
+                return;
+            }
+
+            if (configuration == null)
+            {
+                configuration = new Configuration();
+            }
+
             Credentials = credentials;
             Configuration = configuration;
 
             InitializeHttpClients(configuration);
         }
 
-        protected Service(ICredentials credentials): this(credentials, new Configuration())
-        {}
-
-        protected Service(ISessionToken sessionToken, IConfiguration configuration = null)
+        public Service(ISessionToken sessionToken, IConfiguration configuration = null)
         {
             SessionToken = sessionToken;
             if (configuration == null)
             {
                 configuration = new Configuration();
             }
+
             Configuration = configuration;
 
             _session = new Session {Token = SessionToken.Token};
@@ -74,13 +81,17 @@ namespace Quadient.DataServices.Api
 
         private ISession _session;
         private DateTime _expiration;
+
         private async Task<ISession> GetSession()
         {
             if (_session != null && _expiration > DateTime.Now) return _session;
-            var request = Configuration.IsAdmin ? (AuthToken)new DataServicesToken(Credentials) : new QuadientCloudToken(Credentials);
+            var request = Configuration.IsAdmin
+                ? (AuthToken) new DataServicesToken(Credentials)
+                : new QuadientCloudToken(Credentials);
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
-                httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
+                httpRequest.Content = request.GetContent() ??
+                    new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
                 using (var result = await _authClient.SendAsync(httpRequest))
                 {
                     result.EnsureSuccess();
@@ -88,12 +99,13 @@ namespace Quadient.DataServices.Api
                     _session = DeserializeObject<Session>(resultContent);
                 }
             }
+
             if (Configuration.IsAdmin) _session.Token = _session.AccessToken;
             _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
             return _session;
         }
 
-        protected async Task<R> Execute<T,R>(IRequest<T,R> request, IDictionary<string, string> headers = null)
+        public async Task<R> Execute<T, R>(IRequest<T, R> request, IDictionary<string, string> headers = null)
         {
             var session = await GetSession();
             using (var httpRequest = new HttpRequestMessage(request.Method, GetRequestUri(request)))
@@ -101,15 +113,18 @@ namespace Quadient.DataServices.Api
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue(TokenType, session.Token);
                 if (headers != null)
                 {
-                    foreach(var key in headers.Keys)
+                    foreach (var key in headers.Keys)
                     {
                         httpRequest.Headers.TryAddWithoutValidation(key, headers[key]);
                     }
                 }
+
                 if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
                 {
-                    httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
+                    httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8,
+                        "application/json");
                 }
+
                 using (var result = await _httpClient.SendAsync(httpRequest))
                 {
                     result.EnsureSuccess();
@@ -121,7 +136,8 @@ namespace Quadient.DataServices.Api
 
         private Uri GetBaseAddress(bool isCloud = false)
         {
-            var address = $"https://data.quadientcloud.{((Credentials?.Region ?? SessionToken.Region) == Region.US ? "com": "eu")}/";
+            var address =
+                $"https://data.quadientcloud.{((Credentials?.Region ?? SessionToken.Region) == Region.US ? "com" : "eu")}/";
             if (isCloud)
             {
                 if (!string.IsNullOrWhiteSpace(Configuration.QuadientCloudAddress))
@@ -130,7 +146,8 @@ namespace Quadient.DataServices.Api
                 }
                 else if (!string.IsNullOrWhiteSpace(Credentials?.Company))
                 {
-                    address = $"https://{Credentials.Company}.quadientcloud.{(Credentials.Region == Region.US ? "com": "eu")}/";
+                    address =
+                        $"https://{Credentials.Company}.quadientcloud.{(Credentials.Region == Region.US ? "com" : "eu")}/";
                 }
                 else
                 {
@@ -144,6 +161,7 @@ namespace Quadient.DataServices.Api
                     address = Configuration.DataServicesAddress;
                 }
             }
+
             return new Uri(address);
         }
 

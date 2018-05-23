@@ -4,15 +4,17 @@ using Quadient.DataServices.Model;
 
 namespace Quadient.DataServices.Api.User
 {
-    public abstract class AuthToken: IRequest<IAuthCredentials, Session>
+    public abstract class AuthToken : IRequest<IAuthCredentials, Session>
     {
-        public string ServicePath {get;set;}
-        public HttpMethod Method {get;} = HttpMethod.Post;
+        public string ServicePath { get; set; }
+        public HttpMethod Method { get; } = HttpMethod.Post;
         public IAuthCredentials Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+
+        public abstract HttpContent GetContent();
     }
 
-    public class QuadientCloudToken: AuthToken
+    public class QuadientCloudToken : AuthToken
     {
         public QuadientCloudToken(ICredentials credentials)
         {
@@ -23,9 +25,14 @@ namespace Quadient.DataServices.Api.User
                 Password = credentials.Password
             };
         }
+
+        public override HttpContent GetContent()
+        {
+            return null;
+        }
     }
 
-    public class DataServicesToken: AuthToken
+    public class DataServicesToken : AuthToken
     {
         public DataServicesToken(ICredentials credentials)
         {
@@ -35,6 +42,16 @@ namespace Quadient.DataServices.Api.User
                 Username = credentials.Username,
                 Password = credentials.Password
             };
+        }
+
+        public override HttpContent GetContent()
+        {
+            return new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("grant_type", "password"),
+                new KeyValuePair<string, string>("username", ((AdminCredentials) Content).Username),
+                new KeyValuePair<string, string>("password", Content.Password)
+            });
         }
     }
 }

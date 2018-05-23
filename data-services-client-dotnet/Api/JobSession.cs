@@ -7,20 +7,29 @@ using Quadient.DataServices.Model.Job;
 
 namespace Quadient.DataServices.Api
 {
-    public class JobSession: Service, IDisposable
+    public class JobSession: IDisposable
     {
         private IDictionary<string, string> Headers {get; set;}
         public string JobId {get; set;}
         private string Origin {get; set;}
+        private readonly Service _service;
 
-        public JobSession (ICredentials credentials, IConfiguration configuration, string origin): base(credentials, configuration)
+        public JobSession (ICredentials credentials, IConfiguration configuration, string origin)
         {
             Origin = origin;
+            _service = new Service(credentials, configuration);
         }
 
-        public JobSession(ISessionToken token, IConfiguration configuration, string origin) : base(token, configuration)
+        public JobSession(ISessionToken token, IConfiguration configuration, string origin)
         {
             Origin = origin;
+            _service = new Service(token, configuration);
+        }
+
+        internal JobSession(Service service, string origin)
+        {
+            Origin = origin;
+            _service = service;
         }
 
         public async Task<JobInformationResponse> Initialize()
@@ -39,12 +48,12 @@ namespace Quadient.DataServices.Api
 
         public async Task<R> Execute<T,R>(IRequest<T,R> request)
         {
-            return await Execute(request, Headers);
+            return await _service.Execute(request, Headers);
         }
 
         public async void Dispose()
         {
-            await Execute(new UpdateStatus(JobId, JobStatus.SUCCESS));
+            await _service.Execute(new UpdateStatus(JobId, JobStatus.SUCCESS));
         }
     }
 }
