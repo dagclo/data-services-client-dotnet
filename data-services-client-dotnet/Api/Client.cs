@@ -4,16 +4,19 @@ using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
-    public class Client: Service, IClient
+    public class Client: IClient
     {
-        public Client(ICredentials credentials): base (credentials)
-        {}
+        private readonly Service _service;
 
-        public Client(ICredentials credentials, IConfiguration configuration): base(credentials, configuration)
-        {}
+        public Client(ICredentials credentials, IConfiguration configuration = null)
+        {
+            _service = new Service(credentials, configuration);
+        }
 
-        public Client(ISessionToken token, IConfiguration configuration = null) : base(token, configuration)
-        { }
+        public Client(ISessionToken token, IConfiguration configuration = null)
+        {
+            _service = new Service(token, configuration);
+        }
 
         public async Task<JobSession> CreateJob(string origin = Constants.Origin)
         {
@@ -31,14 +34,12 @@ namespace Quadient.DataServices.Api
 
         public async Task<R> Execute<T,R>(IRequest<T,R> request)
         {
-            return await base.Execute(request);
+            return await _service.Execute(request);
         }
 
         private JobSession CreateJobSession(string origin)
         {
-            return SessionToken == null
-                ? new JobSession(Credentials, Configuration, origin)
-                : new JobSession(SessionToken, Configuration, origin);
+            return new JobSession(_service, origin);
         }
     }
 }
