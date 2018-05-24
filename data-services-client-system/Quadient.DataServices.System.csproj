@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Quadient.DataServices.Client.System</AssemblyName>
+    <NuspecFile>$(MSBuildThisFileDirectory)$(MSBuildProjectName).nuspec</NuspecFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\data-services-client-interface\Quadient.DataServices.Interface.csproj" />
+    <ProjectReference Include="..\data-services-client-system-model\Quadient.DataServices.System.Model.csproj" />
+  </ItemGroup>
+
+</Project>
