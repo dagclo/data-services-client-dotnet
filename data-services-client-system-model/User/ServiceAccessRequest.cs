@@ -31,47 +31,21 @@ namespace Quadient.DataServices.System.Model.User
     public partial class ServiceAccessRequest :  IEquatable<ServiceAccessRequest>, IValidatableObject
     {
         /// <summary>
-        /// Defines AccessLevel
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum AccessLevelEnum
-        {
-            
-            /// <summary>
-            /// Enum Enabledread for value: enabled_read
-            /// </summary>
-            [EnumMember(Value = "enabled_read")]
-            Enabledread = 1,
-            
-            /// <summary>
-            /// Enum Enableduse for value: enabled_use
-            /// </summary>
-            [EnumMember(Value = "enabled_use")]
-            Enableduse = 2,
-            
-            /// <summary>
-            /// Enum Disabled for value: disabled
-            /// </summary>
-            [EnumMember(Value = "disabled")]
-            Disabled = 3
-        }
-
-        /// <summary>
-        /// Gets or Sets AccessLevel
-        /// </summary>
-        [DataMember(Name="access_level", EmitDefaultValue=false)]
-        public AccessLevelEnum? AccessLevel { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="ServiceAccessRequest" /> class.
         /// </summary>
         /// <param name="AccessLevel">AccessLevel.</param>
         /// <param name="ServiceProperties">ServiceProperties.</param>
-        public ServiceAccessRequest(AccessLevelEnum? AccessLevel = default(AccessLevelEnum?), Object ServiceProperties = default(Object))
+        public ServiceAccessRequest(AccessLevelEnum AccessLevel = default(AccessLevelEnum), Object ServiceProperties = default(Object))
         {
             this.AccessLevel = AccessLevel;
             this.ServiceProperties = ServiceProperties;
         }
         
+        /// <summary>
+        /// Gets or Sets AccessLevel
+        /// </summary>
+        [DataMember(Name="access_level", EmitDefaultValue=false)]
+        public AccessLevelEnum AccessLevel { get; set; }
 
         /// <summary>
         /// Gets or Sets ServiceProperties
