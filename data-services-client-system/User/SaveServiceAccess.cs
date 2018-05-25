@@ -16,12 +16,12 @@ namespace Quadient.DataServices.Api.System.User
         /// <summary>
         /// Add or overwrite an access descriptor for this tenant for the named service.
         /// </summary>
-        /// <param name="tenantId">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
+        /// <param name="tenantName">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
         /// <param name="serviceName">A unique service name. Service names can be discovered via enumeration/querying (GET /services)</param>
         /// <param name="request"></param>
-        public SaveServiceAccess(string tenantId, string serviceName, ServiceAccessRequest request)
+        public SaveServiceAccess(string tenantName, string serviceName, ServiceAccessRequest request)
         {
-            ServicePath = $"/users/v1/tenants/{tenantId}/{serviceName}";
+            ServicePath = $"/users/v1/tenants/{tenantName}/{serviceName}";
             Content = request;
         }
     }
