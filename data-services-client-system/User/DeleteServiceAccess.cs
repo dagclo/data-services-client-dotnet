@@ -17,7 +17,7 @@ namespace Quadient.DataServices.System.User
         /// <summary>
         /// Remove the service access descriptor for the named service.
         /// </summary>
-        /// <param name="tenantName">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
+        /// <param name="tenantName">A unique tenant name. Tenant names/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
         /// <param name="serviceName">A unique service name. Service names can be discovered via enumeration/querying (GET /services)</param>
         public DeleteServiceAccess(string tenantName, string serviceName)
         {

@@ -18,7 +18,7 @@ namespace Quadient.DataServices.System.User
         /// <summary>
         /// Get the list of enabled and disabled services for this tenant.
         /// </summary>
-        /// <param name="tenantName">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
+        /// <param name="tenantName">A unique tenant name. Tenant names/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
         public GetServicesAccess(string tenantName)
         {
             ServicePath = $"users/v1/tenants/{tenantName}/services";
