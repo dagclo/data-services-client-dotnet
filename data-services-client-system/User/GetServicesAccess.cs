@@ -20,7 +20,7 @@ namespace Quadient.DataServices.Api.System.User
         /// <param name="tenantName">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
         public GetServicesAccess(string tenantName)
         {
-            ServicePath = $"/users/v1/tenants/{tenantName}/services";
+            ServicePath = $"users/v1/tenants/{tenantName}/services";
         }
     }
 }
