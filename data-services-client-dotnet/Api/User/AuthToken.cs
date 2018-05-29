@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Quadient.DataServices.Model;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using Quadient.DataServices.Model;
 
 namespace Quadient.DataServices.Api.User
 {

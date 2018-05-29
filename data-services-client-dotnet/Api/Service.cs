@@ -118,6 +118,16 @@ namespace Quadient.DataServices.Api
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Execute the service call.
+        /// </summary>
+        /// <typeparam name="T">The input type for the service request.</typeparam>
+        /// <typeparam name="R">The return type from the service request.</typeparam>
+        /// <param name="request"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        /// <exception cref="ApiException">The request was bad.</exception>
+        /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
         public async Task<R> Execute<T, R>(IRequest<T, R> request, IDictionary<string, string> headers = null)
         {
             var session = await GetSession();

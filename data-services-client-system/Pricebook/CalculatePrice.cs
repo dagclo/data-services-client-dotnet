@@ -5,6 +5,9 @@ using Quadient.DataServices.System.Model.Pricebook;
 
 namespace Quadient.DataServices.System.Pricebook
 {
+    /// <summary>
+    /// Returns a pricing estimate for a job, session or other activity that involves Data Services.
+    /// </summary>
     public class CalculatePrice : IRequest<MeteringDetails, CalculateResponse>
     {
         public string ServicePath { get; } = "pricebook/v1/calculate";
@@ -12,11 +15,18 @@ namespace Quadient.DataServices.System.Pricebook
         public MeteringDetails Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
 
+        /// <summary>
+        /// Returns a pricing estimate for a job, session or other activity that involves Data Services.
+        /// </summary>
         public CalculatePrice()
         {
 
         }
 
+        /// <summary>
+        /// Returns a pricing estimate for a job, session or other activity that involves Data Services.
+        /// </summary>
+        /// <param name="meteringDetails">The details of the job, session or other activity for which the calculation is requested.</param>
         public CalculatePrice(MeteringDetails meteringDetails)
         {
             Content = meteringDetails;
