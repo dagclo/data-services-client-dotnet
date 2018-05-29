@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using Quadient.DataServices.Api;
 using Quadient.DataServices.System.Model.User;
 
-namespace Quadient.DataServices.Api.System.User
+namespace Quadient.DataServices.System.User
 {
     /// <summary>
     /// Add or overwrite an access descriptor for this tenant for the named service.

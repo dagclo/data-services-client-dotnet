@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using Quadient.DataServices.Api;
 
-namespace Quadient.DataServices.Api.System.User
+namespace Quadient.DataServices.System.User
 {
     /// <summary>
     /// Remove the service access descriptor for the named service.
