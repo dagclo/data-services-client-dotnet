@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using Quadient.DataServices.Api;
 using Quadient.DataServices.System.Model.User;
 
-namespace Quadient.DataServices.Api.System.User
+namespace Quadient.DataServices.System.User
 {
     /// <summary>
     /// Get the service access descriptor in place for the tenant for the named service.
@@ -17,11 +18,11 @@ namespace Quadient.DataServices.Api.System.User
         /// <summary>
         /// Get the service access descriptor in place for the tenant for the named service.
         /// </summary>
-        /// <param name="tenantId">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
+        /// <param name="tenantName">A unique tenant name. Tenant names/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
         /// <param name="serviceName">A unique service name. Service names can be discovered via enumeration/querying (GET /services)</param>
-        public GetServiceAccess(string tenantId, string serviceName)
+        public GetServiceAccess(string tenantName, string serviceName)
         {
-            ServicePath = $"/users/v1/tenants/{tenantId}/{serviceName}";
+            ServicePath = $"users/v1/tenants/{tenantName}/services/{serviceName}";
         }
     }
 }

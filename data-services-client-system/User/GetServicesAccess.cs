@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using Quadient.DataServices.Api;
 using Quadient.DataServices.System.Model.User;
 
-namespace Quadient.DataServices.Api.System.User
+namespace Quadient.DataServices.System.User
 {
     /// <summary>
     /// Get the list of enabled and disabled services for this tenant.
@@ -17,10 +18,10 @@ namespace Quadient.DataServices.Api.System.User
         /// <summary>
         /// Get the list of enabled and disabled services for this tenant.
         /// </summary>
-        /// <param name="tenantId">A unique tenant id. Tenant ids/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
-        public GetServicesAccess(string tenantId)
+        /// <param name="tenantName">A unique tenant name. Tenant names/hrefs can be discovered via enumeration/querying (GET /users/v1/tenants).</param>
+        public GetServicesAccess(string tenantName)
         {
-            ServicePath = $"/users/v1/tenants/{tenantId}/services";
+            ServicePath = $"users/v1/tenants/{tenantName}/services";
         }
     }
 }

@@ -33,7 +33,6 @@ namespace Quadient.DataServices.System.Model.User
         /// <summary>
         /// Initializes a new instance of the <see cref="TenantInformation" /> class.
         /// </summary>
-        /// <param name="TenantId">TenantId.</param>
         /// <param name="TenantName">TenantName.</param>
         /// <param name="CreatedBy">CreatedBy.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
@@ -41,9 +40,8 @@ namespace Quadient.DataServices.System.Model.User
         /// <param name="DefaultGroups">A collection of group names..</param>
         /// <param name="ServiceConfigurations">A collection of service configuration names..</param>
         /// <param name="Roles">A collection of currently existing roles names..</param>
-        public TenantInformation(string TenantId = default(string), string TenantName = default(string), string CreatedBy = default(string), string CreatedAt = default(string), List<string> DomainGroups = default(List<string>), List<string> DefaultGroups = default(List<string>), List<string> ServiceConfigurations = default(List<string>), List<string> Roles = default(List<string>))
+        public TenantInformation(string TenantName = default(string), string CreatedBy = default(string), string CreatedAt = default(string), List<string> DomainGroups = default(List<string>), List<string> DefaultGroups = default(List<string>), List<string> ServiceConfigurations = default(List<string>), List<string> Roles = default(List<string>))
         {
-            this.TenantId = TenantId;
             this.TenantName = TenantName;
             this.CreatedBy = CreatedBy;
             this.CreatedAt = CreatedAt;
@@ -53,12 +51,6 @@ namespace Quadient.DataServices.System.Model.User
             this.Roles = Roles;
         }
         
-        /// <summary>
-        /// Gets or Sets TenantId
-        /// </summary>
-        [DataMember(Name="tenant_id", EmitDefaultValue=false)]
-        public string TenantId { get; set; }
-
         /// <summary>
         /// Gets or Sets TenantName
         /// </summary>
@@ -113,7 +105,6 @@ namespace Quadient.DataServices.System.Model.User
         {
             var sb = new StringBuilder();
             sb.Append("class TenantInformation {\n");
-            sb.Append("  TenantId: ").Append(TenantId).Append("\n");
             sb.Append("  TenantName: ").Append(TenantName).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -155,11 +146,6 @@ namespace Quadient.DataServices.System.Model.User
                 return false;
 
             return 
-                (
-                    this.TenantId == input.TenantId ||
-                    (this.TenantId != null &&
-                    this.TenantId.Equals(input.TenantId))
-                ) && 
                 (
                     this.TenantName == input.TenantName ||
                     (this.TenantName != null &&
@@ -206,8 +192,6 @@ namespace Quadient.DataServices.System.Model.User
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TenantId != null)
-                    hashCode = hashCode * 59 + this.TenantId.GetHashCode();
                 if (this.TenantName != null)
                     hashCode = hashCode * 59 + this.TenantName.GetHashCode();
                 if (this.CreatedBy != null)
