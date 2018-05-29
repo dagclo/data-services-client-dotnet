@@ -21,7 +21,7 @@ namespace Quadient.DataServices.Api.System.User
         /// <param name="serviceName">A unique service name. Service names can be discovered via enumeration/querying (GET /services)</param>
         public GetServiceAccess(string tenantName, string serviceName)
         {
-            ServicePath = $"/users/v1/tenants/{tenantName}/{serviceName}";
+            ServicePath = $"/users/v1/tenants/{tenantName}/services/{serviceName}";
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Quadient.DataServices.Api.System.User
         /// <param name="request"></param>
         public SaveServiceAccess(string tenantName, string serviceName, ServiceAccessRequest request)
         {
-            ServicePath = $"/users/v1/tenants/{tenantName}/{serviceName}";
+            ServicePath = $"/users/v1/tenants/{tenantName}/services/{serviceName}";
             Content = request;
         }
     }
