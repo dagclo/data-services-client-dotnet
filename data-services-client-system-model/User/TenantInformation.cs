@@ -36,18 +36,16 @@ namespace Quadient.DataServices.System.Model.User
         /// <param name="TenantName">TenantName.</param>
         /// <param name="CreatedBy">CreatedBy.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="DomainGroups">A collection of group names..</param>
-        /// <param name="DefaultGroups">A collection of group names..</param>
-        /// <param name="ServiceConfigurations">A collection of service configuration names..</param>
+        /// <param name="GroupDomain">A collection of group names..</param>
+        /// <param name="Groups">A collection of group names..</param>
         /// <param name="Roles">A collection of currently existing roles names..</param>
-        public TenantInformation(string TenantName = default(string), string CreatedBy = default(string), string CreatedAt = default(string), List<string> DomainGroups = default(List<string>), List<string> DefaultGroups = default(List<string>), List<string> ServiceConfigurations = default(List<string>), List<string> Roles = default(List<string>))
+        public TenantInformation(string TenantName = default(string), string CreatedBy = default(string), string CreatedAt = default(string), List<string> GroupDomain = default(List<string>), List<string> Groups = default(List<string>), List<string> Roles = default(List<string>))
         {
             this.TenantName = TenantName;
             this.CreatedBy = CreatedBy;
             this.CreatedAt = CreatedAt;
-            this.DomainGroups = DomainGroups;
-            this.DefaultGroups = DefaultGroups;
-            this.ServiceConfigurations = ServiceConfigurations;
+            this.GroupDomain = GroupDomain;
+            this.Groups = Groups;
             this.Roles = Roles;
         }
         
@@ -73,22 +71,15 @@ namespace Quadient.DataServices.System.Model.User
         /// A collection of group names.
         /// </summary>
         /// <value>A collection of group names.</value>
-        [DataMember(Name="domain_groups", EmitDefaultValue=false)]
-        public List<string> DomainGroups { get; set; }
+        [DataMember(Name="group_domain", EmitDefaultValue=false)]
+        public List<string> GroupDomain { get; set; }
 
         /// <summary>
         /// A collection of group names.
         /// </summary>
         /// <value>A collection of group names.</value>
-        [DataMember(Name="default_groups", EmitDefaultValue=false)]
-        public List<string> DefaultGroups { get; set; }
-
-        /// <summary>
-        /// A collection of service configuration names.
-        /// </summary>
-        /// <value>A collection of service configuration names.</value>
-        [DataMember(Name="service_configurations", EmitDefaultValue=false)]
-        public List<string> ServiceConfigurations { get; set; }
+        [DataMember(Name="groups", EmitDefaultValue=false)]
+        public List<string> Groups { get; set; }
 
         /// <summary>
         /// A collection of currently existing roles names.
@@ -108,9 +99,8 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("  TenantName: ").Append(TenantName).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  DomainGroups: ").Append(DomainGroups).Append("\n");
-            sb.Append("  DefaultGroups: ").Append(DefaultGroups).Append("\n");
-            sb.Append("  ServiceConfigurations: ").Append(ServiceConfigurations).Append("\n");
+            sb.Append("  GroupDomain: ").Append(GroupDomain).Append("\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  Roles: ").Append(Roles).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -162,19 +152,14 @@ namespace Quadient.DataServices.System.Model.User
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this.DomainGroups == input.DomainGroups ||
-                    this.DomainGroups != null &&
-                    this.DomainGroups.SequenceEqual(input.DomainGroups)
+                    this.GroupDomain == input.GroupDomain ||
+                    this.GroupDomain != null &&
+                    this.GroupDomain.SequenceEqual(input.GroupDomain)
                 ) && 
                 (
-                    this.DefaultGroups == input.DefaultGroups ||
-                    this.DefaultGroups != null &&
-                    this.DefaultGroups.SequenceEqual(input.DefaultGroups)
-                ) && 
-                (
-                    this.ServiceConfigurations == input.ServiceConfigurations ||
-                    this.ServiceConfigurations != null &&
-                    this.ServiceConfigurations.SequenceEqual(input.ServiceConfigurations)
+                    this.Groups == input.Groups ||
+                    this.Groups != null &&
+                    this.Groups.SequenceEqual(input.Groups)
                 ) && 
                 (
                     this.Roles == input.Roles ||
@@ -198,12 +183,10 @@ namespace Quadient.DataServices.System.Model.User
                     hashCode = hashCode * 59 + this.CreatedBy.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.DomainGroups != null)
-                    hashCode = hashCode * 59 + this.DomainGroups.GetHashCode();
-                if (this.DefaultGroups != null)
-                    hashCode = hashCode * 59 + this.DefaultGroups.GetHashCode();
-                if (this.ServiceConfigurations != null)
-                    hashCode = hashCode * 59 + this.ServiceConfigurations.GetHashCode();
+                if (this.GroupDomain != null)
+                    hashCode = hashCode * 59 + this.GroupDomain.GetHashCode();
+                if (this.Groups != null)
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 if (this.Roles != null)
                     hashCode = hashCode * 59 + this.Roles.GetHashCode();
                 return hashCode;

@@ -34,15 +34,13 @@ namespace Quadient.DataServices.System.Model.User
         /// Initializes a new instance of the <see cref="TenantDefinition" /> class.
         /// </summary>
         /// <param name="TenantName">The name of a tenant.</param>
-        /// <param name="DomainGroups">DomainGroups.</param>
-        /// <param name="DefaultGroups">DefaultGroups.</param>
-        /// <param name="ServiceConfigurations">ServiceConfigurations.</param>
-        public TenantDefinition(string TenantName = default(string), List<string> DomainGroups = default(List<string>), List<string> DefaultGroups = default(List<string>), List<string> ServiceConfigurations = default(List<string>))
+        /// <param name="GroupDomain">GroupDomain.</param>
+        /// <param name="Groups">Groups.</param>
+        public TenantDefinition(string TenantName = default(string), List<string> GroupDomain = default(List<string>), List<string> Groups = default(List<string>))
         {
             this.TenantName = TenantName;
-            this.DomainGroups = DomainGroups;
-            this.DefaultGroups = DefaultGroups;
-            this.ServiceConfigurations = ServiceConfigurations;
+            this.GroupDomain = GroupDomain;
+            this.Groups = Groups;
         }
         
         /// <summary>
@@ -53,22 +51,16 @@ namespace Quadient.DataServices.System.Model.User
         public string TenantName { get; set; }
 
         /// <summary>
-        /// Gets or Sets DomainGroups
+        /// Gets or Sets GroupDomain
         /// </summary>
-        [DataMember(Name="domain_groups", EmitDefaultValue=false)]
-        public List<string> DomainGroups { get; set; }
+        [DataMember(Name="group_domain", EmitDefaultValue=false)]
+        public List<string> GroupDomain { get; set; }
 
         /// <summary>
-        /// Gets or Sets DefaultGroups
+        /// Gets or Sets Groups
         /// </summary>
-        [DataMember(Name="default_groups", EmitDefaultValue=false)]
-        public List<string> DefaultGroups { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ServiceConfigurations
-        /// </summary>
-        [DataMember(Name="service_configurations", EmitDefaultValue=false)]
-        public List<string> ServiceConfigurations { get; set; }
+        [DataMember(Name="groups", EmitDefaultValue=false)]
+        public List<string> Groups { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,9 +71,8 @@ namespace Quadient.DataServices.System.Model.User
             var sb = new StringBuilder();
             sb.Append("class TenantDefinition {\n");
             sb.Append("  TenantName: ").Append(TenantName).Append("\n");
-            sb.Append("  DomainGroups: ").Append(DomainGroups).Append("\n");
-            sb.Append("  DefaultGroups: ").Append(DefaultGroups).Append("\n");
-            sb.Append("  ServiceConfigurations: ").Append(ServiceConfigurations).Append("\n");
+            sb.Append("  GroupDomain: ").Append(GroupDomain).Append("\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -122,19 +113,14 @@ namespace Quadient.DataServices.System.Model.User
                     this.TenantName.Equals(input.TenantName))
                 ) && 
                 (
-                    this.DomainGroups == input.DomainGroups ||
-                    this.DomainGroups != null &&
-                    this.DomainGroups.SequenceEqual(input.DomainGroups)
+                    this.GroupDomain == input.GroupDomain ||
+                    this.GroupDomain != null &&
+                    this.GroupDomain.SequenceEqual(input.GroupDomain)
                 ) && 
                 (
-                    this.DefaultGroups == input.DefaultGroups ||
-                    this.DefaultGroups != null &&
-                    this.DefaultGroups.SequenceEqual(input.DefaultGroups)
-                ) && 
-                (
-                    this.ServiceConfigurations == input.ServiceConfigurations ||
-                    this.ServiceConfigurations != null &&
-                    this.ServiceConfigurations.SequenceEqual(input.ServiceConfigurations)
+                    this.Groups == input.Groups ||
+                    this.Groups != null &&
+                    this.Groups.SequenceEqual(input.Groups)
                 );
         }
 
@@ -149,12 +135,10 @@ namespace Quadient.DataServices.System.Model.User
                 int hashCode = 41;
                 if (this.TenantName != null)
                     hashCode = hashCode * 59 + this.TenantName.GetHashCode();
-                if (this.DomainGroups != null)
-                    hashCode = hashCode * 59 + this.DomainGroups.GetHashCode();
-                if (this.DefaultGroups != null)
-                    hashCode = hashCode * 59 + this.DefaultGroups.GetHashCode();
-                if (this.ServiceConfigurations != null)
-                    hashCode = hashCode * 59 + this.ServiceConfigurations.GetHashCode();
+                if (this.GroupDomain != null)
+                    hashCode = hashCode * 59 + this.GroupDomain.GetHashCode();
+                if (this.Groups != null)
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 return hashCode;
             }
         }
