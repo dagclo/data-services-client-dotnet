@@ -25,4 +25,4 @@ var client = new Client(credentials);
 var response = await client.execute(new AddressCorrection(...));
 ```
 
-Check out the `DataServicesExample project` folder for more comprehensive examples.
+Check out the `Quadient.DataServices.Example project` folder for more comprehensive examples.
