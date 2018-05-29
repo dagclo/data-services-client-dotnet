@@ -19,7 +19,7 @@ using Quadient.DataServices.Api;
 
 ...
 
-var credentials = new Credentials(US, "company", "username", "password");
+var credentials = new QuadientCloudCredentials("company", "username", "password");
 var client = new Client(credentials);
 
 var response = await client.execute(new AddressCorrection(...));
