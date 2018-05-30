@@ -7,6 +7,9 @@ using Quadient.DataServices.System.Model.Pricebook;
 
 namespace Quadient.DataServices.System.Pricebook
 {
+    /// <summary>
+    /// Returns the current price details, including tiers, for the specified service.
+    /// </summary>
     public class GetServicePrices : IRequest<object, Prices>
     {
         public string ServicePath { get; }
@@ -14,6 +17,10 @@ namespace Quadient.DataServices.System.Pricebook
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
 
+        /// <summary>
+        /// Returns the current price details, including tiers, for the specified service.
+        /// </summary>
+        /// <param name="request"></param>
         public GetServicePrices(GetServicePricesRequest request)
         {
             ServicePath = $"pricebook/v1/prices/{request.Service}";

@@ -64,11 +64,17 @@ namespace Quadient.DataServices.Model
 
     public interface ISessionToken
     {
+        /// <summary>
+        /// A unique token, a JSON Web Token (JWT), valid for a limited period of time, typically an hour. Used to provide in the 'Authorization' header of forthcoming requests.
+        /// </summary>
         string Token { get; set; }
     }
 
     public class SessionToken : ISessionToken
     {
+        /// <summary>
+        /// A unique token, a JSON Web Token (JWT), valid for a limited period of time, typically an hour. Used to provide in the 'Authorization' header of forthcoming requests.
+        /// </summary>
         public string Token { get; set; }
 
         public SessionToken()

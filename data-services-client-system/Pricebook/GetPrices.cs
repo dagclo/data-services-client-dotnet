@@ -7,6 +7,9 @@ using Quadient.DataServices.System.Model.Pricebook;
 
 namespace Quadient.DataServices.System.Pricebook
 {
+    /// <summary>
+    /// Get the price sheet for services, optionally scoped to a tenant and/or user.
+    /// </summary>
     public class GetPrices : IRequest<object, Pricesheet>
     {
         public string ServicePath { get; }
@@ -14,6 +17,10 @@ namespace Quadient.DataServices.System.Pricebook
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
 
+        /// <summary>
+        /// Get the price sheet for services, optionally scoped to a tenant and/or user.
+        /// </summary>
+        /// <param name="request"></param>
         public GetPrices(GetPricesRequest request)
         {
             ServicePath = $"pricebook/v1/prices";
