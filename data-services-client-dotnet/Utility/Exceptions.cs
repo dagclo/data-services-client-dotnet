@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization;
 
 namespace Quadient.DataServices.Utility
@@ -30,6 +32,30 @@ namespace Quadient.DataServices.Utility
             SerializationInfo info,
             StreamingContext context) : base(info, context)
         {
+        }
+    }
+
+    [Serializable]
+    public class RestException : HttpRequestException
+    {
+        public HttpStatusCode StatusCode { get; }
+        public string ReasonPhrase { get; }
+
+        public RestException(string message, HttpResponseMessage responseMessage,
+            IDictionary<string, object> additionalDetails) : base(message)
+        {
+            StatusCode = responseMessage.StatusCode;
+            ReasonPhrase = responseMessage.ReasonPhrase;
+            if (additionalDetails != null)
+            {
+                foreach (var keyValuePair in additionalDetails)
+                {
+                    if (!Data.Contains(keyValuePair.Key))
+                    {
+                        Data.Add(keyValuePair.Key, keyValuePair.Value);
+                    }
+                }
+            }
         }
     }
 }
