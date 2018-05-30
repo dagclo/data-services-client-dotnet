@@ -37,8 +37,10 @@ namespace Quadient.DataServices.Utility
                         throw new ApiException(serviceMessage, additionalDetails);
                     }
 
-                    throw new HttpRequestException(string.Format(CultureInfo.InvariantCulture,
-                        $"Failed request with status code {message.StatusCode} reason {message.ReasonPhrase} message {serviceMessage}"));
+                    throw new RestException(
+                        serviceMessage ??
+                        $"Failed request with status code {message.StatusCode} reason {message.ReasonPhrase}", message,
+                        additionalDetails);
                 }
                 finally
                 {
