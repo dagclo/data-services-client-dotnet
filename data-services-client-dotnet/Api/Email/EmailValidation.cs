@@ -8,7 +8,7 @@ namespace Quadient.DataServices.Api.Email
     /// <summary>
     /// Updates the collection of input records for email validation
     /// </summary>
-    public class EmailValidation : IRequest<EmailValidationRequest, EmailValidationResponse>
+    public class EmailValidation : IRequest<EmailValidationRequest, EmailValidationResponseBody>
     {
         public string ServicePath { get; } = "services/email-validation/v1/validate";
         public HttpMethod Method { get; } = HttpMethod.Post;
