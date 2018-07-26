@@ -1,13 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using Newtonsoft.Json;
 
 namespace Quadient.DataServices.Utility
 {
     public static class Extensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestRestException"></exception>
+        /// <exception cref="InsufficientCreditsRestException"></exception>
+        /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
         public static HttpResponseMessage EnsureSuccess(this HttpResponseMessage message)
         {
             if (!message.IsSuccessStatusCode)
@@ -32,9 +40,20 @@ namespace Quadient.DataServices.Utility
                     }
 
                     // assume bad request equates to invalid data provided by the end user
-                    if (message.StatusCode == HttpStatusCode.BadRequest)
+                    switch (message.StatusCode)
                     {
-                        throw new ApiException(serviceMessage, additionalDetails);
+                        case HttpStatusCode.BadRequest:
+                            throw new BadRequestRestException(serviceMessage, message, additionalDetails);
+                        case HttpStatusCode.Forbidden:
+                            object reason = null;
+                            if (additionalDetails?.TryGetValue("reason", out reason) == true &&
+                                (reason as string)?.Equals("Billing: credit balance",
+                                    StringComparison.OrdinalIgnoreCase) == true)
+                            {
+                                throw new InsufficientCreditsRestException(serviceMessage, message, additionalDetails);
+                            }
+
+                            break;
                     }
 
                     throw new RestException(

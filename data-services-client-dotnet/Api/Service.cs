@@ -126,7 +126,8 @@ namespace Quadient.DataServices.Api
         /// <param name="request"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        /// <exception cref="ApiException">The request was bad.</exception>
+        /// <exception cref="BadRequestRestException"></exception>
+        /// <exception cref="InsufficientCreditsRestException"></exception>
         /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
         public async Task<R> Execute<T, R>(IRequest<T, R> request, IDictionary<string, string> headers = null)
         {
