@@ -16,7 +16,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 
 		public GetWalkSequenceRecords(string jobId, string pageId)
 		{
-			ServicePath = $"/services/walk-sequence/v1/jobs/{jobId}/records/{pageId}";
+			ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/records/{pageId}";
 		}
 	}
 }
