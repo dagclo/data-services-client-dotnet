@@ -4,7 +4,7 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
-	public class GetWalkSequenceJobSummary : IRequest<object, JobResponse>
+	public class GetWalkSequenceJobStatus : IRequest<object, JobSummary>
 	{
 		public string ServicePath { get; }
 
@@ -14,9 +14,9 @@ namespace Quadient.DataServices.Api.WalkSequence
 
 		public IDictionary<string, string> QueryStringParams { get; }
 
-		public GetWalkSequenceJobSummary(string jobId)
+		public GetWalkSequenceJobStatus(string jobId)
 		{
-			ServicePath = $"services/walk-sequence/v1/jobs/{jobId}";
+			ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/status";
 		}
 	}
 }

@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines AddressLineFormatting
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum AddressLineFormatting
     {
         

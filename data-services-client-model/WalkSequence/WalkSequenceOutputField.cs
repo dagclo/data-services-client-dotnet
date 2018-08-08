@@ -33,109 +33,111 @@ namespace Quadient.DataServies.Model.WalkSequence
     public enum WalkSequenceOutputField
     {
         
-        abbreviated_city = 1,
+        id = 1,
         
-        address_block = 2,
+        abbreviated_city = 2,
         
-        address_line1 = 3,
+        address_block = 3,
         
-        address_line2 = 4,
+        address_line_1 = 4,
         
-        address_type = 5,
+        address_line_2 = 5,
         
-        business = 6,
+        address_type = 6,
         
-        carrier_route = 7,
+        business = 7,
         
-        city = 8,
+        carrier_route = 8,
         
-        congressional_district = 9,
+        city = 9,
         
-        country = 10,
+        congressional_district = 10,
         
-        county = 11,
+        country = 11,
         
-        county_code = 12,
+        county = 12,
         
-        delivery_point = 13,
+        county_code = 13,
         
-        dpv_coded = 14,
+        delivery_point = 14,
         
-        dpv_footnote = 15,
+        dpv_coded = 15,
         
-        dpv_indicator = 16,
+        dpv_footnote = 16,
         
-        elot = 17,
+        dpv_indicator = 17,
         
-        extra_address_information = 18,
+        elot = 18,
         
-        first_name = 19,
+        extra_address_information = 19,
         
-        full_name = 20,
+        first_name = 20,
         
-        is_cmra = 21,
+        full_name = 21,
         
-        is_ews_match = 22,
+        is_cmra = 22,
         
-        is_no_stat = 23,
+        is_ews_match = 23,
         
-        is_pbsa = 24,
+        is_no_stat = 24,
         
-        is_vacant = 25,
+        is_pbsa = 25,
         
-        lacs_coded = 26,
+        is_vacant = 26,
         
-        lacs_link_footnote = 27,
+        lacs_coded = 27,
         
-        lacs_link_indicator = 28,
+        lacs_link_footnote = 28,
         
-        city_state_zip = 29,
+        lacs_link_indicator = 29,
         
-        last_name = 30,
+        city_state_zip = 30,
         
-        matched_to_default = 31,
+        last_name = 31,
         
-        middle_name = 32,
+        matched_to_default = 32,
         
-        name_suffix = 33,
+        middle_name = 33,
         
-        post_directional = 34,
+        name_suffix = 34,
         
-        pre_directional = 35,
+        post_directional = 35,
         
-        primary_address_line = 36,
+        pre_directional = 36,
         
-        primary_number = 37,
+        primary_address_line = 37,
         
-        private_mailbox = 38,
+        primary_number = 38,
         
-        salutation = 39,
+        private_mailbox = 39,
         
-        secondary_address_line = 40,
+        salutation = 40,
         
-        state = 41,
+        secondary_address_line = 41,
         
-        street_name = 42,
+        state = 42,
         
-        street_suffix = 43,
+        street_name = 43,
         
-        suite_link_footnote = 44,
+        street_suffix = 44,
         
-        unit_designator = 45,
+        suite_link_footnote = 45,
         
-        unit_number = 46,
+        unit_designator = 46,
         
-        urbanization = 47,
+        unit_number = 47,
         
-        uscorrection_description = 48,
+        urbanization = 48,
         
-        uscorrection_footnote = 49,
+        uscorrection_description = 49,
         
-        walk_sequence_footnote = 50,
+        uscorrection_footnote = 50,
         
-        walk_sequence_number = 51,
+        walk_sequence_footnote = 51,
         
-        zip_code = 52
+        walk_sequence_number = 52,
+        
+        zip_code = 53
     }
     
 }

@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines PmbPlacement
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum PmbPlacement
     {
         

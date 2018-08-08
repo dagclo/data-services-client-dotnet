@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines UnitPlacement
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum UnitPlacement
     {
         

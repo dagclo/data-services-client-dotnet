@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines PreferredAddressType
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum PreferredAddressType
     {
         

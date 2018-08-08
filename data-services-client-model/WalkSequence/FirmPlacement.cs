@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines FirmPlacement
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum FirmPlacement
     {
         

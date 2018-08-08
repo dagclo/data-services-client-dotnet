@@ -33,7 +33,7 @@ namespace Quadient.DataServies.Model.WalkSequence
     public enum WalkSequenceInputField
     {
         
-        record_id = 1,
+        id = 1,
         
         first_name = 2,
         
@@ -49,9 +49,9 @@ namespace Quadient.DataServies.Model.WalkSequence
         
         business = 8,
         
-        address_line1 = 9,
+        address_line_1 = 9,
         
-        address_line2 = 10,
+        address_line_2 = 10,
         
         city = 11,
         

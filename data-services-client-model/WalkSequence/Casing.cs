@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines Casing
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum Casing
     {
         

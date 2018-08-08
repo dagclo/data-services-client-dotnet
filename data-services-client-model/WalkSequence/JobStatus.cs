@@ -28,6 +28,8 @@ namespace Quadient.DataServies.Model.WalkSequence
     /// Defines JobStatus
     /// </summary>
     
+    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum JobStatus
     {
         
@@ -39,7 +41,9 @@ namespace Quadient.DataServies.Model.WalkSequence
         
         SUCCESS = 4,
         
-        FAILURE = 5
+        FAILURE = 5,
+        
+        DELETED = 6
     }
     
 }
