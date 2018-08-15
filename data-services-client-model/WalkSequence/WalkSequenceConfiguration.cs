@@ -1,7 +1,7 @@
 /* 
  * Walk Sequence
  *
- * Appends USPS Walk Sequence numbers to mail pieces.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job while specifying upload format (input fields) and download (output fields). 2. Upload records to process via one or more calls to the API. Records are uploaded in blocks. The records are    persisted until at least the end of the job. 3. Initiate processing by calling the `_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job as appropriate.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. See Pagination for more information.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs are available and must be retrieved as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved multiple times if needed. 
+ * Performs USPS CASS processing and appends USPS Walk Sequence numbers to mail pieces. Properly walk sequenced mailings may qualify for USPS mailing discounts.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -71,11 +71,9 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <param name="AddressElementFormat">AddressElementFormat.</param>
         /// <param name="AddressCasing">AddressCasing.</param>
         /// <param name="AddressLineFormatting">AddressLineFormatting.</param>
-        /// <param name="AlwaysUpdateCityStateZipcode">AlwaysUpdateCityStateZipcode.</param>
         /// <param name="ApplyCasingToBusiness">ApplyCasingToBusiness.</param>
         /// <param name="ApplyCasingToNames">ApplyCasingToNames.</param>
         /// <param name="FirmPlacement">FirmPlacement.</param>
-        /// <param name="KeepExistingEmail">KeepExistingEmail.</param>
         /// <param name="KeepExtraInformation">KeepExtraInformation.</param>
         /// <param name="ListProcessorName">ListProcessorName.</param>
         /// <param name="MailersAddress">MailersAddress.</param>
@@ -84,22 +82,19 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <param name="MailersName">MailersName.</param>
         /// <param name="MailersState">MailersState.</param>
         /// <param name="MailersZipcode">MailersZipcode.</param>
-        /// <param name="MaxAddressLines">MaxAddressLines.</param>
         /// <param name="PmbPlacement">PmbPlacement.</param>
         /// <param name="PreferAbbreviatedAddresses">PreferAbbreviatedAddresses.</param>
         /// <param name="PreferredAddressType">PreferredAddressType.</param>
         /// <param name="RequireDpvValidatedSecondary">RequireDpvValidatedSecondary.</param>
         /// <param name="UnitPlacement">UnitPlacement.</param>
-        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? AlwaysUpdateCityStateZipcode = default(bool?), bool? ApplyCasingToBusiness = default(bool?), bool? ApplyCasingToNames = default(bool?), FirmPlacement? FirmPlacement = default(FirmPlacement?), bool? KeepExistingEmail = default(bool?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), int? MaxAddressLines = default(int?), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
+        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), bool? ApplyCasingToNames = default(bool?), FirmPlacement? FirmPlacement = default(FirmPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
         {
             this.AddressElementFormat = AddressElementFormat;
             this.AddressCasing = AddressCasing;
             this.AddressLineFormatting = AddressLineFormatting;
-            this.AlwaysUpdateCityStateZipcode = AlwaysUpdateCityStateZipcode;
             this.ApplyCasingToBusiness = ApplyCasingToBusiness;
             this.ApplyCasingToNames = ApplyCasingToNames;
             this.FirmPlacement = FirmPlacement;
-            this.KeepExistingEmail = KeepExistingEmail;
             this.KeepExtraInformation = KeepExtraInformation;
             this.ListProcessorName = ListProcessorName;
             this.MailersAddress = MailersAddress;
@@ -108,7 +103,6 @@ namespace Quadient.DataServies.Model.WalkSequence
             this.MailersName = MailersName;
             this.MailersState = MailersState;
             this.MailersZipcode = MailersZipcode;
-            this.MaxAddressLines = MaxAddressLines;
             this.PmbPlacement = PmbPlacement;
             this.PreferAbbreviatedAddresses = PreferAbbreviatedAddresses;
             this.PreferredAddressType = PreferredAddressType;
@@ -118,12 +112,6 @@ namespace Quadient.DataServies.Model.WalkSequence
         
 
 
-
-        /// <summary>
-        /// Gets or Sets AlwaysUpdateCityStateZipcode
-        /// </summary>
-        [DataMember(Name="always_update_city_state_zipcode", EmitDefaultValue=false)]
-        public bool? AlwaysUpdateCityStateZipcode { get; set; }
 
         /// <summary>
         /// Gets or Sets ApplyCasingToBusiness
@@ -137,12 +125,6 @@ namespace Quadient.DataServies.Model.WalkSequence
         [DataMember(Name="apply_casing_to_names", EmitDefaultValue=false)]
         public bool? ApplyCasingToNames { get; set; }
 
-
-        /// <summary>
-        /// Gets or Sets KeepExistingEmail
-        /// </summary>
-        [DataMember(Name="keep_existing_email", EmitDefaultValue=false)]
-        public bool? KeepExistingEmail { get; set; }
 
         /// <summary>
         /// Gets or Sets KeepExtraInformation
@@ -192,12 +174,6 @@ namespace Quadient.DataServies.Model.WalkSequence
         [DataMember(Name="mailers_zipcode", EmitDefaultValue=false)]
         public string MailersZipcode { get; set; }
 
-        /// <summary>
-        /// Gets or Sets MaxAddressLines
-        /// </summary>
-        [DataMember(Name="max_address_lines", EmitDefaultValue=false)]
-        public int? MaxAddressLines { get; set; }
-
 
         /// <summary>
         /// Gets or Sets PreferAbbreviatedAddresses
@@ -224,11 +200,9 @@ namespace Quadient.DataServies.Model.WalkSequence
             sb.Append("  AddressElementFormat: ").Append(AddressElementFormat).Append("\n");
             sb.Append("  AddressCasing: ").Append(AddressCasing).Append("\n");
             sb.Append("  AddressLineFormatting: ").Append(AddressLineFormatting).Append("\n");
-            sb.Append("  AlwaysUpdateCityStateZipcode: ").Append(AlwaysUpdateCityStateZipcode).Append("\n");
             sb.Append("  ApplyCasingToBusiness: ").Append(ApplyCasingToBusiness).Append("\n");
             sb.Append("  ApplyCasingToNames: ").Append(ApplyCasingToNames).Append("\n");
             sb.Append("  FirmPlacement: ").Append(FirmPlacement).Append("\n");
-            sb.Append("  KeepExistingEmail: ").Append(KeepExistingEmail).Append("\n");
             sb.Append("  KeepExtraInformation: ").Append(KeepExtraInformation).Append("\n");
             sb.Append("  ListProcessorName: ").Append(ListProcessorName).Append("\n");
             sb.Append("  MailersAddress: ").Append(MailersAddress).Append("\n");
@@ -237,7 +211,6 @@ namespace Quadient.DataServies.Model.WalkSequence
             sb.Append("  MailersName: ").Append(MailersName).Append("\n");
             sb.Append("  MailersState: ").Append(MailersState).Append("\n");
             sb.Append("  MailersZipcode: ").Append(MailersZipcode).Append("\n");
-            sb.Append("  MaxAddressLines: ").Append(MaxAddressLines).Append("\n");
             sb.Append("  PmbPlacement: ").Append(PmbPlacement).Append("\n");
             sb.Append("  PreferAbbreviatedAddresses: ").Append(PreferAbbreviatedAddresses).Append("\n");
             sb.Append("  PreferredAddressType: ").Append(PreferredAddressType).Append("\n");
@@ -293,11 +266,6 @@ namespace Quadient.DataServies.Model.WalkSequence
                     this.AddressLineFormatting.Equals(input.AddressLineFormatting))
                 ) && 
                 (
-                    this.AlwaysUpdateCityStateZipcode == input.AlwaysUpdateCityStateZipcode ||
-                    (this.AlwaysUpdateCityStateZipcode != null &&
-                    this.AlwaysUpdateCityStateZipcode.Equals(input.AlwaysUpdateCityStateZipcode))
-                ) && 
-                (
                     this.ApplyCasingToBusiness == input.ApplyCasingToBusiness ||
                     (this.ApplyCasingToBusiness != null &&
                     this.ApplyCasingToBusiness.Equals(input.ApplyCasingToBusiness))
@@ -311,11 +279,6 @@ namespace Quadient.DataServies.Model.WalkSequence
                     this.FirmPlacement == input.FirmPlacement ||
                     (this.FirmPlacement != null &&
                     this.FirmPlacement.Equals(input.FirmPlacement))
-                ) && 
-                (
-                    this.KeepExistingEmail == input.KeepExistingEmail ||
-                    (this.KeepExistingEmail != null &&
-                    this.KeepExistingEmail.Equals(input.KeepExistingEmail))
                 ) && 
                 (
                     this.KeepExtraInformation == input.KeepExtraInformation ||
@@ -356,11 +319,6 @@ namespace Quadient.DataServies.Model.WalkSequence
                     this.MailersZipcode == input.MailersZipcode ||
                     (this.MailersZipcode != null &&
                     this.MailersZipcode.Equals(input.MailersZipcode))
-                ) && 
-                (
-                    this.MaxAddressLines == input.MaxAddressLines ||
-                    (this.MaxAddressLines != null &&
-                    this.MaxAddressLines.Equals(input.MaxAddressLines))
                 ) && 
                 (
                     this.PmbPlacement == input.PmbPlacement ||
@@ -404,16 +362,12 @@ namespace Quadient.DataServies.Model.WalkSequence
                     hashCode = hashCode * 59 + this.AddressCasing.GetHashCode();
                 if (this.AddressLineFormatting != null)
                     hashCode = hashCode * 59 + this.AddressLineFormatting.GetHashCode();
-                if (this.AlwaysUpdateCityStateZipcode != null)
-                    hashCode = hashCode * 59 + this.AlwaysUpdateCityStateZipcode.GetHashCode();
                 if (this.ApplyCasingToBusiness != null)
                     hashCode = hashCode * 59 + this.ApplyCasingToBusiness.GetHashCode();
                 if (this.ApplyCasingToNames != null)
                     hashCode = hashCode * 59 + this.ApplyCasingToNames.GetHashCode();
                 if (this.FirmPlacement != null)
                     hashCode = hashCode * 59 + this.FirmPlacement.GetHashCode();
-                if (this.KeepExistingEmail != null)
-                    hashCode = hashCode * 59 + this.KeepExistingEmail.GetHashCode();
                 if (this.KeepExtraInformation != null)
                     hashCode = hashCode * 59 + this.KeepExtraInformation.GetHashCode();
                 if (this.ListProcessorName != null)
@@ -430,8 +384,6 @@ namespace Quadient.DataServies.Model.WalkSequence
                     hashCode = hashCode * 59 + this.MailersState.GetHashCode();
                 if (this.MailersZipcode != null)
                     hashCode = hashCode * 59 + this.MailersZipcode.GetHashCode();
-                if (this.MaxAddressLines != null)
-                    hashCode = hashCode * 59 + this.MaxAddressLines.GetHashCode();
                 if (this.PmbPlacement != null)
                     hashCode = hashCode * 59 + this.PmbPlacement.GetHashCode();
                 if (this.PreferAbbreviatedAddresses != null)

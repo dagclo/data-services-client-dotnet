@@ -1,7 +1,7 @@
 /* 
  * Walk Sequence
  *
- * Appends USPS Walk Sequence numbers to mail pieces.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job while specifying upload format (input fields) and download (output fields). 2. Upload records to process via one or more calls to the API. Records are uploaded in blocks. The records are    persisted until at least the end of the job. 3. Initiate processing by calling the `_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job as appropriate.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. See Pagination for more information.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs are available and must be retrieved as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved multiple times if needed. 
+ * Performs USPS CASS processing and appends USPS Walk Sequence numbers to mail pieces. Properly walk sequenced mailings may qualify for USPS mailing discounts.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -85,59 +85,63 @@ namespace Quadient.DataServies.Model.WalkSequence
         
         is_vacant = 26,
         
-        lacs_coded = 27,
+        is_residence = 27,
         
-        lacs_link_footnote = 28,
+        is_educational_institute = 28,
         
-        lacs_link_indicator = 29,
+        is_seasonally_occupied = 29,
         
-        city_state_zip = 30,
+        lacs_coded = 30,
         
-        last_name = 31,
+        lacs_link_footnote = 31,
         
-        matched_to_default = 32,
+        lacs_link_indicator = 32,
         
-        middle_name = 33,
+        city_state_zip = 33,
         
-        name_suffix = 34,
+        last_name = 34,
         
-        post_directional = 35,
+        matched_to_default = 35,
         
-        pre_directional = 36,
+        middle_name = 36,
         
-        primary_address_line = 37,
+        name_suffix = 37,
         
-        primary_number = 38,
+        post_directional = 38,
         
-        private_mailbox = 39,
+        pre_directional = 39,
         
-        salutation = 40,
+        primary_address_line = 40,
         
-        secondary_address_line = 41,
+        primary_number = 41,
         
-        state = 42,
+        private_mailbox = 42,
         
-        street_name = 43,
+        secondary_address_line = 43,
         
-        street_suffix = 44,
+        state = 44,
         
-        suite_link_footnote = 45,
+        street_name = 45,
         
-        unit_designator = 46,
+        street_suffix = 46,
         
-        unit_number = 47,
+        suite_link_footnote = 47,
         
-        urbanization = 48,
+        unit_designator = 48,
         
-        uscorrection_description = 49,
+        unit_number = 49,
         
-        uscorrection_footnote = 50,
+        urbanization = 50,
         
-        walk_sequence_footnote = 51,
+        uscorrection_description = 51,
         
-        walk_sequence_number = 52,
+        uscorrection_footnote = 52,
         
-        zip_code = 53
+        walk_sequence_footnote = 53,
+        
+        walk_sequence_number = 54,
+        
+        zip_code = 55
     }
     
 }
