@@ -83,7 +83,7 @@ namespace Quadient.DataServices.Api
         private ISession _session;
         private DateTime _expiration;
 
-        private async Task<ISession> GetSession()
+        private async Task<ISession> GetSession(CancellationToken cancellationToken)
         {
             if (_session != null && _expiration > DateTime.Now) return _session;
             var request = GetAuthToken(Credentials);
@@ -92,7 +92,7 @@ namespace Quadient.DataServices.Api
                 httpRequest.Content = request.GetHttpContent() ??
                                       new StringContent(SerializeObject(request.Content), Encoding.UTF8,
                                           "application/json");
-                using (var result = await _authClient.SendAsync(httpRequest))
+                using (var result = await _authClient.SendAsync(httpRequest, cancellationToken))
                 {
                     result.EnsureSuccess();
                     var resultContent = await result.Content.ReadAsStringAsync();
@@ -151,7 +151,7 @@ namespace Quadient.DataServices.Api
         public async Task<R> Execute<T, R>(IRequest<T, R> request, CancellationToken cancellationToken,
             IDictionary<string, string> headers = null)
         {
-            var session = await GetSession();
+            var session = await GetSession(cancellationToken);
             using (var httpRequest = new HttpRequestMessage(request.Method, GetRequestUri(request)))
             {
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue(TokenType, session.Token);
