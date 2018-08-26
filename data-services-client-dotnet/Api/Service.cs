@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
@@ -82,15 +83,16 @@ namespace Quadient.DataServices.Api
         private ISession _session;
         private DateTime _expiration;
 
-        private async Task<ISession> GetSession()
+        private async Task<ISession> GetSession(CancellationToken cancellationToken)
         {
             if (_session != null && _expiration > DateTime.Now) return _session;
             var request = GetAuthToken(Credentials);
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
                 httpRequest.Content = request.GetHttpContent() ??
-                    new StringContent(SerializeObject(request.Content), Encoding.UTF8, "application/json");
-                using (var result = await _authClient.SendAsync(httpRequest))
+                                      new StringContent(SerializeObject(request.Content), Encoding.UTF8,
+                                          "application/json");
+                using (var result = await _authClient.SendAsync(httpRequest, cancellationToken))
                 {
                     result.EnsureSuccess();
                     var resultContent = await result.Content.ReadAsStringAsync();
@@ -131,7 +133,25 @@ namespace Quadient.DataServices.Api
         /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
         public async Task<R> Execute<T, R>(IRequest<T, R> request, IDictionary<string, string> headers = null)
         {
-            var session = await GetSession();
+            return await Execute(request, CancellationToken.None, headers);
+        }
+
+        /// <summary>
+        /// Execute the service call.
+        /// </summary>
+        /// <typeparam name="T">The input type for the service request.</typeparam>
+        /// <typeparam name="R">The return type from the service request.</typeparam>
+        /// <param name="request"></param>
+        /// <param name="headers"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestRestException"></exception>
+        /// <exception cref="InsufficientCreditsRestException"></exception>
+        /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+        public async Task<R> Execute<T, R>(IRequest<T, R> request, CancellationToken cancellationToken,
+            IDictionary<string, string> headers = null)
+        {
+            var session = await GetSession(cancellationToken);
             using (var httpRequest = new HttpRequestMessage(request.Method, GetRequestUri(request)))
             {
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue(TokenType, session.Token);
@@ -149,7 +169,7 @@ namespace Quadient.DataServices.Api
                         "application/json");
                 }
 
-                using (var result = await _httpClient.SendAsync(httpRequest))
+                using (var result = await _httpClient.SendAsync(httpRequest, cancellationToken))
                 {
                     result.EnsureSuccess();
                     var resultContent = await result.Content.ReadAsStringAsync();

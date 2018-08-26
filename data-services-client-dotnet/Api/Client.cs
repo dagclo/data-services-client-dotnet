@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Threading;
 using Quadient.DataServices.Model;
 using Quadient.DataServices.Utility;
 using System.Threading.Tasks;
@@ -56,6 +57,22 @@ namespace Quadient.DataServices.Api
         public async Task<R> Execute<T, R>(IRequest<T, R> request)
         {
             return await _service.Execute(request);
+        }
+
+        /// <summary>
+        /// Execute the service call.
+        /// </summary>
+        /// <typeparam name="T">The input type for the service request.</typeparam>
+        /// <typeparam name="R">The return type from the service request.</typeparam>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestRestException"></exception>
+        /// <exception cref="InsufficientCreditsRestException"></exception>
+        /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+        public async Task<R> Execute<T, R>(IRequest<T, R> request, CancellationToken cancellationToken)
+        {
+            return await _service.Execute(request, cancellationToken);
         }
 
         private JobSession CreateJobSession(string origin)
