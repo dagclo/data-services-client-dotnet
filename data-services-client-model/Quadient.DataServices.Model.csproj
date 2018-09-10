@@ -21,6 +21,7 @@
     <Folder Include="Country\" />
     <Folder Include="Email\" />
     <Folder Include="Name\" />
+    <Folder Include="WalkSequence\" />
     <Folder Include="Phone\" />
   </ItemGroup>
 
