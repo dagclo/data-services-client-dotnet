@@ -10,41 +10,35 @@
 
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// Reports
+    /// JobSummaryCollection
     /// </summary>
     [DataContract]
-    public partial class Reports :  IEquatable<Reports>, IValidatableObject
+    public partial class JobSummaryCollection :  IEquatable<JobSummaryCollection>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Reports" /> class.
+        /// Initializes a new instance of the <see cref="JobSummaryCollection" /> class.
         /// </summary>
-        /// <param name="_Reports">An array of report descriptors.</param>
-        public Reports(List<ReportDescriptor> _Reports = default(List<ReportDescriptor>))
+        /// <param name="Jobs">Jobs.</param>
+        public JobSummaryCollection(List<JobSummary> Jobs = default(List<JobSummary>))
         {
-            this._Reports = _Reports;
+            this.Jobs = Jobs;
         }
         
         /// <summary>
-        /// An array of report descriptors
+        /// Gets or Sets Jobs
         /// </summary>
-        /// <value>An array of report descriptors</value>
-        [DataMember(Name="reports", EmitDefaultValue=false)]
-        public List<ReportDescriptor> _Reports { get; set; }
+        [DataMember(Name="jobs", EmitDefaultValue=false)]
+        public List<JobSummary> Jobs { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -53,8 +47,8 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Reports {\n");
-            sb.Append("  _Reports: ").Append(_Reports).Append("\n");
+            sb.Append("class JobSummaryCollection {\n");
+            sb.Append("  Jobs: ").Append(Jobs).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -75,24 +69,24 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Reports);
+            return this.Equals(input as JobSummaryCollection);
         }
 
         /// <summary>
-        /// Returns true if Reports instances are equal
+        /// Returns true if JobSummaryCollection instances are equal
         /// </summary>
-        /// <param name="input">Instance of Reports to be compared</param>
+        /// <param name="input">Instance of JobSummaryCollection to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Reports input)
+        public bool Equals(JobSummaryCollection input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this._Reports == input._Reports ||
-                    this._Reports != null &&
-                    this._Reports.SequenceEqual(input._Reports)
+                    this.Jobs == input.Jobs ||
+                    this.Jobs != null &&
+                    this.Jobs.SequenceEqual(input.Jobs)
                 );
         }
 
@@ -105,8 +99,8 @@ namespace Quadient.DataServies.Model.WalkSequence
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._Reports != null)
-                    hashCode = hashCode * 59 + this._Reports.GetHashCode();
+                if (this.Jobs != null)
+                    hashCode = hashCode * 59 + this.Jobs.GetHashCode();
                 return hashCode;
             }
         }

@@ -9,41 +9,45 @@
  */
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// JobSummaryCollection
+    /// ReportDescriptor
     /// </summary>
     [DataContract]
-    public partial class JobSummaryCollection :  IEquatable<JobSummaryCollection>, IValidatableObject
+    public partial class ReportDescriptor :  IEquatable<ReportDescriptor>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JobSummaryCollection" /> class.
+        /// Initializes a new instance of the <see cref="ReportDescriptor" /> class.
         /// </summary>
-        /// <param name="Jobs">Jobs.</param>
-        public JobSummaryCollection(List<JobSummary> Jobs = default(List<JobSummary>))
+        /// <param name="Id">An id for retrieving the report..</param>
+        /// <param name="Name">The name of the report.</param>
+        public ReportDescriptor(string Id = default(string), string Name = default(string))
         {
-            this.Jobs = Jobs;
+            this.Id = Id;
+            this.Name = Name;
         }
         
         /// <summary>
-        /// Gets or Sets Jobs
+        /// An id for retrieving the report.
         /// </summary>
-        [DataMember(Name="jobs", EmitDefaultValue=false)]
-        public List<JobSummary> Jobs { get; set; }
+        /// <value>An id for retrieving the report.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// The name of the report
+        /// </summary>
+        /// <value>The name of the report</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -52,8 +56,9 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class JobSummaryCollection {\n");
-            sb.Append("  Jobs: ").Append(Jobs).Append("\n");
+            sb.Append("class ReportDescriptor {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -74,24 +79,29 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JobSummaryCollection);
+            return this.Equals(input as ReportDescriptor);
         }
 
         /// <summary>
-        /// Returns true if JobSummaryCollection instances are equal
+        /// Returns true if ReportDescriptor instances are equal
         /// </summary>
-        /// <param name="input">Instance of JobSummaryCollection to be compared</param>
+        /// <param name="input">Instance of ReportDescriptor to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JobSummaryCollection input)
+        public bool Equals(ReportDescriptor input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Jobs == input.Jobs ||
-                    this.Jobs != null &&
-                    this.Jobs.SequenceEqual(input.Jobs)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -104,8 +114,10 @@ namespace Quadient.DataServies.Model.WalkSequence
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Jobs != null)
-                    hashCode = hashCode * 59 + this.Jobs.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 return hashCode;
             }
         }

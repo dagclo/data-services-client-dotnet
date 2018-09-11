@@ -1,7 +1,7 @@
 /* 
  * Walk Sequence
  *
- * Appends USPS Walk Sequence numbers to mail pieces.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job while specifying upload format (input fields) and download (output fields). 2. Upload records to process via one or more calls to the API. Records are uploaded in blocks. The records are    persisted until at least the end of the job. 3. Initiate processing by calling the `_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job as appropriate.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. See Pagination for more information.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs are available and must be retrieved as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved multiple times if needed. 
+ * Performs USPS CASS processing and appends USPS Walk Sequence numbers to mail pieces. Properly walk sequenced mailings may qualify for USPS mailing discounts.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -10,33 +10,28 @@
 
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// ReportsResponse
+    /// Reports
     /// </summary>
     [DataContract]
-    public partial class ReportsResponse :  IEquatable<ReportsResponse>, IValidatableObject
+    public partial class Reports :  IEquatable<Reports>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReportsResponse" /> class.
+        /// Initializes a new instance of the <see cref="Reports" /> class.
         /// </summary>
-        /// <param name="Reports">An array of report descriptors.</param>
-        public ReportsResponse(List<ReportDescriptor> Reports = default(List<ReportDescriptor>))
+        /// <param name="_Reports">An array of report descriptors.</param>
+        public Reports(List<ReportDescriptor> _Reports = default(List<ReportDescriptor>))
         {
-            this.Reports = Reports;
+            this._Reports = _Reports;
         }
         
         /// <summary>
@@ -44,7 +39,7 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// </summary>
         /// <value>An array of report descriptors</value>
         [DataMember(Name="reports", EmitDefaultValue=false)]
-        public List<ReportDescriptor> Reports { get; set; }
+        public List<ReportDescriptor> _Reports { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -53,8 +48,8 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ReportsResponse {\n");
-            sb.Append("  Reports: ").Append(Reports).Append("\n");
+            sb.Append("class Reports {\n");
+            sb.Append("  _Reports: ").Append(_Reports).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -75,24 +70,24 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ReportsResponse);
+            return this.Equals(input as Reports);
         }
 
         /// <summary>
-        /// Returns true if ReportsResponse instances are equal
+        /// Returns true if Reports instances are equal
         /// </summary>
-        /// <param name="input">Instance of ReportsResponse to be compared</param>
+        /// <param name="input">Instance of Reports to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ReportsResponse input)
+        public bool Equals(Reports input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Reports == input.Reports ||
-                    this.Reports != null &&
-                    this.Reports.SequenceEqual(input.Reports)
+                    this._Reports == input._Reports ||
+                    this._Reports != null &&
+                    this._Reports.SequenceEqual(input._Reports)
                 );
         }
 
@@ -105,8 +100,8 @@ namespace Quadient.DataServies.Model.WalkSequence
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Reports != null)
-                    hashCode = hashCode * 59 + this.Reports.GetHashCode();
+                if (this._Reports != null)
+                    hashCode = hashCode * 59 + this._Reports.GetHashCode();
                 return hashCode;
             }
         }

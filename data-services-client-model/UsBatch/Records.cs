@@ -10,41 +10,36 @@
 
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// RecordPages
+    /// Records
     /// </summary>
     [DataContract]
-    public partial class RecordPages :  IEquatable<RecordPages>, IValidatableObject
+    public partial class Records :  IEquatable<Records>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecordPages" /> class.
+        /// Initializes a new instance of the <see cref="Records" /> class.
         /// </summary>
-        /// <param name="PageIds">A collection of page IDs that can be retrieved.</param>
-        public RecordPages(List<string> PageIds = default(List<string>))
+        /// <param name="_Records">A two-dimensional array containing records to be uploaded.</param>
+        public Records(List<List<string>> _Records = default(List<List<string>>))
         {
-            this.PageIds = PageIds;
+            this._Records = _Records;
         }
         
         /// <summary>
-        /// A collection of page IDs that can be retrieved
+        /// A two-dimensional array containing records to be uploaded
         /// </summary>
-        /// <value>A collection of page IDs that can be retrieved</value>
-        [DataMember(Name="page_ids", EmitDefaultValue=false)]
-        public List<string> PageIds { get; set; }
+        /// <value>A two-dimensional array containing records to be uploaded</value>
+        [DataMember(Name="records", EmitDefaultValue=false)]
+        public List<List<string>> _Records { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -53,8 +48,8 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class RecordPages {\n");
-            sb.Append("  PageIds: ").Append(PageIds).Append("\n");
+            sb.Append("class Records {\n");
+            sb.Append("  _Records: ").Append(_Records).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -75,24 +70,24 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RecordPages);
+            return this.Equals(input as Records);
         }
 
         /// <summary>
-        /// Returns true if RecordPages instances are equal
+        /// Returns true if Records instances are equal
         /// </summary>
-        /// <param name="input">Instance of RecordPages to be compared</param>
+        /// <param name="input">Instance of Records to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RecordPages input)
+        public bool Equals(Records input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.PageIds == input.PageIds ||
-                    this.PageIds != null &&
-                    this.PageIds.SequenceEqual(input.PageIds)
+                    this._Records == input._Records ||
+                    this._Records != null &&
+                    this._Records.SequenceEqual(input._Records)
                 );
         }
 
@@ -105,8 +100,8 @@ namespace Quadient.DataServies.Model.WalkSequence
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PageIds != null)
-                    hashCode = hashCode * 59 + this.PageIds.GetHashCode();
+                if (this._Records != null)
+                    hashCode = hashCode * 59 + this._Records.GetHashCode();
                 return hashCode;
             }
         }

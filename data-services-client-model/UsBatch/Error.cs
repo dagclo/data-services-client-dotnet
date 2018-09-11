@@ -9,51 +9,76 @@
  */
 
 using System;
-using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// ReportDescriptor
+    /// Describes an error object.
     /// </summary>
     [DataContract]
-    public partial class ReportDescriptor :  IEquatable<ReportDescriptor>, IValidatableObject
+    public partial class Error :  IEquatable<Error>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReportDescriptor" /> class.
+        /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
-        /// <param name="Id">An id for retrieving the report..</param>
-        /// <param name="Name">The name of the report.</param>
-        public ReportDescriptor(string Id = default(string), string Name = default(string))
+        [JsonConstructorAttribute]
+        protected Error() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Error" /> class.
+        /// </summary>
+        /// <param name="Code">The HTTP status code. (required).</param>
+        /// <param name="Message">A human-readable error message. (required).</param>
+        /// <param name="AdditionalDetails">Additional details about the error..</param>
+        public Error(int? Code = default(int?), string Message = default(string), Object AdditionalDetails = default(Object))
         {
-            this.Id = Id;
-            this.Name = Name;
+            // to ensure "Code" is required (not null)
+            if (Code == null)
+            {
+                throw new InvalidDataException("Code is a required property for Error and cannot be null");
+            }
+            else
+            {
+                this.Code = Code;
+            }
+            // to ensure "Message" is required (not null)
+            if (Message == null)
+            {
+                throw new InvalidDataException("Message is a required property for Error and cannot be null");
+            }
+            else
+            {
+                this.Message = Message;
+            }
+            this.AdditionalDetails = AdditionalDetails;
         }
         
         /// <summary>
-        /// An id for retrieving the report.
+        /// The HTTP status code.
         /// </summary>
-        /// <value>An id for retrieving the report.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        /// <value>The HTTP status code.</value>
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public int? Code { get; set; }
 
         /// <summary>
-        /// The name of the report
+        /// A human-readable error message.
         /// </summary>
-        /// <value>The name of the report</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>A human-readable error message.</value>
+        [DataMember(Name="message", EmitDefaultValue=false)]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Additional details about the error.
+        /// </summary>
+        /// <value>Additional details about the error.</value>
+        [DataMember(Name="additional_details", EmitDefaultValue=false)]
+        public Object AdditionalDetails { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,9 +87,10 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ReportDescriptor {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class Error {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  AdditionalDetails: ").Append(AdditionalDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,29 +111,34 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ReportDescriptor);
+            return this.Equals(input as Error);
         }
 
         /// <summary>
-        /// Returns true if ReportDescriptor instances are equal
+        /// Returns true if Error instances are equal
         /// </summary>
-        /// <param name="input">Instance of ReportDescriptor to be compared</param>
+        /// <param name="input">Instance of Error to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ReportDescriptor input)
+        public bool Equals(Error input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                ) && 
+                (
+                    this.AdditionalDetails == input.AdditionalDetails ||
+                    (this.AdditionalDetails != null &&
+                    this.AdditionalDetails.Equals(input.AdditionalDetails))
                 );
         }
 
@@ -120,10 +151,12 @@ namespace Quadient.DataServies.Model.WalkSequence
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Code != null)
+                    hashCode = hashCode * 59 + this.Code.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                if (this.AdditionalDetails != null)
+                    hashCode = hashCode * 59 + this.AdditionalDetails.GetHashCode();
                 return hashCode;
             }
         }

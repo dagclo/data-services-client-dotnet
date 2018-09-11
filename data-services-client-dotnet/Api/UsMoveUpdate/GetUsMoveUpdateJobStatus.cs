@@ -2,21 +2,18 @@
 using System.Net.Http;
 using Quadient.DataServies.Model.UsBatch;
 
-namespace Quadient.DataServices.Api.WalkSequence
+namespace Quadient.DataServices.Api.UsBatch
 {
-    public class GetWalkSequenceJobStatus : IRequest<object, JobSummary>
+    public class GetUsMoveUpdateJobStatus : IRequest<object, JobSummary>
     {
-        public GetWalkSequenceJobStatus(string jobId)
+        public GetUsMoveUpdateJobStatus(string jobId)
         {
-            ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/status";
+            ServicePath = $"services/us-move-update/v1/jobs/{jobId}/status";
         }
 
         public string ServicePath { get; }
-
         public HttpMethod Method { get; } = HttpMethod.Get;
-
         public object Content { get; set; }
-
         public IDictionary<string, string> QueryStringParams { get; }
     }
 }

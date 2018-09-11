@@ -9,44 +9,35 @@
  */
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// Defines the layout of records that will be uploaded/downloaded in this job.
+    /// JobSummary
     /// </summary>
     [DataContract]
-    public partial class Job :  IEquatable<Job>, IValidatableObject
+    public partial class JobSummary :  IEquatable<JobSummary>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Job" /> class.
+        /// Gets or Sets JobStatus
+        /// </summary>
+        [DataMember(Name="job_status", EmitDefaultValue=false)]
+        public JobStatus? JobStatus { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JobSummary" /> class.
         /// </summary>
         /// <param name="JobId">JobId.</param>
         /// <param name="JobStatus">JobStatus.</param>
-        /// <param name="ParentJob">The Job ID of the parent job. .</param>
-        /// <param name="Configuration">Configuration.</param>
-        /// <param name="InputFields">InputFields.</param>
-        /// <param name="OutputFields">OutputFields.</param>
-        public Job(string JobId = default(string), JobStatus JobStatus = default(JobStatus), string ParentJob = default(string), WalkSequenceConfiguration Configuration = default(WalkSequenceConfiguration), List<WalkSequenceInputField> InputFields = default(List<WalkSequenceInputField>), List<WalkSequenceOutputField> OutputFields = default(List<WalkSequenceOutputField>))
+        public JobSummary(string JobId = default(string), JobStatus? JobStatus = default(JobStatus?))
         {
             this.JobId = JobId;
             this.JobStatus = JobStatus;
-            this.ParentJob = ParentJob;
-            this.Configuration = Configuration;
-            this.InputFields = InputFields;
-            this.OutputFields = OutputFields;
         }
         
         /// <summary>
@@ -55,36 +46,6 @@ namespace Quadient.DataServies.Model.WalkSequence
         [DataMember(Name="job_id", EmitDefaultValue=false)]
         public string JobId { get; set; }
 
-        /// <summary>
-        /// Gets or Sets JobStatus
-        /// </summary>
-        [DataMember(Name="job_status", EmitDefaultValue=false)]
-        public JobStatus JobStatus { get; set; }
-
-        /// <summary>
-        /// The Job ID of the parent job. 
-        /// </summary>
-        /// <value>The Job ID of the parent job. </value>
-        [DataMember(Name="parent_job", EmitDefaultValue=false)]
-        public string ParentJob { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Configuration
-        /// </summary>
-        [DataMember(Name="configuration", EmitDefaultValue=false)]
-        public WalkSequenceConfiguration Configuration { get; set; }
-
-        /// <summary>
-        /// Gets or Sets InputFields
-        /// </summary>
-        [DataMember(Name="input_fields", EmitDefaultValue=false)]
-        public List<WalkSequenceInputField> InputFields { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OutputFields
-        /// </summary>
-        [DataMember(Name="output_fields", EmitDefaultValue=false)]
-        public List<WalkSequenceOutputField> OutputFields { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,13 +54,9 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Job {\n");
+            sb.Append("class JobSummary {\n");
             sb.Append("  JobId: ").Append(JobId).Append("\n");
             sb.Append("  JobStatus: ").Append(JobStatus).Append("\n");
-            sb.Append("  ParentJob: ").Append(ParentJob).Append("\n");
-            sb.Append("  Configuration: ").Append(Configuration).Append("\n");
-            sb.Append("  InputFields: ").Append(InputFields).Append("\n");
-            sb.Append("  OutputFields: ").Append(OutputFields).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -120,15 +77,15 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Job);
+            return this.Equals(input as JobSummary);
         }
 
         /// <summary>
-        /// Returns true if Job instances are equal
+        /// Returns true if JobSummary instances are equal
         /// </summary>
-        /// <param name="input">Instance of Job to be compared</param>
+        /// <param name="input">Instance of JobSummary to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Job input)
+        public bool Equals(JobSummary input)
         {
             if (input == null)
                 return false;
@@ -143,26 +100,6 @@ namespace Quadient.DataServies.Model.WalkSequence
                     this.JobStatus == input.JobStatus ||
                     (this.JobStatus != null &&
                     this.JobStatus.Equals(input.JobStatus))
-                ) && 
-                (
-                    this.ParentJob == input.ParentJob ||
-                    (this.ParentJob != null &&
-                    this.ParentJob.Equals(input.ParentJob))
-                ) && 
-                (
-                    this.Configuration == input.Configuration ||
-                    (this.Configuration != null &&
-                    this.Configuration.Equals(input.Configuration))
-                ) && 
-                (
-                    this.InputFields == input.InputFields ||
-                    this.InputFields != null &&
-                    this.InputFields.SequenceEqual(input.InputFields)
-                ) && 
-                (
-                    this.OutputFields == input.OutputFields ||
-                    this.OutputFields != null &&
-                    this.OutputFields.SequenceEqual(input.OutputFields)
                 );
         }
 
@@ -179,14 +116,6 @@ namespace Quadient.DataServies.Model.WalkSequence
                     hashCode = hashCode * 59 + this.JobId.GetHashCode();
                 if (this.JobStatus != null)
                     hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
-                if (this.ParentJob != null)
-                    hashCode = hashCode * 59 + this.ParentJob.GetHashCode();
-                if (this.Configuration != null)
-                    hashCode = hashCode * 59 + this.Configuration.GetHashCode();
-                if (this.InputFields != null)
-                    hashCode = hashCode * 59 + this.InputFields.GetHashCode();
-                if (this.OutputFields != null)
-                    hashCode = hashCode * 59 + this.OutputFields.GetHashCode();
                 return hashCode;
             }
         }

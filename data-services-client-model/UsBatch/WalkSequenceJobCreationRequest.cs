@@ -10,34 +10,29 @@
 
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// JobCreationRequest
+    /// WalkSequenceJobCreationRequest
     /// </summary>
     [DataContract]
-    public partial class JobCreationRequest :  IEquatable<JobCreationRequest>, IValidatableObject
+    public partial class WalkSequenceJobCreationRequest :  IEquatable<WalkSequenceJobCreationRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JobCreationRequest" /> class.
+        /// Initializes a new instance of the <see cref="WalkSequenceJobCreationRequest" /> class.
         /// </summary>
         /// <param name="ParentJob">The Job ID of the parent job. .</param>
         /// <param name="Configuration">Configuration.</param>
         /// <param name="InputFields">InputFields.</param>
         /// <param name="OutputFields">OutputFields.</param>
-        public JobCreationRequest(string ParentJob = default(string), WalkSequenceConfiguration Configuration = default(WalkSequenceConfiguration), List<WalkSequenceInputField> InputFields = default(List<WalkSequenceInputField>), List<WalkSequenceOutputField> OutputFields = default(List<WalkSequenceOutputField>))
+        public WalkSequenceJobCreationRequest(string ParentJob = default(string), WalkSequenceConfiguration Configuration = default(WalkSequenceConfiguration), List<WalkSequenceInputField> InputFields = default(List<WalkSequenceInputField>), List<WalkSequenceOutputField> OutputFields = default(List<WalkSequenceOutputField>))
         {
             this.ParentJob = ParentJob;
             this.Configuration = Configuration;
@@ -77,7 +72,7 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class JobCreationRequest {\n");
+            sb.Append("class WalkSequenceJobCreationRequest {\n");
             sb.Append("  ParentJob: ").Append(ParentJob).Append("\n");
             sb.Append("  Configuration: ").Append(Configuration).Append("\n");
             sb.Append("  InputFields: ").Append(InputFields).Append("\n");
@@ -102,15 +97,15 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JobCreationRequest);
+            return this.Equals(input as WalkSequenceJobCreationRequest);
         }
 
         /// <summary>
-        /// Returns true if JobCreationRequest instances are equal
+        /// Returns true if WalkSequenceJobCreationRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of JobCreationRequest to be compared</param>
+        /// <param name="input">Instance of WalkSequenceJobCreationRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JobCreationRequest input)
+        public bool Equals(WalkSequenceJobCreationRequest input)
         {
             if (input == null)
                 return false;

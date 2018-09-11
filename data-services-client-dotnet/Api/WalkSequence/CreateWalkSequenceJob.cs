@@ -1,11 +1,17 @@
-﻿using Quadient.DataServies.Model.WalkSequence;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
+using Quadient.DataServices.Model.Job;
+using Quadient.DataServies.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
     public class CreateWalkSequenceJob : IRequest<JobCreationRequest, JobSummary>
     {
+        public CreateWalkSequenceJob(JobCreationRequest request)
+        {
+            Content = request;
+        }
+
         public string ServicePath { get; } = "services/walk-sequence/v1/jobs";
 
         public HttpMethod Method { get; } = HttpMethod.Post;
@@ -13,10 +19,5 @@ namespace Quadient.DataServices.Api.WalkSequence
         public JobCreationRequest Content { get; set; }
 
         public IDictionary<string, string> QueryStringParams { get; }
-
-        public CreateWalkSequenceJob(JobCreationRequest request)
-        {
-            Content = request;
-        }
     }
 }

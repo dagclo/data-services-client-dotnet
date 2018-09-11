@@ -10,80 +10,36 @@
 
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.WalkSequence
+namespace Quadient.DataServies.Model.UsBatch
 {
     /// <summary>
-    /// Describes an error object.
+    /// RecordPages
     /// </summary>
     [DataContract]
-    public partial class Error :  IEquatable<Error>, IValidatableObject
+    public partial class RecordPages :  IEquatable<RecordPages>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Error" /> class.
+        /// Initializes a new instance of the <see cref="RecordPages" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Error() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Error" /> class.
-        /// </summary>
-        /// <param name="Code">The HTTP status code. (required).</param>
-        /// <param name="Message">A human-readable error message. (required).</param>
-        /// <param name="AdditionalDetails">Additional details about the error..</param>
-        public Error(int? Code = default(int?), string Message = default(string), Object AdditionalDetails = default(Object))
+        /// <param name="PageIds">A collection of page IDs that can be retrieved.</param>
+        public RecordPages(List<string> PageIds = default(List<string>))
         {
-            // to ensure "Code" is required (not null)
-            if (Code == null)
-            {
-                throw new InvalidDataException("Code is a required property for Error and cannot be null");
-            }
-            else
-            {
-                this.Code = Code;
-            }
-            // to ensure "Message" is required (not null)
-            if (Message == null)
-            {
-                throw new InvalidDataException("Message is a required property for Error and cannot be null");
-            }
-            else
-            {
-                this.Message = Message;
-            }
-            this.AdditionalDetails = AdditionalDetails;
+            this.PageIds = PageIds;
         }
         
         /// <summary>
-        /// The HTTP status code.
+        /// A collection of page IDs that can be retrieved
         /// </summary>
-        /// <value>The HTTP status code.</value>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public int? Code { get; set; }
-
-        /// <summary>
-        /// A human-readable error message.
-        /// </summary>
-        /// <value>A human-readable error message.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
-
-        /// <summary>
-        /// Additional details about the error.
-        /// </summary>
-        /// <value>Additional details about the error.</value>
-        [DataMember(Name="additional_details", EmitDefaultValue=false)]
-        public Object AdditionalDetails { get; set; }
+        /// <value>A collection of page IDs that can be retrieved</value>
+        [DataMember(Name="page_ids", EmitDefaultValue=false)]
+        public List<string> PageIds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -92,10 +48,8 @@ namespace Quadient.DataServies.Model.WalkSequence
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Error {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  AdditionalDetails: ").Append(AdditionalDetails).Append("\n");
+            sb.Append("class RecordPages {\n");
+            sb.Append("  PageIds: ").Append(PageIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -116,34 +70,24 @@ namespace Quadient.DataServies.Model.WalkSequence
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Error);
+            return this.Equals(input as RecordPages);
         }
 
         /// <summary>
-        /// Returns true if Error instances are equal
+        /// Returns true if RecordPages instances are equal
         /// </summary>
-        /// <param name="input">Instance of Error to be compared</param>
+        /// <param name="input">Instance of RecordPages to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Error input)
+        public bool Equals(RecordPages input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
-                ) && 
-                (
-                    this.AdditionalDetails == input.AdditionalDetails ||
-                    (this.AdditionalDetails != null &&
-                    this.AdditionalDetails.Equals(input.AdditionalDetails))
+                    this.PageIds == input.PageIds ||
+                    this.PageIds != null &&
+                    this.PageIds.SequenceEqual(input.PageIds)
                 );
         }
 
@@ -156,12 +100,8 @@ namespace Quadient.DataServies.Model.WalkSequence
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Code != null)
-                    hashCode = hashCode * 59 + this.Code.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
-                if (this.AdditionalDetails != null)
-                    hashCode = hashCode * 59 + this.AdditionalDetails.GetHashCode();
+                if (this.PageIds != null)
+                    hashCode = hashCode * 59 + this.PageIds.GetHashCode();
                 return hashCode;
             }
         }
