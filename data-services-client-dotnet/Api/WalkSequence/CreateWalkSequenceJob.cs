@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Net.Http;
 using Quadient.DataServices.Model.Job;
 using Quadient.DataServies.Model.UsBatch;
@@ -18,6 +19,6 @@ namespace Quadient.DataServices.Api.WalkSequence
 
         public JobCreationRequest Content { get; set; }
 
-        public IDictionary<string, string> QueryStringParams { get; }
+        public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
     }
 }

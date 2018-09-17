@@ -10,10 +10,15 @@
 
 using System;
 using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
@@ -136,7 +141,8 @@ namespace Quadient.DataServies.Model.UsBatch
                 ) && 
                 (
                     this.JobStatus == input.JobStatus ||
-                    (this.JobStatus.Equals(input.JobStatus))
+                    (this.JobStatus != null &&
+                    this.JobStatus.Equals(input.JobStatus))
                 ) && 
                 (
                     this.ParentJob == input.ParentJob ||
@@ -171,7 +177,8 @@ namespace Quadient.DataServies.Model.UsBatch
                 int hashCode = 41;
                 if (this.JobId != null)
                     hashCode = hashCode * 59 + this.JobId.GetHashCode();
-                hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
+                if (this.JobStatus != null)
+                    hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
                 if (this.ParentJob != null)
                     hashCode = hashCode * 59 + this.ParentJob.GetHashCode();
                 if (this.Configuration != null)
