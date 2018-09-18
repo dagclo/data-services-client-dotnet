@@ -6,9 +6,9 @@ using Quadient.DataServies.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
-    public class CreateWalkSequenceJob : IRequest<JobCreationRequest, JobSummary>
+    public class CreateWalkSequenceJob : IRequest<WalkSequenceJobCreationRequest, JobSummary>
     {
-        public CreateWalkSequenceJob(JobCreationRequest request)
+        public CreateWalkSequenceJob(WalkSequenceJobCreationRequest request)
         {
             Content = request;
         }
@@ -17,7 +17,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 
         public HttpMethod Method { get; } = HttpMethod.Post;
 
-        public JobCreationRequest Content { get; set; }
+        public WalkSequenceJobCreationRequest Content { get; set; }
 
         public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
     }
