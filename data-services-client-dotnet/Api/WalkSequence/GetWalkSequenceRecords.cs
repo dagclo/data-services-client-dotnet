@@ -1,11 +1,16 @@
-﻿using Quadient.DataServies.Model.WalkSequence;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
+using Quadient.DataServies.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
     public class GetWalkSequenceRecords : IRequest<object, Records>
     {
+        public GetWalkSequenceRecords(string jobId, string pageId)
+        {
+            ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/records/{pageId}";
+        }
+
         public string ServicePath { get; }
 
         public HttpMethod Method { get; } = HttpMethod.Get;
@@ -13,10 +18,5 @@ namespace Quadient.DataServices.Api.WalkSequence
         public object Content { get; set; }
 
         public IDictionary<string, string> QueryStringParams { get; }
-
-        public GetWalkSequenceRecords(string jobId, string pageId)
-        {
-            ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/records/{pageId}";
-        }
     }
 }

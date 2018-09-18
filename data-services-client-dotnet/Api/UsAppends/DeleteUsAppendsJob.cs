@@ -1,21 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 
-namespace Quadient.DataServices.Api.WalkSequence
+namespace Quadient.DataServices.Api.UsBatch
 {
-    public class DeleteWalkSequenceJob : IRequest<object, object>
+    public class DeleteUsAppendsJob : IRequest<object, object>
     {
-        public DeleteWalkSequenceJob(string jobId)
+        public DeleteUsAppendsJob(string jobId)
         {
-            ServicePath = $"services/walk-sequence/v1/jobs/{jobId}";
+            ServicePath = $"services/us-appends/v1/jobs/{jobId}";
         }
 
         public string ServicePath { get; }
-
         public HttpMethod Method { get; } = HttpMethod.Delete;
-
         public object Content { get; set; }
-
         public IDictionary<string, string> QueryStringParams { get; }
     }
 }

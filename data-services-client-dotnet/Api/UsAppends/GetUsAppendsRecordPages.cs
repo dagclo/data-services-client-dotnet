@@ -2,9 +2,9 @@
 using System.Net.Http;
 using Quadient.DataServies.Model.UsBatch;
 
-namespace Quadient.DataServices.Api.WalkSequence
+namespace Quadient.DataServices.Api.UsBatch
 {
-    public class GetWalkSequenceRecordPages : IRequest<object, RecordPages>
+    public class GetUsAppendsRecordPages : IRequest<object, RecordPages>
     {
         public enum RecordKind
         {
@@ -12,9 +12,9 @@ namespace Quadient.DataServices.Api.WalkSequence
             output
         }
 
-        public GetWalkSequenceRecordPages(string jobId, RecordKind kind)
+        public GetUsAppendsRecordPages(string jobId, RecordKind kind)
         {
-            ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/records/pages";
+            ServicePath = $"services/us-appends/v1/jobs/{jobId}/records/pages";
             QueryStringParams = new Dictionary<string, string>
             {
                 {"kind", kind.ToString()}
@@ -22,11 +22,8 @@ namespace Quadient.DataServices.Api.WalkSequence
         }
 
         public string ServicePath { get; }
-
         public HttpMethod Method { get; } = HttpMethod.Get;
-
         public object Content { get; set; }
-
         public IDictionary<string, string> QueryStringParams { get; }
     }
 }
