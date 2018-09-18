@@ -4,7 +4,7 @@ using Quadient.DataServies.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
-    public class GetWalkSequenceJob : IRequest<object, JobSummary>
+    public class GetWalkSequenceJob : IRequest<object, WalkSequenceJob>
     {
         public GetWalkSequenceJob(string jobId)
         {
