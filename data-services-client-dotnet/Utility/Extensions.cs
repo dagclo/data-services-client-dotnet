@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Quadient.DataServices.Utility
 {
@@ -18,11 +19,24 @@ namespace Quadient.DataServices.Utility
         /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
         public static HttpResponseMessage EnsureSuccess(this HttpResponseMessage message)
         {
+            return EnsureSuccessAsync(message).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestRestException"></exception>
+        /// <exception cref="InsufficientCreditsRestException"></exception>
+        /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+        public static async Task<HttpResponseMessage> EnsureSuccessAsync(this HttpResponseMessage message)
+        {
             if (!message.IsSuccessStatusCode)
             {
                 try
                 {
-                    var resultContent = message.Content.ReadAsStringAsync().Result;
+                    var resultContent = await message.Content.ReadAsStringAsync();
                     var errorDetail = JsonConvert.DeserializeObject<IDictionary<string, object>>(resultContent);
                     string serviceMessage = null;
                     IDictionary<string, object> additionalDetails = null;
