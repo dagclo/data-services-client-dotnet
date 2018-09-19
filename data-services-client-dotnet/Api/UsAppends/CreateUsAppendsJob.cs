@@ -4,16 +4,16 @@ using Quadient.DataServies.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class CreateUsAppendsJob : IRequest<CreateUsAppendsJob, JobSummary>
+    public class CreateUsAppendsJob : IRequest<USAppendsJobCreationRequest, JobSummary>
     {
-        public CreateUsAppendsJob(CreateUsAppendsJob request)
+        public CreateUsAppendsJob(USAppendsJobCreationRequest request)
         {
             Content = request;
         }
 
         public string ServicePath { get; } = "services/us-appends/v1/jobs";
         public HttpMethod Method { get; } = HttpMethod.Post;
-        public CreateUsAppendsJob Content { get; set; }
+        public USAppendsJobCreationRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
     }
 }
