@@ -33,45 +33,45 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum WalkSequenceInputField
     {
         
-        address_block = 1,
+        id = 1,
         
-        address_line_1 = 2,
+        address_block = 2,
         
-        address_line_2 = 3,
+        organization = 3,
         
-        organization = 4,
+        urbanization = 4,
         
-        city = 5,
+        address_line_1 = 5,
         
-        city_state_zip = 6,
+        address_line_2 = 6,
         
-        custom_1 = 7,
+        city_state_zip = 7,
         
-        custom_10 = 8,
+        city = 8,
         
-        custom_2 = 9,
+        state = 9,
         
-        custom_3 = 10,
+        zip_code = 10,
         
-        custom_4 = 11,
+        custom_1 = 11,
         
-        custom_5 = 12,
+        custom_2 = 12,
         
-        custom_6 = 13,
+        custom_3 = 13,
         
-        custom_7 = 14,
+        custom_4 = 14,
         
-        custom_8 = 15,
+        custom_5 = 15,
         
-        custom_9 = 16,
+        custom_6 = 16,
         
-        id = 17,
+        custom_7 = 17,
         
-        state = 18,
+        custom_8 = 18,
         
-        urbanization = 19,
+        custom_9 = 19,
         
-        zip_code = 20
+        custom_10 = 20
     }
     
 }

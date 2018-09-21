@@ -39,69 +39,71 @@ namespace Quadient.DataServies.Model.UsBatch
         
         move_date = 3,
         
-        organization = 4,
+        move_type = 4,
         
-        address_line_1 = 5,
+        organization = 5,
         
-        address_line_2 = 6,
+        address_line_1 = 6,
         
-        city_state_zip = 7,
+        address_line_2 = 7,
         
-        primary_address_line = 8,
+        city_state_zip = 8,
         
-        secondary_address_line = 9,
+        primary_address_line = 9,
         
-        full_name = 10,
+        secondary_address_line = 10,
         
-        first_name = 11,
+        full_name = 11,
         
-        middle_name = 12,
+        first_name = 12,
         
-        last_name = 13,
+        middle_name = 13,
         
-        urbanization = 14,
+        last_name = 14,
         
-        primary_number = 15,
+        urbanization = 15,
         
-        pre_directional = 16,
+        primary_number = 16,
         
-        street_name = 17,
+        pre_directional = 17,
         
-        street_suffix = 18,
+        street_name = 18,
         
-        post_directional = 19,
+        street_suffix = 19,
         
-        unit_designator = 20,
+        post_directional = 20,
         
-        unit_number = 21,
+        unit_designator = 21,
         
-        city = 22,
+        unit_number = 22,
         
-        state = 23,
+        city = 23,
         
-        zip_code = 24,
+        state = 24,
         
-        outcome_codes = 25,
+        zip_code = 25,
         
-        custom_1 = 26,
+        outcome_codes = 26,
         
-        custom_2 = 27,
+        custom_1 = 27,
         
-        custom_3 = 28,
+        custom_2 = 28,
         
-        custom_4 = 29,
+        custom_3 = 29,
         
-        custom_5 = 30,
+        custom_4 = 30,
         
-        custom_6 = 31,
+        custom_5 = 31,
         
-        custom_7 = 32,
+        custom_6 = 32,
         
-        custom_8 = 33,
+        custom_7 = 33,
         
-        custom_9 = 34,
+        custom_8 = 34,
         
-        custom_10 = 35
+        custom_9 = 35,
+        
+        custom_10 = 36
     }
     
 }

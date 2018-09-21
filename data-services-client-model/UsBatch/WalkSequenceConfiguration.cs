@@ -72,7 +72,6 @@ namespace Quadient.DataServies.Model.UsBatch
         /// <param name="AddressCasing">AddressCasing.</param>
         /// <param name="AddressLineFormatting">AddressLineFormatting.</param>
         /// <param name="ApplyCasingToBusiness">ApplyCasingToBusiness.</param>
-        /// <param name="ApplyCasingToNames">ApplyCasingToNames.</param>
         /// <param name="FirmPlacement">FirmPlacement.</param>
         /// <param name="KeepExtraInformation">KeepExtraInformation.</param>
         /// <param name="ListProcessorName">ListProcessorName.</param>
@@ -87,13 +86,12 @@ namespace Quadient.DataServies.Model.UsBatch
         /// <param name="PreferredAddressType">PreferredAddressType.</param>
         /// <param name="RequireDpvValidatedSecondary">RequireDpvValidatedSecondary.</param>
         /// <param name="UnitPlacement">UnitPlacement.</param>
-        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), bool? ApplyCasingToNames = default(bool?), FirmPlacement? FirmPlacement = default(FirmPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
+        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), FirmPlacement? FirmPlacement = default(FirmPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
         {
             this.AddressElementFormat = AddressElementFormat;
             this.AddressCasing = AddressCasing;
             this.AddressLineFormatting = AddressLineFormatting;
             this.ApplyCasingToBusiness = ApplyCasingToBusiness;
-            this.ApplyCasingToNames = ApplyCasingToNames;
             this.FirmPlacement = FirmPlacement;
             this.KeepExtraInformation = KeepExtraInformation;
             this.ListProcessorName = ListProcessorName;
@@ -118,12 +116,6 @@ namespace Quadient.DataServies.Model.UsBatch
         /// </summary>
         [DataMember(Name="apply_casing_to_business", EmitDefaultValue=false)]
         public bool? ApplyCasingToBusiness { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ApplyCasingToNames
-        /// </summary>
-        [DataMember(Name="apply_casing_to_names", EmitDefaultValue=false)]
-        public bool? ApplyCasingToNames { get; set; }
 
 
         /// <summary>
@@ -201,7 +193,6 @@ namespace Quadient.DataServies.Model.UsBatch
             sb.Append("  AddressCasing: ").Append(AddressCasing).Append("\n");
             sb.Append("  AddressLineFormatting: ").Append(AddressLineFormatting).Append("\n");
             sb.Append("  ApplyCasingToBusiness: ").Append(ApplyCasingToBusiness).Append("\n");
-            sb.Append("  ApplyCasingToNames: ").Append(ApplyCasingToNames).Append("\n");
             sb.Append("  FirmPlacement: ").Append(FirmPlacement).Append("\n");
             sb.Append("  KeepExtraInformation: ").Append(KeepExtraInformation).Append("\n");
             sb.Append("  ListProcessorName: ").Append(ListProcessorName).Append("\n");
@@ -269,11 +260,6 @@ namespace Quadient.DataServies.Model.UsBatch
                     this.ApplyCasingToBusiness == input.ApplyCasingToBusiness ||
                     (this.ApplyCasingToBusiness != null &&
                     this.ApplyCasingToBusiness.Equals(input.ApplyCasingToBusiness))
-                ) && 
-                (
-                    this.ApplyCasingToNames == input.ApplyCasingToNames ||
-                    (this.ApplyCasingToNames != null &&
-                    this.ApplyCasingToNames.Equals(input.ApplyCasingToNames))
                 ) && 
                 (
                     this.FirmPlacement == input.FirmPlacement ||
@@ -364,8 +350,6 @@ namespace Quadient.DataServies.Model.UsBatch
                     hashCode = hashCode * 59 + this.AddressLineFormatting.GetHashCode();
                 if (this.ApplyCasingToBusiness != null)
                     hashCode = hashCode * 59 + this.ApplyCasingToBusiness.GetHashCode();
-                if (this.ApplyCasingToNames != null)
-                    hashCode = hashCode * 59 + this.ApplyCasingToNames.GetHashCode();
                 if (this.FirmPlacement != null)
                     hashCode = hashCode * 59 + this.FirmPlacement.GetHashCode();
                 if (this.KeepExtraInformation != null)

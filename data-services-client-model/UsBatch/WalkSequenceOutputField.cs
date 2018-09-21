@@ -59,111 +59,111 @@ namespace Quadient.DataServies.Model.UsBatch
         
         county_code = 13,
         
-        custom_1 = 14,
+        delivery_point = 14,
         
-        custom_2 = 15,
+        dpv_coded = 15,
         
-        custom_3 = 16,
+        dpv_footnote = 16,
         
-        custom_4 = 17,
+        dpv_indicator = 17,
         
-        custom_5 = 18,
+        delivery_type = 18,
         
-        custom_6 = 19,
+        drop_type = 19,
         
-        custom_7 = 20,
+        drop_count = 20,
         
-        custom_8 = 21,
+        elot = 21,
         
-        custom_9 = 22,
+        extra_address_information = 22,
         
-        custom_10 = 23,
+        fips_code = 23,
         
-        delivery_point = 24,
+        is_business = 24,
         
-        dpv_coded = 25,
+        is_cmra = 25,
         
-        dpv_footnote = 26,
+        is_ews_match = 26,
         
-        dpv_indicator = 27,
+        is_no_stat = 27,
         
-        delivery_type = 28,
+        is_pbsa = 28,
         
-        drop_type = 29,
+        is_vacant = 29,
         
-        drop_count = 30,
+        is_residence = 30,
         
-        elot = 31,
+        is_educational_institute = 31,
         
-        extra_address_information = 32,
+        is_seasonally_occupied = 32,
         
-        fips_code = 33,
+        is_throwback = 33,
         
-        is_business = 34,
+        lacs_coded = 34,
         
-        is_cmra = 35,
+        lacs_link_footnote = 35,
         
-        is_ews_match = 36,
+        lacs_link_indicator = 36,
         
-        is_no_stat = 37,
+        city_state_zip = 37,
         
-        is_pbsa = 38,
+        matched_to_default = 38,
         
-        is_vacant = 39,
+        post_directional = 39,
         
-        is_residence = 40,
+        pre_directional = 40,
         
-        is_educational_institute = 41,
+        primary_address_line = 41,
         
-        is_seasonally_occupied = 42,
+        primary_number = 42,
         
-        is_throwback = 43,
+        private_mailbox = 43,
         
-        lacs_coded = 44,
+        secondary_address_line = 44,
         
-        lacs_link_footnote = 45,
+        state = 45,
         
-        lacs_link_indicator = 46,
+        street_name = 46,
         
-        city_state_zip = 47,
+        street_suffix = 47,
         
-        matched_to_default = 48,
+        suite_link_footnote = 48,
         
-        post_directional = 49,
+        unit_designator = 49,
         
-        pre_directional = 50,
+        unit_number = 50,
         
-        primary_address_line = 51,
+        urbanization = 51,
         
-        primary_number = 52,
+        uscorrection_description = 52,
         
-        private_mailbox = 53,
+        uscorrection_footnote = 53,
         
-        secondary_address_line = 54,
+        outcome_codes = 54,
         
-        state = 55,
+        walk_sequence_number = 55,
         
-        street_name = 56,
+        zip_code = 56,
         
-        street_suffix = 57,
+        custom_1 = 57,
         
-        suite_link_footnote = 58,
+        custom_2 = 58,
         
-        unit_designator = 59,
+        custom_3 = 59,
         
-        unit_number = 60,
+        custom_4 = 60,
         
-        urbanization = 61,
+        custom_5 = 61,
         
-        uscorrection_description = 62,
+        custom_6 = 62,
         
-        uscorrection_footnote = 63,
+        custom_7 = 63,
         
-        walk_sequence_footnote = 64,
+        custom_8 = 64,
         
-        walk_sequence_number = 65,
+        custom_9 = 65,
         
-        zip_code = 66
+        custom_10 = 66
     }
     
 }
