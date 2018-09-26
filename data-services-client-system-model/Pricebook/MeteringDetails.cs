@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// MeteringDetails
     /// </summary>
     [DataContract]
-    public partial class MeteringDetails :  IEquatable<MeteringDetails>, IValidatableObject
+    public partial class MeteringDetails : IEquatable<MeteringDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MeteringDetails" /> class.

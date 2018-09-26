@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// EstimateDetails
     /// </summary>
     [DataContract]
-    public partial class EstimateDetails :  IEquatable<EstimateDetails>, IValidatableObject
+    public partial class EstimateDetails : IEquatable<EstimateDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EstimateDetails" /> class.

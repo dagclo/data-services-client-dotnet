@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// CalculateResponse
     /// </summary>
     [DataContract]
-    public partial class CalculateResponse :  IEquatable<CalculateResponse>, IValidatableObject
+    public partial class CalculateResponse : IEquatable<CalculateResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculateResponse" /> class.

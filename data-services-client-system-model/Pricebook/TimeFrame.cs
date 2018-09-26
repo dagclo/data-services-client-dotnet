@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// TimeFrame
     /// </summary>
     [DataContract]
-    public partial class TimeFrame :  IEquatable<TimeFrame>, IValidatableObject
+    public partial class TimeFrame : IEquatable<TimeFrame>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeFrame" /> class.
