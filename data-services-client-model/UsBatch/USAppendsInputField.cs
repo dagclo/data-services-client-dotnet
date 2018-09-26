@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// Defines USAppendsInputField
@@ -33,47 +33,130 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum USAppendsInputField
     {
         
-        id = 1,
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
         
-        address_line_1 = 2,
+        /// <summary>
+        /// Enum Addressline1 for value: address_line_1
+        /// </summary>
+        [EnumMember(Value = "address_line_1")]
+        Addressline1 = 2,
         
-        address_line_2 = 3,
+        /// <summary>
+        /// Enum Addressline2 for value: address_line_2
+        /// </summary>
+        [EnumMember(Value = "address_line_2")]
+        Addressline2 = 3,
         
-        city_state_zip = 4,
+        /// <summary>
+        /// Enum Citystatezip for value: city_state_zip
+        /// </summary>
+        [EnumMember(Value = "city_state_zip")]
+        Citystatezip = 4,
         
-        city = 5,
+        /// <summary>
+        /// Enum City for value: city
+        /// </summary>
+        [EnumMember(Value = "city")]
+        City = 5,
         
-        state = 6,
+        /// <summary>
+        /// Enum State for value: state
+        /// </summary>
+        [EnumMember(Value = "state")]
+        State = 6,
         
-        zip_code = 7,
+        /// <summary>
+        /// Enum Zipcode for value: zip_code
+        /// </summary>
+        [EnumMember(Value = "zip_code")]
+        Zipcode = 7,
         
-        full_name = 8,
+        /// <summary>
+        /// Enum Fullname for value: full_name
+        /// </summary>
+        [EnumMember(Value = "full_name")]
+        Fullname = 8,
         
-        first_name = 9,
+        /// <summary>
+        /// Enum Firstname for value: first_name
+        /// </summary>
+        [EnumMember(Value = "first_name")]
+        Firstname = 9,
         
-        middle_name = 10,
+        /// <summary>
+        /// Enum Middlename for value: middle_name
+        /// </summary>
+        [EnumMember(Value = "middle_name")]
+        Middlename = 10,
         
-        last_name = 11,
+        /// <summary>
+        /// Enum Lastname for value: last_name
+        /// </summary>
+        [EnumMember(Value = "last_name")]
+        Lastname = 11,
         
-        custom_1 = 12,
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 12,
         
-        custom_2 = 13,
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 13,
         
-        custom_3 = 14,
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 14,
         
-        custom_4 = 15,
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 15,
         
-        custom_5 = 16,
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 16,
         
-        custom_6 = 17,
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 17,
         
-        custom_7 = 18,
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 18,
         
-        custom_8 = 19,
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 19,
         
-        custom_9 = 20,
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 20,
         
-        custom_10 = 21
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 21
     }
-    
 }

@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines FirmPlacement
+    /// Defines firmPlacement
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,11 +33,22 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum FirmPlacement
     {
         
-        as_input = 1,
+        /// <summary>
+        /// Enum Asinput for value: as_input
+        /// </summary>
+        [EnumMember(Value = "as_input")]
+        Asinput = 1,
         
-        move_to_business_if_empty = 2,
+        /// <summary>
+        /// Enum Movetobusinessifempty for value: move_to_business_if_empty
+        /// </summary>
+        [EnumMember(Value = "move_to_business_if_empty")]
+        Movetobusinessifempty = 2,
         
-        move_to_business_always = 3
+        /// <summary>
+        /// Enum Movetobusinessalways for value: move_to_business_always
+        /// </summary>
+        [EnumMember(Value = "move_to_business_always")]
+        Movetobusinessalways = 3
     }
-    
 }

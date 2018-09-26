@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines JobStatus
+    /// Defines jobStatus
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,17 +33,40 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum JobStatus
     {
         
+        /// <summary>
+        /// Enum CREATED for value: CREATED
+        /// </summary>
+        [EnumMember(Value = "CREATED")]
         CREATED = 1,
         
-        READY_TO_RUN = 2,
+        /// <summary>
+        /// Enum READYTORUN for value: READY_TO_RUN
+        /// </summary>
+        [EnumMember(Value = "READY_TO_RUN")]
+        READYTORUN = 2,
         
+        /// <summary>
+        /// Enum RUNNING for value: RUNNING
+        /// </summary>
+        [EnumMember(Value = "RUNNING")]
         RUNNING = 3,
         
+        /// <summary>
+        /// Enum SUCCESS for value: SUCCESS
+        /// </summary>
+        [EnumMember(Value = "SUCCESS")]
         SUCCESS = 4,
         
+        /// <summary>
+        /// Enum FAILURE for value: FAILURE
+        /// </summary>
+        [EnumMember(Value = "FAILURE")]
         FAILURE = 5,
         
+        /// <summary>
+        /// Enum DELETED for value: DELETED
+        /// </summary>
+        [EnumMember(Value = "DELETED")]
         DELETED = 6
     }
-    
 }

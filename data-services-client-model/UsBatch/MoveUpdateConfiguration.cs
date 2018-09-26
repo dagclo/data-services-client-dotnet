@@ -22,13 +22,13 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// MoveUpdateConfiguration
     /// </summary>
     [DataContract]
-    public partial class MoveUpdateConfiguration :  IEquatable<MoveUpdateConfiguration>, IValidatableObject
+    public partial class MoveUpdateConfiguration : IEquatable<MoveUpdateConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Gets or Sets AddressElementFormat

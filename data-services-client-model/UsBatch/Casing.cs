@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines Casing
+    /// Defines casing
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,9 +33,16 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum Casing
     {
         
-        mixed_case = 1,
+        /// <summary>
+        /// Enum Mixedcase for value: mixed_case
+        /// </summary>
+        [EnumMember(Value = "mixed_case")]
+        Mixedcase = 1,
         
-        upper_case = 2
+        /// <summary>
+        /// Enum Uppercase for value: upper_case
+        /// </summary>
+        [EnumMember(Value = "upper_case")]
+        Uppercase = 2
     }
-    
 }

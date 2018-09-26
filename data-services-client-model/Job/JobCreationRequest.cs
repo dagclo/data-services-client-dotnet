@@ -39,7 +39,7 @@ namespace Quadient.DataServices.Model.Job
         /// Initializes a new instance of the <see cref="JobCreationRequest" /> class.
         /// </summary>
         /// <param name="Origin">The originating product/application/service for which this job is being created. (required).</param>
-        /// <param name="Owner">The user_id of the job&#39;s owner. (required).</param>
+        /// <param name="Owner">The user_id of the job&#39;s owner..</param>
         /// <param name="Tenant">The tenant the job is associated with.  Required if user has multiple tenants, optional otherwise..</param>
         /// <param name="ParentJob">The (optional) parent job&#39;s job_id. This may be specified if the job should have a declared child-relationship with a parent job..</param>
         /// <param name="ExpectedServices">An array of the expected services that this job will be consuming, referred to by their service_id..</param>
@@ -48,7 +48,15 @@ namespace Quadient.DataServices.Model.Job
         /// <param name="AdditionalDetails">Any additional details about the job..</param>
         public JobCreationRequest(string Origin = default(string), string Owner = default(string), string Tenant = default(string), string ParentJob = default(string), List<string> ExpectedServices = default(List<string>), long? ExpectedRecordCount = default(long?), JobStatus JobStatus = default(JobStatus), Object AdditionalDetails = default(Object))
         {
-            this.Origin = Origin;
+            // to ensure "Origin" is required (not null)
+            if (Origin == null)
+            {
+                throw new InvalidDataException("Origin is a required property for JobCreationRequest and cannot be null");
+            }
+            else
+            {
+                this.Origin = Origin;
+            }
             this.Owner = Owner;
             this.Tenant = Tenant;
             this.ParentJob = ParentJob;

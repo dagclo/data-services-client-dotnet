@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using Quadient.DataServices.Model.Job;
-using Quadient.DataServies.Model.UsBatch;
+using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {

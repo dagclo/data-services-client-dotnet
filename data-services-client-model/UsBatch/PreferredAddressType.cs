@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines PreferredAddressType
+    /// Defines preferredAddressType
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,11 +33,22 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum PreferredAddressType
     {
         
-        first_available = 1,
+        /// <summary>
+        /// Enum Firstavailable for value: first_available
+        /// </summary>
+        [EnumMember(Value = "first_available")]
+        Firstavailable = 1,
         
-        street = 2,
+        /// <summary>
+        /// Enum Street for value: street
+        /// </summary>
+        [EnumMember(Value = "street")]
+        Street = 2,
         
-        pobox = 3
+        /// <summary>
+        /// Enum Pobox for value: pobox
+        /// </summary>
+        [EnumMember(Value = "pobox")]
+        Pobox = 3
     }
-    
 }

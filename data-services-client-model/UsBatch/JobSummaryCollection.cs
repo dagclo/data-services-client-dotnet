@@ -22,13 +22,13 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// JobSummaryCollection
     /// </summary>
     [DataContract]
-    public partial class JobSummaryCollection :  IEquatable<JobSummaryCollection>, IValidatableObject
+    public partial class JobSummaryCollection : IEquatable<JobSummaryCollection>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JobSummaryCollection" /> class.

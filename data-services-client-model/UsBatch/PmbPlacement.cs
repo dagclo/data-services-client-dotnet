@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines PmbPlacement
+    /// Defines pmbPlacement
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,9 +33,16 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum PmbPlacement
     {
         
-        with_units = 1,
+        /// <summary>
+        /// Enum Withunits for value: with_units
+        /// </summary>
+        [EnumMember(Value = "with_units")]
+        Withunits = 1,
         
-        as_input = 2
+        /// <summary>
+        /// Enum Asinput for value: as_input
+        /// </summary>
+        [EnumMember(Value = "as_input")]
+        Asinput = 2
     }
-    
 }

@@ -22,13 +22,13 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// Describes an error object.
     /// </summary>
     [DataContract]
-    public partial class Error :  IEquatable<Error>, IValidatableObject
+    public partial class Error : IEquatable<Error>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Error" /> class.

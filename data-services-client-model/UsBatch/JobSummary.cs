@@ -22,25 +22,20 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// JobSummary
     /// </summary>
     [DataContract]
-    public partial class JobSummary :  IEquatable<JobSummary>, IValidatableObject
+    public partial class JobSummary : IEquatable<JobSummary>, IValidatableObject
     {
-        /// <summary>
-        /// Gets or Sets JobStatus
-        /// </summary>
-        [DataMember(Name="job_status", EmitDefaultValue=false)]
-        public JobStatus? JobStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="JobSummary" /> class.
         /// </summary>
         /// <param name="JobId">JobId.</param>
         /// <param name="JobStatus">JobStatus.</param>
-        public JobSummary(string JobId = default(string), JobStatus? JobStatus = default(JobStatus?))
+        public JobSummary(string JobId = default(string), JobStatus JobStatus = default(JobStatus))
         {
             this.JobId = JobId;
             this.JobStatus = JobStatus;
@@ -52,6 +47,11 @@ namespace Quadient.DataServies.Model.UsBatch
         [DataMember(Name="job_id", EmitDefaultValue=false)]
         public string JobId { get; set; }
 
+        /// <summary>
+        /// Gets or Sets JobStatus
+        /// </summary>
+        [DataMember(Name="job_status", EmitDefaultValue=false)]
+        public JobStatus JobStatus { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// Defines USAppendsOutputField
@@ -33,47 +33,130 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum USAppendsOutputField
     {
         
-        id = 1,
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
         
-        is_do_not_mail = 2,
+        /// <summary>
+        /// Enum Isdonotmail for value: is_do_not_mail
+        /// </summary>
+        [EnumMember(Value = "is_do_not_mail")]
+        Isdonotmail = 2,
         
-        is_prison = 3,
+        /// <summary>
+        /// Enum Isprison for value: is_prison
+        /// </summary>
+        [EnumMember(Value = "is_prison")]
+        Isprison = 3,
         
-        is_deceased = 4,
+        /// <summary>
+        /// Enum Isdeceased for value: is_deceased
+        /// </summary>
+        [EnumMember(Value = "is_deceased")]
+        Isdeceased = 4,
         
-        is_nursing_home = 5,
+        /// <summary>
+        /// Enum Isnursinghome for value: is_nursing_home
+        /// </summary>
+        [EnumMember(Value = "is_nursing_home")]
+        Isnursinghome = 5,
         
-        is_bankruptcy = 6,
+        /// <summary>
+        /// Enum Isbankruptcy for value: is_bankruptcy
+        /// </summary>
+        [EnumMember(Value = "is_bankruptcy")]
+        Isbankruptcy = 6,
         
-        deceased_date_of_death = 7,
+        /// <summary>
+        /// Enum Deceaseddateofdeath for value: deceased_date_of_death
+        /// </summary>
+        [EnumMember(Value = "deceased_date_of_death")]
+        Deceaseddateofdeath = 7,
         
-        deceased_date_of_birth = 8,
+        /// <summary>
+        /// Enum Deceaseddateofbirth for value: deceased_date_of_birth
+        /// </summary>
+        [EnumMember(Value = "deceased_date_of_birth")]
+        Deceaseddateofbirth = 8,
         
-        apartment_unit_information = 9,
+        /// <summary>
+        /// Enum Apartmentunitinformation for value: apartment_unit_information
+        /// </summary>
+        [EnumMember(Value = "apartment_unit_information")]
+        Apartmentunitinformation = 9,
         
-        apartment_address_line = 10,
+        /// <summary>
+        /// Enum Apartmentaddressline for value: apartment_address_line
+        /// </summary>
+        [EnumMember(Value = "apartment_address_line")]
+        Apartmentaddressline = 10,
         
-        outcome_codes = 11,
+        /// <summary>
+        /// Enum Outcomecodes for value: outcome_codes
+        /// </summary>
+        [EnumMember(Value = "outcome_codes")]
+        Outcomecodes = 11,
         
-        custom_1 = 12,
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 12,
         
-        custom_2 = 13,
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 13,
         
-        custom_3 = 14,
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 14,
         
-        custom_4 = 15,
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 15,
         
-        custom_5 = 16,
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 16,
         
-        custom_6 = 17,
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 17,
         
-        custom_7 = 18,
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 18,
         
-        custom_8 = 19,
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 19,
         
-        custom_9 = 20,
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 20,
         
-        custom_10 = 21
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 21
     }
-    
 }

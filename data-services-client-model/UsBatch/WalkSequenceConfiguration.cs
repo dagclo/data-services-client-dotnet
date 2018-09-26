@@ -22,49 +22,14 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// WalkSequenceConfiguration
     /// </summary>
     [DataContract]
-    public partial class WalkSequenceConfiguration :  IEquatable<WalkSequenceConfiguration>, IValidatableObject
+    public partial class WalkSequenceConfiguration : IEquatable<WalkSequenceConfiguration>, IValidatableObject
     {
-        /// <summary>
-        /// Gets or Sets AddressElementFormat
-        /// </summary>
-        [DataMember(Name="address_element_format", EmitDefaultValue=false)]
-        public AddressElementFormat? AddressElementFormat { get; set; }
-        /// <summary>
-        /// Gets or Sets AddressCasing
-        /// </summary>
-        [DataMember(Name="address_casing", EmitDefaultValue=false)]
-        public Casing? AddressCasing { get; set; }
-        /// <summary>
-        /// Gets or Sets AddressLineFormatting
-        /// </summary>
-        [DataMember(Name="address_line_formatting", EmitDefaultValue=false)]
-        public AddressLineFormatting? AddressLineFormatting { get; set; }
-        /// <summary>
-        /// Gets or Sets FirmPlacement
-        /// </summary>
-        [DataMember(Name="firm_placement", EmitDefaultValue=false)]
-        public FirmPlacement? FirmPlacement { get; set; }
-        /// <summary>
-        /// Gets or Sets PmbPlacement
-        /// </summary>
-        [DataMember(Name="pmb_placement", EmitDefaultValue=false)]
-        public PmbPlacement? PmbPlacement { get; set; }
-        /// <summary>
-        /// Gets or Sets PreferredAddressType
-        /// </summary>
-        [DataMember(Name="preferred_address_type", EmitDefaultValue=false)]
-        public PreferredAddressType? PreferredAddressType { get; set; }
-        /// <summary>
-        /// Gets or Sets UnitPlacement
-        /// </summary>
-        [DataMember(Name="unit_placement", EmitDefaultValue=false)]
-        public UnitPlacement? UnitPlacement { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WalkSequenceConfiguration" /> class.
         /// </summary>
@@ -86,7 +51,7 @@ namespace Quadient.DataServies.Model.UsBatch
         /// <param name="PreferredAddressType">PreferredAddressType.</param>
         /// <param name="RequireDpvValidatedSecondary">RequireDpvValidatedSecondary.</param>
         /// <param name="UnitPlacement">UnitPlacement.</param>
-        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), FirmPlacement? FirmPlacement = default(FirmPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
+        public WalkSequenceConfiguration(AddressElementFormat AddressElementFormat = default(AddressElementFormat), Casing AddressCasing = default(Casing), AddressLineFormatting AddressLineFormatting = default(AddressLineFormatting), bool? ApplyCasingToBusiness = default(bool?), FirmPlacement FirmPlacement = default(FirmPlacement), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement PmbPlacement = default(PmbPlacement), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType PreferredAddressType = default(PreferredAddressType), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement UnitPlacement = default(UnitPlacement))
         {
             this.AddressElementFormat = AddressElementFormat;
             this.AddressCasing = AddressCasing;
@@ -108,8 +73,23 @@ namespace Quadient.DataServies.Model.UsBatch
             this.UnitPlacement = UnitPlacement;
         }
         
+        /// <summary>
+        /// Gets or Sets AddressElementFormat
+        /// </summary>
+        [DataMember(Name="address_element_format", EmitDefaultValue=false)]
+        public AddressElementFormat AddressElementFormat { get; set; }
 
+        /// <summary>
+        /// Gets or Sets AddressCasing
+        /// </summary>
+        [DataMember(Name="address_casing", EmitDefaultValue=false)]
+        public Casing AddressCasing { get; set; }
 
+        /// <summary>
+        /// Gets or Sets AddressLineFormatting
+        /// </summary>
+        [DataMember(Name="address_line_formatting", EmitDefaultValue=false)]
+        public AddressLineFormatting AddressLineFormatting { get; set; }
 
         /// <summary>
         /// Gets or Sets ApplyCasingToBusiness
@@ -117,6 +97,11 @@ namespace Quadient.DataServies.Model.UsBatch
         [DataMember(Name="apply_casing_to_business", EmitDefaultValue=false)]
         public bool? ApplyCasingToBusiness { get; set; }
 
+        /// <summary>
+        /// Gets or Sets FirmPlacement
+        /// </summary>
+        [DataMember(Name="firm_placement", EmitDefaultValue=false)]
+        public FirmPlacement FirmPlacement { get; set; }
 
         /// <summary>
         /// Gets or Sets KeepExtraInformation
@@ -166,6 +151,11 @@ namespace Quadient.DataServies.Model.UsBatch
         [DataMember(Name="mailers_zipcode", EmitDefaultValue=false)]
         public string MailersZipcode { get; set; }
 
+        /// <summary>
+        /// Gets or Sets PmbPlacement
+        /// </summary>
+        [DataMember(Name="pmb_placement", EmitDefaultValue=false)]
+        public PmbPlacement PmbPlacement { get; set; }
 
         /// <summary>
         /// Gets or Sets PreferAbbreviatedAddresses
@@ -173,6 +163,11 @@ namespace Quadient.DataServies.Model.UsBatch
         [DataMember(Name="prefer_abbreviated_addresses", EmitDefaultValue=false)]
         public bool? PreferAbbreviatedAddresses { get; set; }
 
+        /// <summary>
+        /// Gets or Sets PreferredAddressType
+        /// </summary>
+        [DataMember(Name="preferred_address_type", EmitDefaultValue=false)]
+        public PreferredAddressType PreferredAddressType { get; set; }
 
         /// <summary>
         /// Gets or Sets RequireDpvValidatedSecondary
@@ -180,6 +175,11 @@ namespace Quadient.DataServies.Model.UsBatch
         [DataMember(Name="require_dpv_validated_secondary", EmitDefaultValue=false)]
         public bool? RequireDpvValidatedSecondary { get; set; }
 
+        /// <summary>
+        /// Gets or Sets UnitPlacement
+        /// </summary>
+        [DataMember(Name="unit_placement", EmitDefaultValue=false)]
+        public UnitPlacement UnitPlacement { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

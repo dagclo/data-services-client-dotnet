@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines AddressElementFormat
+    /// Defines addressElementFormat
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,11 +33,22 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum AddressElementFormat
     {
         
-        standard = 1,
+        /// <summary>
+        /// Enum Standard for value: standard
+        /// </summary>
+        [EnumMember(Value = "standard")]
+        Standard = 1,
         
-        standard_with_punctuation = 2,
+        /// <summary>
+        /// Enum Standardwithpunctuation for value: standard_with_punctuation
+        /// </summary>
+        [EnumMember(Value = "standard_with_punctuation")]
+        Standardwithpunctuation = 2,
         
-        full_words = 3
+        /// <summary>
+        /// Enum Fullwords for value: full_words
+        /// </summary>
+        [EnumMember(Value = "full_words")]
+        Fullwords = 3
     }
-    
 }

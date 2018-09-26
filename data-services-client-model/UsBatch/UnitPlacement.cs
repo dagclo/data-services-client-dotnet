@@ -22,10 +22,10 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines UnitPlacement
+    /// Defines unitPlacement
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -33,11 +33,22 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum UnitPlacement
     {
         
-        on_delivery_line = 1,
+        /// <summary>
+        /// Enum Ondeliveryline for value: on_delivery_line
+        /// </summary>
+        [EnumMember(Value = "on_delivery_line")]
+        Ondeliveryline = 1,
         
-        above_delivery_line_if_empty = 2,
+        /// <summary>
+        /// Enum Abovedeliverylineifempty for value: above_delivery_line_if_empty
+        /// </summary>
+        [EnumMember(Value = "above_delivery_line_if_empty")]
+        Abovedeliverylineifempty = 2,
         
-        above_delivery_line_always = 3
+        /// <summary>
+        /// Enum Abovedeliverylinealways for value: above_delivery_line_always
+        /// </summary>
+        [EnumMember(Value = "above_delivery_line_always")]
+        Abovedeliverylinealways = 3
     }
-    
 }
