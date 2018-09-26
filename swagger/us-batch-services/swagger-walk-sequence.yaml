@@ -313,11 +313,11 @@ definitions:
       input_fields:
         type: array
         items: 
-          $ref: '#/definitions/walkSequenceInputField'
+          $ref: '#/definitions/WalkSequenceInputField'
       output_fields:
         type: array
         items:
-          $ref: '#/definitions/walkSequenceOutputField'
+          $ref: '#/definitions/WalkSequenceOutputField'
   WalkSequenceJob:
     type: object
     description: Defines the layout of records that will be uploaded/downloaded in this job.
@@ -329,15 +329,15 @@ definitions:
     type: object
     properties:
       address_element_format:
-        $ref: '#/definitions/addressElementFormat'
+        $ref: '#/definitions/AddressElementFormat'
       address_casing:
-        $ref: '#/definitions/casing'
+        $ref: '#/definitions/Casing'
       address_line_formatting:
-          $ref: '#/definitions/addressLineFormatting'
+          $ref: '#/definitions/AddressLineFormatting'
       apply_casing_to_business:
           type: boolean
       firm_placement:
-          $ref: '#/definitions/firmPlacement'
+          $ref: '#/definitions/FirmPlacement'
       keep_extra_information:
           type: boolean
       list_processor_name:
@@ -355,15 +355,15 @@ definitions:
       mailers_zipcode:
           type: string
       pmb_placement:
-          $ref: '#/definitions/pmbPlacement'
+          $ref: '#/definitions/PmbPlacement'
       prefer_abbreviated_addresses:
           type: boolean
       preferred_address_type:
-          $ref: '#/definitions/preferredAddressType'
+          $ref: '#/definitions/PreferredAddressType'
       require_dpv_validated_secondary:
           type: boolean
       unit_placement:
-          $ref: '#/definitions/unitPlacement'
+          $ref: '#/definitions/UnitPlacement'
     
 
   JobSummary:
@@ -372,7 +372,7 @@ definitions:
       job_id:
         type: string
       job_status:
-        $ref: '#/definitions/jobStatus'
+        $ref: '#/definitions/JobStatus'
 
   JobSummaryCollection:
     type: object
@@ -428,7 +428,7 @@ definitions:
           $ref: '#/definitions/ReportDescriptor'
           
 
-  jobStatus:
+  JobStatus:
     type: string  
     enum:
       - CREATED
@@ -438,47 +438,47 @@ definitions:
       - FAILURE
       - DELETED
   
-  casing:
+  Casing:
     type: string
     enum: 
       - mixed_case
       - upper_case
 
-  addressElementFormat:
+  AddressElementFormat:
     type: string
     enum: 
       - standard
       - standard_with_punctuation
       - full_words
 
-  addressLineFormatting:
+  AddressLineFormatting:
     type: string
     enum:
     - standard
     - top_justified
 
 
-  firmPlacement:
+  FirmPlacement:
     type: string
     enum: 
       - as_input
       - move_to_business_if_empty
       - move_to_business_always
 
-  pmbPlacement:
+  PmbPlacement:
     type: string
     enum: 
       - with_units
       - as_input
 
-  unitPlacement:
+  UnitPlacement:
     type: string
     enum: 
       - on_delivery_line
       - above_delivery_line_if_empty
       - above_delivery_line_always
 
-  preferredAddressType:
+  PreferredAddressType:
     type: string
     enum: 
       - first_available
@@ -486,7 +486,7 @@ definitions:
       - pobox
 
 
-  walkSequenceInputField:
+  WalkSequenceInputField:
     type: string
     enum:
       - id
@@ -510,7 +510,7 @@ definitions:
       - custom_9
       - custom_10
 
-  walkSequenceOutputField:
+  WalkSequenceOutputField:
     type: string
     enum: 
       - id
