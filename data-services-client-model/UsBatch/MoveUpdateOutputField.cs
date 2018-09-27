@@ -1,7 +1,7 @@
 /* 
  * US Move Update
  *
- * This service offers the ability to update addresses of organizations and persons who have moved in the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Paginationchange Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * This service offers the ability to update addresses of organizations and persons who have moved in the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -64,189 +64,177 @@ namespace Quadient.DataServices.Model.UsBatch
         Organization = 5,
         
         /// <summary>
-        /// Enum Addressline1 for value: address_line_1
+        /// Enum Addresslines for value: address_lines
         /// </summary>
-        [EnumMember(Value = "address_line_1")]
-        Addressline1 = 6,
-        
-        /// <summary>
-        /// Enum Addressline2 for value: address_line_2
-        /// </summary>
-        [EnumMember(Value = "address_line_2")]
-        Addressline2 = 7,
+        [EnumMember(Value = "address_lines")]
+        Addresslines = 6,
         
         /// <summary>
         /// Enum Citystatezip for value: city_state_zip
         /// </summary>
         [EnumMember(Value = "city_state_zip")]
-        Citystatezip = 8,
-        
-        /// <summary>
-        /// Enum Primaryaddressline for value: primary_address_line
-        /// </summary>
-        [EnumMember(Value = "primary_address_line")]
-        Primaryaddressline = 9,
-        
-        /// <summary>
-        /// Enum Secondaryaddressline for value: secondary_address_line
-        /// </summary>
-        [EnumMember(Value = "secondary_address_line")]
-        Secondaryaddressline = 10,
+        Citystatezip = 7,
         
         /// <summary>
         /// Enum Fullname for value: full_name
         /// </summary>
         [EnumMember(Value = "full_name")]
-        Fullname = 11,
+        Fullname = 8,
         
         /// <summary>
         /// Enum Firstname for value: first_name
         /// </summary>
         [EnumMember(Value = "first_name")]
-        Firstname = 12,
+        Firstname = 9,
         
         /// <summary>
         /// Enum Middlename for value: middle_name
         /// </summary>
         [EnumMember(Value = "middle_name")]
-        Middlename = 13,
+        Middlename = 10,
         
         /// <summary>
         /// Enum Lastname for value: last_name
         /// </summary>
         [EnumMember(Value = "last_name")]
-        Lastname = 14,
+        Lastname = 11,
         
         /// <summary>
         /// Enum Urbanization for value: urbanization
         /// </summary>
         [EnumMember(Value = "urbanization")]
-        Urbanization = 15,
+        Urbanization = 12,
         
         /// <summary>
         /// Enum Primarynumber for value: primary_number
         /// </summary>
         [EnumMember(Value = "primary_number")]
-        Primarynumber = 16,
+        Primarynumber = 13,
         
         /// <summary>
         /// Enum Predirectional for value: pre_directional
         /// </summary>
         [EnumMember(Value = "pre_directional")]
-        Predirectional = 17,
+        Predirectional = 14,
         
         /// <summary>
         /// Enum Streetname for value: street_name
         /// </summary>
         [EnumMember(Value = "street_name")]
-        Streetname = 18,
+        Streetname = 15,
         
         /// <summary>
         /// Enum Streetsuffix for value: street_suffix
         /// </summary>
         [EnumMember(Value = "street_suffix")]
-        Streetsuffix = 19,
+        Streetsuffix = 16,
         
         /// <summary>
         /// Enum Postdirectional for value: post_directional
         /// </summary>
         [EnumMember(Value = "post_directional")]
-        Postdirectional = 20,
+        Postdirectional = 17,
         
         /// <summary>
         /// Enum Unitdesignator for value: unit_designator
         /// </summary>
         [EnumMember(Value = "unit_designator")]
-        Unitdesignator = 21,
+        Unitdesignator = 18,
         
         /// <summary>
         /// Enum Unitnumber for value: unit_number
         /// </summary>
         [EnumMember(Value = "unit_number")]
-        Unitnumber = 22,
+        Unitnumber = 19,
         
         /// <summary>
         /// Enum City for value: city
         /// </summary>
         [EnumMember(Value = "city")]
-        City = 23,
+        City = 20,
         
         /// <summary>
         /// Enum State for value: state
         /// </summary>
         [EnumMember(Value = "state")]
-        State = 24,
+        State = 21,
         
         /// <summary>
         /// Enum Zipcode for value: zip_code
         /// </summary>
         [EnumMember(Value = "zip_code")]
-        Zipcode = 25,
+        Zipcode = 22,
+        
+        /// <summary>
+        /// Enum Outcomecategory for value: outcome_category
+        /// </summary>
+        [EnumMember(Value = "outcome_category")]
+        Outcomecategory = 23,
         
         /// <summary>
         /// Enum Outcomecodes for value: outcome_codes
         /// </summary>
         [EnumMember(Value = "outcome_codes")]
-        Outcomecodes = 26,
+        Outcomecodes = 24,
         
         /// <summary>
         /// Enum Custom1 for value: custom_1
         /// </summary>
         [EnumMember(Value = "custom_1")]
-        Custom1 = 27,
+        Custom1 = 25,
         
         /// <summary>
         /// Enum Custom2 for value: custom_2
         /// </summary>
         [EnumMember(Value = "custom_2")]
-        Custom2 = 28,
+        Custom2 = 26,
         
         /// <summary>
         /// Enum Custom3 for value: custom_3
         /// </summary>
         [EnumMember(Value = "custom_3")]
-        Custom3 = 29,
+        Custom3 = 27,
         
         /// <summary>
         /// Enum Custom4 for value: custom_4
         /// </summary>
         [EnumMember(Value = "custom_4")]
-        Custom4 = 30,
+        Custom4 = 28,
         
         /// <summary>
         /// Enum Custom5 for value: custom_5
         /// </summary>
         [EnumMember(Value = "custom_5")]
-        Custom5 = 31,
+        Custom5 = 29,
         
         /// <summary>
         /// Enum Custom6 for value: custom_6
         /// </summary>
         [EnumMember(Value = "custom_6")]
-        Custom6 = 32,
+        Custom6 = 30,
         
         /// <summary>
         /// Enum Custom7 for value: custom_7
         /// </summary>
         [EnumMember(Value = "custom_7")]
-        Custom7 = 33,
+        Custom7 = 31,
         
         /// <summary>
         /// Enum Custom8 for value: custom_8
         /// </summary>
         [EnumMember(Value = "custom_8")]
-        Custom8 = 34,
+        Custom8 = 32,
         
         /// <summary>
         /// Enum Custom9 for value: custom_9
         /// </summary>
         [EnumMember(Value = "custom_9")]
-        Custom9 = 35,
+        Custom9 = 33,
         
         /// <summary>
         /// Enum Custom10 for value: custom_10
         /// </summary>
         [EnumMember(Value = "custom_10")]
-        Custom10 = 36
+        Custom10 = 34
     }
 }

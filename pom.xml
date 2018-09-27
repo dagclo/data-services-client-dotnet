@@ -193,7 +193,7 @@
 				<version>3.0.2</version>
 				<executions>
 					<execution>
-						<id>move-generated-sources</id>
+						<id>move-generated-sources-model</id>
 						<phase>process-sources</phase>
 						<goals>
 							<goal>copy-resources</goal>
@@ -207,15 +207,8 @@
 							</resources>
 						</configuration>
 					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.0.2</version>
-				<executions>
 					<execution>
-						<id>move-generated-sources</id>
+						<id>move-generated-sources-system-model</id>
 						<phase>process-sources</phase>
 						<goals>
 							<goal>copy-resources</goal>

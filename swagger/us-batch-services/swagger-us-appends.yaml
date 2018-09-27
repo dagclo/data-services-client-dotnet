@@ -439,6 +439,8 @@ definitions:
       - deceased_date_of_birth
       - apartment_unit_information
       - apartment_address_line
+      - gender
+      - outcome_category
       - outcome_codes
       - custom_1
       - custom_2

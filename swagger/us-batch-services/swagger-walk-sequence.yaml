@@ -29,7 +29,7 @@ paths:
     post:
       summary: Create a new job.
       description: |
-        Creates and configures a new Walk Sequence job. The input and output fields defines the schema and the order of the fields within records transmitted to and from the service. Job configuration cannot be changed after creation. After job creation, upload the records to be prococessed and then `_run` the job.
+        Creates and configures a new Walk Sequence job. The input and output fields defines the schema and the order of the fields within records transmitted to and from the service. Job configuration cannot be changed after creation. After job creation, upload the records to be processed and then `_run` the job.
       parameters:
       - name: job
         in: body
@@ -251,7 +251,7 @@ paths:
       type: string
       description: The `job_id` of interest.
     get:
-      summary: Retrieve avaialble reportts.
+      summary: Retrieve avaialble reports.
       description: Gets the set of available reports ids. Retrieve the content of a report via the `/reports/{report_id}` endpoint.
       responses:
         '200':
@@ -566,6 +566,7 @@ definitions:
       - urbanization
       - uscorrection_description
       - uscorrection_footnote
+      - outcome_category
       - outcome_codes
       - walk_sequence_number
       - zip_code    

@@ -25,7 +25,7 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines walkSequenceOutputField
+    /// Defines WalkSequenceOutputField
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]
@@ -352,81 +352,87 @@ namespace Quadient.DataServices.Model.UsBatch
         Uscorrectionfootnote = 53,
         
         /// <summary>
+        /// Enum Outcomecategory for value: outcome_category
+        /// </summary>
+        [EnumMember(Value = "outcome_category")]
+        Outcomecategory = 54,
+        
+        /// <summary>
         /// Enum Outcomecodes for value: outcome_codes
         /// </summary>
         [EnumMember(Value = "outcome_codes")]
-        Outcomecodes = 54,
+        Outcomecodes = 55,
         
         /// <summary>
         /// Enum Walksequencenumber for value: walk_sequence_number
         /// </summary>
         [EnumMember(Value = "walk_sequence_number")]
-        Walksequencenumber = 55,
+        Walksequencenumber = 56,
         
         /// <summary>
         /// Enum Zipcode for value: zip_code
         /// </summary>
         [EnumMember(Value = "zip_code")]
-        Zipcode = 56,
+        Zipcode = 57,
         
         /// <summary>
         /// Enum Custom1 for value: custom_1
         /// </summary>
         [EnumMember(Value = "custom_1")]
-        Custom1 = 57,
+        Custom1 = 58,
         
         /// <summary>
         /// Enum Custom2 for value: custom_2
         /// </summary>
         [EnumMember(Value = "custom_2")]
-        Custom2 = 58,
+        Custom2 = 59,
         
         /// <summary>
         /// Enum Custom3 for value: custom_3
         /// </summary>
         [EnumMember(Value = "custom_3")]
-        Custom3 = 59,
+        Custom3 = 60,
         
         /// <summary>
         /// Enum Custom4 for value: custom_4
         /// </summary>
         [EnumMember(Value = "custom_4")]
-        Custom4 = 60,
+        Custom4 = 61,
         
         /// <summary>
         /// Enum Custom5 for value: custom_5
         /// </summary>
         [EnumMember(Value = "custom_5")]
-        Custom5 = 61,
+        Custom5 = 62,
         
         /// <summary>
         /// Enum Custom6 for value: custom_6
         /// </summary>
         [EnumMember(Value = "custom_6")]
-        Custom6 = 62,
+        Custom6 = 63,
         
         /// <summary>
         /// Enum Custom7 for value: custom_7
         /// </summary>
         [EnumMember(Value = "custom_7")]
-        Custom7 = 63,
+        Custom7 = 64,
         
         /// <summary>
         /// Enum Custom8 for value: custom_8
         /// </summary>
         [EnumMember(Value = "custom_8")]
-        Custom8 = 64,
+        Custom8 = 65,
         
         /// <summary>
         /// Enum Custom9 for value: custom_9
         /// </summary>
         [EnumMember(Value = "custom_9")]
-        Custom9 = 65,
+        Custom9 = 66,
         
         /// <summary>
         /// Enum Custom10 for value: custom_10
         /// </summary>
         [EnumMember(Value = "custom_10")]
-        Custom10 = 66
+        Custom10 = 67
     }
 }

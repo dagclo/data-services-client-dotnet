@@ -25,7 +25,7 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines unitPlacement
+    /// Defines UnitPlacement
     /// </summary>
     
     [JsonConverter(typeof(StringEnumConverter))]

@@ -20,7 +20,7 @@ info:
 
     Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.
     
-    ## Paginationchange
+    ## Pagination
     Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
   
 basePath: /services/us-move-update/v1
@@ -251,7 +251,7 @@ paths:
       type: string
       description: The `job_id` of interest.
     get:
-      summary: Retrieve avaialble reportts.
+      summary: Retrieve avaialble reports.
       description: Gets the set of available reports ids. Retrieve the content of a report via the `/reports/{report_id}` endpoint.
       responses:
         '200':
@@ -444,6 +444,25 @@ definitions:
       - custom_8
       - custom_9
       - custom_10
+      
+  MoveUpdateOutcomeCode:
+    type: string
+    enum: 
+      - A1
+      - C1
+      - C2
+      - C3
+      - C4
+      - E1
+
+  MoveUpdateOutcomeCategory:
+    type: string
+    enum:
+      - Valid
+      - Corrected
+      - Invalid
+      - Skipped
+      - Doubtful
 
 
   MoveUpdateOutputField:
@@ -454,11 +473,8 @@ definitions:
       - move_date
       - move_type
       - organization
-      - address_line_1
-      - address_line_2
+      - address_lines
       - city_state_zip
-      - primary_address_line
-      - secondary_address_line
       - full_name
       - first_name
       - middle_name
@@ -474,6 +490,7 @@ definitions:
       - city
       - state
       - zip_code    
+      - outcome_category
       - outcome_codes
       - custom_1
       - custom_2
