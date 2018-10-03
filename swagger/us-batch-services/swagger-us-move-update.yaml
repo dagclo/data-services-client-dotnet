@@ -3,25 +3,25 @@ info:
   version: 0.1.0
   title: US Move Update
   description: |
-    This service offers the ability to update addresses of organizations and persons who have moved in the United States.
+    The US Move Update service offers the ability to update addresses of persons and organizations who have moved within the United States.
 
     ## Job execution
 
     The general flow to execute a batch job is to:
 
-    1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation. 
+    1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation. 
     2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing. 
     3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint.
-    4. Wait for the job status to enter `SUCCESS` or `FAILED`.
+    4. Wait for the job status to be updated to `SUCCESS` or `FAILED`.
     5. Download the records.
-    6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.
+    6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both input and output records.
 
     ## Records
 
-    Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.
+    The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.
     
     ## Pagination
-    Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
+    Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
   
 basePath: /services/us-move-update/v1
 paths:
@@ -29,7 +29,7 @@ paths:
     post:
       summary: Create a new job.
       description: |
-        Creates and configures a new US Move Update job. The input and output fields defines the schema and the order of the fields within records transmitted to and from the service. Job configuration cannot be changed after creation. After job creation, upload the records to be processed and then `_run` the job.
+        Creates and configures a US Move Update job. The input and output fields define the schema and the order of the fields within records transmitted to and from the service. Job configuration cannot be changed after creation. After job creation, upload the records to be processed and then use a POST request,  `_run`, to process the job.
       parameters:
       - name: job
         in: body
@@ -38,7 +38,7 @@ paths:
           $ref: '#/definitions/MoveUpdateJobCreationRequest'
       responses:
         '201':
-          description: Successful response
+          description: Successful response.
           schema:
             $ref: '#/definitions/JobSummary'
         default:
@@ -47,7 +47,7 @@ paths:
             $ref: '#/definitions/Error'
     get:
       summary: Retrieve summaries for of all of your jobs.
-      description: Get summary of existing jobs. You can filter this list to a specific user, provided you have access to more than just your account.
+      description: Retrieves a summary of existing jobs. You can filter this list to a specific user, provided you have access to more than just your account.
       parameters:
       - name: user_id
         in: query
@@ -56,7 +56,7 @@ paths:
         description: Filter the result to a specific `user_id`.
       responses:
         '200':
-          description: Successful response
+          description: Successful response.
           schema:
             $ref: '#/definitions/JobSummaryCollection'
         default:
@@ -65,16 +65,16 @@ paths:
             $ref: '#/definitions/Error'
     delete:
       summary: Remove all jobs.
-      description: Removes all of your US Move Update jobs.  You can filter this list to a specific user, provided you have access to more than just your account.
+      description: Removes all of your US Move Update jobs. You can filter this list to a specific user, provided you have access to more than just your account.
       parameters:
       - name: user_id
         in: query
         required: !!bool false
         type: string
-        description: Scopes the removal to a specific `user_id` only.
+        description: Filters the removal to a specific `user_id` only.
       responses:
         '200':
-          description: Successful response
+          description: Successful response.
         default:
           description: See additional details for the exact problem.
           schema:
@@ -90,10 +90,10 @@ paths:
     get:
       summary: Retrieve a specific job's details.
       description: |
-        Retrieves the details of the job. The details will include all of the configuration information used to create the job. The job's current status will also be included. Use the `/status` endpoint if you are polling to see when a job is complete.
+        Retrieves the details of the job. The details include all of the configuration information used to create the job. The job's current status is also included. Use the `/status` endpoint if you are polling to see when a job is complete.
       responses:
         '200':
-          description: Successful response
+          description: Successful response.
           schema:
             $ref: '#/definitions/MoveUpdateJob'
         default:
@@ -103,10 +103,10 @@ paths:
     delete:
       summary: Remove a specific job.
       description: |
-        Removes the data associated with the job and marks it as `DELETED`. All records (input and output) are removed. Reports are removed. The job will not appear in the collection of job summaries available from the `/jobs` endpoint. 
+        Removes the data associated with the job and marks it as `DELETED`. All records (input and output) are removed. The job does not appear in the collection of job summaries available from the `/jobs` endpoint. 
       responses:
         '200':
-          description: Successful response
+          description: Successful response.
         default:
           description: See additional details for the exact problem.
           schema:
@@ -122,10 +122,10 @@ paths:
     get:
       summary: Retrieve a job's current status.
       description: |
-        Get a job's status. Use this endpoint to determine when the job is finished. Records and reports may be retrieved when the status is `SUCCESS`. Additional notes may be provided in the response.     
+        Retrieves a job's status. Use this endpoint to determine when the job is finished. Records may be retrieved when the status is `SUCCESS`. Additional notes may be provided in the response.     
       responses:
         '200':
-          description: Successful response
+          description: Successful response.
           schema:
             $ref: '#/definitions/JobSummary'
         default:
@@ -142,7 +142,7 @@ paths:
       description: The `job_id` of interest.
     post:
       summary: Activate processing
-      description: Signal that record upload is finished and that the processing phase of the job can start. Monitor status of the job via the `/jobs/{job_id}/status` endpoint. 
+      description: Signals that record upload is finished and that the processing phase of the job can start. Monitor status of the job via the `/jobs/{job_id}/status` endpoint. 
       responses:
         '202':
           description: The request for execution has been accepted. The job will be picked up and processed.
@@ -165,7 +165,7 @@ paths:
       description: The `job_id` of interest.
     post:
       summary: Upload records to the job.
-      description: Adds the given record to the job. The records must conform the the schema defined during job creation. Records may be uploaded in parallel. Call `GET` on `/records/pages` to retrieve the collection of valid record pages. Initiate processing via `_run` when record upload is finished.
+      description: Adds records to the job. The records must conform to the schema defined during job creation. Records may be uploaded in parallel. Call `GET` on `/records/pages` to retrieve the collection of valid record pages. Initiate processing via `_run` when record upload is finished.
       parameters:
       - name: record block
         in: body
@@ -173,7 +173,7 @@ paths:
           $ref: '#/definitions/Records'
       responses:
         '200':
-          description: The records have been received for processing
+          description: The records have been received for processing.
         default:
           description: See additional details for the exact problem.
           schema:
@@ -192,7 +192,7 @@ paths:
       parameters:
       - name: kind
         description: |
-          Specifies the kind of records pages you want (input or output).
+          Specifies the type of records pages you want, input or output.
         in: query
         required: !!bool true
         type: string
@@ -228,70 +228,14 @@ paths:
     get:
       summary: Retrieve a single record page.
       description: |
-        Gets the identified record page. The set of valid page IDs is returned from a `GET .../records/pages` endpoint. Since the page IDs are constant, they can be retrieved in any fashion that suits the caller (in parallel, multiple times).
+        Gets the specified record page. The set of valid page IDs is returned from a `GET .../records/pages` endpoint. Since the page IDs are constant, they can be retrieved in any fashion that suits the caller (for example, in parallel or multiple times).
       responses:
         '200':
-          description: The record page has been return
+          description: The record page has been returned.
           schema:
             $ref: '#/definitions/Records'
         '410':
           description: The records for this job have been deleted.
-          schema:
-            $ref: '#/definitions/Error'
-        default:
-          description: See additional details for the exact problem.
-          schema:
-            $ref: '#/definitions/Error'
-
-  /jobs/{job_id}/reports:
-    parameters:
-    - name: job_id
-      in: path
-      required: true
-      type: string
-      description: The `job_id` of interest.
-    get:
-      summary: Retrieve avaialble reports.
-      description: Gets the set of available reports ids. Retrieve the content of a report via the `/reports/{report_id}` endpoint.
-      responses:
-        '200':
-          description: A collection of report ids for this job.
-          schema:
-            $ref: '#/definitions/Reports'
-        '410':
-          description: The reports for this job have been deleted.
-          schema:
-            $ref: '#/definitions/Error'
-        default:
-          description: See additional details for the exact problem.
-          schema:
-            $ref: '#/definitions/Error'
-
-  /jobs/{job_id}/reports/{report_id}:
-    parameters:
-    - name: job_id
-      in: path
-      required: true
-      type: string
-      description: The `job_id` of interest.
-    - name: report_id
-      in: path
-      required: true
-      type: string
-      description: A `report_id`, as returned from the `{job_id}/reports` endpoint.
-    get:
-      summary: Retrieve a report.
-      description: |
-        Gets the identified report. The set of valid report Ids are returned from the `{job_id}/reports` endpoint.
-      produces:
-        - application/pdf
-      responses:
-        200:
-          description: The content of the report.
-          schema:
-            type: file        
-        '410':
-          description: The reports for this job have been deleted.
           schema:
             $ref: '#/definitions/Error'
         default:
@@ -305,7 +249,7 @@ definitions:
     properties:
       parent_job:
         description: |
-          The Job ID of the parent job.
+          The job ID of the parent job.
         type: string
       
       configuration:
@@ -320,7 +264,7 @@ definitions:
           $ref: '#/definitions/MoveUpdateOutputField'
   MoveUpdateJob:
     type: object
-    description: Defines the layout of records that will be uploaded/downloaded in this job.
+    description: Defines the layout of records that will be uploaded or downloaded in this job.
     allOf:
     - $ref: '#/definitions/JobSummary'
     - $ref: '#/definitions/MoveUpdateJobCreationRequest'
@@ -328,8 +272,6 @@ definitions:
   MoveUpdateConfiguration:
     type: object
     properties:
-      address_element_format:
-        $ref: '#/definitions/AddressElementFormat'
       address_casing:
         $ref: '#/definitions/Casing'
 
@@ -341,6 +283,8 @@ definitions:
         type: string
       job_status:
         $ref: '#/definitions/JobStatus'
+      job_status_details:
+        type: string
 
   JobSummaryCollection:
     type: object
@@ -355,7 +299,7 @@ definitions:
     type: object
     properties:
       page_ids:
-        description: A collection of page IDs that can be retrieved
+        description: A collection of page IDs that can be retrieved.
         type: array
         items:
           type: string
@@ -364,44 +308,27 @@ definitions:
     type: object
     properties:
       records:
-        description: A two-dimensional array containing records to be uploaded
+        description: A two-dimensional array containing records.
         type: array
         items:
           type: array
           items:
             type: string
 
-    example: { "records":[
-      ["0", "No change", null, {}, "1301 5th Ave", "Ste. 1300", "Seattle", "WA", "98101", false, true, false],
-      ["1", "New address", "2017-09-14", {"A2": "Family match"}, "1302 4th Lane", "", "Poulsbo", "WA", "98167", false, false, false]]
+    example: { 
+      "Note": "Given an output fields: `id, move_date, move_type, address_lines, city_state_zip, move_update_codes",
+      "records":[
+      ["0", "", "", "1301 5th Ave Ste. 1300", "Seattle WA 98101-2011", ""],
+      ["1", "2017-09-14", "F", 1302 4th St", "Poulsbo WA 98167-3334", "A2"]]
     }
 
-  ReportDescriptor:
-    type: object
-    properties:
-      id:
-        description: An id for retrieving the report.
-        type: string
-      name:
-        description: The name of the report
-        type: string
-
-  Reports:
-    type: object
-    properties:
-      reports:
-        description: An array of report descriptors
-        type: array
-        items:
-          $ref: '#/definitions/ReportDescriptor'
-          
-
   JobStatus:
+    description: Describes the current status of the job.
     type: string  
     enum:
       - CREATED
       - READY_TO_RUN
-      - RUNNING
+      - STARTED
       - SUCCESS
       - FAILURE
       - DELETED
@@ -412,13 +339,7 @@ definitions:
       - mixed_case
       - upper_case
 
-  AddressElementFormat:
-    type: string
-    enum: 
-      - standard
-      - standard_with_punctuation
-      - full_words
-
+    description: Controls how corrected address elements are abbreviated and whether to use punctuation. The preferred USPS format is 'standard'. This format does not have punctuation and has address elements abbreviated.
   MoveUpdateInputField:
     type: string
     enum:
@@ -431,9 +352,9 @@ definitions:
       - zip_code
       - city_state_zip
       - full_name
-      - first_name
+      - given_name
       - middle_name
-      - last_name
+      - family_name
       - custom_1
       - custom_2
       - custom_3
@@ -444,8 +365,16 @@ definitions:
       - custom_8
       - custom_9
       - custom_10
+
       
   MoveUpdateOutcomeCode:
+    description: | 
+      `A1` - Valid address
+      `C1` - Individual move found
+      `C2` - Family move found
+      `C3` - Organization move found
+      `C4` - Moved, but no forwarding address provided
+      `E1` - Address not valid
     type: string
     enum: 
       - A1
@@ -456,16 +385,18 @@ definitions:
       - E1
 
   MoveUpdateOutcomeCategory:
+    description: |
+      `No change` - No move was found for the address.
+      `Moved away` - A move was detected, but no new address was available.
+      `New address` - A move was found and returned.
     type: string
     enum:
-      - Valid
-      - Corrected
-      - Invalid
-      - Skipped
-      - Doubtful
-
+      - No_change
+      - Moved_away
+      - New_address
 
   MoveUpdateOutputField:
+    description: Specifies the output fields that are populated.
     type: string
     enum: 
       - id
@@ -476,9 +407,9 @@ definitions:
       - address_lines
       - city_state_zip
       - full_name
-      - first_name
+      - given_name
       - middle_name
-      - last_name
+      - family_name
       - urbanization
       - primary_number
       - pre_directional
@@ -490,8 +421,8 @@ definitions:
       - city
       - state
       - zip_code    
-      - outcome_category
-      - outcome_codes
+      - move_update_category
+      - move_update_codes
       - custom_1
       - custom_2
       - custom_3

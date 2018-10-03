@@ -1,7 +1,7 @@
 /* 
  * US-Appends
  *
- * Provides Suppression information to your US contacts. This service offers the ability to update addresses of persons who have moved, inform you in case of incarceration, death or if they have opted in to a do-not-mail registry.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The US Appends service is a Quadient Cloud Data Services offering designed to help you improve and enhance the quality of your US-based contact data. The service can be used as a component of regular list cleansing and maintenance. The service flags contact records that match entries on do-not-mail and deceased person lists. It identifies addresses within correctional facilities. It also provides and corrects secondary data for an address, such as apartment number or floor number.  This service can reduce mailing costs by identifying people that are unwilling or unable to respond or have an undeliverable address. It helps bring into focus for your assessment whether a potential communication recipient should be removed from a list.   ## Key functionality: * Flags records that match entries on do-not-mail, deceased person, and correctional facility lists. * Appends missing apartment number unit information to an address to improve address quality.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -25,8 +25,9 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines USAppendsOutputField
+    /// Specifies the output fields that are populated.
     /// </summary>
+    /// <value>Specifies the output fields that are populated.</value>
     
     [JsonConverter(typeof(StringEnumConverter))]
     
@@ -94,81 +95,111 @@ namespace Quadient.DataServices.Model.UsBatch
         Apartmentaddressline = 10,
         
         /// <summary>
+        /// Enum Apartmentappendcodes for value: apartment_append_codes
+        /// </summary>
+        [EnumMember(Value = "apartment_append_codes")]
+        Apartmentappendcodes = 11,
+        
+        /// <summary>
+        /// Enum Namefullname for value: name_full_name
+        /// </summary>
+        [EnumMember(Value = "name_full_name")]
+        Namefullname = 12,
+        
+        /// <summary>
+        /// Enum Namegivenname for value: name_given_name
+        /// </summary>
+        [EnumMember(Value = "name_given_name")]
+        Namegivenname = 13,
+        
+        /// <summary>
+        /// Enum Namemiddlename for value: name_middle_name
+        /// </summary>
+        [EnumMember(Value = "name_middle_name")]
+        Namemiddlename = 14,
+        
+        /// <summary>
+        /// Enum Namefamilyname for value: name_family_name
+        /// </summary>
+        [EnumMember(Value = "name_family_name")]
+        Namefamilyname = 15,
+        
+        /// <summary>
+        /// Enum Nameappendcodes for value: name_append_codes
+        /// </summary>
+        [EnumMember(Value = "name_append_codes")]
+        Nameappendcodes = 16,
+        
+        /// <summary>
         /// Enum Gender for value: gender
         /// </summary>
         [EnumMember(Value = "gender")]
-        Gender = 11,
+        Gender = 17,
         
         /// <summary>
-        /// Enum Outcomecategory for value: outcome_category
+        /// Enum Gendercodes for value: gender_codes
         /// </summary>
-        [EnumMember(Value = "outcome_category")]
-        Outcomecategory = 12,
-        
-        /// <summary>
-        /// Enum Outcomecodes for value: outcome_codes
-        /// </summary>
-        [EnumMember(Value = "outcome_codes")]
-        Outcomecodes = 13,
+        [EnumMember(Value = "gender_codes")]
+        Gendercodes = 18,
         
         /// <summary>
         /// Enum Custom1 for value: custom_1
         /// </summary>
         [EnumMember(Value = "custom_1")]
-        Custom1 = 14,
+        Custom1 = 19,
         
         /// <summary>
         /// Enum Custom2 for value: custom_2
         /// </summary>
         [EnumMember(Value = "custom_2")]
-        Custom2 = 15,
+        Custom2 = 20,
         
         /// <summary>
         /// Enum Custom3 for value: custom_3
         /// </summary>
         [EnumMember(Value = "custom_3")]
-        Custom3 = 16,
+        Custom3 = 21,
         
         /// <summary>
         /// Enum Custom4 for value: custom_4
         /// </summary>
         [EnumMember(Value = "custom_4")]
-        Custom4 = 17,
+        Custom4 = 22,
         
         /// <summary>
         /// Enum Custom5 for value: custom_5
         /// </summary>
         [EnumMember(Value = "custom_5")]
-        Custom5 = 18,
+        Custom5 = 23,
         
         /// <summary>
         /// Enum Custom6 for value: custom_6
         /// </summary>
         [EnumMember(Value = "custom_6")]
-        Custom6 = 19,
+        Custom6 = 24,
         
         /// <summary>
         /// Enum Custom7 for value: custom_7
         /// </summary>
         [EnumMember(Value = "custom_7")]
-        Custom7 = 20,
+        Custom7 = 25,
         
         /// <summary>
         /// Enum Custom8 for value: custom_8
         /// </summary>
         [EnumMember(Value = "custom_8")]
-        Custom8 = 21,
+        Custom8 = 26,
         
         /// <summary>
         /// Enum Custom9 for value: custom_9
         /// </summary>
         [EnumMember(Value = "custom_9")]
-        Custom9 = 22,
+        Custom9 = 27,
         
         /// <summary>
         /// Enum Custom10 for value: custom_10
         /// </summary>
         [EnumMember(Value = "custom_10")]
-        Custom10 = 23
+        Custom10 = 28
     }
 }

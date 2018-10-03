@@ -1,7 +1,7 @@
 /* 
  * US Move Update
  *
- * This service offers the ability to update addresses of organizations and persons who have moved in the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The US Move Update service offers the ability to update addresses of persons and organizations who have moved within the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -25,8 +25,9 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines MoveUpdateOutcomeCategory
+    /// &#x60;No change&#x60; - No move was found for the address. &#x60;Moved away&#x60; - A move was detected, but no new address was available. &#x60;New address&#x60; - A move was found and returned. 
     /// </summary>
+    /// <value>&#x60;No change&#x60; - No move was found for the address. &#x60;Moved away&#x60; - A move was detected, but no new address was available. &#x60;New address&#x60; - A move was found and returned. </value>
     
     [JsonConverter(typeof(StringEnumConverter))]
     
@@ -34,33 +35,21 @@ namespace Quadient.DataServices.Model.UsBatch
     {
         
         /// <summary>
-        /// Enum Valid for value: Valid
+        /// Enum Nochange for value: No_change
         /// </summary>
-        [EnumMember(Value = "Valid")]
-        Valid = 1,
+        [EnumMember(Value = "No_change")]
+        Nochange = 1,
         
         /// <summary>
-        /// Enum Corrected for value: Corrected
+        /// Enum Movedaway for value: Moved_away
         /// </summary>
-        [EnumMember(Value = "Corrected")]
-        Corrected = 2,
+        [EnumMember(Value = "Moved_away")]
+        Movedaway = 2,
         
         /// <summary>
-        /// Enum Invalid for value: Invalid
+        /// Enum Newaddress for value: New_address
         /// </summary>
-        [EnumMember(Value = "Invalid")]
-        Invalid = 3,
-        
-        /// <summary>
-        /// Enum Skipped for value: Skipped
-        /// </summary>
-        [EnumMember(Value = "Skipped")]
-        Skipped = 4,
-        
-        /// <summary>
-        /// Enum Doubtful for value: Doubtful
-        /// </summary>
-        [EnumMember(Value = "Doubtful")]
-        Doubtful = 5
+        [EnumMember(Value = "New_address")]
+        Newaddress = 3
     }
 }

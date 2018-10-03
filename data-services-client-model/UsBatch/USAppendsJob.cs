@@ -1,7 +1,7 @@
 /* 
  * US-Appends
  *
- * Provides Suppression information to your US contacts. This service offers the ability to update addresses of persons who have moved, inform you in case of incarceration, death or if they have opted in to a do-not-mail registry.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The US Appends service is a Quadient Cloud Data Services offering designed to help you improve and enhance the quality of your US-based contact data. The service can be used as a component of regular list cleansing and maintenance. The service flags contact records that match entries on do-not-mail and deceased person lists. It identifies addresses within correctional facilities. It also provides and corrects secondary data for an address, such as apartment number or floor number.  This service can reduce mailing costs by identifying people that are unwilling or unable to respond or have an undeliverable address. It helps bring into focus for your assessment whether a potential communication recipient should be removed from a list.   ## Key functionality: * Flags records that match entries on do-not-mail, deceased person, and correctional facility lists. * Appends missing apartment number unit information to an address to improve address quality.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -25,7 +25,7 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines the layout of records that will be uploaded/downloaded in this job.
+    /// Defines the layout of records that will be uploaded or downloaded in this job.
     /// </summary>
     [DataContract]
     public partial class USAppendsJob : IEquatable<USAppendsJob>, IValidatableObject
@@ -35,14 +35,16 @@ namespace Quadient.DataServices.Model.UsBatch
         /// </summary>
         /// <param name="JobId">JobId.</param>
         /// <param name="JobStatus">JobStatus.</param>
-        /// <param name="ParentJob">The Job ID of the parent job. .</param>
+        /// <param name="JobStatusDetails">JobStatusDetails.</param>
+        /// <param name="ParentJob">The job ID of the parent job. .</param>
         /// <param name="Configuration">Configuration.</param>
         /// <param name="InputFields">InputFields.</param>
         /// <param name="OutputFields">OutputFields.</param>
-        public USAppendsJob(string JobId = default(string), JobStatus JobStatus = default(JobStatus), string ParentJob = default(string), USAppendsConfiguration Configuration = default(USAppendsConfiguration), List<USAppendsInputField> InputFields = default(List<USAppendsInputField>), List<USAppendsOutputField> OutputFields = default(List<USAppendsOutputField>))
+        public USAppendsJob(string JobId = default(string), JobStatus JobStatus = default(JobStatus), string JobStatusDetails = default(string), string ParentJob = default(string), USAppendsConfiguration Configuration = default(USAppendsConfiguration), List<USAppendsInputField> InputFields = default(List<USAppendsInputField>), List<USAppendsOutputField> OutputFields = default(List<USAppendsOutputField>))
         {
             this.JobId = JobId;
             this.JobStatus = JobStatus;
+            this.JobStatusDetails = JobStatusDetails;
             this.ParentJob = ParentJob;
             this.Configuration = Configuration;
             this.InputFields = InputFields;
@@ -62,9 +64,15 @@ namespace Quadient.DataServices.Model.UsBatch
         public JobStatus JobStatus { get; set; }
 
         /// <summary>
-        /// The Job ID of the parent job. 
+        /// Gets or Sets JobStatusDetails
         /// </summary>
-        /// <value>The Job ID of the parent job. </value>
+        [DataMember(Name="job_status_details", EmitDefaultValue=false)]
+        public string JobStatusDetails { get; set; }
+
+        /// <summary>
+        /// The job ID of the parent job. 
+        /// </summary>
+        /// <value>The job ID of the parent job. </value>
         [DataMember(Name="parent_job", EmitDefaultValue=false)]
         public string ParentJob { get; set; }
 
@@ -96,6 +104,7 @@ namespace Quadient.DataServices.Model.UsBatch
             sb.Append("class USAppendsJob {\n");
             sb.Append("  JobId: ").Append(JobId).Append("\n");
             sb.Append("  JobStatus: ").Append(JobStatus).Append("\n");
+            sb.Append("  JobStatusDetails: ").Append(JobStatusDetails).Append("\n");
             sb.Append("  ParentJob: ").Append(ParentJob).Append("\n");
             sb.Append("  Configuration: ").Append(Configuration).Append("\n");
             sb.Append("  InputFields: ").Append(InputFields).Append("\n");
@@ -145,6 +154,11 @@ namespace Quadient.DataServices.Model.UsBatch
                     this.JobStatus.Equals(input.JobStatus))
                 ) && 
                 (
+                    this.JobStatusDetails == input.JobStatusDetails ||
+                    (this.JobStatusDetails != null &&
+                    this.JobStatusDetails.Equals(input.JobStatusDetails))
+                ) && 
+                (
                     this.ParentJob == input.ParentJob ||
                     (this.ParentJob != null &&
                     this.ParentJob.Equals(input.ParentJob))
@@ -179,6 +193,8 @@ namespace Quadient.DataServices.Model.UsBatch
                     hashCode = hashCode * 59 + this.JobId.GetHashCode();
                 if (this.JobStatus != null)
                     hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
+                if (this.JobStatusDetails != null)
+                    hashCode = hashCode * 59 + this.JobStatusDetails.GetHashCode();
                 if (this.ParentJob != null)
                     hashCode = hashCode * 59 + this.ParentJob.GetHashCode();
                 if (this.Configuration != null)
