@@ -28,7 +28,38 @@ info:
     
     ## Pagination
     Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
-  
+    
+    ## Outcome codes
+    
+    ### Apartment Append
+    `A1` - Apartment information present confirmed as correct. No Changes made.
+    `C1` - Apartment information appended to address.
+    `C4` - Lookup attempted, no apartment found.
+    `E1` - Address was invalid as input. No changes made.
+    `E2` - No contact information supplied. No changes made.
+    `E3` - Multiple contacts on input. No changes made.
+    `E4` - No lookup attempted.
+
+    ### Name Append
+    `C1` - Name appended.
+    `C4` - Name not appended.
+
+    ### Gender Append
+    `C1` - Gender Added
+    `C2` - No Gender added
+    `C3` - Multiple names. No gender assigned.
+    `C4` - Ambiguous result. No gender assigned.
+
+    ## Field value defintions
+
+    ### Gender Append
+    `gender`, possible values:
+    `M` - Male
+    `F` - Female
+    `U` - Unable to assign / Ambiguous
+
+
+    
 basePath: /services/us-appends/v1
 paths:
   /jobs:

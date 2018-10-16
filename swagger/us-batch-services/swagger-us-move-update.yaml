@@ -19,10 +19,26 @@ info:
     ## Records
 
     The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.
-    
+
     ## Pagination
     Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
-  
+
+    ## Outcome codes
+    `move_update_outcome_codes` -- One or more of the following, space separated, are possible :
+    * `A1` - Address verified, move lookup performed.
+    * `E1` - Address not verified, no move lookup performed.
+    * `C1` - Individual move
+    * `C2` - Family move
+    * `C3` - Organization move
+    * `C4` - Move with no forwarding address.
+
+    ## Outcome category
+    `move_update_outcome_category` - possible values are:
+    * `No change` - No move was found for the address.
+    * `Moved away` - A move was detected, but no new address was available.
+    * `New address` - A move was found and returned.
+
+
 basePath: /services/us-move-update/v1
 paths:
   /jobs:
@@ -334,12 +350,12 @@ definitions:
       - DELETED
   
   Casing:
+    description: Controls the casing of output address elements.
     type: string
     enum: 
       - mixed_case
       - upper_case
 
-    description: Controls how corrected address elements are abbreviated and whether to use punctuation. The preferred USPS format is 'standard'. This format does not have punctuation and has address elements abbreviated.
   MoveUpdateInputField:
     type: string
     enum:
@@ -366,34 +382,6 @@ definitions:
       - custom_9
       - custom_10
 
-      
-  MoveUpdateOutcomeCode:
-    description: | 
-      `A1` - Valid address
-      `C1` - Individual move found
-      `C2` - Family move found
-      `C3` - Organization move found
-      `C4` - Moved, but no forwarding address provided
-      `E1` - Address not valid
-    type: string
-    enum: 
-      - A1
-      - C1
-      - C2
-      - C3
-      - C4
-      - E1
-
-  MoveUpdateOutcomeCategory:
-    description: |
-      `No change` - No move was found for the address.
-      `Moved away` - A move was detected, but no new address was available.
-      `New address` - A move was found and returned.
-    type: string
-    enum:
-      - No_change
-      - Moved_away
-      - New_address
 
   MoveUpdateOutputField:
     description: Specifies the output fields that are populated.
