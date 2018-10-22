@@ -22,8 +22,10 @@ namespace Quadient.DataServices.Utility
             {
                 try
                 {
-                    var resultContent = message.Content.ReadAsStringAsync().Result;
-                    var errorDetail = JsonConvert.DeserializeObject<IDictionary<string, object>>(resultContent);
+                    var resultContent = message.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    var errorDetail = resultContent != null
+		                ? JsonConvert.DeserializeObject<IDictionary<string, object>>(resultContent)
+		                : null;
                     string serviceMessage = null;
                     IDictionary<string, object> additionalDetails = null;
                     if (errorDetail?.ContainsKey("message") == true)
