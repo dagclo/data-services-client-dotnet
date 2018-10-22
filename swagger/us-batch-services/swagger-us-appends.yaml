@@ -32,7 +32,8 @@ info:
     ## Outcome codes
     
     ### Apartment Append
-    `A1` - Apartment information present confirmed as correct. No Changes made.
+    `A1` - Apartment information confirmed to be correct for the individual. No Changes made.
+    `A2` - Apartment information present confirmed to be correct for the address. No Changes made.
     `C1` - Apartment information appended to address.
     `C4` - Lookup attempted, no apartment found.
     `E1` - Address was invalid as input. No changes made.
@@ -57,6 +58,8 @@ info:
     `M` - Male
     `F` - Female
     `U` - Unable to assign / Ambiguous
+
+
 
 
     

@@ -338,8 +338,8 @@ definitions:
           $ref: '#/definitions/AddressLineFormatting'
       apply_casing_to_business:
           type: boolean
-      firm_placement:
-          $ref: '#/definitions/FirmPlacement'
+      organization_placement:
+          $ref: '#/definitions/OrganizationPlacement'
       keep_extra_information:
           type: boolean
       list_processor_name:
@@ -466,14 +466,13 @@ definitions:
     - standard
     - top_justified
 
-
-  FirmPlacement:
-    description: Controls where to place any firm information, if present. Firm information is a special type of business information.
+  OrganizationPlacement:
+    description: Controls where to place any firm information, if present. Organization information is a special type of business information.
     type: string
     enum: 
       - as_input
-      - move_to_business_if_empty
-      - move_to_business_always
+      - move_to_organization_if_empty
+      - move_to_organization_always
 
   PmbPlacement:
     description: Controls where any PMB (Personal Mail Box) information is to be placed.

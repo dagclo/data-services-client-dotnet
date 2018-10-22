@@ -46,10 +46,10 @@ namespace Quadient.DataServices.Model.UsBatch
         [DataMember(Name="address_line_formatting", EmitDefaultValue=false)]
         public AddressLineFormatting? AddressLineFormatting { get; set; }
         /// <summary>
-        /// Gets or Sets FirmPlacement
+        /// Gets or Sets OrganizationPlacement
         /// </summary>
-        [DataMember(Name="firm_placement", EmitDefaultValue=false)]
-        public FirmPlacement? FirmPlacement { get; set; }
+        [DataMember(Name="organization_placement", EmitDefaultValue=false)]
+        public OrganizationPlacement? OrganizationPlacement { get; set; }
         /// <summary>
         /// Gets or Sets PmbPlacement
         /// </summary>
@@ -72,7 +72,7 @@ namespace Quadient.DataServices.Model.UsBatch
         /// <param name="AddressCasing">AddressCasing.</param>
         /// <param name="AddressLineFormatting">AddressLineFormatting.</param>
         /// <param name="ApplyCasingToBusiness">ApplyCasingToBusiness.</param>
-        /// <param name="FirmPlacement">FirmPlacement.</param>
+        /// <param name="OrganizationPlacement">OrganizationPlacement.</param>
         /// <param name="KeepExtraInformation">KeepExtraInformation.</param>
         /// <param name="ListProcessorName">ListProcessorName.</param>
         /// <param name="MailersAddress">MailersAddress.</param>
@@ -86,13 +86,13 @@ namespace Quadient.DataServices.Model.UsBatch
         /// <param name="PreferredAddressType">PreferredAddressType.</param>
         /// <param name="RequireDpvValidatedSecondary">RequireDpvValidatedSecondary.</param>
         /// <param name="UnitPlacement">UnitPlacement.</param>
-        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), FirmPlacement? FirmPlacement = default(FirmPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
+        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), OrganizationPlacement? OrganizationPlacement = default(OrganizationPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
         {
             this.AddressElementFormat = AddressElementFormat;
             this.AddressCasing = AddressCasing;
             this.AddressLineFormatting = AddressLineFormatting;
             this.ApplyCasingToBusiness = ApplyCasingToBusiness;
-            this.FirmPlacement = FirmPlacement;
+            this.OrganizationPlacement = OrganizationPlacement;
             this.KeepExtraInformation = KeepExtraInformation;
             this.ListProcessorName = ListProcessorName;
             this.MailersAddress = MailersAddress;
@@ -193,7 +193,7 @@ namespace Quadient.DataServices.Model.UsBatch
             sb.Append("  AddressCasing: ").Append(AddressCasing).Append("\n");
             sb.Append("  AddressLineFormatting: ").Append(AddressLineFormatting).Append("\n");
             sb.Append("  ApplyCasingToBusiness: ").Append(ApplyCasingToBusiness).Append("\n");
-            sb.Append("  FirmPlacement: ").Append(FirmPlacement).Append("\n");
+            sb.Append("  OrganizationPlacement: ").Append(OrganizationPlacement).Append("\n");
             sb.Append("  KeepExtraInformation: ").Append(KeepExtraInformation).Append("\n");
             sb.Append("  ListProcessorName: ").Append(ListProcessorName).Append("\n");
             sb.Append("  MailersAddress: ").Append(MailersAddress).Append("\n");
@@ -262,9 +262,9 @@ namespace Quadient.DataServices.Model.UsBatch
                     this.ApplyCasingToBusiness.Equals(input.ApplyCasingToBusiness))
                 ) && 
                 (
-                    this.FirmPlacement == input.FirmPlacement ||
-                    (this.FirmPlacement != null &&
-                    this.FirmPlacement.Equals(input.FirmPlacement))
+                    this.OrganizationPlacement == input.OrganizationPlacement ||
+                    (this.OrganizationPlacement != null &&
+                    this.OrganizationPlacement.Equals(input.OrganizationPlacement))
                 ) && 
                 (
                     this.KeepExtraInformation == input.KeepExtraInformation ||
@@ -350,8 +350,8 @@ namespace Quadient.DataServices.Model.UsBatch
                     hashCode = hashCode * 59 + this.AddressLineFormatting.GetHashCode();
                 if (this.ApplyCasingToBusiness != null)
                     hashCode = hashCode * 59 + this.ApplyCasingToBusiness.GetHashCode();
-                if (this.FirmPlacement != null)
-                    hashCode = hashCode * 59 + this.FirmPlacement.GetHashCode();
+                if (this.OrganizationPlacement != null)
+                    hashCode = hashCode * 59 + this.OrganizationPlacement.GetHashCode();
                 if (this.KeepExtraInformation != null)
                     hashCode = hashCode * 59 + this.KeepExtraInformation.GetHashCode();
                 if (this.ListProcessorName != null)
