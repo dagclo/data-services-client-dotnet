@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// ServicesEnumeration
     /// </summary>
     [DataContract]
-    public partial class ServicesEnumeration :  IEquatable<ServicesEnumeration>, IValidatableObject
+    public partial class ServicesEnumeration : IEquatable<ServicesEnumeration>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServicesEnumeration" /> class.

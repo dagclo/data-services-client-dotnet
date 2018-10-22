@@ -94,7 +94,7 @@ namespace Quadient.DataServices.Api
                                           "application/json");
                 using (var result = await _authClient.SendAsync(httpRequest, cancellationToken))
                 {
-                    result.EnsureSuccess();
+                    await result.EnsureSuccessAsync();
                     var resultContent = await result.Content.ReadAsStringAsync();
                     _session = DeserializeObject<Session>(resultContent);
                 }
@@ -171,7 +171,7 @@ namespace Quadient.DataServices.Api
 
                 using (var result = await _httpClient.SendAsync(httpRequest, cancellationToken))
                 {
-                    result.EnsureSuccess();
+                    await result.EnsureSuccessAsync();
                     var resultContent = await result.Content.ReadAsStringAsync();
                     return DeserializeObject<R>(resultContent);
                 }

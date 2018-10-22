@@ -1,7 +1,7 @@
 /* 
  * Walk Sequence
  *
- * Performs USPS CASS processing and appends USPS Walk Sequence numbers to mail pieces. Properly walk sequenced mailings may qualify for USPS mailing discounts.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The Walk Sequence service performs USPS® CASS™ processing and appends USPS Walk Sequence numbers to mail pieces. Mailings that target specific ZIP Codes or neighborhoods are good candidates for the Walk Sequence service.  A mailing that is sorted in Walk Sequence order may qualify for USPS High Density and Saturation mailing discounts. Adding Walk Sqeunce data to mailings can lower your postage costs.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload the records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete the job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both the input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// Defines WalkSequenceInputField
@@ -33,45 +33,124 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum WalkSequenceInputField
     {
         
-        address_block = 1,
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
         
-        address_line_1 = 2,
+        /// <summary>
+        /// Enum Addressblock for value: address_block
+        /// </summary>
+        [EnumMember(Value = "address_block")]
+        Addressblock = 2,
         
-        address_line_2 = 3,
+        /// <summary>
+        /// Enum Organization for value: organization
+        /// </summary>
+        [EnumMember(Value = "organization")]
+        Organization = 3,
         
-        organization = 4,
+        /// <summary>
+        /// Enum Urbanization for value: urbanization
+        /// </summary>
+        [EnumMember(Value = "urbanization")]
+        Urbanization = 4,
         
-        city = 5,
+        /// <summary>
+        /// Enum Addressline1 for value: address_line_1
+        /// </summary>
+        [EnumMember(Value = "address_line_1")]
+        Addressline1 = 5,
         
-        city_state_zip = 6,
+        /// <summary>
+        /// Enum Addressline2 for value: address_line_2
+        /// </summary>
+        [EnumMember(Value = "address_line_2")]
+        Addressline2 = 6,
         
-        custom_1 = 7,
+        /// <summary>
+        /// Enum Citystatezip for value: city_state_zip
+        /// </summary>
+        [EnumMember(Value = "city_state_zip")]
+        Citystatezip = 7,
         
-        custom_10 = 8,
+        /// <summary>
+        /// Enum City for value: city
+        /// </summary>
+        [EnumMember(Value = "city")]
+        City = 8,
         
-        custom_2 = 9,
+        /// <summary>
+        /// Enum State for value: state
+        /// </summary>
+        [EnumMember(Value = "state")]
+        State = 9,
         
-        custom_3 = 10,
+        /// <summary>
+        /// Enum Zipcode for value: zip_code
+        /// </summary>
+        [EnumMember(Value = "zip_code")]
+        Zipcode = 10,
         
-        custom_4 = 11,
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 11,
         
-        custom_5 = 12,
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 12,
         
-        custom_6 = 13,
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 13,
         
-        custom_7 = 14,
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 14,
         
-        custom_8 = 15,
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 15,
         
-        custom_9 = 16,
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 16,
         
-        id = 17,
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 17,
         
-        state = 18,
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 18,
         
-        urbanization = 19,
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 19,
         
-        zip_code = 20
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 20
     }
-    
 }

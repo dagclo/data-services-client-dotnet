@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// PriceSettingRequest
     /// </summary>
     [DataContract]
-    public partial class PriceSettingRequest :  IEquatable<PriceSettingRequest>, IValidatableObject
+    public partial class PriceSettingRequest : IEquatable<PriceSettingRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PriceSettingRequest" /> class.

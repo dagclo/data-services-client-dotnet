@@ -82,5 +82,4 @@ namespace Quadient.DataServices.Model.Job
         [EnumMember(Value = "DELETED")]
         DELETED = 8
     }
-
 }

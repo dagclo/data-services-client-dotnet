@@ -1,7 +1,7 @@
 /* 
  * US Move Update
  *
- * This service offers the ability to update addresses of organizations and persons who have moved in the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Paginationchange Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The US Move Update service offers the ability to update addresses of persons and organizations who have moved within the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.  ## Outcome codes `move_update_outcome_codes` - - One or more of the following, space separated, are possible : * `A1` - Address verified, move lookup performed. * `E1` - Address not verified, no move lookup performed. * `C1` - Individual move * `C2` - Family move * `C3` - Organization move * `C4` - Move with no forwarding address.  ## Outcome category `move_update_outcome_category` - possible values are: * `No change` - No move was found for the address. * `Moved away` - A move was detected, but no new address was available. * `New address` - A move was found and returned. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// Defines MoveUpdateInputField
@@ -33,49 +33,136 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum MoveUpdateInputField
     {
         
-        id = 1,
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
         
-        address_line_1 = 2,
+        /// <summary>
+        /// Enum Addressline1 for value: address_line_1
+        /// </summary>
+        [EnumMember(Value = "address_line_1")]
+        Addressline1 = 2,
         
-        address_line_2 = 3,
+        /// <summary>
+        /// Enum Addressline2 for value: address_line_2
+        /// </summary>
+        [EnumMember(Value = "address_line_2")]
+        Addressline2 = 3,
         
-        organization = 4,
+        /// <summary>
+        /// Enum Organization for value: organization
+        /// </summary>
+        [EnumMember(Value = "organization")]
+        Organization = 4,
         
-        city = 5,
+        /// <summary>
+        /// Enum City for value: city
+        /// </summary>
+        [EnumMember(Value = "city")]
+        City = 5,
         
-        state = 6,
+        /// <summary>
+        /// Enum State for value: state
+        /// </summary>
+        [EnumMember(Value = "state")]
+        State = 6,
         
-        zip_code = 7,
+        /// <summary>
+        /// Enum Zipcode for value: zip_code
+        /// </summary>
+        [EnumMember(Value = "zip_code")]
+        Zipcode = 7,
         
-        city_state_zip = 8,
+        /// <summary>
+        /// Enum Citystatezip for value: city_state_zip
+        /// </summary>
+        [EnumMember(Value = "city_state_zip")]
+        Citystatezip = 8,
         
-        full_name = 9,
+        /// <summary>
+        /// Enum Fullname for value: full_name
+        /// </summary>
+        [EnumMember(Value = "full_name")]
+        Fullname = 9,
         
-        first_name = 10,
+        /// <summary>
+        /// Enum Givenname for value: given_name
+        /// </summary>
+        [EnumMember(Value = "given_name")]
+        Givenname = 10,
         
-        middle_name = 11,
+        /// <summary>
+        /// Enum Middlename for value: middle_name
+        /// </summary>
+        [EnumMember(Value = "middle_name")]
+        Middlename = 11,
         
-        last_name = 12,
+        /// <summary>
+        /// Enum Familyname for value: family_name
+        /// </summary>
+        [EnumMember(Value = "family_name")]
+        Familyname = 12,
         
-        custom_1 = 13,
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 13,
         
-        custom_2 = 14,
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 14,
         
-        custom_3 = 15,
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 15,
         
-        custom_4 = 16,
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 16,
         
-        custom_5 = 17,
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 17,
         
-        custom_6 = 18,
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 18,
         
-        custom_7 = 19,
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 19,
         
-        custom_8 = 20,
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 20,
         
-        custom_9 = 21,
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 21,
         
-        custom_10 = 22
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 22
     }
-    
 }

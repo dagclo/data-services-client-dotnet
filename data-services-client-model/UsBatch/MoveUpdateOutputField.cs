@@ -1,7 +1,7 @@
 /* 
  * US Move Update
  *
- * This service offers the ability to update addresses of organizations and persons who have moved in the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Paginationchange Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The US Move Update service offers the ability to update addresses of persons and organizations who have moved within the United States.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.  ## Outcome codes `move_update_outcome_codes` - - One or more of the following, space separated, are possible : * `A1` - Address verified, move lookup performed. * `E1` - Address not verified, no move lookup performed. * `C1` - Individual move * `C2` - Family move * `C3` - Organization move * `C4` - Move with no forwarding address.  ## Outcome category `move_update_outcome_category` - possible values are: * `No change` - No move was found for the address. * `Moved away` - A move was detected, but no new address was available. * `New address` - A move was found and returned. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -22,86 +22,220 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines MoveUpdateOutputField
+    /// Specifies the output fields that are populated.
     /// </summary>
+    /// <value>Specifies the output fields that are populated.</value>
     
     [JsonConverter(typeof(StringEnumConverter))]
     
     public enum MoveUpdateOutputField
     {
         
-        id = 1,
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
         
-        address_type = 2,
+        /// <summary>
+        /// Enum Addresstype for value: address_type
+        /// </summary>
+        [EnumMember(Value = "address_type")]
+        Addresstype = 2,
         
-        move_date = 3,
+        /// <summary>
+        /// Enum Movedate for value: move_date
+        /// </summary>
+        [EnumMember(Value = "move_date")]
+        Movedate = 3,
         
-        organization = 4,
+        /// <summary>
+        /// Enum Movetype for value: move_type
+        /// </summary>
+        [EnumMember(Value = "move_type")]
+        Movetype = 4,
         
-        address_line_1 = 5,
+        /// <summary>
+        /// Enum Organization for value: organization
+        /// </summary>
+        [EnumMember(Value = "organization")]
+        Organization = 5,
         
-        address_line_2 = 6,
+        /// <summary>
+        /// Enum Addresslines for value: address_lines
+        /// </summary>
+        [EnumMember(Value = "address_lines")]
+        Addresslines = 6,
         
-        city_state_zip = 7,
+        /// <summary>
+        /// Enum Citystatezip for value: city_state_zip
+        /// </summary>
+        [EnumMember(Value = "city_state_zip")]
+        Citystatezip = 7,
         
-        primary_address_line = 8,
+        /// <summary>
+        /// Enum Fullname for value: full_name
+        /// </summary>
+        [EnumMember(Value = "full_name")]
+        Fullname = 8,
         
-        secondary_address_line = 9,
+        /// <summary>
+        /// Enum Givenname for value: given_name
+        /// </summary>
+        [EnumMember(Value = "given_name")]
+        Givenname = 9,
         
-        full_name = 10,
+        /// <summary>
+        /// Enum Middlename for value: middle_name
+        /// </summary>
+        [EnumMember(Value = "middle_name")]
+        Middlename = 10,
         
-        first_name = 11,
+        /// <summary>
+        /// Enum Familyname for value: family_name
+        /// </summary>
+        [EnumMember(Value = "family_name")]
+        Familyname = 11,
         
-        middle_name = 12,
+        /// <summary>
+        /// Enum Urbanization for value: urbanization
+        /// </summary>
+        [EnumMember(Value = "urbanization")]
+        Urbanization = 12,
         
-        last_name = 13,
+        /// <summary>
+        /// Enum Primarynumber for value: primary_number
+        /// </summary>
+        [EnumMember(Value = "primary_number")]
+        Primarynumber = 13,
         
-        urbanization = 14,
+        /// <summary>
+        /// Enum Predirectional for value: pre_directional
+        /// </summary>
+        [EnumMember(Value = "pre_directional")]
+        Predirectional = 14,
         
-        primary_number = 15,
+        /// <summary>
+        /// Enum Streetname for value: street_name
+        /// </summary>
+        [EnumMember(Value = "street_name")]
+        Streetname = 15,
         
-        pre_directional = 16,
+        /// <summary>
+        /// Enum Streetsuffix for value: street_suffix
+        /// </summary>
+        [EnumMember(Value = "street_suffix")]
+        Streetsuffix = 16,
         
-        street_name = 17,
+        /// <summary>
+        /// Enum Postdirectional for value: post_directional
+        /// </summary>
+        [EnumMember(Value = "post_directional")]
+        Postdirectional = 17,
         
-        street_suffix = 18,
+        /// <summary>
+        /// Enum Unitdesignator for value: unit_designator
+        /// </summary>
+        [EnumMember(Value = "unit_designator")]
+        Unitdesignator = 18,
         
-        post_directional = 19,
+        /// <summary>
+        /// Enum Unitnumber for value: unit_number
+        /// </summary>
+        [EnumMember(Value = "unit_number")]
+        Unitnumber = 19,
         
-        unit_designator = 20,
+        /// <summary>
+        /// Enum City for value: city
+        /// </summary>
+        [EnumMember(Value = "city")]
+        City = 20,
         
-        unit_number = 21,
+        /// <summary>
+        /// Enum State for value: state
+        /// </summary>
+        [EnumMember(Value = "state")]
+        State = 21,
         
-        city = 22,
+        /// <summary>
+        /// Enum Zipcode for value: zip_code
+        /// </summary>
+        [EnumMember(Value = "zip_code")]
+        Zipcode = 22,
         
-        state = 23,
+        /// <summary>
+        /// Enum Moveupdatecategory for value: move_update_category
+        /// </summary>
+        [EnumMember(Value = "move_update_category")]
+        Moveupdatecategory = 23,
         
-        zip_code = 24,
+        /// <summary>
+        /// Enum Moveupdatecodes for value: move_update_codes
+        /// </summary>
+        [EnumMember(Value = "move_update_codes")]
+        Moveupdatecodes = 24,
         
-        outcome_codes = 25,
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 25,
         
-        custom_1 = 26,
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 26,
         
-        custom_2 = 27,
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 27,
         
-        custom_3 = 28,
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 28,
         
-        custom_4 = 29,
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 29,
         
-        custom_5 = 30,
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 30,
         
-        custom_6 = 31,
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 31,
         
-        custom_7 = 32,
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 32,
         
-        custom_8 = 33,
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 33,
         
-        custom_9 = 34,
-        
-        custom_10 = 35
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 34
     }
-    
 }

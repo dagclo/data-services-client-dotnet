@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using Quadient.DataServies.Model.UsBatch;
+using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {

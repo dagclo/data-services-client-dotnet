@@ -38,7 +38,7 @@ namespace Quadient.DataServices.Utility
             {
                 foreach (var keyValuePair in additionalDetails)
                 {
-                    if (!Data.Contains(keyValuePair.Key))
+                    if (!Data.Contains(keyValuePair.Key) && keyValuePair.Value?.GetType().IsSerializable == true)
                     {
                         Data.Add(keyValuePair.Key, keyValuePair.Value);
                     }

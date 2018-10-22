@@ -1,0 +1,613 @@
+swagger: '2.0'
+info:
+  version: 0.1.0
+  title: "Walk Sequence"
+  description: |
+    The Walk Sequence service performs USPS® CASS™ processing and appends USPS Walk Sequence numbers to mail pieces. Mailings that target specific ZIP Codes or neighborhoods are good candidates for the Walk Sequence service.
+    
+    A mailing that is sorted in Walk Sequence order may qualify for USPS High Density and Saturation mailing discounts. Adding Walk Sqeunce data to mailings can lower your postage costs.
+
+    ## Job execution
+
+    The general flow to execute a batch job is to:
+
+    1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation. 
+    2. Upload the records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing. 
+    3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint.
+    4. Wait for the job status to be updated to `SUCCESS` or `FAILED`.
+    5. Download the records.
+    6. Delete the job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both the input and output records.
+
+    ## Records
+
+    The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.
+    
+    ## Pagination
+    Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
+  
+basePath: /services/walk-sequence/v1
+paths:
+  /jobs:
+    post:
+      summary: Create a new job.
+      description: |
+        Creates and configures a Walk Sequence job. The input and output fields define the schema and the order of the fields within records transmitted to and from the service. Job configuration cannot be changed after creation. After job creation, upload the records to be processed, and then use a POST request, `_run`, to process the job.
+      parameters:
+      - name: job
+        in: body
+        required: !!bool true
+        schema:
+          $ref: '#/definitions/WalkSequenceJobCreationRequest'
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/JobSummary'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+    get:
+      summary: Retrieve summaries for of all of your jobs.
+      description: Retrieves a summary of existing jobs. You can filter this list to a specific user, provided you have access to more than just your account.
+      parameters:
+      - name: user_id
+        in: query
+        required: !!bool false
+        type: string
+        description: Filter the result to a specific `user_id`.
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/JobSummaryCollection'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Remove all jobs.
+      description: Removes all of your Walk Sequence jobs. You can filter this list to a specific user, provided you have access to more than just your account.
+      parameters:
+      - name: user_id
+        in: query
+        required: !!bool false
+        type: string
+        description: Scopes the removal to a specific `user_id` only.
+      responses:
+        '200':
+          description: Successful response.
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve a specific job's details.
+      description: |
+        Retrieves the details of the job. The details include all of the configuration information used to create the job. The job's current status is also included. Use the `/status` endpoint if you are polling to see when a job is complete.
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/WalkSequenceJob'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Remove a specific job.
+      description: |
+        Removes the data associated with the job and marks it as `DELETED`. All records (input and output) are removed. Reports are removed. The job does not appear in the collection of job summaries available from the `/jobs` endpoint. 
+      responses:
+        '200':
+          description: Successful response.
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/status:
+    parameters:
+    - name: job_id
+      in: path
+      required: true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve a job's current status.
+      description: |
+        Retrieves a job's status. Use this endpoint to determine when the job is finished. Records and reports may be retrieved when the status is `SUCCESS`. Additional notes may be provided in the response.     
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/JobSummary'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/_run:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    post:
+      summary: Activate processing
+      description: Signals that record upload is finished and that the processing phase of the job can start. You can monitor status of the job via the `/jobs/{job_id}/status` endpoint. 
+      responses:
+        '202':
+          description: The request for execution has been accepted. The job will be picked up and processed.
+        '410':
+          description: The records for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /jobs/{job_id}/records:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    post:
+      summary: Upload records to the job.
+      description: Adds records to the job. The records must conform the schema defined during job creation. Records may be uploaded in parallel. Call `GET` on `/records/pages` to retrieve the collection of valid record pages. Initiate processing via `_run` when record upload is finished.
+      parameters:
+      - name: record block
+        in: body
+        schema:
+          $ref: '#/definitions/Records'
+      responses:
+        '200':
+          description: The records have been received for processing.
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/records/pages:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve input or output record page ids.
+      description: Gets the set of record pages that make up the input or output record set.
+      parameters:
+      - name: kind
+        description: |
+          Specifies the type of records pages you want, input or output.
+        in: query
+        required: !!bool true
+        type: string
+        enum:
+        - input
+        - output
+      responses:
+        '200':
+          description: The record pages have been returned.
+          schema:
+            $ref: '#/definitions/RecordPages'
+        '410':
+          description: The records for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/records/{page_id}:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    - name: page_id
+      in: path
+      required: !!bool true
+      type: string
+      description: A `page_id`, as returned from a `GET` on the `records/pages` endpoint.
+    get:
+      summary: Retrieve a single record page.
+      description: |
+        Gets the specified record page. The set of valid page IDs is returned from a `GET .../records/pages` endpoint. Since the page IDs are constant, they can be retrieved in any fashion that suits the caller (for example, in parallel or multiple times).
+      responses:
+        '200':
+          description: The record page has been returned.
+          schema:
+            $ref: '#/definitions/Records'
+        '410':
+          description: The records for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/reports:
+    parameters:
+    - name: job_id
+      in: path
+      required: true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve available reports.
+      description: Gets the set of available reports ids. Retrieves the content of a report via the `/reports/{report_id}` endpoint.
+      responses:
+        '200':
+          description: A collection of report IDs for this job has been returned.
+          schema:
+            $ref: '#/definitions/Reports'
+        '410':
+          description: The reports for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/reports/{report_id}:
+    parameters:
+    - name: job_id
+      in: path
+      required: true
+      type: string
+      description: The `job_id` of interest.
+    - name: report_id
+      in: path
+      required: true
+      type: string
+      description: A `report_id`, as returned from the `{job_id}/reports` endpoint.
+    get:
+      summary: Retrieve a report.
+      description: |
+        Gets the specified report. The set of valid report IDs is returned from the `{job_id}/reports` endpoint.
+      produces:
+        - application/pdf
+      responses:
+        200:
+          description: The content of the report has been returned.
+          schema:
+            type: file        
+        '410':
+          description: The reports for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  WalkSequenceJobCreationRequest:
+    type: object
+    properties:
+      parent_job:
+        description: |
+          The job ID of the parent job.
+        type: string
+      
+      configuration:
+        $ref: '#/definitions/WalkSequenceConfiguration'
+      input_fields:
+        type: array
+        items: 
+          $ref: '#/definitions/WalkSequenceInputField'
+      output_fields:
+        type: array
+        items:
+          $ref: '#/definitions/WalkSequenceOutputField'
+  WalkSequenceJob:
+    type: object
+    description: Defines the layout of records that will be uploaded or downloaded in this job.
+    allOf:
+    - $ref: '#/definitions/JobSummary'
+    - $ref: '#/definitions/WalkSequenceJobCreationRequest'
+    
+  WalkSequenceConfiguration:
+    type: object
+    properties:
+      address_element_format:
+        $ref: '#/definitions/AddressElementFormat'
+      address_casing:
+        $ref: '#/definitions/Casing'
+      address_line_formatting:
+          $ref: '#/definitions/AddressLineFormatting'
+      apply_casing_to_business:
+          type: boolean
+      organization_placement:
+          $ref: '#/definitions/OrganizationPlacement'
+      keep_extra_information:
+          type: boolean
+      list_processor_name:
+          type: string
+      mailers_address:
+          type: string
+      mailers_city:
+          type: string
+      mailers_list_name:
+          type: string
+      mailers_name:
+          type: string
+      mailers_state:
+          type: string
+      mailers_zipcode:
+          type: string
+      pmb_placement:
+          $ref: '#/definitions/PmbPlacement'
+      prefer_abbreviated_addresses:
+          type: boolean
+      preferred_address_type:
+          $ref: '#/definitions/PreferredAddressType'
+      require_dpv_validated_secondary:
+          type: boolean
+      unit_placement:
+          $ref: '#/definitions/UnitPlacement'
+    
+
+  JobSummary:
+    type: object
+    properties:
+      job_id:
+        type: string
+      job_status:
+        $ref: '#/definitions/JobStatus'
+      job_status_details:
+        type: string
+
+  JobSummaryCollection:
+    type: object
+    properties:
+      jobs:
+        type: array
+        items:
+          $ref: '#/definitions/JobSummary'
+
+
+  RecordPages:
+    type: object
+    properties:
+      page_ids:
+        description: A collection of page IDs that can be retrieved.
+        type: array
+        items:
+          type: string
+        
+  Records:
+    type: object
+    properties:
+      records:
+        description: A two-dimensional array containing records.
+        type: array
+        items:
+          type: array
+          items:
+            type: string
+
+    example: { 
+      "Note": "Given an output fields: `id, address_line_1, address_line2, city, state, zip, walk_sequence_number",
+      "records":[
+      ["0", "", "1301 5th Ave Ste. 1300", Seattle", "WA", "98101-2011", "1"],
+      ["1", "", "1412 5th Ave Ste. 100", "Seattle", "WA", "98101-2018", "2"]]
+    }
+
+  ReportDescriptor:
+    type: object
+    properties:
+      id:
+        description: An ID for retrieving the report.
+        type: string
+      name:
+        description: The name of the report.
+        type: string
+
+  Reports:
+    type: object
+    properties:
+      reports:
+        description: An array of report descriptors.
+        type: array
+        items:
+          $ref: '#/definitions/ReportDescriptor'
+          
+
+  JobStatus:
+    description: Describes the current status of the job.
+    type: string  
+    enum:
+      - CREATED
+      - READY_TO_RUN
+      - STARTED
+      - SUCCESS
+      - FAILURE
+      - DELETED
+  
+  Casing:
+    type: string
+    enum: 
+      - mixed_case
+      - upper_case
+
+  AddressElementFormat:
+    description: Controls how corrected address elements are abbreviated and whether to use punctuation. The preferred USPS format is 'standard'. This format does not have punctuation and has address elements abbreviated.
+    type: string
+    enum: 
+      - standard
+      - standard_with_punctuation
+      - full_words
+
+  AddressLineFormatting:
+    description: Specifies preferred formatting for the abbreviation or full-length display of address lines. 
+    type: string
+    enum:
+    - standard
+    - top_justified
+
+  OrganizationPlacement:
+    description: Controls where to place any firm information, if present. Organization information is a special type of business information.
+    type: string
+    enum: 
+      - as_input
+      - move_to_organization_if_empty
+      - move_to_organization_always
+
+  PmbPlacement:
+    description: Controls where any PMB (Personal Mail Box) information is to be placed.
+    type: string
+    enum: 
+      - with_units
+      - as_input
+
+  UnitPlacement:
+    description: Controls where any address unit information (for example, apartment or suite number) is to be placed.
+    type: string
+    enum: 
+      - on_delivery_line
+      - above_delivery_line_if_empty
+      - above_delivery_line_always
+
+  PreferredAddressType:
+    description: Specifies which address element to use when more than one type is provided.
+    type: string
+    enum: 
+      - first_available
+      - street
+      - pobox
+
+
+  WalkSequenceInputField:
+    type: string
+    enum:
+      - id
+      - address_block
+      - organization
+      - urbanization
+      - address_line_1
+      - address_line_2
+      - city_state_zip
+      - city
+      - state
+      - zip_code
+      - custom_1
+      - custom_2
+      - custom_3
+      - custom_4
+      - custom_5
+      - custom_6
+      - custom_7
+      - custom_8
+      - custom_9
+      - custom_10
+
+  WalkSequenceOutputField:
+    description: Specifies the output fields that are populated. 
+    type: string
+    enum: 
+      - id
+      - abbreviated_city
+      - address_block
+      - address_line_1
+      - address_line_2
+      - address_type
+      - organization
+      - carrier_route
+      - city
+      - congressional_district
+      - country
+      - county
+      - county_code
+      - delivery_point
+      - dpv_coded
+      - dpv_footnote
+      - dpv_indicator
+      - delivery_type
+      - drop_type
+      - drop_count
+      - elot
+      - extra_address_information
+      - fips_code
+      - is_business
+      - is_cmra
+      - is_ews_match
+      - is_no_stat
+      - is_pbsa
+      - is_vacant
+      - is_residence
+      - is_educational_institute
+      - is_seasonally_occupied
+      - is_throwback
+      - lacs_coded
+      - lacs_link_footnote
+      - lacs_link_indicator
+      - city_state_zip
+      - matched_to_default
+      - post_directional
+      - pre_directional
+      - primary_address_line
+      - primary_number
+      - private_mailbox
+      - secondary_address_line
+      - state
+      - street_name
+      - street_suffix
+      - suite_link_footnote
+      - unit_designator
+      - unit_number
+      - urbanization
+      - us_correction_description
+      - us_correction_codes
+      - walk_sequence_number
+      - zip_code    
+      - custom_1
+      - custom_2
+      - custom_3
+      - custom_4
+      - custom_5
+      - custom_6
+      - custom_7
+      - custom_8
+      - custom_9
+      - custom_10
+
+
+
+
+  Error:
+    type: object
+    description: Describes an error object.
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        description: The HTTP status code.
+      message:
+        type: string
+        description: A human-readable error message.
+      additional_details:
+        type: object
+        description: Additional details about the error.

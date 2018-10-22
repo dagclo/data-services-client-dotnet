@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-[assembly: AssemblyVersion("1.2.6.*")]
+[assembly: AssemblyVersion("1.3.1.*")]
 [assembly: AssemblyCompany("Quadient Data USA")]
 [assembly: AssemblyProduct("Quadient Data Services Client")]
 [assembly: AssemblyTitle("Quadient Data Services Client")]

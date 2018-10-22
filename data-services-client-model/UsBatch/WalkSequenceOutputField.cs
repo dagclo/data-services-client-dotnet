@@ -1,7 +1,7 @@
 /* 
  * Walk Sequence
  *
- * Performs USPS CASS processing and appends USPS Walk Sequence numbers to mail pieces. Properly walk sequenced mailings may qualify for USPS mailing discounts.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The Walk Sequence service performs USPS® CASS™ processing and appends USPS Walk Sequence numbers to mail pieces. Mailings that target specific ZIP Codes or neighborhoods are good candidates for the Walk Sequence service.  A mailing that is sorted in Walk Sequence order may qualify for USPS High Density and Saturation mailing discounts. Adding Walk Sqeunce data to mailings can lower your postage costs.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload the records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete the job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, which removes both the input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -22,148 +22,406 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
-    /// Defines WalkSequenceOutputField
+    /// Specifies the output fields that are populated.
     /// </summary>
+    /// <value>Specifies the output fields that are populated.</value>
     
     [JsonConverter(typeof(StringEnumConverter))]
     
     public enum WalkSequenceOutputField
     {
         
-        id = 1,
-        
-        abbreviated_city = 2,
-        
-        address_block = 3,
-        
-        address_line_1 = 4,
-        
-        address_line_2 = 5,
-        
-        address_type = 6,
-        
-        organization = 7,
-        
-        carrier_route = 8,
-        
-        city = 9,
-        
-        congressional_district = 10,
-        
-        country = 11,
-        
-        county = 12,
-        
-        county_code = 13,
-        
-        custom_1 = 14,
-        
-        custom_2 = 15,
-        
-        custom_3 = 16,
-        
-        custom_4 = 17,
-        
-        custom_5 = 18,
-        
-        custom_6 = 19,
-        
-        custom_7 = 20,
-        
-        custom_8 = 21,
-        
-        custom_9 = 22,
-        
-        custom_10 = 23,
-        
-        delivery_point = 24,
-        
-        dpv_coded = 25,
-        
-        dpv_footnote = 26,
-        
-        dpv_indicator = 27,
-        
-        delivery_type = 28,
-        
-        drop_type = 29,
-        
-        drop_count = 30,
-        
-        elot = 31,
-        
-        extra_address_information = 32,
-        
-        fips_code = 33,
-        
-        is_business = 34,
-        
-        is_cmra = 35,
-        
-        is_ews_match = 36,
-        
-        is_no_stat = 37,
-        
-        is_pbsa = 38,
-        
-        is_vacant = 39,
-        
-        is_residence = 40,
-        
-        is_educational_institute = 41,
-        
-        is_seasonally_occupied = 42,
-        
-        is_throwback = 43,
-        
-        lacs_coded = 44,
-        
-        lacs_link_footnote = 45,
-        
-        lacs_link_indicator = 46,
-        
-        city_state_zip = 47,
-        
-        matched_to_default = 48,
-        
-        post_directional = 49,
-        
-        pre_directional = 50,
-        
-        primary_address_line = 51,
-        
-        primary_number = 52,
-        
-        private_mailbox = 53,
-        
-        secondary_address_line = 54,
-        
-        state = 55,
-        
-        street_name = 56,
-        
-        street_suffix = 57,
-        
-        suite_link_footnote = 58,
-        
-        unit_designator = 59,
-        
-        unit_number = 60,
-        
-        urbanization = 61,
-        
-        uscorrection_description = 62,
-        
-        uscorrection_footnote = 63,
-        
-        walk_sequence_footnote = 64,
-        
-        walk_sequence_number = 65,
-        
-        zip_code = 66
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
+        
+        /// <summary>
+        /// Enum Abbreviatedcity for value: abbreviated_city
+        /// </summary>
+        [EnumMember(Value = "abbreviated_city")]
+        Abbreviatedcity = 2,
+        
+        /// <summary>
+        /// Enum Addressblock for value: address_block
+        /// </summary>
+        [EnumMember(Value = "address_block")]
+        Addressblock = 3,
+        
+        /// <summary>
+        /// Enum Addressline1 for value: address_line_1
+        /// </summary>
+        [EnumMember(Value = "address_line_1")]
+        Addressline1 = 4,
+        
+        /// <summary>
+        /// Enum Addressline2 for value: address_line_2
+        /// </summary>
+        [EnumMember(Value = "address_line_2")]
+        Addressline2 = 5,
+        
+        /// <summary>
+        /// Enum Addresstype for value: address_type
+        /// </summary>
+        [EnumMember(Value = "address_type")]
+        Addresstype = 6,
+        
+        /// <summary>
+        /// Enum Organization for value: organization
+        /// </summary>
+        [EnumMember(Value = "organization")]
+        Organization = 7,
+        
+        /// <summary>
+        /// Enum Carrierroute for value: carrier_route
+        /// </summary>
+        [EnumMember(Value = "carrier_route")]
+        Carrierroute = 8,
+        
+        /// <summary>
+        /// Enum City for value: city
+        /// </summary>
+        [EnumMember(Value = "city")]
+        City = 9,
+        
+        /// <summary>
+        /// Enum Congressionaldistrict for value: congressional_district
+        /// </summary>
+        [EnumMember(Value = "congressional_district")]
+        Congressionaldistrict = 10,
+        
+        /// <summary>
+        /// Enum Country for value: country
+        /// </summary>
+        [EnumMember(Value = "country")]
+        Country = 11,
+        
+        /// <summary>
+        /// Enum County for value: county
+        /// </summary>
+        [EnumMember(Value = "county")]
+        County = 12,
+        
+        /// <summary>
+        /// Enum Countycode for value: county_code
+        /// </summary>
+        [EnumMember(Value = "county_code")]
+        Countycode = 13,
+        
+        /// <summary>
+        /// Enum Deliverypoint for value: delivery_point
+        /// </summary>
+        [EnumMember(Value = "delivery_point")]
+        Deliverypoint = 14,
+        
+        /// <summary>
+        /// Enum Dpvcoded for value: dpv_coded
+        /// </summary>
+        [EnumMember(Value = "dpv_coded")]
+        Dpvcoded = 15,
+        
+        /// <summary>
+        /// Enum Dpvfootnote for value: dpv_footnote
+        /// </summary>
+        [EnumMember(Value = "dpv_footnote")]
+        Dpvfootnote = 16,
+        
+        /// <summary>
+        /// Enum Dpvindicator for value: dpv_indicator
+        /// </summary>
+        [EnumMember(Value = "dpv_indicator")]
+        Dpvindicator = 17,
+        
+        /// <summary>
+        /// Enum Deliverytype for value: delivery_type
+        /// </summary>
+        [EnumMember(Value = "delivery_type")]
+        Deliverytype = 18,
+        
+        /// <summary>
+        /// Enum Droptype for value: drop_type
+        /// </summary>
+        [EnumMember(Value = "drop_type")]
+        Droptype = 19,
+        
+        /// <summary>
+        /// Enum Dropcount for value: drop_count
+        /// </summary>
+        [EnumMember(Value = "drop_count")]
+        Dropcount = 20,
+        
+        /// <summary>
+        /// Enum Elot for value: elot
+        /// </summary>
+        [EnumMember(Value = "elot")]
+        Elot = 21,
+        
+        /// <summary>
+        /// Enum Extraaddressinformation for value: extra_address_information
+        /// </summary>
+        [EnumMember(Value = "extra_address_information")]
+        Extraaddressinformation = 22,
+        
+        /// <summary>
+        /// Enum Fipscode for value: fips_code
+        /// </summary>
+        [EnumMember(Value = "fips_code")]
+        Fipscode = 23,
+        
+        /// <summary>
+        /// Enum Isbusiness for value: is_business
+        /// </summary>
+        [EnumMember(Value = "is_business")]
+        Isbusiness = 24,
+        
+        /// <summary>
+        /// Enum Iscmra for value: is_cmra
+        /// </summary>
+        [EnumMember(Value = "is_cmra")]
+        Iscmra = 25,
+        
+        /// <summary>
+        /// Enum Isewsmatch for value: is_ews_match
+        /// </summary>
+        [EnumMember(Value = "is_ews_match")]
+        Isewsmatch = 26,
+        
+        /// <summary>
+        /// Enum Isnostat for value: is_no_stat
+        /// </summary>
+        [EnumMember(Value = "is_no_stat")]
+        Isnostat = 27,
+        
+        /// <summary>
+        /// Enum Ispbsa for value: is_pbsa
+        /// </summary>
+        [EnumMember(Value = "is_pbsa")]
+        Ispbsa = 28,
+        
+        /// <summary>
+        /// Enum Isvacant for value: is_vacant
+        /// </summary>
+        [EnumMember(Value = "is_vacant")]
+        Isvacant = 29,
+        
+        /// <summary>
+        /// Enum Isresidence for value: is_residence
+        /// </summary>
+        [EnumMember(Value = "is_residence")]
+        Isresidence = 30,
+        
+        /// <summary>
+        /// Enum Iseducationalinstitute for value: is_educational_institute
+        /// </summary>
+        [EnumMember(Value = "is_educational_institute")]
+        Iseducationalinstitute = 31,
+        
+        /// <summary>
+        /// Enum Isseasonallyoccupied for value: is_seasonally_occupied
+        /// </summary>
+        [EnumMember(Value = "is_seasonally_occupied")]
+        Isseasonallyoccupied = 32,
+        
+        /// <summary>
+        /// Enum Isthrowback for value: is_throwback
+        /// </summary>
+        [EnumMember(Value = "is_throwback")]
+        Isthrowback = 33,
+        
+        /// <summary>
+        /// Enum Lacscoded for value: lacs_coded
+        /// </summary>
+        [EnumMember(Value = "lacs_coded")]
+        Lacscoded = 34,
+        
+        /// <summary>
+        /// Enum Lacslinkfootnote for value: lacs_link_footnote
+        /// </summary>
+        [EnumMember(Value = "lacs_link_footnote")]
+        Lacslinkfootnote = 35,
+        
+        /// <summary>
+        /// Enum Lacslinkindicator for value: lacs_link_indicator
+        /// </summary>
+        [EnumMember(Value = "lacs_link_indicator")]
+        Lacslinkindicator = 36,
+        
+        /// <summary>
+        /// Enum Citystatezip for value: city_state_zip
+        /// </summary>
+        [EnumMember(Value = "city_state_zip")]
+        Citystatezip = 37,
+        
+        /// <summary>
+        /// Enum Matchedtodefault for value: matched_to_default
+        /// </summary>
+        [EnumMember(Value = "matched_to_default")]
+        Matchedtodefault = 38,
+        
+        /// <summary>
+        /// Enum Postdirectional for value: post_directional
+        /// </summary>
+        [EnumMember(Value = "post_directional")]
+        Postdirectional = 39,
+        
+        /// <summary>
+        /// Enum Predirectional for value: pre_directional
+        /// </summary>
+        [EnumMember(Value = "pre_directional")]
+        Predirectional = 40,
+        
+        /// <summary>
+        /// Enum Primaryaddressline for value: primary_address_line
+        /// </summary>
+        [EnumMember(Value = "primary_address_line")]
+        Primaryaddressline = 41,
+        
+        /// <summary>
+        /// Enum Primarynumber for value: primary_number
+        /// </summary>
+        [EnumMember(Value = "primary_number")]
+        Primarynumber = 42,
+        
+        /// <summary>
+        /// Enum Privatemailbox for value: private_mailbox
+        /// </summary>
+        [EnumMember(Value = "private_mailbox")]
+        Privatemailbox = 43,
+        
+        /// <summary>
+        /// Enum Secondaryaddressline for value: secondary_address_line
+        /// </summary>
+        [EnumMember(Value = "secondary_address_line")]
+        Secondaryaddressline = 44,
+        
+        /// <summary>
+        /// Enum State for value: state
+        /// </summary>
+        [EnumMember(Value = "state")]
+        State = 45,
+        
+        /// <summary>
+        /// Enum Streetname for value: street_name
+        /// </summary>
+        [EnumMember(Value = "street_name")]
+        Streetname = 46,
+        
+        /// <summary>
+        /// Enum Streetsuffix for value: street_suffix
+        /// </summary>
+        [EnumMember(Value = "street_suffix")]
+        Streetsuffix = 47,
+        
+        /// <summary>
+        /// Enum Suitelinkfootnote for value: suite_link_footnote
+        /// </summary>
+        [EnumMember(Value = "suite_link_footnote")]
+        Suitelinkfootnote = 48,
+        
+        /// <summary>
+        /// Enum Unitdesignator for value: unit_designator
+        /// </summary>
+        [EnumMember(Value = "unit_designator")]
+        Unitdesignator = 49,
+        
+        /// <summary>
+        /// Enum Unitnumber for value: unit_number
+        /// </summary>
+        [EnumMember(Value = "unit_number")]
+        Unitnumber = 50,
+        
+        /// <summary>
+        /// Enum Urbanization for value: urbanization
+        /// </summary>
+        [EnumMember(Value = "urbanization")]
+        Urbanization = 51,
+        
+        /// <summary>
+        /// Enum Uscorrectiondescription for value: us_correction_description
+        /// </summary>
+        [EnumMember(Value = "us_correction_description")]
+        Uscorrectiondescription = 52,
+        
+        /// <summary>
+        /// Enum Uscorrectioncodes for value: us_correction_codes
+        /// </summary>
+        [EnumMember(Value = "us_correction_codes")]
+        Uscorrectioncodes = 53,
+        
+        /// <summary>
+        /// Enum Walksequencenumber for value: walk_sequence_number
+        /// </summary>
+        [EnumMember(Value = "walk_sequence_number")]
+        Walksequencenumber = 54,
+        
+        /// <summary>
+        /// Enum Zipcode for value: zip_code
+        /// </summary>
+        [EnumMember(Value = "zip_code")]
+        Zipcode = 55,
+        
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 56,
+        
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 57,
+        
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 58,
+        
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 59,
+        
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 60,
+        
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 61,
+        
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 62,
+        
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 63,
+        
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 64,
+        
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 65
     }
-    
 }

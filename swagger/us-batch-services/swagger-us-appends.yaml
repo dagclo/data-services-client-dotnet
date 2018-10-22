@@ -1,0 +1,448 @@
+swagger: '2.0'
+info:
+  version: 0.1.0
+  title: US-Appends
+  description: |
+    The US Appends service is a Quadient Cloud Data Services offering designed to help you improve and enhance the quality of your US-based contact data. The service can be used as a component of regular list cleansing and maintenance. The service flags contact records that match entries on do-not-mail and deceased person lists. It identifies addresses within correctional facilities. It also provides and corrects secondary data for an address, such as apartment number or floor number.
+    
+    This service can reduce mailing costs by identifying people that are unwilling or unable to respond or have an undeliverable address. It helps bring into focus for your assessment whether a potential communication recipient should be removed from a list. 
+    
+    ## Key functionality:
+    * Flags records that match entries on do-not-mail, deceased person, and correctional facility lists.
+    * Appends missing apartment number unit information to an address to improve address quality.
+
+    ## Job execution
+
+    The general flow to execute a batch job is to:
+
+    1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation. 
+    2. Upload records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing. 
+    3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint.
+    4. Wait for the job status to be updated to `SUCCESS` or `FAILED`.
+    5. Download the records.
+    6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.
+
+    ## Records
+
+    The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.
+    
+    ## Pagination
+    Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.
+    
+    ## Outcome codes
+    
+    ### Apartment Append
+    `A1` - Apartment information confirmed to be correct for the individual. No Changes made.
+    `A2` - Apartment information present confirmed to be correct for the address. No Changes made.
+    `C1` - Apartment information appended to address.
+    `C4` - Lookup attempted, no apartment found.
+    `E1` - Address was invalid as input. No changes made.
+    `E2` - No contact information supplied. No changes made.
+    `E3` - Multiple contacts on input. No changes made.
+    `E4` - No lookup attempted.
+
+    ### Name Append
+    `C1` - Name appended.
+    `C4` - Name not appended.
+
+    ### Gender Append
+    `C1` - Gender Added
+    `C2` - No Gender added
+    `C3` - Multiple names. No gender assigned.
+    `C4` - Ambiguous result. No gender assigned.
+
+    ## Field value defintions
+
+    ### Gender Append
+    `gender`, possible values:
+    `M` - Male
+    `F` - Female
+    `U` - Unable to assign / Ambiguous
+
+
+
+
+    
+basePath: /services/us-appends/v1
+paths:
+  /jobs:
+    post:
+      summary: Create a new job.
+      description: |
+        Creates and configures a US Appends job. The input and output fields define the schema and the order of the fields within records transmitted to and from the service. Job configuration cannot be changed after creation. After job creation, upload the records to be processed and then use a POST request, `_run`, to process the job.
+      parameters:
+      - name: job
+        in: body
+        required: !!bool true
+        schema:
+          $ref: '#/definitions/USAppendsJobCreationRequest'
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/JobSummary'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+    get:
+      summary: Retrieve summaries for of all of your jobs.
+      description: Retrieves a summary of existing jobs. You can filter this list to a specific user, provided you have access to more than just your account.
+      parameters:
+      - name: user_id
+        in: query
+        required: !!bool false
+        type: string
+        description: Filter the result to a specific `user_id`.
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/JobSummaryCollection'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Remove all jobs.
+      description: Removes all of your US Appends jobs.  You can filter this list to a specific user, provided you have access to more than just your account.
+      parameters:
+      - name: user_id
+        in: query
+        required: !!bool false
+        type: string
+        description: Filters the removal to a specific `user_id` only.
+      responses:
+        '200':
+          description: Successful response.
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve a specific job's details.
+      description: |
+        Retrieves the details of the job. The details include all of the configuration information used to create the job. The job's current status is also included. Use the `/status` endpoint if you are polling to see when a job is complete.
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/USAppendsJob'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Remove a specific job.
+      description: |
+        Removes the data associated with the job and marks it as `DELETED`. All records (input and output) are removed. The job does not appear in the collection of job summaries available from the `/jobs` endpoint. 
+      responses:
+        '200':
+          description: Successful response.
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/status:
+    parameters:
+    - name: job_id
+      in: path
+      required: true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve a job's current status.
+      description: |
+        Retrieves a job's status. Use this endpoint to determine when the job is finished. Records may be retrieved when the status is `SUCCESS`. Additional notes may be provided in the response.     
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            $ref: '#/definitions/JobSummary'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/_run:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    post:
+      summary: Activate processing
+      description: Signals that record upload is finished and that the processing phase of the job can start. Monitor status of the job via the `/jobs/{job_id}/status` endpoint. 
+      responses:
+        '202':
+          description: The request for execution has been accepted. The job will be picked up and processed.
+        '410':
+          description: The records for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  /jobs/{job_id}/records:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    post:
+      summary: Upload records to the job.
+      description: Adds the records to the job. The records must conform to the schema defined during job creation. Records may be uploaded in parallel. Call `GET` on `/records/pages` to retrieve the collection of valid record pages. Initiate processing via `_run` when record upload is finished.
+      parameters:
+      - name: record block
+        in: body
+        schema:
+          $ref: '#/definitions/Records'
+      responses:
+        '200':
+          description: The records have been received for processing.
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/records/pages:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Retrieve input or output record page ids.
+      description: Gets the set of record pages that make up the input or output record set.
+      parameters:
+      - name: kind
+        description: |
+          Specifies the type of records pages you want, input or output.
+        in: query
+        required: !!bool true
+        type: string
+        enum:
+        - input
+        - output
+      responses:
+        '200':
+          description: The record pages have been returned.
+          schema:
+            $ref: '#/definitions/RecordPages'
+        '410':
+          description: The records for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/records/{page_id}:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    - name: page_id
+      in: path
+      required: !!bool true
+      type: string
+      description: A `page_id`, as returned from a `GET` on the `records/pages` endpoint.
+    get:
+      summary: Retrieve a single record page.
+      description: |
+        Gets the specified record page. The set of valid page IDs is returned from a `GET .../records/pages` endpoint. Since the page IDs are constant, they can be retrieved in any fashion that suits the caller (for ecample, in parallel or multiple times).
+      responses:
+        '200':
+          description: The record page has been returned.
+          schema:
+            $ref: '#/definitions/Records'
+        '410':
+          description: The records for this job have been deleted.
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: See additional details for the exact problem.
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  USAppendsJobCreationRequest:
+    type: object
+    properties:
+      parent_job:
+        description: |
+          The job ID of the parent job.
+        type: string
+      
+      configuration:
+        $ref: '#/definitions/USAppendsConfiguration'
+      input_fields:
+          type: array
+          items: 
+            $ref: '#/definitions/USAppendsInputField'
+      output_fields:
+          type: array
+          items:
+            $ref: '#/definitions/USAppendsOutputField'
+
+  USAppendsJob:
+    type: object
+    description: Defines the layout of records that will be uploaded or downloaded in this job.
+    allOf:
+    - $ref: '#/definitions/JobSummary'
+    - $ref: '#/definitions/USAppendsJobCreationRequest'
+    
+  USAppendsConfiguration:
+    type: object
+
+  JobSummary:
+    type: object
+    properties:
+      job_id:
+        type: string
+      job_status:
+        $ref: '#/definitions/JobStatus'
+      job_status_details:
+        type: string
+
+  JobSummaryCollection:
+    type: object
+    properties:
+      jobs:
+        type: array
+        items:
+          $ref: '#/definitions/JobSummary'
+
+
+  RecordPages:
+    type: object
+    properties:
+      page_ids:
+        description: A collection of page IDs that can be retrieved.
+        type: array
+        items:
+          type: string
+        
+  Records:
+    type: object
+    properties:
+      records:
+        description: A two-dimensional array containing records.
+        type: array
+        items:
+          type: array
+          items:
+            type: string
+
+    example: {
+      Note: "Given output fields: `id, is_do_not_mail, is_deceased, deceased_date_of_death`",
+      records: [ 
+        ["0", "Y", "N", ""],
+        ["1", "N", "Y", "1970-01-01"]
+      ]
+    }
+
+  JobStatus:
+    description: Describes the current status of the job.
+    type: string  
+    enum:
+      - CREATED
+      - READY_TO_RUN
+      - STARTED
+      - SUCCESS
+      - FAILURE
+      - DELETED
+  
+
+  USAppendsInputField:
+    type: string
+    enum:
+      - id
+      - address_line_1
+      - address_line_2
+      - city_state_zip
+      - city
+      - state
+      - zip_code
+      - full_name
+      - given_name
+      - middle_name
+      - family_name
+      - custom_1
+      - custom_2
+      - custom_3
+      - custom_4
+      - custom_5
+      - custom_6
+      - custom_7
+      - custom_8
+      - custom_9
+      - custom_10
+
+  USAppendsOutputField:
+    description: Specifies the output fields that are populated. 
+    type: string
+    enum: 
+      - id
+      - is_do_not_mail
+      - is_prison
+      - is_deceased
+      - is_nursing_home
+      - is_bankruptcy
+      - deceased_date_of_death
+      - deceased_date_of_birth
+      - apartment_unit_information
+      - apartment_address_line
+      - apartment_append_codes
+      - name_full_name
+      - name_given_name
+      - name_middle_name
+      - name_family_name
+      - name_append_codes
+      - gender
+      - gender_codes
+      - custom_1
+      - custom_2
+      - custom_3
+      - custom_4
+      - custom_5
+      - custom_6
+      - custom_7
+      - custom_8
+      - custom_9
+      - custom_10
+
+  Error:
+    type: object
+    description: Describes an error object.
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        description: The HTTP status code.
+      message:
+        type: string
+        description: A human-readable error message.
+      additional_details:
+        type: object
+        description: Additional details about the error.

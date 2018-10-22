@@ -28,7 +28,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
     /// Price
     /// </summary>
     [DataContract]
-    public partial class Price :  IEquatable<Price>, IValidatableObject
+    public partial class Price : IEquatable<Price>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Price" /> class.
@@ -41,7 +41,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
         /// <param name="Name">The tier name of the price line item. (required).</param>
         /// <param name="Tenant">(Optional) Identifies the tenant this adjustment applies to..</param>
         /// <param name="UserId">(Optional) Identify a user id this price applies to..</param>
-        /// <param name="IncludeInEstimates">Should this price-line item be factored into estimated price calculations? (default to true).</param>
+        /// <param name="IncludeInEstimates">Should this price-line item be factored into estimated price calculations?.</param>
         /// <param name="PricePerUnit">The price of this line item..</param>
         /// <param name="Currency">The currency of the price.</param>
         /// <param name="RecordsPerUnit">The number of records that make up 1 unit..</param>
@@ -50,7 +50,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
         /// <param name="Enabled">Is this price currently active? Prices may be disabled, overriding their time frame of effectivness..</param>
         /// <param name="OverrideRemaining">When an estimate request includes tier specifications, this indicates that the remainder of *count - specifiedTiersTotal* should be used. This will be true in cases where the tiers are expected to be mutually exclusive..</param>
         /// <param name="TimeFrame">TimeFrame.</param>
-        public Price(string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = true, decimal? PricePerUnit = default(decimal?), string Currency = default(string), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), bool? OverrideRemaining = default(bool?), TimeFrame TimeFrame = default(TimeFrame))
+        public Price(string Name = default(string), string Tenant = default(string), string UserId = default(string), bool? IncludeInEstimates = default(bool?), decimal? PricePerUnit = default(decimal?), string Currency = default(string), decimal? RecordsPerUnit = default(decimal?), decimal? FloorPricePerUnit = default(decimal?), decimal? PercentDiscount = default(decimal?), bool? Enabled = default(bool?), bool? OverrideRemaining = default(bool?), TimeFrame TimeFrame = default(TimeFrame))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -63,15 +63,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             }
             this.Tenant = Tenant;
             this.UserId = UserId;
-            // use default value if no "IncludeInEstimates" provided
-            if (IncludeInEstimates == null)
-            {
-                this.IncludeInEstimates = true;
-            }
-            else
-            {
-                this.IncludeInEstimates = IncludeInEstimates;
-            }
+            this.IncludeInEstimates = IncludeInEstimates;
             this.PricePerUnit = PricePerUnit;
             this.Currency = Currency;
             this.RecordsPerUnit = RecordsPerUnit;
@@ -193,7 +185,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

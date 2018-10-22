@@ -1,7 +1,7 @@
 /* 
  * US-Appends
  *
- * Provides Suppression information to your US contacts. This service offers the ability to update addresses of persons who have moved, inform you in case of incarceration, death or if they have opted in to a do-not-mail registry.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying configuration properties, upload and download schema (input fields and output fields). Job configuration cannot be changed after creation.  2. Upload records to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to enter `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done with it via a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  Records must be uploaded completely prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records are defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page ids are available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed. 
+ * The US Appends service is a Quadient Cloud Data Services offering designed to help you improve and enhance the quality of your US-based contact data. The service can be used as a component of regular list cleansing and maintenance. The service flags contact records that match entries on do-not-mail and deceased person lists. It identifies addresses within correctional facilities. It also provides and corrects secondary data for an address, such as apartment number or floor number.  This service can reduce mailing costs by identifying people that are unwilling or unable to respond or have an undeliverable address. It helps bring into focus for your assessment whether a potential communication recipient should be removed from a list.   ## Key functionality: * Flags records that match entries on do-not-mail, deceased person, and correctional facility lists. * Appends missing apartment number unit information to an address to improve address quality.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.  ## Outcome codes  ### Apartment Append `A1` - Apartment information confirmed to be correct for the individual. No Changes made. `A2` - Apartment information present confirmed to be correct for the address. No Changes made. `C1` - Apartment information appended to address. `C4` - Lookup attempted, no apartment found. `E1` - Address was invalid as input. No changes made. `E2` - No contact information supplied. No changes made. `E3` - Multiple contacts on input. No changes made. `E4` - No lookup attempted.  ### Name Append `C1` - Name appended. `C4` - Name not appended.  ### Gender Append `C1` - Gender Added `C2` - No Gender added `C3` - Multiple names. No gender assigned. `C4` - Ambiguous result. No gender assigned.  ## Field value defintions  ### Gender Append `gender`, possible values: `M` - Male `F` - Female `U` - Unable to assign / Ambiguous 
  *
  * OpenAPI spec version: 0.1.0
  * 
@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConverter;
 
-namespace Quadient.DataServies.Model.UsBatch
+namespace Quadient.DataServices.Model.UsBatch
 {
     /// <summary>
     /// Defines USAppendsInputField
@@ -33,47 +33,130 @@ namespace Quadient.DataServies.Model.UsBatch
     public enum USAppendsInputField
     {
         
-        id = 1,
+        /// <summary>
+        /// Enum Id for value: id
+        /// </summary>
+        [EnumMember(Value = "id")]
+        Id = 1,
         
-        address_line_1 = 2,
+        /// <summary>
+        /// Enum Addressline1 for value: address_line_1
+        /// </summary>
+        [EnumMember(Value = "address_line_1")]
+        Addressline1 = 2,
         
-        address_line_2 = 3,
+        /// <summary>
+        /// Enum Addressline2 for value: address_line_2
+        /// </summary>
+        [EnumMember(Value = "address_line_2")]
+        Addressline2 = 3,
         
-        city_state_zip = 4,
+        /// <summary>
+        /// Enum Citystatezip for value: city_state_zip
+        /// </summary>
+        [EnumMember(Value = "city_state_zip")]
+        Citystatezip = 4,
         
-        city = 5,
+        /// <summary>
+        /// Enum City for value: city
+        /// </summary>
+        [EnumMember(Value = "city")]
+        City = 5,
         
-        state = 6,
+        /// <summary>
+        /// Enum State for value: state
+        /// </summary>
+        [EnumMember(Value = "state")]
+        State = 6,
         
-        zip_code = 7,
+        /// <summary>
+        /// Enum Zipcode for value: zip_code
+        /// </summary>
+        [EnumMember(Value = "zip_code")]
+        Zipcode = 7,
         
-        full_name = 8,
+        /// <summary>
+        /// Enum Fullname for value: full_name
+        /// </summary>
+        [EnumMember(Value = "full_name")]
+        Fullname = 8,
         
-        first_name = 9,
+        /// <summary>
+        /// Enum Givenname for value: given_name
+        /// </summary>
+        [EnumMember(Value = "given_name")]
+        Givenname = 9,
         
-        middle_name = 10,
+        /// <summary>
+        /// Enum Middlename for value: middle_name
+        /// </summary>
+        [EnumMember(Value = "middle_name")]
+        Middlename = 10,
         
-        last_name = 11,
+        /// <summary>
+        /// Enum Familyname for value: family_name
+        /// </summary>
+        [EnumMember(Value = "family_name")]
+        Familyname = 11,
         
-        custom_1 = 12,
+        /// <summary>
+        /// Enum Custom1 for value: custom_1
+        /// </summary>
+        [EnumMember(Value = "custom_1")]
+        Custom1 = 12,
         
-        custom_2 = 13,
+        /// <summary>
+        /// Enum Custom2 for value: custom_2
+        /// </summary>
+        [EnumMember(Value = "custom_2")]
+        Custom2 = 13,
         
-        custom_3 = 14,
+        /// <summary>
+        /// Enum Custom3 for value: custom_3
+        /// </summary>
+        [EnumMember(Value = "custom_3")]
+        Custom3 = 14,
         
-        custom_4 = 15,
+        /// <summary>
+        /// Enum Custom4 for value: custom_4
+        /// </summary>
+        [EnumMember(Value = "custom_4")]
+        Custom4 = 15,
         
-        custom_5 = 16,
+        /// <summary>
+        /// Enum Custom5 for value: custom_5
+        /// </summary>
+        [EnumMember(Value = "custom_5")]
+        Custom5 = 16,
         
-        custom_6 = 17,
+        /// <summary>
+        /// Enum Custom6 for value: custom_6
+        /// </summary>
+        [EnumMember(Value = "custom_6")]
+        Custom6 = 17,
         
-        custom_7 = 18,
+        /// <summary>
+        /// Enum Custom7 for value: custom_7
+        /// </summary>
+        [EnumMember(Value = "custom_7")]
+        Custom7 = 18,
         
-        custom_8 = 19,
+        /// <summary>
+        /// Enum Custom8 for value: custom_8
+        /// </summary>
+        [EnumMember(Value = "custom_8")]
+        Custom8 = 19,
         
-        custom_9 = 20,
+        /// <summary>
+        /// Enum Custom9 for value: custom_9
+        /// </summary>
+        [EnumMember(Value = "custom_9")]
+        Custom9 = 20,
         
-        custom_10 = 21
+        /// <summary>
+        /// Enum Custom10 for value: custom_10
+        /// </summary>
+        [EnumMember(Value = "custom_10")]
+        Custom10 = 21
     }
-    
 }

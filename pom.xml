@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
     <groupId>Quadient.DataServices</groupId>
     <version>0.5-SNAPSHOT</version>
-	<artifactId>dataservices-client-swagger-model</artifactId>
+	<artifactId>dataservices-client-dotnet</artifactId>
 	<build>
 		<plugins>
 			<plugin>
@@ -101,12 +101,125 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-job</artifactId>
-							<inputSpec>https://data-uat.quadientcloud.com/jobs/swagger.json</inputSpec>
+							<inputSpec>https://data.quadientcloud.com/jobs/swagger.json</inputSpec>
 							<modelPackage>Job</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
                                 <sourceFolder>data-services-client-model</sourceFolder>
                             </configOptions>
+						</configuration>
+					</execution>
+                    <execution>
+						<id>generate-model-us-appends</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-us-appends.yaml</inputSpec>
+							<language>csharp</language>
+							<modelPackage>UsBatch</modelPackage>
+							<configOptions>
+                                <packageName>Quadient.DataServices.Model</packageName>
+                                <sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+                    <execution>
+						<id>generate-model-us-move-update</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-us-move-update.yaml</inputSpec>
+							<language>csharp</language>
+							<modelPackage>UsBatch</modelPackage>
+							<configOptions>
+                                <packageName>Quadient.DataServices.Model</packageName>
+                                <sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+                    <execution>
+						<id>generate-model-walk-sequence</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-walk-sequence.yaml</inputSpec>
+							<language>csharp</language>
+							<modelPackage>UsBatch</modelPackage>
+							<configOptions>
+                                <packageName>Quadient.DataServices.Model</packageName>
+                                <sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>generate-model-pricebook</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<artifactId>dataservices-client-swagger-model-pricebook</artifactId>
+							<inputSpec>https://data.quadientcloud.com/pricebook/swagger.json</inputSpec>
+							<modelPackage>Pricebook</modelPackage>
+                            <configOptions>
+                                <packageName>Quadient.DataServices.System.Model</packageName>
+                                <sourceFolder>data-services-client-system-model</sourceFolder>
+                            </configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-model-user</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<artifactId>dataservices-client-swagger-model-user</artifactId>
+							<inputSpec>https://data.quadientcloud.com/user/swagger.json</inputSpec>
+							<modelPackage>User</modelPackage>
+                            <configOptions>
+                                <packageName>Quadient.DataServices.System.Model</packageName>
+                                <sourceFolder>data-services-client-system-model</sourceFolder>
+                            </configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>move-generated-sources-model</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/data-services-client-model</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/target/generated-sources/swagger/data-services-client-model/Quadient.DataServices.Model</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>move-generated-sources-system-model</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/data-services-client-system-model</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/target/generated-sources/swagger/data-services-client-system-model/Quadient.DataServices.System.Model</directory>
+								</resource>
+							</resources>
 						</configuration>
 					</execution>
 				</executions>
