@@ -28,14 +28,10 @@ info:
     * `A1` - Address verified, move lookup performed.
     * `E1` - Address not verified, no move lookup performed.
     * `C1` - Individual move
-    * `C2` - Family move
-    * `C3` - Organization move
-    * `C4` - Move with no forwarding address.
 
     ## Outcome category
     `move_update_outcome_category` - possible values are:
     * `No change` - No move was found for the address.
-    * `Moved away` - A move was detected, but no new address was available.
     * `New address` - A move was found and returned.
 
 

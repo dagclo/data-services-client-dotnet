@@ -32,13 +32,14 @@ info:
     ## Outcome codes
     
     ### Apartment Append
-    `A1` - Apartment information confirmed to be correct for the individual. No Changes made.
-    `A2` - Apartment information present confirmed to be correct for the address. No Changes made.
+    `A1` - Apartment information confirmed to be correct for the individual. No changes made.
+    `A2` - Apartment information present confirmed to be correct for the address. No changes made.
+    `A4` - Not a highrise address. Address valid as input.
+    `A5` - Multiple contact names in input.
     `C1` - Apartment information appended to address.
-    `C4` - Lookup attempted, no apartment found.
+    `C4` - Lookup attempted. No apartment found.
     `E1` - Address was invalid as input. No changes made.
-    `E2` - No contact information supplied. No changes made.
-    `E3` - Multiple contacts on input. No changes made.
+    `E2` - No contact name information supplied. No changes made.
     `E4` - No lookup attempted.
 
     ### Name Append
@@ -46,12 +47,12 @@ info:
     `C4` - Name not appended.
 
     ### Gender Append
-    `C1` - Gender Added
-    `C2` - No Gender added
+    `C1` - Gender added.
+    `C2` - No gender added.
     `C3` - Multiple names. No gender assigned.
     `C4` - Ambiguous result. No gender assigned.
 
-    ## Field value defintions
+    ## Field value definitions
 
     ### Gender Append
     `gender`, possible values:
@@ -105,7 +106,7 @@ paths:
             $ref: '#/definitions/Error'
     delete:
       summary: Remove all jobs.
-      description: Removes all of your US Appends jobs.  You can filter this list to a specific user, provided you have access to more than just your account.
+      description: Removes all of your US Appends jobs. You can filter this list to a specific user, provided you have access to more than just your account.
       parameters:
       - name: user_id
         in: query
@@ -268,7 +269,7 @@ paths:
     get:
       summary: Retrieve a single record page.
       description: |
-        Gets the specified record page. The set of valid page IDs is returned from a `GET .../records/pages` endpoint. Since the page IDs are constant, they can be retrieved in any fashion that suits the caller (for ecample, in parallel or multiple times).
+        Gets the specified record page. The set of valid page IDs is returned from a `GET .../records/pages` endpoint. Since the page IDs are constant, they can be retrieved in any fashion that suits the caller (for example, in parallel or multiple times).
       responses:
         '200':
           description: The record page has been returned.
@@ -406,7 +407,6 @@ definitions:
       - is_prison
       - is_deceased
       - is_nursing_home
-      - is_bankruptcy
       - deceased_date_of_death
       - deceased_date_of_birth
       - apartment_unit_information

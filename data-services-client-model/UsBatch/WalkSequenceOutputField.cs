@@ -173,10 +173,10 @@ namespace Quadient.DataServices.Model.UsBatch
         Fipscode = 23,
         
         /// <summary>
-        /// Enum Isbusiness for value: is_business
+        /// Enum Isorganization for value: is_organization
         /// </summary>
-        [EnumMember(Value = "is_business")]
-        Isbusiness = 24,
+        [EnumMember(Value = "is_organization")]
+        Isorganization = 24,
         
         /// <summary>
         /// Enum Iscmra for value: is_cmra

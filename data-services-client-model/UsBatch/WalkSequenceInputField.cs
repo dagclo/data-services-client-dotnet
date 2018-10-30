@@ -94,63 +94,69 @@ namespace Quadient.DataServices.Model.UsBatch
         Zipcode = 10,
         
         /// <summary>
+        /// Enum Country for value: country
+        /// </summary>
+        [EnumMember(Value = "country")]
+        Country = 11,
+        
+        /// <summary>
         /// Enum Custom1 for value: custom_1
         /// </summary>
         [EnumMember(Value = "custom_1")]
-        Custom1 = 11,
+        Custom1 = 12,
         
         /// <summary>
         /// Enum Custom2 for value: custom_2
         /// </summary>
         [EnumMember(Value = "custom_2")]
-        Custom2 = 12,
+        Custom2 = 13,
         
         /// <summary>
         /// Enum Custom3 for value: custom_3
         /// </summary>
         [EnumMember(Value = "custom_3")]
-        Custom3 = 13,
+        Custom3 = 14,
         
         /// <summary>
         /// Enum Custom4 for value: custom_4
         /// </summary>
         [EnumMember(Value = "custom_4")]
-        Custom4 = 14,
+        Custom4 = 15,
         
         /// <summary>
         /// Enum Custom5 for value: custom_5
         /// </summary>
         [EnumMember(Value = "custom_5")]
-        Custom5 = 15,
+        Custom5 = 16,
         
         /// <summary>
         /// Enum Custom6 for value: custom_6
         /// </summary>
         [EnumMember(Value = "custom_6")]
-        Custom6 = 16,
+        Custom6 = 17,
         
         /// <summary>
         /// Enum Custom7 for value: custom_7
         /// </summary>
         [EnumMember(Value = "custom_7")]
-        Custom7 = 17,
+        Custom7 = 18,
         
         /// <summary>
         /// Enum Custom8 for value: custom_8
         /// </summary>
         [EnumMember(Value = "custom_8")]
-        Custom8 = 18,
+        Custom8 = 19,
         
         /// <summary>
         /// Enum Custom9 for value: custom_9
         /// </summary>
         [EnumMember(Value = "custom_9")]
-        Custom9 = 19,
+        Custom9 = 20,
         
         /// <summary>
         /// Enum Custom10 for value: custom_10
         /// </summary>
         [EnumMember(Value = "custom_10")]
-        Custom10 = 20
+        Custom10 = 21
     }
 }

@@ -511,6 +511,7 @@ definitions:
       - city
       - state
       - zip_code
+      - country
       - custom_1
       - custom_2
       - custom_3
@@ -549,7 +550,7 @@ definitions:
       - elot
       - extra_address_information
       - fips_code
-      - is_business
+      - is_organization
       - is_cmra
       - is_ews_match
       - is_no_stat
