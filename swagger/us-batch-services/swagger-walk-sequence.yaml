@@ -331,38 +331,52 @@ definitions:
     type: object
     properties:
       address_element_format:
-        $ref: '#/definitions/AddressElementFormat'
+          $ref: '#/definitions/AddressElementFormat'
       address_casing:
-        $ref: '#/definitions/Casing'
+          $ref: '#/definitions/Casing'
       address_line_formatting:
           $ref: '#/definitions/AddressLineFormatting'
-      apply_casing_to_business:
+      apply_casing_to_organization:
+          description: Controls the casing behavior that is applied to address organization information. Defaults to true.
           type: boolean
       organization_placement:
           $ref: '#/definitions/OrganizationPlacement'
       keep_extra_information:
+          description: Controls retention of information determined to be not part of the address. Defaults to true.
           type: boolean
       list_processor_name:
+          description: The processing entity's name to display on the CASS™ 3553 report.
           type: string
       mailers_address:
+          description: The address to display on the CASS™ 3553 report.
           type: string
       mailers_city:
+          description: The city to display on the CASS™ 3553 report.
           type: string
       mailers_list_name:
+          description: The list name to display on the CASS™ 3553 report.
           type: string
       mailers_name:
+          description: The mailer's name to display on the CASS™ 3553 report.
           type: string
       mailers_state:
+          description: The state to display on the CASS™ 3553 report.
           type: string
       mailers_zipcode:
+          description: The zipcode to display on the CASS™ 3553 report.
           type: string
       pmb_placement:
           $ref: '#/definitions/PmbPlacement'
       prefer_abbreviated_addresses:
+          description: When true, the abbreviated version of cities and street names if available. Note that not every city and street has an abbreviation. Defaults to false.
           type: boolean
       preferred_address_type:
           $ref: '#/definitions/PreferredAddressType'
+      require_cass_report:
+          description: Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false. 
+          type: boolean
       require_dpv_validated_secondary:
+          description: Assign a +4 zip code only for those addresses with validated secondary information. When true. Defaults to false.
           type: boolean
       unit_placement:
           $ref: '#/definitions/UnitPlacement'

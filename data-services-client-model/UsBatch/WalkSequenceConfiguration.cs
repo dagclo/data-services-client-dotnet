@@ -71,27 +71,28 @@ namespace Quadient.DataServices.Model.UsBatch
         /// <param name="AddressElementFormat">AddressElementFormat.</param>
         /// <param name="AddressCasing">AddressCasing.</param>
         /// <param name="AddressLineFormatting">AddressLineFormatting.</param>
-        /// <param name="ApplyCasingToBusiness">ApplyCasingToBusiness.</param>
+        /// <param name="ApplyCasingToOrganization">Controls the casing behavior that is applied to address organization information. Defaults to true..</param>
         /// <param name="OrganizationPlacement">OrganizationPlacement.</param>
-        /// <param name="KeepExtraInformation">KeepExtraInformation.</param>
-        /// <param name="ListProcessorName">ListProcessorName.</param>
-        /// <param name="MailersAddress">MailersAddress.</param>
-        /// <param name="MailersCity">MailersCity.</param>
-        /// <param name="MailersListName">MailersListName.</param>
-        /// <param name="MailersName">MailersName.</param>
-        /// <param name="MailersState">MailersState.</param>
-        /// <param name="MailersZipcode">MailersZipcode.</param>
+        /// <param name="KeepExtraInformation">Controls retention of information determined to be not part of the address. Defaults to true..</param>
+        /// <param name="ListProcessorName">The processing entity&#39;s name to display on the CASS™ 3553 report..</param>
+        /// <param name="MailersAddress">The address to display on the CASS™ 3553 report..</param>
+        /// <param name="MailersCity">The city to display on the CASS™ 3553 report..</param>
+        /// <param name="MailersListName">The list name to display on the CASS™ 3553 report..</param>
+        /// <param name="MailersName">The mailer&#39;s name to display on the CASS™ 3553 report..</param>
+        /// <param name="MailersState">The state to display on the CASS™ 3553 report..</param>
+        /// <param name="MailersZipcode">The zipcode to display on the CASS™ 3553 report..</param>
         /// <param name="PmbPlacement">PmbPlacement.</param>
-        /// <param name="PreferAbbreviatedAddresses">PreferAbbreviatedAddresses.</param>
+        /// <param name="PreferAbbreviatedAddresses">When true, the abbreviated version of cities and street names if available. Note that not every city and street has an abbreviation. Defaults to false..</param>
         /// <param name="PreferredAddressType">PreferredAddressType.</param>
-        /// <param name="RequireDpvValidatedSecondary">RequireDpvValidatedSecondary.</param>
+        /// <param name="RequireCassReport">Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false..</param>
+        /// <param name="RequireDpvValidatedSecondary">Assign a +4 zip code only for those addresses with validated secondary information. When true. Defaults to false..</param>
         /// <param name="UnitPlacement">UnitPlacement.</param>
-        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToBusiness = default(bool?), OrganizationPlacement? OrganizationPlacement = default(OrganizationPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
+        public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToOrganization = default(bool?), OrganizationPlacement? OrganizationPlacement = default(OrganizationPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireCassReport = default(bool?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
         {
             this.AddressElementFormat = AddressElementFormat;
             this.AddressCasing = AddressCasing;
             this.AddressLineFormatting = AddressLineFormatting;
-            this.ApplyCasingToBusiness = ApplyCasingToBusiness;
+            this.ApplyCasingToOrganization = ApplyCasingToOrganization;
             this.OrganizationPlacement = OrganizationPlacement;
             this.KeepExtraInformation = KeepExtraInformation;
             this.ListProcessorName = ListProcessorName;
@@ -104,6 +105,7 @@ namespace Quadient.DataServices.Model.UsBatch
             this.PmbPlacement = PmbPlacement;
             this.PreferAbbreviatedAddresses = PreferAbbreviatedAddresses;
             this.PreferredAddressType = PreferredAddressType;
+            this.RequireCassReport = RequireCassReport;
             this.RequireDpvValidatedSecondary = RequireDpvValidatedSecondary;
             this.UnitPlacement = UnitPlacement;
         }
@@ -112,71 +114,89 @@ namespace Quadient.DataServices.Model.UsBatch
 
 
         /// <summary>
-        /// Gets or Sets ApplyCasingToBusiness
+        /// Controls the casing behavior that is applied to address organization information. Defaults to true.
         /// </summary>
-        [DataMember(Name="apply_casing_to_business", EmitDefaultValue=false)]
-        public bool? ApplyCasingToBusiness { get; set; }
+        /// <value>Controls the casing behavior that is applied to address organization information. Defaults to true.</value>
+        [DataMember(Name="apply_casing_to_organization", EmitDefaultValue=false)]
+        public bool? ApplyCasingToOrganization { get; set; }
 
 
         /// <summary>
-        /// Gets or Sets KeepExtraInformation
+        /// Controls retention of information determined to be not part of the address. Defaults to true.
         /// </summary>
+        /// <value>Controls retention of information determined to be not part of the address. Defaults to true.</value>
         [DataMember(Name="keep_extra_information", EmitDefaultValue=false)]
         public bool? KeepExtraInformation { get; set; }
 
         /// <summary>
-        /// Gets or Sets ListProcessorName
+        /// The processing entity&#39;s name to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The processing entity&#39;s name to display on the CASS™ 3553 report.</value>
         [DataMember(Name="list_processor_name", EmitDefaultValue=false)]
         public string ListProcessorName { get; set; }
 
         /// <summary>
-        /// Gets or Sets MailersAddress
+        /// The address to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The address to display on the CASS™ 3553 report.</value>
         [DataMember(Name="mailers_address", EmitDefaultValue=false)]
         public string MailersAddress { get; set; }
 
         /// <summary>
-        /// Gets or Sets MailersCity
+        /// The city to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The city to display on the CASS™ 3553 report.</value>
         [DataMember(Name="mailers_city", EmitDefaultValue=false)]
         public string MailersCity { get; set; }
 
         /// <summary>
-        /// Gets or Sets MailersListName
+        /// The list name to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The list name to display on the CASS™ 3553 report.</value>
         [DataMember(Name="mailers_list_name", EmitDefaultValue=false)]
         public string MailersListName { get; set; }
 
         /// <summary>
-        /// Gets or Sets MailersName
+        /// The mailer&#39;s name to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The mailer&#39;s name to display on the CASS™ 3553 report.</value>
         [DataMember(Name="mailers_name", EmitDefaultValue=false)]
         public string MailersName { get; set; }
 
         /// <summary>
-        /// Gets or Sets MailersState
+        /// The state to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The state to display on the CASS™ 3553 report.</value>
         [DataMember(Name="mailers_state", EmitDefaultValue=false)]
         public string MailersState { get; set; }
 
         /// <summary>
-        /// Gets or Sets MailersZipcode
+        /// The zipcode to display on the CASS™ 3553 report.
         /// </summary>
+        /// <value>The zipcode to display on the CASS™ 3553 report.</value>
         [DataMember(Name="mailers_zipcode", EmitDefaultValue=false)]
         public string MailersZipcode { get; set; }
 
 
         /// <summary>
-        /// Gets or Sets PreferAbbreviatedAddresses
+        /// When true, the abbreviated version of cities and street names if available. Note that not every city and street has an abbreviation. Defaults to false.
         /// </summary>
+        /// <value>When true, the abbreviated version of cities and street names if available. Note that not every city and street has an abbreviation. Defaults to false.</value>
         [DataMember(Name="prefer_abbreviated_addresses", EmitDefaultValue=false)]
         public bool? PreferAbbreviatedAddresses { get; set; }
 
 
         /// <summary>
-        /// Gets or Sets RequireDpvValidatedSecondary
+        /// Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false.
         /// </summary>
+        /// <value>Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false.</value>
+        [DataMember(Name="require_cass_report", EmitDefaultValue=false)]
+        public bool? RequireCassReport { get; set; }
+
+        /// <summary>
+        /// Assign a +4 zip code only for those addresses with validated secondary information. When true. Defaults to false.
+        /// </summary>
+        /// <value>Assign a +4 zip code only for those addresses with validated secondary information. When true. Defaults to false.</value>
         [DataMember(Name="require_dpv_validated_secondary", EmitDefaultValue=false)]
         public bool? RequireDpvValidatedSecondary { get; set; }
 
@@ -192,7 +212,7 @@ namespace Quadient.DataServices.Model.UsBatch
             sb.Append("  AddressElementFormat: ").Append(AddressElementFormat).Append("\n");
             sb.Append("  AddressCasing: ").Append(AddressCasing).Append("\n");
             sb.Append("  AddressLineFormatting: ").Append(AddressLineFormatting).Append("\n");
-            sb.Append("  ApplyCasingToBusiness: ").Append(ApplyCasingToBusiness).Append("\n");
+            sb.Append("  ApplyCasingToOrganization: ").Append(ApplyCasingToOrganization).Append("\n");
             sb.Append("  OrganizationPlacement: ").Append(OrganizationPlacement).Append("\n");
             sb.Append("  KeepExtraInformation: ").Append(KeepExtraInformation).Append("\n");
             sb.Append("  ListProcessorName: ").Append(ListProcessorName).Append("\n");
@@ -205,6 +225,7 @@ namespace Quadient.DataServices.Model.UsBatch
             sb.Append("  PmbPlacement: ").Append(PmbPlacement).Append("\n");
             sb.Append("  PreferAbbreviatedAddresses: ").Append(PreferAbbreviatedAddresses).Append("\n");
             sb.Append("  PreferredAddressType: ").Append(PreferredAddressType).Append("\n");
+            sb.Append("  RequireCassReport: ").Append(RequireCassReport).Append("\n");
             sb.Append("  RequireDpvValidatedSecondary: ").Append(RequireDpvValidatedSecondary).Append("\n");
             sb.Append("  UnitPlacement: ").Append(UnitPlacement).Append("\n");
             sb.Append("}\n");
@@ -257,9 +278,9 @@ namespace Quadient.DataServices.Model.UsBatch
                     this.AddressLineFormatting.Equals(input.AddressLineFormatting))
                 ) && 
                 (
-                    this.ApplyCasingToBusiness == input.ApplyCasingToBusiness ||
-                    (this.ApplyCasingToBusiness != null &&
-                    this.ApplyCasingToBusiness.Equals(input.ApplyCasingToBusiness))
+                    this.ApplyCasingToOrganization == input.ApplyCasingToOrganization ||
+                    (this.ApplyCasingToOrganization != null &&
+                    this.ApplyCasingToOrganization.Equals(input.ApplyCasingToOrganization))
                 ) && 
                 (
                     this.OrganizationPlacement == input.OrganizationPlacement ||
@@ -322,6 +343,11 @@ namespace Quadient.DataServices.Model.UsBatch
                     this.PreferredAddressType.Equals(input.PreferredAddressType))
                 ) && 
                 (
+                    this.RequireCassReport == input.RequireCassReport ||
+                    (this.RequireCassReport != null &&
+                    this.RequireCassReport.Equals(input.RequireCassReport))
+                ) && 
+                (
                     this.RequireDpvValidatedSecondary == input.RequireDpvValidatedSecondary ||
                     (this.RequireDpvValidatedSecondary != null &&
                     this.RequireDpvValidatedSecondary.Equals(input.RequireDpvValidatedSecondary))
@@ -348,8 +374,8 @@ namespace Quadient.DataServices.Model.UsBatch
                     hashCode = hashCode * 59 + this.AddressCasing.GetHashCode();
                 if (this.AddressLineFormatting != null)
                     hashCode = hashCode * 59 + this.AddressLineFormatting.GetHashCode();
-                if (this.ApplyCasingToBusiness != null)
-                    hashCode = hashCode * 59 + this.ApplyCasingToBusiness.GetHashCode();
+                if (this.ApplyCasingToOrganization != null)
+                    hashCode = hashCode * 59 + this.ApplyCasingToOrganization.GetHashCode();
                 if (this.OrganizationPlacement != null)
                     hashCode = hashCode * 59 + this.OrganizationPlacement.GetHashCode();
                 if (this.KeepExtraInformation != null)
@@ -374,6 +400,8 @@ namespace Quadient.DataServices.Model.UsBatch
                     hashCode = hashCode * 59 + this.PreferAbbreviatedAddresses.GetHashCode();
                 if (this.PreferredAddressType != null)
                     hashCode = hashCode * 59 + this.PreferredAddressType.GetHashCode();
+                if (this.RequireCassReport != null)
+                    hashCode = hashCode * 59 + this.RequireCassReport.GetHashCode();
                 if (this.RequireDpvValidatedSecondary != null)
                     hashCode = hashCode * 59 + this.RequireDpvValidatedSecondary.GetHashCode();
                 if (this.UnitPlacement != null)

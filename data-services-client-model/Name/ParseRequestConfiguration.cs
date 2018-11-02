@@ -42,7 +42,8 @@ namespace Quadient.DataServices.Model.Name
         /// <param name="EntityChangeCategory">Defines how the service should respond (via the &#x60;category&#x60; attribute) to situations where a different type of entity is found than expected/believed (see &#x60;believed_entity_type&#x60;). By default the service treats this as a correction, but for more strict behaviour the value &#x60;Invalid&#x60; may be desired. .</param>
         /// <param name="DefaultCountry">The default &#x60;country&#x60; value to apply to names where no country is supplied. The ISO 3166 2-letter country code is preferred. .</param>
         /// <param name="DefaultLanguage">The default &#x60;language&#x60; value to apply to names where no language is supplied..</param>
-        public ParseRequestConfiguration(bool? EnableCapitalization = true, bool? EnableNicknames = true, MiddleNameHandling MiddleNameHandling = default(MiddleNameHandling), GenerationTitleHandling GenerationTitleHandling = default(GenerationTitleHandling), EntityType DefaultBelievedEntityType = default(EntityType), PersonJobTitleHandling PersonJobTitleHandling = default(PersonJobTitleHandling), EntityChangeCategory EntityChangeCategory = default(EntityChangeCategory), string DefaultCountry = default(string), string DefaultLanguage = default(string))
+        /// <param name="EnableDistinctiveTerms">Indicates whether or not to enable the identification of \&quot;distinctive terms\&quot; (usually words) in organization names or job titles. These terms are provided for situations where the entity name may contain a set of generic terms as well as terms that are more distinctive. Separating out the distinctive terms may make it easier to compare names since they have less generic \&quot;noise\&quot;.  (default to false).</param>
+        public ParseRequestConfiguration(bool? EnableCapitalization = true, bool? EnableNicknames = true, MiddleNameHandling MiddleNameHandling = default(MiddleNameHandling), GenerationTitleHandling GenerationTitleHandling = default(GenerationTitleHandling), EntityType DefaultBelievedEntityType = default(EntityType), PersonJobTitleHandling PersonJobTitleHandling = default(PersonJobTitleHandling), EntityChangeCategory EntityChangeCategory = default(EntityChangeCategory), string DefaultCountry = default(string), string DefaultLanguage = default(string), bool? EnableDistinctiveTerms = false)
         {
             // use default value if no "EnableCapitalization" provided
             if (EnableCapitalization == null)
@@ -69,6 +70,15 @@ namespace Quadient.DataServices.Model.Name
             this.EntityChangeCategory = EntityChangeCategory;
             this.DefaultCountry = DefaultCountry;
             this.DefaultLanguage = DefaultLanguage;
+            // use default value if no "EnableDistinctiveTerms" provided
+            if (EnableDistinctiveTerms == null)
+            {
+                this.EnableDistinctiveTerms = false;
+            }
+            else
+            {
+                this.EnableDistinctiveTerms = EnableDistinctiveTerms;
+            }
         }
         
         /// <summary>
@@ -135,6 +145,13 @@ namespace Quadient.DataServices.Model.Name
         public string DefaultLanguage { get; set; }
 
         /// <summary>
+        /// Indicates whether or not to enable the identification of \&quot;distinctive terms\&quot; (usually words) in organization names or job titles. These terms are provided for situations where the entity name may contain a set of generic terms as well as terms that are more distinctive. Separating out the distinctive terms may make it easier to compare names since they have less generic \&quot;noise\&quot;. 
+        /// </summary>
+        /// <value>Indicates whether or not to enable the identification of \&quot;distinctive terms\&quot; (usually words) in organization names or job titles. These terms are provided for situations where the entity name may contain a set of generic terms as well as terms that are more distinctive. Separating out the distinctive terms may make it easier to compare names since they have less generic \&quot;noise\&quot;. </value>
+        [DataMember(Name="enable_distinctive_terms", EmitDefaultValue=false)]
+        public bool? EnableDistinctiveTerms { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -151,6 +168,7 @@ namespace Quadient.DataServices.Model.Name
             sb.Append("  EntityChangeCategory: ").Append(EntityChangeCategory).Append("\n");
             sb.Append("  DefaultCountry: ").Append(DefaultCountry).Append("\n");
             sb.Append("  DefaultLanguage: ").Append(DefaultLanguage).Append("\n");
+            sb.Append("  EnableDistinctiveTerms: ").Append(EnableDistinctiveTerms).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -229,6 +247,11 @@ namespace Quadient.DataServices.Model.Name
                     this.DefaultLanguage == input.DefaultLanguage ||
                     (this.DefaultLanguage != null &&
                     this.DefaultLanguage.Equals(input.DefaultLanguage))
+                ) && 
+                (
+                    this.EnableDistinctiveTerms == input.EnableDistinctiveTerms ||
+                    (this.EnableDistinctiveTerms != null &&
+                    this.EnableDistinctiveTerms.Equals(input.EnableDistinctiveTerms))
                 );
         }
 
@@ -259,6 +282,8 @@ namespace Quadient.DataServices.Model.Name
                     hashCode = hashCode * 59 + this.DefaultCountry.GetHashCode();
                 if (this.DefaultLanguage != null)
                     hashCode = hashCode * 59 + this.DefaultLanguage.GetHashCode();
+                if (this.EnableDistinctiveTerms != null)
+                    hashCode = hashCode * 59 + this.EnableDistinctiveTerms.GetHashCode();
                 return hashCode;
             }
         }

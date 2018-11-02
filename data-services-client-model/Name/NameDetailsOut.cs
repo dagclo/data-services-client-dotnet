@@ -42,13 +42,15 @@ namespace Quadient.DataServices.Model.Name
         /// <param name="GenerationTitle">A title related to a person&#39;s family or generation status. .</param>
         /// <param name="TitleAfter">A title, typically professional or academic, that comes after the name parts. .</param>
         /// <param name="Nicknames">An optional array of potential nicknames for the name parts of the person. .</param>
+        /// <param name="DistinctiveTerms">An optional array (included when &#x60;enable_distinctive_terms&#x60; is true) containing terms that are considered distinctive to this name. Usually these terms represent the parts of the name that are non-generic, such as the word \&quot;Maersk\&quot; out of \&quot;Maersk Shipping A/S\&quot;. Note that there are no guarantees that any given name contains \&quot;distinctive terms\&quot;, since some names are composed of entirely \&quot;generic\&quot; terms. .</param>
         /// <param name="FamilyNamePrefix">One or more words that serve as the prefix to the first family name of the person. .</param>
         /// <param name="FamilyNameWithoutPrefix">If the family name contains prefixes, this field provides the family name without any prefixes. .</param>
         /// <param name="OrganizationName">The name of an organization, if &#x60;entity_type&#x60; was found to be an organization..</param>
-        /// <param name="FullName">The representation of the full name without any salutation, honorific or title elements. This always equates to the concatenation of &#x60;given_name&#x60;, &#x60;middle_name&#x60;, &#x60;family_name&#x60;, and &#x60;generation_title&#x60;. The treatment of the &#x60;generation_title&#x60; element depends on the &#x60;generation_title_handling&#x60; configuration. .</param>
+        /// <param name="OrganizationType">Any legal form, entity type or structural description of the company that is embedded in the name..</param>
+        /// <param name="FullName">The representation of the full name without any salutation, honorific or title elements. For &#x60;person&#x60; entities, this always equates to the concatenation of &#x60;given_name&#x60;, &#x60;middle_name&#x60;, &#x60;family_name&#x60;, and &#x60;generation_title&#x60;. The treatment of the &#x60;generation_title&#x60; element depends on the &#x60;generation_title_handling&#x60; configuration. For &#x60;organization&#x60; entities, this always equates to the concatenation of &#x60;organization_name&#x60; and &#x60;organization_type&#x60;. For &#x60;job_title&#x60; entities, this is simply the job title. .</param>
         /// <param name="Gender">The gender of the person. .</param>
         /// <param name="EntityType">The type of entity that the name was found to represent..</param>
-        public NameDetailsOut(string Salutation = default(string), string Honorific = default(string), string TitleBefore = default(string), string GivenName = default(string), string MiddleName = default(string), string FamilyName = default(string), string GenerationTitle = default(string), string TitleAfter = default(string), List<NicknameItem> Nicknames = default(List<NicknameItem>), string FamilyNamePrefix = default(string), string FamilyNameWithoutPrefix = default(string), string OrganizationName = default(string), string FullName = default(string), Gender Gender = default(Gender), EntityType EntityType = default(EntityType))
+        public NameDetailsOut(string Salutation = default(string), string Honorific = default(string), string TitleBefore = default(string), string GivenName = default(string), string MiddleName = default(string), string FamilyName = default(string), string GenerationTitle = default(string), string TitleAfter = default(string), List<NicknameItem> Nicknames = default(List<NicknameItem>), List<string> DistinctiveTerms = default(List<string>), string FamilyNamePrefix = default(string), string FamilyNameWithoutPrefix = default(string), string OrganizationName = default(string), string OrganizationType = default(string), string FullName = default(string), Gender Gender = default(Gender), EntityType EntityType = default(EntityType))
         {
             this.Salutation = Salutation;
             this.Honorific = Honorific;
@@ -59,9 +61,11 @@ namespace Quadient.DataServices.Model.Name
             this.GenerationTitle = GenerationTitle;
             this.TitleAfter = TitleAfter;
             this.Nicknames = Nicknames;
+            this.DistinctiveTerms = DistinctiveTerms;
             this.FamilyNamePrefix = FamilyNamePrefix;
             this.FamilyNameWithoutPrefix = FamilyNameWithoutPrefix;
             this.OrganizationName = OrganizationName;
+            this.OrganizationType = OrganizationType;
             this.FullName = FullName;
             this.Gender = Gender;
             this.EntityType = EntityType;
@@ -131,6 +135,13 @@ namespace Quadient.DataServices.Model.Name
         public List<NicknameItem> Nicknames { get; set; }
 
         /// <summary>
+        /// An optional array (included when &#x60;enable_distinctive_terms&#x60; is true) containing terms that are considered distinctive to this name. Usually these terms represent the parts of the name that are non-generic, such as the word \&quot;Maersk\&quot; out of \&quot;Maersk Shipping A/S\&quot;. Note that there are no guarantees that any given name contains \&quot;distinctive terms\&quot;, since some names are composed of entirely \&quot;generic\&quot; terms. 
+        /// </summary>
+        /// <value>An optional array (included when &#x60;enable_distinctive_terms&#x60; is true) containing terms that are considered distinctive to this name. Usually these terms represent the parts of the name that are non-generic, such as the word \&quot;Maersk\&quot; out of \&quot;Maersk Shipping A/S\&quot;. Note that there are no guarantees that any given name contains \&quot;distinctive terms\&quot;, since some names are composed of entirely \&quot;generic\&quot; terms. </value>
+        [DataMember(Name="distinctive_terms", EmitDefaultValue=false)]
+        public List<string> DistinctiveTerms { get; set; }
+
+        /// <summary>
         /// One or more words that serve as the prefix to the first family name of the person. 
         /// </summary>
         /// <value>One or more words that serve as the prefix to the first family name of the person. </value>
@@ -152,9 +163,16 @@ namespace Quadient.DataServices.Model.Name
         public string OrganizationName { get; set; }
 
         /// <summary>
-        /// The representation of the full name without any salutation, honorific or title elements. This always equates to the concatenation of &#x60;given_name&#x60;, &#x60;middle_name&#x60;, &#x60;family_name&#x60;, and &#x60;generation_title&#x60;. The treatment of the &#x60;generation_title&#x60; element depends on the &#x60;generation_title_handling&#x60; configuration. 
+        /// Any legal form, entity type or structural description of the company that is embedded in the name.
         /// </summary>
-        /// <value>The representation of the full name without any salutation, honorific or title elements. This always equates to the concatenation of &#x60;given_name&#x60;, &#x60;middle_name&#x60;, &#x60;family_name&#x60;, and &#x60;generation_title&#x60;. The treatment of the &#x60;generation_title&#x60; element depends on the &#x60;generation_title_handling&#x60; configuration. </value>
+        /// <value>Any legal form, entity type or structural description of the company that is embedded in the name.</value>
+        [DataMember(Name="organization_type", EmitDefaultValue=false)]
+        public string OrganizationType { get; set; }
+
+        /// <summary>
+        /// The representation of the full name without any salutation, honorific or title elements. For &#x60;person&#x60; entities, this always equates to the concatenation of &#x60;given_name&#x60;, &#x60;middle_name&#x60;, &#x60;family_name&#x60;, and &#x60;generation_title&#x60;. The treatment of the &#x60;generation_title&#x60; element depends on the &#x60;generation_title_handling&#x60; configuration. For &#x60;organization&#x60; entities, this always equates to the concatenation of &#x60;organization_name&#x60; and &#x60;organization_type&#x60;. For &#x60;job_title&#x60; entities, this is simply the job title. 
+        /// </summary>
+        /// <value>The representation of the full name without any salutation, honorific or title elements. For &#x60;person&#x60; entities, this always equates to the concatenation of &#x60;given_name&#x60;, &#x60;middle_name&#x60;, &#x60;family_name&#x60;, and &#x60;generation_title&#x60;. The treatment of the &#x60;generation_title&#x60; element depends on the &#x60;generation_title_handling&#x60; configuration. For &#x60;organization&#x60; entities, this always equates to the concatenation of &#x60;organization_name&#x60; and &#x60;organization_type&#x60;. For &#x60;job_title&#x60; entities, this is simply the job title. </value>
         [DataMember(Name="full_name", EmitDefaultValue=false)]
         public string FullName { get; set; }
 
@@ -189,9 +207,11 @@ namespace Quadient.DataServices.Model.Name
             sb.Append("  GenerationTitle: ").Append(GenerationTitle).Append("\n");
             sb.Append("  TitleAfter: ").Append(TitleAfter).Append("\n");
             sb.Append("  Nicknames: ").Append(Nicknames).Append("\n");
+            sb.Append("  DistinctiveTerms: ").Append(DistinctiveTerms).Append("\n");
             sb.Append("  FamilyNamePrefix: ").Append(FamilyNamePrefix).Append("\n");
             sb.Append("  FamilyNameWithoutPrefix: ").Append(FamilyNameWithoutPrefix).Append("\n");
             sb.Append("  OrganizationName: ").Append(OrganizationName).Append("\n");
+            sb.Append("  OrganizationType: ").Append(OrganizationType).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Gender: ").Append(Gender).Append("\n");
             sb.Append("  EntityType: ").Append(EntityType).Append("\n");
@@ -275,6 +295,11 @@ namespace Quadient.DataServices.Model.Name
                     this.Nicknames.SequenceEqual(input.Nicknames)
                 ) && 
                 (
+                    this.DistinctiveTerms == input.DistinctiveTerms ||
+                    this.DistinctiveTerms != null &&
+                    this.DistinctiveTerms.SequenceEqual(input.DistinctiveTerms)
+                ) && 
+                (
                     this.FamilyNamePrefix == input.FamilyNamePrefix ||
                     (this.FamilyNamePrefix != null &&
                     this.FamilyNamePrefix.Equals(input.FamilyNamePrefix))
@@ -288,6 +313,11 @@ namespace Quadient.DataServices.Model.Name
                     this.OrganizationName == input.OrganizationName ||
                     (this.OrganizationName != null &&
                     this.OrganizationName.Equals(input.OrganizationName))
+                ) && 
+                (
+                    this.OrganizationType == input.OrganizationType ||
+                    (this.OrganizationType != null &&
+                    this.OrganizationType.Equals(input.OrganizationType))
                 ) && 
                 (
                     this.FullName == input.FullName ||
@@ -333,12 +363,16 @@ namespace Quadient.DataServices.Model.Name
                     hashCode = hashCode * 59 + this.TitleAfter.GetHashCode();
                 if (this.Nicknames != null)
                     hashCode = hashCode * 59 + this.Nicknames.GetHashCode();
+                if (this.DistinctiveTerms != null)
+                    hashCode = hashCode * 59 + this.DistinctiveTerms.GetHashCode();
                 if (this.FamilyNamePrefix != null)
                     hashCode = hashCode * 59 + this.FamilyNamePrefix.GetHashCode();
                 if (this.FamilyNameWithoutPrefix != null)
                     hashCode = hashCode * 59 + this.FamilyNameWithoutPrefix.GetHashCode();
                 if (this.OrganizationName != null)
                     hashCode = hashCode * 59 + this.OrganizationName.GetHashCode();
+                if (this.OrganizationType != null)
+                    hashCode = hashCode * 59 + this.OrganizationType.GetHashCode();
                 if (this.FullName != null)
                     hashCode = hashCode * 59 + this.FullName.GetHashCode();
                 if (this.Gender != null)

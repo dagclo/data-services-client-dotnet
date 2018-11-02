@@ -35,7 +35,8 @@ namespace Quadient.DataServices.Model.Name
         /// </summary>
         /// <param name="EnableCapitalization">Indicates whether to enable capitalization support, meaning that the service will correct the text case of name tokens.  (default to true).</param>
         /// <param name="EnableNicknames">Indicates whether to enable the nickname lookup feature. Disable to turn off the lookup into the nickname knowledge data for each name.  (default to true).</param>
-        public ProcessRequestConfiguration(bool? EnableCapitalization = true, bool? EnableNicknames = true)
+        /// <param name="EnableDistinctiveTerms">Indicates whether or not to enable the identification of \&quot;distinctive terms\&quot; (usually words) in organization names or job titles. These terms are provided for situations where the entity name may contain a set of generic terms as well as terms that are more distinctive. Separating out the distinctive terms may make it easier to compare names since they have less generic \&quot;noise\&quot;.  (default to false).</param>
+        public ProcessRequestConfiguration(bool? EnableCapitalization = true, bool? EnableNicknames = true, bool? EnableDistinctiveTerms = false)
         {
             // use default value if no "EnableCapitalization" provided
             if (EnableCapitalization == null)
@@ -55,6 +56,15 @@ namespace Quadient.DataServices.Model.Name
             {
                 this.EnableNicknames = EnableNicknames;
             }
+            // use default value if no "EnableDistinctiveTerms" provided
+            if (EnableDistinctiveTerms == null)
+            {
+                this.EnableDistinctiveTerms = false;
+            }
+            else
+            {
+                this.EnableDistinctiveTerms = EnableDistinctiveTerms;
+            }
         }
         
         /// <summary>
@@ -72,6 +82,13 @@ namespace Quadient.DataServices.Model.Name
         public bool? EnableNicknames { get; set; }
 
         /// <summary>
+        /// Indicates whether or not to enable the identification of \&quot;distinctive terms\&quot; (usually words) in organization names or job titles. These terms are provided for situations where the entity name may contain a set of generic terms as well as terms that are more distinctive. Separating out the distinctive terms may make it easier to compare names since they have less generic \&quot;noise\&quot;. 
+        /// </summary>
+        /// <value>Indicates whether or not to enable the identification of \&quot;distinctive terms\&quot; (usually words) in organization names or job titles. These terms are provided for situations where the entity name may contain a set of generic terms as well as terms that are more distinctive. Separating out the distinctive terms may make it easier to compare names since they have less generic \&quot;noise\&quot;. </value>
+        [DataMember(Name="enable_distinctive_terms", EmitDefaultValue=false)]
+        public bool? EnableDistinctiveTerms { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +98,7 @@ namespace Quadient.DataServices.Model.Name
             sb.Append("class ProcessRequestConfiguration {\n");
             sb.Append("  EnableCapitalization: ").Append(EnableCapitalization).Append("\n");
             sb.Append("  EnableNicknames: ").Append(EnableNicknames).Append("\n");
+            sb.Append("  EnableDistinctiveTerms: ").Append(EnableDistinctiveTerms).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -124,6 +142,11 @@ namespace Quadient.DataServices.Model.Name
                     this.EnableNicknames == input.EnableNicknames ||
                     (this.EnableNicknames != null &&
                     this.EnableNicknames.Equals(input.EnableNicknames))
+                ) && 
+                (
+                    this.EnableDistinctiveTerms == input.EnableDistinctiveTerms ||
+                    (this.EnableDistinctiveTerms != null &&
+                    this.EnableDistinctiveTerms.Equals(input.EnableDistinctiveTerms))
                 );
         }
 
@@ -140,6 +163,8 @@ namespace Quadient.DataServices.Model.Name
                     hashCode = hashCode * 59 + this.EnableCapitalization.GetHashCode();
                 if (this.EnableNicknames != null)
                     hashCode = hashCode * 59 + this.EnableNicknames.GetHashCode();
+                if (this.EnableDistinctiveTerms != null)
+                    hashCode = hashCode * 59 + this.EnableDistinctiveTerms.GetHashCode();
                 return hashCode;
             }
         }
