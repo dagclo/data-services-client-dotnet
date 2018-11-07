@@ -65,20 +65,20 @@ namespace Quadient.DataServices.Api
                 ClientCertificateOptions = ClientCertificateOption.Automatic
             };
 
+            var timeout =
+                TimeSpan.FromSeconds(configuration.Timeout > 0
+                    ? configuration.Timeout.Value
+                    : Constants.ServiceTimeout);
             _httpClient = new HttpClient(handler)
             {
-                Timeout = configuration.Timeout > 0
-                    ? TimeSpan.FromSeconds(configuration.Timeout.Value)
-                    : TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                Timeout = timeout,
                 BaseAddress = GetBaseAddress()
             };
             _httpClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
 
             _authClient = new HttpClient(handler)
             {
-                Timeout = configuration.Timeout > 0
-                    ? TimeSpan.FromSeconds(configuration.Timeout.Value)
-                    : TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                Timeout = timeout,
                 BaseAddress = GetBaseAddress(true)
             };
             _authClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
