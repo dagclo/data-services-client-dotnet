@@ -12,7 +12,7 @@ namespace Quadient.DataServices.Model
         /// <summary>
         /// The number of seconds to wait before the request times out.
         /// </summary>
-        long? Timeout { get; set; }
+        double? Timeout { get; set; }
     }
 
     public class Configuration : IConfiguration
@@ -25,6 +25,6 @@ namespace Quadient.DataServices.Model
         /// <summary>
         /// The number of seconds to wait before the request times out.
         /// </summary>
-        public long? Timeout { get; set; }
+        public double? Timeout { get; set; }
     }
 }
