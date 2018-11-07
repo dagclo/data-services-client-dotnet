@@ -1,5 +1,4 @@
-﻿
-using Quadient.DataServices.Utility;
+﻿using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Model
 {
@@ -9,13 +8,23 @@ namespace Quadient.DataServices.Model
         string QuadientCloudAddress { get; set; }
         string UserAgent { get; }
         Region Region { get; set; }
+
+        /// <summary>
+        /// The number of seconds to wait before the request times out.
+        /// </summary>
+        double? Timeout { get; set; }
     }
 
-    public class Configuration: IConfiguration
+    public class Configuration : IConfiguration
     {
         public string DataServicesAddress { get; set; }
         public string QuadientCloudAddress { get; set; }
         public string UserAgent { get; } = Constants.Origin;
         public Region Region { get; set; } = Region.US;
+
+        /// <summary>
+        /// The number of seconds to wait before the request times out.
+        /// </summary>
+        public double? Timeout { get; set; }
     }
 }

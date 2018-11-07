@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Quadient.DataServices.Utility
+﻿namespace Quadient.DataServices.Utility
 {
     public static class Constants
     {
         /// <summary>
-        /// Represents the HttpClient service timeout in minutes
+        /// Represents the HttpClient service timeout in seconds
         /// </summary>
-        public const int ServiceTimeout = 1;
+        public const long ServiceTimeout = 120;
+
         public const string Origin = "data-services-client-dotnet";
     }
 }
