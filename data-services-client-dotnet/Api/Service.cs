@@ -67,14 +67,18 @@ namespace Quadient.DataServices.Api
 
             _httpClient = new HttpClient(handler)
             {
-                Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                Timeout = configuration?.Timeout > 0
+                    ? TimeSpan.FromSeconds(configuration.Timeout.Value)
+                    : TimeSpan.FromMinutes(Constants.ServiceTimeout),
                 BaseAddress = GetBaseAddress()
             };
             _httpClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
 
             _authClient = new HttpClient(handler)
             {
-                Timeout = TimeSpan.FromMinutes(Constants.ServiceTimeout),
+                Timeout = configuration.Timeout > 0
+                    ? TimeSpan.FromSeconds(configuration.Timeout.Value)
+                    : TimeSpan.FromMinutes(Constants.ServiceTimeout),
                 BaseAddress = GetBaseAddress(true)
             };
             _authClient.DefaultRequestHeaders.Add("User-Agent", configuration.UserAgent);
