@@ -36,23 +36,32 @@ namespace Quadient.DataServices.Utility
             {
                 try
                 {
-                    var resultContent = await message.Content.ReadAsStringAsync();
-                    var errorDetail = resultContent != null
-		                ? JsonConvert.DeserializeObject<IDictionary<string, object>>(resultContent)
-		                : null;
-                    string serviceMessage = null;
                     IDictionary<string, object> additionalDetails = null;
-                    if (errorDetail?.ContainsKey("message") == true)
+                    string serviceMessage = null;
+                    var resultContent = await message.Content.ReadAsStringAsync();
+                    try
                     {
-                        serviceMessage = errorDetail["message"].ToString();
-                    }
+                        var errorDetail = resultContent != null
+                            ? JsonConvert.DeserializeObject<IDictionary<string, object>>(resultContent)
+                            : null;
+                        if (errorDetail?.ContainsKey("message") == true)
+                        {
+                            serviceMessage = errorDetail["message"].ToString();
+                        }
 
-                    if (errorDetail?.ContainsKey("additional_details") == true &&
-                        errorDetail["additional_details"] != null)
+                        if (errorDetail?.ContainsKey("additional_details") == true &&
+                            errorDetail["additional_details"] != null)
+                        {
+                            additionalDetails =
+                                JsonConvert.DeserializeObject<IDictionary<string, object>>(
+                                    errorDetail["additional_details"]
+                                        .ToString());
+                        }
+                    }
+                    catch (JsonException)
                     {
-                        additionalDetails =
-                            JsonConvert.DeserializeObject<IDictionary<string, object>>(errorDetail["additional_details"]
-                                .ToString());
+                        // response did not contain valid Json
+                        serviceMessage = resultContent;
                     }
 
                     // assume bad request equates to invalid data provided by the end user
