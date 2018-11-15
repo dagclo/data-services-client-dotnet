@@ -35,6 +35,36 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>generate-model-assessment</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<artifactId>dataservices-client-swagger-model-assessment</artifactId>
+							<inputSpec>https://data.quadientcloud.com/services/assessment/swagger.json</inputSpec>
+							<modelPackage>Assessment</modelPackage>
+                            <configOptions>
+                                <packageName>Quadient.DataServices.Model</packageName>
+                                <sourceFolder>data-services-client-model</sourceFolder>
+                            </configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-model-sentiment-analysis</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<artifactId>dataservices-client-swagger-model-sentiment-analysis</artifactId>
+							<inputSpec>https://data.quadientcloud.com/services/sentiment-analysis/swagger.json</inputSpec>
+							<modelPackage>SentimentAnalysis</modelPackage>
+                            <configOptions>
+                                <packageName>Quadient.DataServices.Model</packageName>
+                                <sourceFolder>data-services-client-model</sourceFolder>
+                            </configOptions>
+						</configuration>
+					</execution>
+					<execution>
 						<id>generate-model-address</id>
 						<goals>
 							<goal>generate</goal>
