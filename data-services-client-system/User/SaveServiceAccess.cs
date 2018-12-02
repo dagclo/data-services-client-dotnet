@@ -8,12 +8,14 @@ namespace Quadient.DataServices.System.User
     /// <summary>
     /// Add or overwrite an access descriptor for this tenant for the named service.
     /// </summary>
-    public class SaveServiceAccess : IRequest<ServiceAccessRequest, ServiceAccessDescriptor>
+    public class SaveServiceAccess : IRequest<ServiceAccessDescriptor>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Put;
         public ServiceAccessRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
         /// <summary>
         /// Add or overwrite an access descriptor for this tenant for the named service.
         /// </summary>

@@ -8,12 +8,14 @@ namespace Quadient.DataServices.System.Pricebook
     /// <summary>
     /// Allows updating the aspects of a particular price line 
     /// </summary>
-    public class UpdateServicePriceLine : IRequest<PriceUpdate, object>
+    public class UpdateServicePriceLine : IRequest<object>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Put;
         public PriceUpdate Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Allows updating the aspects of a particular price line 

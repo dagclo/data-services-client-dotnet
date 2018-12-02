@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Quadient.DataServices.Utility;
 using System.Threading;
 
 namespace Quadient.DataServices.Api
@@ -18,7 +17,9 @@ namespace Quadient.DataServices.Api
 
 		public JobSession(IServiceCaller serviceCaller, string jobId)
 		{
-			_serviceCaller = serviceCaller;
+			_serviceCaller = new HeaderDecorationServiceCaller(serviceCaller, new Dictionary<string, string>() {
+					 {"Job-ID", jobId}
+				});
 			JobId = jobId;
 		}
 

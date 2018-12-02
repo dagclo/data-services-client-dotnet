@@ -14,7 +14,7 @@ using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
-    internal class ServiceCaller : IServiceCaller
+    internal class BaseServiceCaller : IServiceCaller
     {
         private const int TokenExpiration = 8 * 60 * 1000;
         private const string TokenType = "Bearer";
@@ -24,7 +24,7 @@ namespace Quadient.DataServices.Api
         protected IConfiguration Configuration { get; }
         protected ISessionToken SessionToken { get; }
 
-        public ServiceCaller(ICredentials credentials, IConfiguration configuration)
+        public BaseServiceCaller(ICredentials credentials, IConfiguration configuration)
         {
             if (_httpClient != null)
             {
@@ -42,7 +42,7 @@ namespace Quadient.DataServices.Api
             InitializeHttpClients(configuration);
         }
 
-        public ServiceCaller(ISessionToken sessionToken, IConfiguration configuration = null)
+        public BaseServiceCaller(ISessionToken sessionToken, IConfiguration configuration = null)
         {
             SessionToken = sessionToken;
             if (configuration == null)

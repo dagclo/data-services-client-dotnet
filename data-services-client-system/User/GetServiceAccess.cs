@@ -8,12 +8,14 @@ namespace Quadient.DataServices.System.User
     /// <summary>
     /// Get the service access descriptor in place for the tenant for the named service.
     /// </summary>
-    public class GetServiceAccess : IRequest<object, ServiceAccessDescriptor>
+    public class GetServiceAccess : IRequest<ServiceAccessDescriptor>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Get the service access descriptor in place for the tenant for the named service.

@@ -10,12 +10,14 @@ namespace Quadient.DataServices.System.Pricebook
     /// <summary>
     /// Get the price sheet for services, optionally scoped to a tenant and/or user.
     /// </summary>
-    public class GetPrices : IRequest<object, Pricesheet>
+    public class GetPrices : IRequest<Pricesheet>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Get the price sheet for services, optionally scoped to a tenant and/or user.

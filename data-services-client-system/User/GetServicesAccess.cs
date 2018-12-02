@@ -8,12 +8,14 @@ namespace Quadient.DataServices.System.User
     /// <summary>
     /// Get the list of enabled and disabled services for this tenant.
     /// </summary>
-    public class GetServicesAccess : IRequest<object, ServiceAccessDescriptorListing>
+    public class GetServicesAccess : IRequest<ServiceAccessDescriptorListing>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Get the list of enabled and disabled services for this tenant.
