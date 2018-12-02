@@ -11,10 +11,10 @@ namespace Quadient.DataServices.Api.Address
 	{
 		public string ServicePath { get; } = "services/address-correction/v1/correct";
 		public HttpMethod Method { get; } = HttpMethod.Post;
-		public object Body => Content;
 		public IDictionary<string, string> QueryStringParams { get; }
-		public IDictionary<string, string> Headers { get; }
 		private CorrectionRequest Content { get; set; }
+		public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
 
 		public AddressCorrection()
 		{
