@@ -20,22 +20,15 @@ namespace Quadient.DataServices.Api.Job
 		/// Updates the status of a job. Only certain job status transitions are possible. You cannot go back from a finite state like `SUCCESS` or `FAILURE`, and you cannot go back to an initial state like `CREATED` once the job has started.
 		/// </summary>
 		/// <param name="jobId"></param>
-		public UpdateStatus(string jobId)
-		{
-			ServicePath = string.Format(ServicePath, jobId);
-		}
-
-		/// <summary>
-		/// Updates the status of a job. Only certain job status transitions are possible. You cannot go back from a finite state like `SUCCESS` or `FAILURE`, and you cannot go back to an initial state like `CREATED` once the job has started.
-		/// </summary>
-		/// <param name="jobId"></param>
 		/// <param name="status"></param>
-		public UpdateStatus(string jobId, Model.Job.JobStatus status)
+		/// <param name="jobStatusDetails"></param>
+		public UpdateStatus(string jobId, Model.Job.JobStatus status, IDictionary<string, object> jobStatusDetails)
 		{
 			ServicePath = $"jobs/v1/{jobId}/job_status";
 			Content = new JobStatusUpdateRequest
 			{
-                JobStatus = status
+                JobStatus = status,
+					 JobStatusDetails = jobStatusDetails
 			};
 		}
 	}

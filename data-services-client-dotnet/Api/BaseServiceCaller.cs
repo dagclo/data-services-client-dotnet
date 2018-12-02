@@ -14,7 +14,7 @@ using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
-    internal class Service
+    internal class ServiceCaller : IServiceCaller
     {
         private const int TokenExpiration = 8 * 60 * 1000;
         private const string TokenType = "Bearer";
@@ -24,7 +24,7 @@ namespace Quadient.DataServices.Api
         protected IConfiguration Configuration { get; }
         protected ISessionToken SessionToken { get; }
 
-        public Service(ICredentials credentials, IConfiguration configuration)
+        public ServiceCaller(ICredentials credentials, IConfiguration configuration)
         {
             if (_httpClient != null)
             {
@@ -42,7 +42,7 @@ namespace Quadient.DataServices.Api
             InitializeHttpClients(configuration);
         }
 
-        public Service(ISessionToken sessionToken, IConfiguration configuration = null)
+        public ServiceCaller(ISessionToken sessionToken, IConfiguration configuration = null)
         {
             SessionToken = sessionToken;
             if (configuration == null)
@@ -127,7 +127,6 @@ namespace Quadient.DataServices.Api
         /// <summary>
         /// Execute the service call.
         /// </summary>
-        /// <typeparam name="T">The input type for the service request.</typeparam>
         /// <typeparam name="R">The return type from the service request.</typeparam>
         /// <param name="request"></param>
         /// <param name="headers"></param>
@@ -135,30 +134,28 @@ namespace Quadient.DataServices.Api
         /// <exception cref="BadRequestRestException"></exception>
         /// <exception cref="InsufficientCreditsRestException"></exception>
         /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-        public async Task<R> Execute<T, R>(IRequest<T, R> request, IDictionary<string, string> headers = null)
+        public async Task<R> Execute<R>(IRequest<R> request)
         {
-            return await Execute(request, CancellationToken.None, headers);
+            return await Execute(request, CancellationToken.None);
         }
 
         /// <summary>
         /// Execute the service call.
         /// </summary>
-        /// <typeparam name="T">The input type for the service request.</typeparam>
         /// <typeparam name="R">The return type from the service request.</typeparam>
         /// <param name="request"></param>
-        /// <param name="headers"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="BadRequestRestException"></exception>
         /// <exception cref="InsufficientCreditsRestException"></exception>
         /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-        public async Task<R> Execute<T, R>(IRequest<T, R> request, CancellationToken cancellationToken,
-            IDictionary<string, string> headers = null)
+        public async Task<R> Execute<R>(IRequest<R> request, CancellationToken cancellationToken)
         {
             var session = await GetSession(cancellationToken);
             using (var httpRequest = new HttpRequestMessage(request.Method, GetRequestUri(request)))
             {
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue(TokenType, session.Token);
+                var headers = request.Headers;
                 if (headers != null)
                 {
                     foreach (var key in headers.Keys)
@@ -169,7 +166,7 @@ namespace Quadient.DataServices.Api
 
                 if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
                 {
-                    httpRequest.Content = new StringContent(SerializeObject(request.Content), Encoding.UTF8,
+                    httpRequest.Content = new StringContent(SerializeObject(request.Body), Encoding.UTF8,
                         "application/json");
                 }
 
@@ -213,7 +210,7 @@ namespace Quadient.DataServices.Api
             return JsonConvert.DeserializeObject<T>(value);
         }
 
-        private static string GetRequestUri<T, R>(IRequest<T, R> request)
+        private static string GetRequestUri<R>(IRequest<R> request)
         {
             return request.QueryStringParams?.Count > 0
                 ? string.Format(
