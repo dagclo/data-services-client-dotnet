@@ -5,4 +5,5 @@ target
 obj/
 bin/
 .vs/
+.vscode/
 project.lock.json
