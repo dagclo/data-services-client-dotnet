@@ -8,12 +8,14 @@ namespace Quadient.DataServices.Api.Job
     /// <summary>
     /// Creates a new job. By default the `owner` will be the currently authenticated user, and the `job_status` will be `CREATED`.
     /// </summary>
-    public class CreateJob : IRequest<JobCreationRequest, JobInformationResponse>
+    public class CreateJob : IRequest<JobInformationResponse>
     {
         public string ServicePath { get; } = "jobs/v1";
         public HttpMethod Method { get; } = HttpMethod.Post;
-        public JobCreationRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
+        private JobCreationRequest Content { get; set; }
 
         /// <summary>
         /// Creates a new job. By default the `owner` will be the currently authenticated user, and the `job_status` will be `CREATED`.

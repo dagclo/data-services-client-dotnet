@@ -3,7 +3,7 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class DeleteUsMoveUpdateJob : IRequest<object, object>
+    public class DeleteUsMoveUpdateJob : IRequest<object>
     {
         public DeleteUsMoveUpdateJob(string jobId)
         {
@@ -14,5 +14,7 @@ namespace Quadient.DataServices.Api.UsBatch
         public HttpMethod Method { get; } = HttpMethod.Delete;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
     }
 }

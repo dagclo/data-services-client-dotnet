@@ -3,7 +3,7 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class RunUsAppendsJob : IRequest<object, object>
+    public class RunUsAppendsJob : IRequest<object>
     {
         public RunUsAppendsJob(string jobId)
         {
@@ -12,7 +12,8 @@ namespace Quadient.DataServices.Api.UsBatch
 
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Post;
-        public object Content { get; set; }
+        public object Body { get; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public IDictionary<string, string> Headers { get; }
     }
 }

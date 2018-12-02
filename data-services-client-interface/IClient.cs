@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {

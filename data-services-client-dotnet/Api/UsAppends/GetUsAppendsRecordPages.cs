@@ -4,7 +4,7 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class GetUsAppendsRecordPages : IRequest<object, RecordPages>
+    public class GetUsAppendsRecordPages : IRequest<RecordPages>
     {
         public enum RecordKind
         {
@@ -23,7 +23,8 @@ namespace Quadient.DataServices.Api.UsBatch
 
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
-        public object Content { get; set; }
+        public object Body { get; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public IDictionary<string, string> Headers { get; }
     }
 }

@@ -4,7 +4,7 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
-    public class GetWalkSequenceRecordPages : IRequest<object, RecordPages>
+    public class GetWalkSequenceRecordPages : IRequest<RecordPages>
     {
         public enum RecordKind
         {
@@ -22,11 +22,10 @@ namespace Quadient.DataServices.Api.WalkSequence
         }
 
         public string ServicePath { get; }
-
         public HttpMethod Method { get; } = HttpMethod.Get;
-
         public object Content { get; set; }
-
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
     }
 }

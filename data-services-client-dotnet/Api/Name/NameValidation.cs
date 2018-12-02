@@ -8,12 +8,14 @@ namespace Quadient.DataServices.Api.Name
     /// <summary>
     /// Takes name information and tries to parse it. This parser is usually most useful as a simple utility function when one or more unstructured name strings has to be split into a structured set of fields with given name, family name, and so forth.
     /// </summary>
-    public class NameValidation: IRequest<ParseRequest, ParseResponse>
+    public class NameValidation: IRequest<ParseResponse>
     {
         public string ServicePath {get;} = "services/name-validation/v2/parse";
         public HttpMethod Method {get;} = HttpMethod.Post;
-        public ParseRequest Content { get; set; }
+        private ParseRequest Content { get; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Takes name information and tries to parse it. This parser is usually most useful as a simple utility function when one or more unstructured name strings has to be split into a structured set of fields with given name, family name, and so forth.

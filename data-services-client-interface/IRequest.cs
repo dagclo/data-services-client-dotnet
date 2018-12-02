@@ -7,7 +7,7 @@ namespace Quadient.DataServices.Api
 	{
 		string ServicePath { get; }
 		HttpMethod Method { get; }
-		object Body { get; set; }
+		object Body { get; }
 		IDictionary<string, string> Headers { get; }
 		IDictionary<string, string> QueryStringParams { get; }
 	}

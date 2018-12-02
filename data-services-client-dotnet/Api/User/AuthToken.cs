@@ -4,12 +4,14 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.User
 {
-    public abstract class AuthToken : IRequest<ICredentials, Session>
+    public abstract class AuthToken : IRequest<Session>
     {
         public string ServicePath { get; set; }
         public HttpMethod Method { get; } = HttpMethod.Post;
         public ICredentials Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         internal abstract HttpContent GetHttpContent();
     }
