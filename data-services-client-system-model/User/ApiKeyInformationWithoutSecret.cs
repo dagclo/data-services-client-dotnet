@@ -40,19 +40,19 @@ namespace Quadient.DataServices.System.Model.User
             this.Id = Id;
             this.Enabled = Enabled;
         }
-        
+
         /// <summary>
         /// The public ID of this API key
         /// </summary>
         /// <value>The public ID of this API key</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// Whether or not this API key is currently enabled/active
         /// </summary>
         /// <value>Whether or not this API key is currently enabled/active</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool? Enabled { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -98,12 +98,12 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
-                ) && 
+                ) &&
                 (
                     this.Enabled == input.Enabled ||
                     (this.Enabled != null &&

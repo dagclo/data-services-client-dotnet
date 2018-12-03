@@ -38,12 +38,12 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.CreditBalance = CreditBalance;
         }
-        
+
         /// <summary>
         /// The current sum of all transactions
         /// </summary>
         /// <value>The current sum of all transactions</value>
-        [DataMember(Name="credit_balance", EmitDefaultValue=false)]
+        [DataMember(Name = "credit_balance", EmitDefaultValue = false)]
         public decimal? CreditBalance { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -88,7 +88,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.CreditBalance == input.CreditBalance ||
                     (this.CreditBalance != null &&

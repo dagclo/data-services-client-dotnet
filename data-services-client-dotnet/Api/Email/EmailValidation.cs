@@ -48,9 +48,9 @@ namespace Quadient.DataServices.Api.Email
         public EmailValidation(EmailValidationRequestConfiguration configuration, IEnumerable<string> emails)
         {
             var emailAddresses = emails.Select(email => new EmailAddress
-                {
-                    Email = email
-                })
+            {
+                Email = email
+            })
                 .ToList();
             Content = new EmailValidationRequest(configuration, emailAddresses);
         }

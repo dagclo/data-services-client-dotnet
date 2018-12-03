@@ -42,25 +42,25 @@ namespace Quadient.DataServices.System.Model.User
             this.LockOut = LockOut;
             this.Reason = Reason;
         }
-        
+
         /// <summary>
         /// Gets or Sets Services
         /// </summary>
-        [DataMember(Name="services", EmitDefaultValue=false)]
+        [DataMember(Name = "services", EmitDefaultValue = false)]
         public List<string> Services { get; set; }
 
         /// <summary>
         /// true to lock.  false to unlock.
         /// </summary>
         /// <value>true to lock.  false to unlock.</value>
-        [DataMember(Name="lock_out", EmitDefaultValue=false)]
+        [DataMember(Name = "lock_out", EmitDefaultValue = false)]
         public bool? LockOut { get; set; }
 
         /// <summary>
         /// reason why user is being locked out
         /// </summary>
         /// <value>reason why user is being locked out</value>
-        [DataMember(Name="reason", EmitDefaultValue=false)]
+        [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -107,17 +107,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Services == input.Services ||
                     this.Services != null &&
                     this.Services.SequenceEqual(input.Services)
-                ) && 
+                ) &&
                 (
                     this.LockOut == input.LockOut ||
                     (this.LockOut != null &&
                     this.LockOut.Equals(input.LockOut))
-                ) && 
+                ) &&
                 (
                     this.Reason == input.Reason ||
                     (this.Reason != null &&

@@ -37,7 +37,7 @@ namespace Quadient.DataServices.System.Model.User
         public CreditHistory() : base()
         {
         }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -50,7 +50,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>

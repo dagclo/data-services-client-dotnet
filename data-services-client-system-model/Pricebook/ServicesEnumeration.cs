@@ -38,12 +38,12 @@ namespace Quadient.DataServices.System.Model.Pricebook
         {
             this.Services = Services;
         }
-        
+
         /// <summary>
         /// An array of valid service names that are known by the pricebook.
         /// </summary>
         /// <value>An array of valid service names that are known by the pricebook.</value>
-        [DataMember(Name="services", EmitDefaultValue=false)]
+        [DataMember(Name = "services", EmitDefaultValue = false)]
         public List<string> Services { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -88,7 +88,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Services == input.Services ||
                     this.Services != null &&

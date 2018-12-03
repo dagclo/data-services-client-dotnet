@@ -48,46 +48,46 @@ namespace Quadient.DataServices.System.Model.Pricebook
             this.UserId = UserId;
             this.Services = Services;
         }
-        
+
         /// <summary>
         /// The start of the time frame these results fall within. If missing/null, the start of the time frame is the earliest item present.
         /// </summary>
         /// <value>The start of the time frame these results fall within. If missing/null, the start of the time frame is the earliest item present.</value>
-        [DataMember(Name="from_date", EmitDefaultValue=false)]
+        [DataMember(Name = "from_date", EmitDefaultValue = false)]
         public DateTime? FromDate { get; set; }
 
         /// <summary>
         /// The end of the time frame these results fall withing. If missing/null, all items after the start of the time frame are included.
         /// </summary>
         /// <value>The end of the time frame these results fall withing. If missing/null, all items after the start of the time frame are included.</value>
-        [DataMember(Name="to_date", EmitDefaultValue=false)]
+        [DataMember(Name = "to_date", EmitDefaultValue = false)]
         public DateTime? ToDate { get; set; }
 
         /// <summary>
         /// *When true*, the price sheet returned will contain expired and disabled price line items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  
         /// </summary>
         /// <value>*When true*, the price sheet returned will contain expired and disabled price line items that fall within the result time frame. This allows the query to return the history of price changes for a particular service/tenant/user.  *When false*, only those items in effect at the end of the time frame will be present.  </value>
-        [DataMember(Name="includes_all_prices", EmitDefaultValue=false)]
+        [DataMember(Name = "includes_all_prices", EmitDefaultValue = false)]
         public bool? IncludesAllPrices { get; set; }
 
         /// <summary>
         /// The tenant the results are scoped to, if any.    *If null/missing*, pricing that pertains to any particular tenant are not included. 
         /// </summary>
         /// <value>The tenant the results are scoped to, if any.    *If null/missing*, pricing that pertains to any particular tenant are not included. </value>
-        [DataMember(Name="tenant", EmitDefaultValue=false)]
+        [DataMember(Name = "tenant", EmitDefaultValue = false)]
         public string Tenant { get; set; }
 
         /// <summary>
         /// The user the results are scoped to, if any.  *If null/missing*, pricing  pertaining to any particular user are not included. 
         /// </summary>
         /// <value>The user the results are scoped to, if any.  *If null/missing*, pricing  pertaining to any particular user are not included. </value>
-        [DataMember(Name="user_id", EmitDefaultValue=false)]
+        [DataMember(Name = "user_id", EmitDefaultValue = false)]
         public string UserId { get; set; }
 
         /// <summary>
         /// Gets or Sets Services
         /// </summary>
-        [DataMember(Name="services", EmitDefaultValue=false)]
+        [DataMember(Name = "services", EmitDefaultValue = false)]
         public List<Prices> Services { get; set; }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -137,32 +137,32 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.FromDate == input.FromDate ||
                     (this.FromDate != null &&
                     this.FromDate.Equals(input.FromDate))
-                ) && 
+                ) &&
                 (
                     this.ToDate == input.ToDate ||
                     (this.ToDate != null &&
                     this.ToDate.Equals(input.ToDate))
-                ) && 
+                ) &&
                 (
                     this.IncludesAllPrices == input.IncludesAllPrices ||
                     (this.IncludesAllPrices != null &&
                     this.IncludesAllPrices.Equals(input.IncludesAllPrices))
-                ) && 
+                ) &&
                 (
                     this.Tenant == input.Tenant ||
                     (this.Tenant != null &&
                     this.Tenant.Equals(input.Tenant))
-                ) && 
+                ) &&
                 (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
-                ) && 
+                ) &&
                 (
                     this.Services == input.Services ||
                     this.Services != null &&

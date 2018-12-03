@@ -42,25 +42,25 @@ namespace Quadient.DataServices.System.Model.User
             this.Reason = Reason;
             this.Timestamp = Timestamp;
         }
-        
+
         /// <summary>
         /// Gets or Sets ServiceName
         /// </summary>
-        [DataMember(Name="service_name", EmitDefaultValue=false)]
+        [DataMember(Name = "service_name", EmitDefaultValue = false)]
         public string ServiceName { get; set; }
 
         /// <summary>
         /// reason why user is locked out
         /// </summary>
         /// <value>reason why user is locked out</value>
-        [DataMember(Name="reason", EmitDefaultValue=false)]
+        [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 
         /// <summary>
         /// when user was locked out
         /// </summary>
         /// <value>when user was locked out</value>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -107,17 +107,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.ServiceName == input.ServiceName ||
                     (this.ServiceName != null &&
                     this.ServiceName.Equals(input.ServiceName))
-                ) && 
+                ) &&
                 (
                     this.Reason == input.Reason ||
                     (this.Reason != null &&
                     this.Reason.Equals(input.Reason))
-                ) && 
+                ) &&
                 (
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&

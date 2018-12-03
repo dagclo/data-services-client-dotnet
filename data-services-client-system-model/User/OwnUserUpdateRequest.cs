@@ -38,12 +38,12 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.Password = Password;
         }
-        
+
         /// <summary>
         /// Must conform the the password policy.
         /// </summary>
         /// <value>Must conform the the password policy.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
+        [DataMember(Name = "password", EmitDefaultValue = false)]
         public string Password { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -88,7 +88,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Password == input.Password ||
                     (this.Password != null &&

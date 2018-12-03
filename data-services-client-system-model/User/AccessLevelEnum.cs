@@ -27,30 +27,30 @@ namespace Quadient.DataServices.System.Model.User
     /// <summary>
     /// Defines accessLevelEnum
     /// </summary>
-    
+
     [JsonConverter(typeof(StringEnumConverter))]
-    
+
     public enum AccessLevelEnum
     {
-        
+
         /// <summary>
         /// Enum Enabledread for value: enabled_read
         /// </summary>
         [EnumMember(Value = "enabled_read")]
         Enabledread = 1,
-        
+
         /// <summary>
         /// Enum Enabledwrite for value: enabled_write
         /// </summary>
         [EnumMember(Value = "enabled_write")]
         Enabledwrite = 2,
-        
+
         /// <summary>
         /// Enum Enableduse for value: enabled_use
         /// </summary>
         [EnumMember(Value = "enabled_use")]
         Enableduse = 3,
-        
+
         /// <summary>
         /// Enum Disabled for value: disabled
         /// </summary>

@@ -42,23 +42,23 @@ namespace Quadient.DataServices.System.Model.User
             this.AccessLevel = AccessLevel;
             this.ServiceProperties = ServiceProperties;
         }
-        
+
         /// <summary>
         /// Gets or Sets ServiceName
         /// </summary>
-        [DataMember(Name="service_name", EmitDefaultValue=false)]
+        [DataMember(Name = "service_name", EmitDefaultValue = false)]
         public string ServiceName { get; set; }
 
         /// <summary>
         /// Gets or Sets AccessLevel
         /// </summary>
-        [DataMember(Name="access_level", EmitDefaultValue=false)]
+        [DataMember(Name = "access_level", EmitDefaultValue = false)]
         public AccessLevelEnum AccessLevel { get; set; }
 
         /// <summary>
         /// Gets or Sets ServiceProperties
         /// </summary>
-        [DataMember(Name="service_properties", EmitDefaultValue=false)]
+        [DataMember(Name = "service_properties", EmitDefaultValue = false)]
         public Object ServiceProperties { get; set; }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -105,17 +105,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.ServiceName == input.ServiceName ||
                     (this.ServiceName != null &&
                     this.ServiceName.Equals(input.ServiceName))
-                ) && 
+                ) &&
                 (
                     this.AccessLevel == input.AccessLevel ||
                     (this.AccessLevel != null &&
                     this.AccessLevel.Equals(input.AccessLevel))
-                ) && 
+                ) &&
                 (
                     this.ServiceProperties == input.ServiceProperties ||
                     (this.ServiceProperties != null &&

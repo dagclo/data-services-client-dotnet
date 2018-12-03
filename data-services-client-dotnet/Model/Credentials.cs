@@ -11,11 +11,11 @@ namespace Quadient.DataServices.Model
     {
     }
 
-    public class QuadientCloudCredentials: ICredentials
+    public class QuadientCloudCredentials : ICredentials
     {
         public string Company { get; set; }
-        public string Username {get; set;}
-        public string Password {get; set;}
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public QuadientCloudCredentials()
         {
@@ -29,10 +29,10 @@ namespace Quadient.DataServices.Model
         }
     }
 
-    public class AdminCredentials: ICredentials
+    public class AdminCredentials : ICredentials
     {
-        public string Username {get; set;}
-        public string Password {get; set;}
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public AdminCredentials()
         {

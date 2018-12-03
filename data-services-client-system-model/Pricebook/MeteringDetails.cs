@@ -52,32 +52,32 @@ namespace Quadient.DataServices.System.Model.Pricebook
             }
             this.ServiceUse = ServiceUse;
         }
-        
+
         /// <summary>
         /// (Optional) The tenant doing the work. Any tenant-specific pricing rules will be factored into the calculation.
         /// </summary>
         /// <value>(Optional) The tenant doing the work. Any tenant-specific pricing rules will be factored into the calculation.</value>
-        [DataMember(Name="tenant", EmitDefaultValue=false)]
+        [DataMember(Name = "tenant", EmitDefaultValue = false)]
         public string Tenant { get; set; }
 
         /// <summary>
         /// (Optional) The user doing the work. Any user-specific pricing rules will be factored into the calculation.
         /// </summary>
         /// <value>(Optional) The user doing the work. Any user-specific pricing rules will be factored into the calculation.</value>
-        [DataMember(Name="user_id", EmitDefaultValue=false)]
+        [DataMember(Name = "user_id", EmitDefaultValue = false)]
         public string UserId { get; set; }
 
         /// <summary>
         /// Indicate whether strict validation should be used. Strict validation will reject unknown services.
         /// </summary>
         /// <value>Indicate whether strict validation should be used. Strict validation will reject unknown services.</value>
-        [DataMember(Name="use_strict", EmitDefaultValue=false)]
+        [DataMember(Name = "use_strict", EmitDefaultValue = false)]
         public bool? UseStrict { get; set; }
 
         /// <summary>
         /// Gets or Sets ServiceUse
         /// </summary>
-        [DataMember(Name="service_use", EmitDefaultValue=false)]
+        [DataMember(Name = "service_use", EmitDefaultValue = false)]
         public Dictionary<string, Object> ServiceUse { get; set; }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -125,22 +125,22 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Tenant == input.Tenant ||
                     (this.Tenant != null &&
                     this.Tenant.Equals(input.Tenant))
-                ) && 
+                ) &&
                 (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
-                ) && 
+                ) &&
                 (
                     this.UseStrict == input.UseStrict ||
                     (this.UseStrict != null &&
                     this.UseStrict.Equals(input.UseStrict))
-                ) && 
+                ) &&
                 (
                     this.ServiceUse == input.ServiceUse ||
                     this.ServiceUse != null &&

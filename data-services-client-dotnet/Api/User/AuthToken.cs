@@ -72,7 +72,7 @@ namespace Quadient.DataServices.Api.User
 
         internal override HttpContent GetHttpContent()
         {
-            var apiKey = (AdminApiKey) Content;
+            var apiKey = (AdminApiKey)Content;
             return new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("grant_type", "client_credentials"),

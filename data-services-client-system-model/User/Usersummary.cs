@@ -44,31 +44,31 @@ namespace Quadient.DataServices.System.Model.User
             this.EmailAddress = EmailAddress;
             this.Enabled = Enabled;
         }
-        
+
         /// <summary>
         /// An href to the user resource.
         /// </summary>
         /// <value>An href to the user resource.</value>
-        [DataMember(Name="uri", EmitDefaultValue=false)]
+        [DataMember(Name = "uri", EmitDefaultValue = false)]
         public string Uri { get; set; }
 
         /// <summary>
         /// Gets or Sets Username
         /// </summary>
-        [DataMember(Name="username", EmitDefaultValue=false)]
+        [DataMember(Name = "username", EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or Sets EmailAddress
         /// </summary>
-        [DataMember(Name="email_address", EmitDefaultValue=false)]
+        [DataMember(Name = "email_address", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
         /// A global flag to disable/enable the account.
         /// </summary>
         /// <value>A global flag to disable/enable the account.</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool? Enabled { get; set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -116,22 +116,22 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Uri == input.Uri ||
                     (this.Uri != null &&
                     this.Uri.Equals(input.Uri))
-                ) && 
+                ) &&
                 (
                     this.Username == input.Username ||
                     (this.Username != null &&
                     this.Username.Equals(input.Username))
-                ) && 
+                ) &&
                 (
                     this.EmailAddress == input.EmailAddress ||
                     (this.EmailAddress != null &&
                     this.EmailAddress.Equals(input.EmailAddress))
-                ) && 
+                ) &&
                 (
                     this.Enabled == input.Enabled ||
                     (this.Enabled != null &&

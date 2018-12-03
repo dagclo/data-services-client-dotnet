@@ -32,8 +32,8 @@ namespace Quadient.DataServices.Example
                 new CorrectionRequestAddress("Starbucks", new List<string> {"2501 Utah Ave. S.", "Ste. 800"}, "Seattle", null, "WA", "98134", "US")
 
             });
-            var standardization = new CountryStandardization(new List<string> {"United States", "United Kingdom"});
-            var standardization2 = new CountryStandardization(new List<string> {"Danmark", "Holland"});
+            var standardization = new CountryStandardization(new List<string> { "United States", "United Kingdom" });
+            var standardization2 = new CountryStandardization(new List<string> { "Danmark", "Holland" });
 
             Task.Run(async () =>
             {
@@ -44,7 +44,8 @@ namespace Quadient.DataServices.Example
 
                 Console.WriteLine("Running address correction sample 2, JobSession");
                 var jobSession = await client.CreateJob();
-                try {
+                try
+                {
                     Console.WriteLine($"JobId {jobSession.JobId}");
                     var resp2 = await jobSession.Execute(correction);
                     Console.WriteLine($"address correction sample 2 output\n {resp2.ToJson()}");
@@ -59,7 +60,9 @@ namespace Quadient.DataServices.Example
 
                     jobSession.CloseJob(FiniteJobStatus.SUCCESS);
                     Console.WriteLine($"Finished JobSession {jobSession.JobId}");
-                } catch (Exception) {
+                }
+                catch (Exception)
+                {
                     jobSession.CloseJob(FiniteJobStatus.FAILURE);
                 }
             }).GetAwaiter().GetResult();

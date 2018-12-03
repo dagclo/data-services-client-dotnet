@@ -52,9 +52,9 @@ namespace Quadient.DataServices.Api.Phone
         public PhoneValidation(PhoneValidationRequestConfiguration configuration, IEnumerable<string> numbers)
         {
             var phoneNumbers = numbers.Select(number => new PhoneValidationRequestRecord
-                {
-                    PhoneNumber = number
-                })
+            {
+                PhoneNumber = number
+            })
                 .ToList();
             Content = new PhoneValidationRequest(configuration, phoneNumbers);
         }

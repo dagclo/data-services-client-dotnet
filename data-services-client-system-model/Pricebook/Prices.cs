@@ -40,18 +40,18 @@ namespace Quadient.DataServices.System.Model.Pricebook
             this.ServiceName = ServiceName;
             this.PriceLines = PriceLines;
         }
-        
+
         /// <summary>
         /// Gets or Sets ServiceName
         /// </summary>
-        [DataMember(Name="service_name", EmitDefaultValue=false)]
+        [DataMember(Name = "service_name", EmitDefaultValue = false)]
         public string ServiceName { get; set; }
 
         /// <summary>
         /// The price rules that exits for the service
         /// </summary>
         /// <value>The price rules that exits for the service</value>
-        [DataMember(Name="price_lines", EmitDefaultValue=false)]
+        [DataMember(Name = "price_lines", EmitDefaultValue = false)]
         public List<PriceLine> PriceLines { get; set; }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -97,12 +97,12 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.ServiceName == input.ServiceName ||
                     (this.ServiceName != null &&
                     this.ServiceName.Equals(input.ServiceName))
-                ) && 
+                ) &&
                 (
                     this.PriceLines == input.PriceLines ||
                     this.PriceLines != null &&

@@ -42,23 +42,23 @@ namespace Quadient.DataServices.System.Model.User
             this.ServiceName = ServiceName;
             this.Properties = Properties;
         }
-        
+
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets ServiceName
         /// </summary>
-        [DataMember(Name="service_name", EmitDefaultValue=false)]
+        [DataMember(Name = "service_name", EmitDefaultValue = false)]
         public string ServiceName { get; set; }
 
         /// <summary>
         /// Gets or Sets Properties
         /// </summary>
-        [DataMember(Name="properties", EmitDefaultValue=false)]
+        [DataMember(Name = "properties", EmitDefaultValue = false)]
         public Object Properties { get; set; }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -105,17 +105,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
-                ) && 
+                ) &&
                 (
                     this.ServiceName == input.ServiceName ||
                     (this.ServiceName != null &&
                     this.ServiceName.Equals(input.ServiceName))
-                ) && 
+                ) &&
                 (
                     this.Properties == input.Properties ||
                     (this.Properties != null &&

@@ -38,11 +38,11 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.Namespace = Namespace;
         }
-        
+
         /// <summary>
         /// Gets or Sets _Namespace
         /// </summary>
-        [DataMember(Name="namespace", EmitDefaultValue=false)]
+        [DataMember(Name = "namespace", EmitDefaultValue = false)]
         public string Namespace { get; set; }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -87,7 +87,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Namespace == input.Namespace ||
                     (this.Namespace != null &&

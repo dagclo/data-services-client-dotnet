@@ -38,11 +38,11 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.RoleName = RoleName;
         }
-        
+
         /// <summary>
         /// Gets or Sets RoleName
         /// </summary>
-        [DataMember(Name="role_name", EmitDefaultValue=false)]
+        [DataMember(Name = "role_name", EmitDefaultValue = false)]
         public string RoleName { get; set; }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -87,7 +87,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.RoleName == input.RoleName ||
                     (this.RoleName != null &&

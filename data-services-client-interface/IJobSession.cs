@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace Quadient.DataServices.Api
 {
-	public interface IJobSession : IServiceCaller
-	{
-		string JobId { get; }
+    public interface IJobSession : IServiceCaller
+    {
+        string JobId { get; }
 
-		void UpdateJobStatus(JobStatus status, IDictionary<string, object> JobStatusDetails = null);
+        void UpdateJobStatus(JobStatus status, IDictionary<string, object> JobStatusDetails = null);
 
-		void CloseJob(FiniteJobStatus status, IDictionary<string, object> JobStatusDetails = null);
-	}
+        void CloseJob(FiniteJobStatus status, IDictionary<string, object> JobStatusDetails = null);
+    }
 }

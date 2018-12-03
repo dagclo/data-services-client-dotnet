@@ -42,26 +42,26 @@ namespace Quadient.DataServices.System.Model.User
             this.FiledDate = FiledDate;
             this.BillingTransactionId = BillingTransactionId;
         }
-        
+
         /// <summary>
         /// value of this transaction
         /// </summary>
         /// <value>value of this transaction</value>
-        [DataMember(Name="value", EmitDefaultValue=false)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         public decimal? Value { get; set; }
 
         /// <summary>
         /// date of the transaction
         /// </summary>
         /// <value>date of the transaction</value>
-        [DataMember(Name="filed_date", EmitDefaultValue=false)]
+        [DataMember(Name = "filed_date", EmitDefaultValue = false)]
         public DateTime? FiledDate { get; set; }
 
         /// <summary>
         /// reference id provided by billing
         /// </summary>
         /// <value>reference id provided by billing</value>
-        [DataMember(Name="billing_transaction_id", EmitDefaultValue=false)]
+        [DataMember(Name = "billing_transaction_id", EmitDefaultValue = false)]
         public string BillingTransactionId { get; set; }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -108,17 +108,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Value == input.Value ||
                     (this.Value != null &&
                     this.Value.Equals(input.Value))
-                ) && 
+                ) &&
                 (
                     this.FiledDate == input.FiledDate ||
                     (this.FiledDate != null &&
                     this.FiledDate.Equals(input.FiledDate))
-                ) && 
+                ) &&
                 (
                     this.BillingTransactionId == input.BillingTransactionId ||
                     (this.BillingTransactionId != null &&

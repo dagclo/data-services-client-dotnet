@@ -38,12 +38,12 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.ServiceConfigurations = ServiceConfigurations;
         }
-        
+
         /// <summary>
         /// A list of all existing service configurations.
         /// </summary>
         /// <value>A list of all existing service configurations.</value>
-        [DataMember(Name="service_configurations", EmitDefaultValue=false)]
+        [DataMember(Name = "service_configurations", EmitDefaultValue = false)]
         public List<ServiceConfigurationItem> ServiceConfigurations { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -88,7 +88,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.ServiceConfigurations == input.ServiceConfigurations ||
                     this.ServiceConfigurations != null &&

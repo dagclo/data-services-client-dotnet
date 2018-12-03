@@ -42,23 +42,23 @@ namespace Quadient.DataServices.System.Model.User
             this.PolicyPattern = PolicyPattern;
             this.PolicyType = PolicyType;
         }
-        
+
         /// <summary>
         /// Gets or Sets PolicyId
         /// </summary>
-        [DataMember(Name="policy_id", EmitDefaultValue=false)]
+        [DataMember(Name = "policy_id", EmitDefaultValue = false)]
         public string PolicyId { get; set; }
 
         /// <summary>
         /// Gets or Sets PolicyPattern
         /// </summary>
-        [DataMember(Name="policy_pattern", EmitDefaultValue=false)]
+        [DataMember(Name = "policy_pattern", EmitDefaultValue = false)]
         public string PolicyPattern { get; set; }
 
         /// <summary>
         /// Gets or Sets PolicyType
         /// </summary>
-        [DataMember(Name="policy_type", EmitDefaultValue=false)]
+        [DataMember(Name = "policy_type", EmitDefaultValue = false)]
         public string PolicyType { get; set; }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -105,17 +105,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.PolicyId == input.PolicyId ||
                     (this.PolicyId != null &&
                     this.PolicyId.Equals(input.PolicyId))
-                ) && 
+                ) &&
                 (
                     this.PolicyPattern == input.PolicyPattern ||
                     (this.PolicyPattern != null &&
                     this.PolicyPattern.Equals(input.PolicyPattern))
-                ) && 
+                ) &&
                 (
                     this.PolicyType == input.PolicyType ||
                     (this.PolicyType != null &&

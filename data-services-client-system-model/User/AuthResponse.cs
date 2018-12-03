@@ -40,19 +40,19 @@ namespace Quadient.DataServices.System.Model.User
             this.AccessToken = AccessToken;
             this.ExpiresIn = ExpiresIn;
         }
-        
+
         /// <summary>
         /// the jwt
         /// </summary>
         /// <value>the jwt</value>
-        [DataMember(Name="access_token", EmitDefaultValue=false)]
+        [DataMember(Name = "access_token", EmitDefaultValue = false)]
         public string AccessToken { get; set; }
 
         /// <summary>
         /// the lifetime in seconds of the access token
         /// </summary>
         /// <value>the lifetime in seconds of the access token</value>
-        [DataMember(Name="expires_in", EmitDefaultValue=false)]
+        [DataMember(Name = "expires_in", EmitDefaultValue = false)]
         public decimal? ExpiresIn { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -98,12 +98,12 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AccessToken == input.AccessToken ||
                     (this.AccessToken != null &&
                     this.AccessToken.Equals(input.AccessToken))
-                ) && 
+                ) &&
                 (
                     this.ExpiresIn == input.ExpiresIn ||
                     (this.ExpiresIn != null &&

@@ -38,11 +38,11 @@ namespace Quadient.DataServices.System.Model.Pricebook
         {
             this.Tenants = Tenants;
         }
-        
+
         /// <summary>
         /// Gets or Sets Tenants
         /// </summary>
-        [DataMember(Name="tenants", EmitDefaultValue=false)]
+        [DataMember(Name = "tenants", EmitDefaultValue = false)]
         public List<Tenant> Tenants { get; set; }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -87,7 +87,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Tenants == input.Tenants ||
                     this.Tenants != null &&
