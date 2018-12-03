@@ -31,17 +31,17 @@ namespace Quadient.DataServices.System.Model.User
         /// <summary>
         /// Initializes a new instance of the <see cref="UserSettingsResponseNamespaces" /> class.
         /// </summary>
-        /// <param name="_Namespace">_Namespace.</param>
-        public UserSettingsResponseNamespaces(string _Namespace = default(string))
+        /// <param name="Namespace">Namespace.</param>
+        public UserSettingsResponseNamespaces(string Namespace = default(string))
         {
-            this._Namespace = _Namespace;
+            this.Namespace = Namespace;
         }
         
         /// <summary>
-        /// Gets or Sets _Namespace
+        /// Gets or Sets Namespace
         /// </summary>
         [DataMember(Name="namespace", EmitDefaultValue=false)]
-        public string _Namespace { get; set; }
+        public string Namespace { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -51,7 +51,7 @@ namespace Quadient.DataServices.System.Model.User
         {
             var sb = new StringBuilder();
             sb.Append("class UserSettingsResponseNamespaces {\n");
-            sb.Append("  _Namespace: ").Append(_Namespace).Append("\n");
+            sb.Append("  Namespace: ").Append(Namespace).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,9 +87,9 @@ namespace Quadient.DataServices.System.Model.User
 
             return 
                 (
-                    this._Namespace == input._Namespace ||
-                    (this._Namespace != null &&
-                    this._Namespace.Equals(input._Namespace))
+                    this.Namespace == input.Namespace ||
+                    (this.Namespace != null &&
+                    this.Namespace.Equals(input.Namespace))
                 );
         }
 
@@ -102,8 +102,8 @@ namespace Quadient.DataServices.System.Model.User
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._Namespace != null)
-                    hashCode = hashCode * 59 + this._Namespace.GetHashCode();
+                if (this.Namespace != null)
+                    hashCode = hashCode * 59 + this.Namespace.GetHashCode();
                 return hashCode;
             }
         }
