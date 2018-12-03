@@ -26,11 +26,6 @@ namespace Quadient.DataServices.Api
 
 		public BaseServiceCaller(ICredentials credentials, IConfiguration configuration)
 		{
-			if (_httpClient != null)
-			{
-				return;
-			}
-
 			if (configuration == null)
 			{
 				configuration = new Configuration();
