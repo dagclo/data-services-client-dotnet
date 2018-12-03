@@ -3,6 +3,9 @@
     <groupId>Quadient.DataServices</groupId>
     <version>0.5-SNAPSHOT</version>
 	<artifactId>dataservices-client-dotnet</artifactId>
+	<properties>
+		<swagger.baseurl>https://data.quadientcloud.com</swagger.baseurl>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -26,7 +29,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-country</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/country-standardization/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/country-standardization/swagger.json</inputSpec>
 							<modelPackage>Country</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -41,7 +44,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-assessment</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/assessment/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/assessment/swagger.json</inputSpec>
 							<modelPackage>Assessment</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -56,7 +59,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-sentiment-analysis</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/sentiment-analysis/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/sentiment-analysis/swagger.json</inputSpec>
 							<modelPackage>SentimentAnalysis</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -71,7 +74,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-address</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/address-correction/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/address-correction/swagger.json</inputSpec>
 							<modelPackage>Address</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -86,7 +89,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-name</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/name-validation/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/name-validation/swagger.json</inputSpec>
 							<modelPackage>Name</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -101,7 +104,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-email</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/email-validation/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/email-validation/swagger.json</inputSpec>
 							<modelPackage>Email</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -116,7 +119,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-phone</artifactId>
-							<inputSpec>https://data.quadientcloud.com/services/phone-validation/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/services/phone-validation/swagger.json</inputSpec>
 							<modelPackage>Phone</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -131,12 +134,26 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-job</artifactId>
-							<inputSpec>https://data.quadientcloud.com/jobs/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/jobs/swagger.json</inputSpec>
 							<modelPackage>Job</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
                                 <sourceFolder>data-services-client-model</sourceFolder>
                             </configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-model-etl</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/swagger/etl-swagger.yaml</inputSpec>
+							<modelPackage>Etl</modelPackage>
+							<configOptions>
+                                <packageName>Quadient.DataServices.Model</packageName>
+                                <sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
                     <execution>
@@ -146,7 +163,6 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-us-appends.yaml</inputSpec>
-							<language>csharp</language>
 							<modelPackage>UsBatch</modelPackage>
 							<configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -161,7 +177,6 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-us-move-update.yaml</inputSpec>
-							<language>csharp</language>
 							<modelPackage>UsBatch</modelPackage>
 							<configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -176,7 +191,6 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-walk-sequence.yaml</inputSpec>
-							<language>csharp</language>
 							<modelPackage>UsBatch</modelPackage>
 							<configOptions>
                                 <packageName>Quadient.DataServices.Model</packageName>
@@ -192,7 +206,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-pricebook</artifactId>
-							<inputSpec>https://data.quadientcloud.com/pricebook/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/pricebook/swagger.json</inputSpec>
 							<modelPackage>Pricebook</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.System.Model</packageName>
@@ -207,7 +221,7 @@
 						</goals>
 						<configuration>
 							<artifactId>dataservices-client-swagger-model-user</artifactId>
-							<inputSpec>https://data.quadientcloud.com/user/swagger.json</inputSpec>
+							<inputSpec>${swagger.baseurl}/user/swagger.json</inputSpec>
 							<modelPackage>User</modelPackage>
                             <configOptions>
                                 <packageName>Quadient.DataServices.System.Model</packageName>
