@@ -3,6 +3,7 @@ using System.Threading;
 using Quadient.DataServices.Model;
 using Quadient.DataServices.Utility;
 using System.Threading.Tasks;
+using Quadient.DataServices.Api.Job;
 
 namespace Quadient.DataServices.Api
 {
@@ -25,9 +26,12 @@ namespace Quadient.DataServices.Api
             _service = new BaseServiceCaller(token, configuration);
         }
 
-        Task<IJobSession> IClient.CreateJob(JobCreationDetails details)
+        async Task<IJobSession> IClient.CreateJob(JobCreationDetails details)
         {
-            throw new System.NotImplementedException();
+			var req = new CreateJob(details);
+			var resp = await _service.Execute(req);
+			var jobId = resp.JobId;
+			return new JobSession(_service, jobId);
         }
 
         IJobSession IClient.ResumeJob(string jobId)
