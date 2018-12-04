@@ -66,6 +66,18 @@ namespace Quadient.DataServices.Model.UsBatch
 		/// Enum DELETED for value: DELETED
 		/// </summary>
 		[EnumMember(Value = "DELETED")]
-		DELETED = 6
+		DELETED = 6,
+		
+		/// <summary>
+		/// Enum WAITING for value: WAITING
+		/// </summary>
+		[EnumMember(Value = "WAITING")]
+		WAITING = 7,
+		
+		/// <summary>
+		/// Enum CANCELLED for value: CANCELLED
+		/// </summary>
+		[EnumMember(Value = "CANCELLED")]
+		CANCELLED = 8
 	}
 }
