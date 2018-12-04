@@ -38,19 +38,19 @@ namespace Quadient.DataServices.System.Model.Pricebook
             this.StartTime = StartTime;
             this.EndTime = EndTime;
         }
-        
+
         /// <summary>
         /// The beginning of the time frame. The time frame includes this start time.
         /// </summary>
         /// <value>The beginning of the time frame. The time frame includes this start time.</value>
-        [DataMember(Name="start_time", EmitDefaultValue=false)]
+        [DataMember(Name = "start_time", EmitDefaultValue = false)]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// The end of  the time frame. The time frame includes this time.
         /// </summary>
         /// <value>The end of  the time frame. The time frame includes this time.</value>
-        [DataMember(Name="end_time", EmitDefaultValue=false)]
+        [DataMember(Name = "end_time", EmitDefaultValue = false)]
         public DateTime? EndTime { get; set; }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -96,12 +96,12 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.StartTime == input.StartTime ||
                     (this.StartTime != null &&
                     this.StartTime.Equals(input.StartTime))
-                ) && 
+                ) &&
                 (
                     this.EndTime == input.EndTime ||
                     (this.EndTime != null &&

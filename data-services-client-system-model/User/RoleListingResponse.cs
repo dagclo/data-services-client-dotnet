@@ -36,11 +36,11 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.Roles = Roles;
         }
-        
+
         /// <summary>
         /// Gets or Sets Roles
         /// </summary>
-        [DataMember(Name="roles", EmitDefaultValue=false)]
+        [DataMember(Name = "roles", EmitDefaultValue = false)]
         public List<RoleDefinition> Roles { get; set; }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -85,7 +85,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Roles == input.Roles ||
                     this.Roles != null &&

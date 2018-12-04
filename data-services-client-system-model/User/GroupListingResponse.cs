@@ -36,12 +36,12 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.Groups = Groups;
         }
-        
+
         /// <summary>
         /// A list of existing groups.
         /// </summary>
         /// <value>A list of existing groups.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
+        [DataMember(Name = "groups", EmitDefaultValue = false)]
         public List<GroupListingItem> Groups { get; set; }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -86,7 +86,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Groups == input.Groups ||
                     this.Groups != null &&

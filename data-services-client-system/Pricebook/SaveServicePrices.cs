@@ -8,12 +8,14 @@ namespace Quadient.DataServices.System.Pricebook
     /// <summary>
     /// Sets a price for an aspect of a service 
     /// </summary>
-    public class SaveServicePrices : IRequest<PriceSettingRequest, Prices>
+    public class SaveServicePrices : IRequest<Prices>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Post;
         public PriceSettingRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Sets a price for an aspect of a service 

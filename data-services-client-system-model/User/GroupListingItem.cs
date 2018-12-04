@@ -42,33 +42,33 @@ namespace Quadient.DataServices.System.Model.User
             this.Policies = Policies;
             this.ServiceConfigurations = ServiceConfigurations;
         }
-        
+
         /// <summary>
         /// A canonical name by which this group is identified.
         /// </summary>
         /// <value>A canonical name by which this group is identified.</value>
-        [DataMember(Name="group_name", EmitDefaultValue=false)]
+        [DataMember(Name = "group_name", EmitDefaultValue = false)]
         public string GroupName { get; set; }
 
         /// <summary>
         /// A set of groups that this group inherits policies from.
         /// </summary>
         /// <value>A set of groups that this group inherits policies from.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
+        [DataMember(Name = "groups", EmitDefaultValue = false)]
         public List<GroupListingItem> Groups { get; set; }
 
         /// <summary>
         /// The set of policies associated directly with this group.
         /// </summary>
         /// <value>The set of policies associated directly with this group.</value>
-        [DataMember(Name="policies", EmitDefaultValue=false)]
+        [DataMember(Name = "policies", EmitDefaultValue = false)]
         public List<PolicyItem> Policies { get; set; }
 
         /// <summary>
         /// The set of existing service configurations associated directly with this group.
         /// </summary>
         /// <value>The set of existing service configurations associated directly with this group.</value>
-        [DataMember(Name="service_configurations", EmitDefaultValue=false)]
+        [DataMember(Name = "service_configurations", EmitDefaultValue = false)]
         public List<ServiceConfigurationItem> ServiceConfigurations { get; set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -116,22 +116,22 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.GroupName == input.GroupName ||
                     (this.GroupName != null &&
                     this.GroupName.Equals(input.GroupName))
-                ) && 
+                ) &&
                 (
                     this.Groups == input.Groups ||
                     this.Groups != null &&
                     this.Groups.SequenceEqual(input.Groups)
-                ) && 
+                ) &&
                 (
                     this.Policies == input.Policies ||
                     this.Policies != null &&
                     this.Policies.SequenceEqual(input.Policies)
-                ) && 
+                ) &&
                 (
                     this.ServiceConfigurations == input.ServiceConfigurations ||
                     this.ServiceConfigurations != null &&

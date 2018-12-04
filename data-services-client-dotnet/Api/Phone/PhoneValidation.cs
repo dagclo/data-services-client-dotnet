@@ -8,12 +8,14 @@ namespace Quadient.DataServices.Api.Phone
     /// <summary>
     /// Validates a set of phone numbers
     /// </summary>
-    public class PhoneValidation : IRequest<PhoneValidationRequest, PhoneValidationResponse>
+    public class PhoneValidation : IRequest<PhoneValidationResponse>
     {
         public string ServicePath { get; } = "services/phone-validation/v1/validate";
         public HttpMethod Method { get; } = HttpMethod.Post;
         public PhoneValidationRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Validates a set of phone numbers
@@ -50,9 +52,9 @@ namespace Quadient.DataServices.Api.Phone
         public PhoneValidation(PhoneValidationRequestConfiguration configuration, IEnumerable<string> numbers)
         {
             var phoneNumbers = numbers.Select(number => new PhoneValidationRequestRecord
-                {
-                    PhoneNumber = number
-                })
+            {
+                PhoneNumber = number
+            })
                 .ToList();
             Content = new PhoneValidationRequest(configuration, phoneNumbers);
         }

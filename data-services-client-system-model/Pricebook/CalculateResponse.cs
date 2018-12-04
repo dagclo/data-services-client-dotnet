@@ -38,18 +38,18 @@ namespace Quadient.DataServices.System.Model.Pricebook
             this.PriceTotal = PriceTotal;
             this.PricePerService = PricePerService;
         }
-        
+
         /// <summary>
         /// Gets or Sets PriceTotal
         /// </summary>
-        [DataMember(Name="price_total", EmitDefaultValue=false)]
+        [DataMember(Name = "price_total", EmitDefaultValue = false)]
         public PriceTotal PriceTotal { get; set; }
 
         /// <summary>
         /// The map of service name to calculated price.
         /// </summary>
         /// <value>The map of service name to calculated price.</value>
-        [DataMember(Name="price_per_service", EmitDefaultValue=false)]
+        [DataMember(Name = "price_per_service", EmitDefaultValue = false)]
         public Dictionary<string, PriceTotal> PricePerService { get; set; }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -95,12 +95,12 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.PriceTotal == input.PriceTotal ||
                     (this.PriceTotal != null &&
                     this.PriceTotal.Equals(input.PriceTotal))
-                ) && 
+                ) &&
                 (
                     this.PricePerService == input.PricePerService ||
                     this.PricePerService != null &&

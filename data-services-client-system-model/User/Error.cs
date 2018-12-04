@@ -61,26 +61,26 @@ namespace Quadient.DataServices.System.Model.User
             }
             this.AdditionalDetails = AdditionalDetails;
         }
-        
+
         /// <summary>
         /// The HTTP status code.
         /// </summary>
         /// <value>The HTTP status code.</value>
-        [DataMember(Name="code", EmitDefaultValue=false)]
+        [DataMember(Name = "code", EmitDefaultValue = false)]
         public int? Code { get; set; }
 
         /// <summary>
         /// A humanly readable error message.
         /// </summary>
         /// <value>A humanly readable error message.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
         /// Additional details about the error.
         /// </summary>
         /// <value>Additional details about the error.</value>
-        [DataMember(Name="additional_details", EmitDefaultValue=false)]
+        [DataMember(Name = "additional_details", EmitDefaultValue = false)]
         public Object AdditionalDetails { get; set; }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -127,17 +127,17 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Code == input.Code ||
                     (this.Code != null &&
                     this.Code.Equals(input.Code))
-                ) && 
+                ) &&
                 (
                     this.Message == input.Message ||
                     (this.Message != null &&
                     this.Message.Equals(input.Message))
-                ) && 
+                ) &&
                 (
                     this.AdditionalDetails == input.AdditionalDetails ||
                     (this.AdditionalDetails != null &&

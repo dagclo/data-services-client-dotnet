@@ -36,12 +36,12 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.Policies = Policies;
         }
-        
+
         /// <summary>
         /// A list of all existing policies.
         /// </summary>
         /// <value>A list of all existing policies.</value>
-        [DataMember(Name="policies", EmitDefaultValue=false)]
+        [DataMember(Name = "policies", EmitDefaultValue = false)]
         public List<PolicyItem> Policies { get; set; }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -86,7 +86,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Policies == input.Policies ||
                     this.Policies != null &&

@@ -4,7 +4,7 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class GetUsMoveUpdateRecords : IRequest<object, Records>
+    public class GetUsMoveUpdateRecords : IRequest<Records>
     {
         public GetUsMoveUpdateRecords(string jobId, string pageId)
         {
@@ -15,5 +15,7 @@ namespace Quadient.DataServices.Api.UsBatch
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
     }
 }

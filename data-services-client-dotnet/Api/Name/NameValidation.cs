@@ -8,17 +8,19 @@ namespace Quadient.DataServices.Api.Name
     /// <summary>
     /// Takes name information and tries to parse it. This parser is usually most useful as a simple utility function when one or more unstructured name strings has to be split into a structured set of fields with given name, family name, and so forth.
     /// </summary>
-    public class NameValidation: IRequest<ParseRequest, ParseResponse>
+    public class NameValidation : IRequest<ParseResponse>
     {
-        public string ServicePath {get;} = "services/name-validation/v2/parse";
-        public HttpMethod Method {get;} = HttpMethod.Post;
-        public ParseRequest Content { get; set; }
+        public string ServicePath { get; } = "services/name-validation/v2/parse";
+        public HttpMethod Method { get; } = HttpMethod.Post;
+        private ParseRequest Content { get; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Takes name information and tries to parse it. This parser is usually most useful as a simple utility function when one or more unstructured name strings has to be split into a structured set of fields with given name, family name, and so forth.
         /// </summary>
-        public NameValidation() {}
+        public NameValidation() { }
 
         /// <summary>
         /// Takes name information and tries to parse it. This parser is usually most useful as a simple utility function when one or more unstructured name strings has to be split into a structured set of fields with given name, family name, and so forth.
@@ -47,9 +49,9 @@ namespace Quadient.DataServices.Api.Name
         public NameValidation(ParseRequestConfiguration configuration, IEnumerable<string> names)
         {
             var records = names.Select(name => new ParseRequestItem
-                {
-                    UnstructuredName = name
-                })
+            {
+                UnstructuredName = name
+            })
                 .ToList();
             Content = new ParseRequest(configuration, records);
         }

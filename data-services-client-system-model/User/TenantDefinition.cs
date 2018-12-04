@@ -42,30 +42,30 @@ namespace Quadient.DataServices.System.Model.User
             this.Groups = Groups;
             this.ServiceConfigurations = ServiceConfigurations;
         }
-        
+
         /// <summary>
         /// The name of a tenant
         /// </summary>
         /// <value>The name of a tenant</value>
-        [DataMember(Name="tenant_name", EmitDefaultValue=false)]
+        [DataMember(Name = "tenant_name", EmitDefaultValue = false)]
         public string TenantName { get; set; }
 
         /// <summary>
         /// Gets or Sets GroupDomain
         /// </summary>
-        [DataMember(Name="group_domain", EmitDefaultValue=false)]
+        [DataMember(Name = "group_domain", EmitDefaultValue = false)]
         public List<string> GroupDomain { get; set; }
 
         /// <summary>
         /// Gets or Sets Groups
         /// </summary>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
+        [DataMember(Name = "groups", EmitDefaultValue = false)]
         public List<string> Groups { get; set; }
 
         /// <summary>
         /// Gets or Sets ServiceConfigurations
         /// </summary>
-        [DataMember(Name="service_configurations", EmitDefaultValue=false)]
+        [DataMember(Name = "service_configurations", EmitDefaultValue = false)]
         public List<string> ServiceConfigurations { get; set; }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -113,22 +113,22 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.TenantName == input.TenantName ||
                     (this.TenantName != null &&
                     this.TenantName.Equals(input.TenantName))
-                ) && 
+                ) &&
                 (
                     this.GroupDomain == input.GroupDomain ||
                     this.GroupDomain != null &&
                     this.GroupDomain.SequenceEqual(input.GroupDomain)
-                ) && 
+                ) &&
                 (
                     this.Groups == input.Groups ||
                     this.Groups != null &&
                     this.Groups.SequenceEqual(input.Groups)
-                ) && 
+                ) &&
                 (
                     this.ServiceConfigurations == input.ServiceConfigurations ||
                     this.ServiceConfigurations != null &&

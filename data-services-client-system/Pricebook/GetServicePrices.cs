@@ -10,12 +10,14 @@ namespace Quadient.DataServices.System.Pricebook
     /// <summary>
     /// Returns the current price details, including tiers, for the specified service.
     /// </summary>
-    public class GetServicePrices : IRequest<object, Prices>
+    public class GetServicePrices : IRequest<Prices>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Returns the current price details, including tiers, for the specified service.
@@ -25,11 +27,11 @@ namespace Quadient.DataServices.System.Pricebook
         {
             ServicePath = $"pricebook/v1/prices/{request.Service}";
             QueryStringParams = new Dictionary<string, string>
-            {
-                {"date", request.PriceDate?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
-                {"tenant", request.Tenant },
-                {"user_id", request.UserId }
-            };
+                {
+                     {"date", request.PriceDate?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
+                     {"tenant", request.Tenant },
+                     {"user_id", request.UserId }
+                };
         }
     }
 

@@ -10,12 +10,14 @@ namespace Quadient.DataServices.System.Pricebook
     /// <summary>
     /// Get the price sheet for services, optionally scoped to a tenant and/or user.
     /// </summary>
-    public class GetPrices : IRequest<object, Pricesheet>
+    public class GetPrices : IRequest<Pricesheet>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Get the price sheet for services, optionally scoped to a tenant and/or user.
@@ -25,15 +27,15 @@ namespace Quadient.DataServices.System.Pricebook
         {
             ServicePath = $"pricebook/v1/prices";
             QueryStringParams = new Dictionary<string, string>
-            {
-                {"valid_from", request.ValidFrom?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
-                {"valid_to", request.ValidTo?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
-                {"tenant", request.Tenant },
-                {"user_id", request.UserId },
-                {"service", request.Service },
-                {"include_disabled_prices", request.IncludeDisabledPrices ? "true" : "false" },
-                {"include_deleted_prices", request.IncludeDeletedPrices ? "true" : "false" }
-            };
+                {
+                     {"valid_from", request.ValidFrom?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
+                     {"valid_to", request.ValidTo?.ToUniversalTime().ToString(CultureInfo.InvariantCulture) },
+                     {"tenant", request.Tenant },
+                     {"user_id", request.UserId },
+                     {"service", request.Service },
+                     {"include_disabled_prices", request.IncludeDisabledPrices ? "true" : "false" },
+                     {"include_deleted_prices", request.IncludeDeletedPrices ? "true" : "false" }
+                };
         }
     }
 

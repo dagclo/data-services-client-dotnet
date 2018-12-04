@@ -7,12 +7,14 @@ namespace Quadient.DataServices.Api.Address
     /// <summary>
     /// Processes an array of addresses using the Address Correction engine.
     /// </summary>
-    public class AddressCorrection : IRequest<CorrectionRequest, CorrectionResponse>
+    public class AddressCorrection : IRequest<CorrectionResponse>
     {
         public string ServicePath { get; } = "services/address-correction/v1/correct";
         public HttpMethod Method { get; } = HttpMethod.Post;
-        public CorrectionRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        private CorrectionRequest Content { get; set; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         public AddressCorrection()
         {

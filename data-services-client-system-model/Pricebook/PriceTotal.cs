@@ -42,33 +42,33 @@ namespace Quadient.DataServices.System.Model.Pricebook
             this.ServiceError = ServiceError;
             this.UnknownTiers = UnknownTiers;
         }
-        
+
         /// <summary>
         /// The total price of this estimate or calculation
         /// </summary>
         /// <value>The total price of this estimate or calculation</value>
-        [DataMember(Name="amount", EmitDefaultValue=false)]
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
         public decimal? Amount { get; set; }
 
         /// <summary>
         /// The currency type used in this esimate or calculation
         /// </summary>
         /// <value>The currency type used in this esimate or calculation</value>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// Indicates an error with generating a price for this service.
         /// </summary>
         /// <value>Indicates an error with generating a price for this service.</value>
-        [DataMember(Name="service_error", EmitDefaultValue=false)]
+        [DataMember(Name = "service_error", EmitDefaultValue = false)]
         public string ServiceError { get; set; }
 
         /// <summary>
         /// Indicates tier paths that didn&#39;t match any prices.
         /// </summary>
         /// <value>Indicates tier paths that didn&#39;t match any prices.</value>
-        [DataMember(Name="unknown_tiers", EmitDefaultValue=false)]
+        [DataMember(Name = "unknown_tiers", EmitDefaultValue = false)]
         public List<string> UnknownTiers { get; set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -116,22 +116,22 @@ namespace Quadient.DataServices.System.Model.Pricebook
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
                     this.Amount.Equals(input.Amount))
-                ) && 
+                ) &&
                 (
                     this.Currency == input.Currency ||
                     (this.Currency != null &&
                     this.Currency.Equals(input.Currency))
-                ) && 
+                ) &&
                 (
                     this.ServiceError == input.ServiceError ||
                     (this.ServiceError != null &&
                     this.ServiceError.Equals(input.ServiceError))
-                ) && 
+                ) &&
                 (
                     this.UnknownTiers == input.UnknownTiers ||
                     this.UnknownTiers != null &&

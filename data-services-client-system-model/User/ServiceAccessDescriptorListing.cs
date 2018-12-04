@@ -36,12 +36,12 @@ namespace Quadient.DataServices.System.Model.User
         {
             this.ServiceAccessDescriptors = ServiceAccessDescriptors;
         }
-        
+
         /// <summary>
         /// A list of service access descriptors for the tenant.
         /// </summary>
         /// <value>A list of service access descriptors for the tenant.</value>
-        [DataMember(Name="service_access_descriptors", EmitDefaultValue=false)]
+        [DataMember(Name = "service_access_descriptors", EmitDefaultValue = false)]
         public List<ServiceAccessDescriptor> ServiceAccessDescriptors { get; set; }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -86,7 +86,7 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.ServiceAccessDescriptors == input.ServiceAccessDescriptors ||
                     this.ServiceAccessDescriptors != null &&

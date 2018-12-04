@@ -32,32 +32,38 @@ namespace Quadient.DataServices.Example
                 new CorrectionRequestAddress("Starbucks", new List<string> {"2501 Utah Ave. S.", "Ste. 800"}, "Seattle", null, "WA", "98134", "US")
 
             });
-            var standardization = new CountryStandardization(new List<string> {"United States", "United Kingdom"});
-            var standardization2 = new CountryStandardization(new List<string> {"Danmark", "Holland"});
+            var standardization = new CountryStandardization(new List<string> { "United States", "United Kingdom" });
+            var standardization2 = new CountryStandardization(new List<string> { "Danmark", "Holland" });
 
             Task.Run(async () =>
             {
                 Console.WriteLine("Running address correction sample 1");
-                var client = new Client(creds);
+                IClient client = new Client(creds);
                 var resp = await client.Execute(correction);
                 Console.WriteLine($"address correction sample 1 output\n {resp.ToJson()}");
 
                 Console.WriteLine("Running address correction sample 2, JobSession");
-                using(var session = await client.CreateJob())
+                var jobSession = await client.CreateJob();
+                try
                 {
-                    Console.WriteLine($"JobId {session.JobId}");
-                    var resp2 = await session.Execute(correction);
+                    Console.WriteLine($"JobId {jobSession.JobId}");
+                    var resp2 = await jobSession.Execute(correction);
                     Console.WriteLine($"address correction sample 2 output\n {resp2.ToJson()}");
                     Console.WriteLine("Running country standardization sample 1 and 2 in session");
-                    var resp3 = await session.Execute(standardization);
+                    var resp3 = await jobSession.Execute(standardization);
                     Console.WriteLine($"standardization sample 1 output\n {resp3.ToJson()}");
-                    var resp4 = await session.Execute(standardization2);
+                    var resp4 = await jobSession.Execute(standardization2);
                     Console.WriteLine($"standardization sample 2 output\n {resp4.ToJson()}");
 
-                    var jobSummary = await session.Execute(new GetJob(session.JobId));
+                    var jobSummary = await jobSession.Execute(new GetJob(jobSession.JobId));
                     Console.WriteLine($"job summary output\n {jobSummary.ToJson()}");
 
-                    Console.WriteLine($"Finished JobSession {session.JobId}");
+                    jobSession.CloseJob(FiniteJobStatus.SUCCESS);
+                    Console.WriteLine($"Finished JobSession {jobSession.JobId}");
+                }
+                catch (Exception)
+                {
+                    jobSession.CloseJob(FiniteJobStatus.FAILURE);
                 }
             }).GetAwaiter().GetResult();
             Console.ReadLine();

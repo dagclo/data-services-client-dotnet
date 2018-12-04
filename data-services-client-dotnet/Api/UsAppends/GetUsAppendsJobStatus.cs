@@ -4,16 +4,16 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class GetUsAppendsJobStatus : IRequest<object, JobSummary>
+    public class GetUsAppendsJobStatus : IRequest<JobSummary>
     {
         public GetUsAppendsJobStatus(string jobId)
         {
             ServicePath = $"services/us-appends/v1/jobs/{jobId}/status";
         }
-
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Get;
-        public object Content { get; set; }
+        public object Body { get; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public IDictionary<string, string> Headers { get; }
     }
 }

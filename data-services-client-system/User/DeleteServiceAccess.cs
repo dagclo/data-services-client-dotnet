@@ -7,12 +7,14 @@ namespace Quadient.DataServices.System.User
     /// <summary>
     /// Remove the service access descriptor for the named service.
     /// </summary>
-    public class DeleteServiceAccess : IRequest<object, object>
+    public class DeleteServiceAccess : IRequest<object>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Delete;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Remove the service access descriptor for the named service.

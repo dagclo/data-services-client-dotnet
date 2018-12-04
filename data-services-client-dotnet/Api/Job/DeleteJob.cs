@@ -6,11 +6,12 @@ namespace Quadient.DataServices.Api.Job
     /// <summary>
     /// Sets the job status to DELETED. This is essentially a convenience shortcut for calling `POST /jobs/v1/{job_id}/job_status` with a payload containing the `DELETED` job status.
     /// </summary>
-    public class DeleteJob : IRequest<object, object>
+    public class DeleteJob : IRequest<object>
     {
         public string ServicePath { get; }
         public HttpMethod Method { get; } = HttpMethod.Delete;
-        public object Content { get; set; }
+        public object Body { get; }
+        public IDictionary<string, string> Headers { get; }
         public IDictionary<string, string> QueryStringParams { get; }
 
         /// <summary>

@@ -48,53 +48,53 @@ namespace Quadient.DataServices.System.Model.User
             this.LastPage = LastPage;
             this.Users = Users;
         }
-        
+
         /// <summary>
         /// The total number of users found. If no search criteria is set, this will represent the total count of users in the database.
         /// </summary>
         /// <value>The total number of users found. If no search criteria is set, this will represent the total count of users in the database.</value>
-        [DataMember(Name="total", EmitDefaultValue=false)]
+        [DataMember(Name = "total", EmitDefaultValue = false)]
         public int? Total { get; set; }
 
         /// <summary>
         /// The number of users requested
         /// </summary>
         /// <value>The number of users requested</value>
-        [DataMember(Name="limit", EmitDefaultValue=false)]
+        [DataMember(Name = "limit", EmitDefaultValue = false)]
         public int? Limit { get; set; }
 
         /// <summary>
         /// A relative URL to the first page of users based on limit and offset if it exists
         /// </summary>
         /// <value>A relative URL to the first page of users based on limit and offset if it exists</value>
-        [DataMember(Name="first_page", EmitDefaultValue=false)]
+        [DataMember(Name = "first_page", EmitDefaultValue = false)]
         public string FirstPage { get; set; }
 
         /// <summary>
         /// A relative URL to the next page of users based on limit and offset if it exists
         /// </summary>
         /// <value>A relative URL to the next page of users based on limit and offset if it exists</value>
-        [DataMember(Name="next_page", EmitDefaultValue=false)]
+        [DataMember(Name = "next_page", EmitDefaultValue = false)]
         public string NextPage { get; set; }
 
         /// <summary>
         /// A relative URL to the previous page of users based on limit and offset if it exists
         /// </summary>
         /// <value>A relative URL to the previous page of users based on limit and offset if it exists</value>
-        [DataMember(Name="previous_page", EmitDefaultValue=false)]
+        [DataMember(Name = "previous_page", EmitDefaultValue = false)]
         public string PreviousPage { get; set; }
 
         /// <summary>
         /// A relative URL to the last page of users based on limit and offset if it exists
         /// </summary>
         /// <value>A relative URL to the last page of users based on limit and offset if it exists</value>
-        [DataMember(Name="last_page", EmitDefaultValue=false)]
+        [DataMember(Name = "last_page", EmitDefaultValue = false)]
         public string LastPage { get; set; }
 
         /// <summary>
         /// Gets or Sets Users
         /// </summary>
-        [DataMember(Name="users", EmitDefaultValue=false)]
+        [DataMember(Name = "users", EmitDefaultValue = false)]
         public List<Usersummary> Users { get; set; }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -145,37 +145,37 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Total == input.Total ||
                     (this.Total != null &&
                     this.Total.Equals(input.Total))
-                ) && 
+                ) &&
                 (
                     this.Limit == input.Limit ||
                     (this.Limit != null &&
                     this.Limit.Equals(input.Limit))
-                ) && 
+                ) &&
                 (
                     this.FirstPage == input.FirstPage ||
                     (this.FirstPage != null &&
                     this.FirstPage.Equals(input.FirstPage))
-                ) && 
+                ) &&
                 (
                     this.NextPage == input.NextPage ||
                     (this.NextPage != null &&
                     this.NextPage.Equals(input.NextPage))
-                ) && 
+                ) &&
                 (
                     this.PreviousPage == input.PreviousPage ||
                     (this.PreviousPage != null &&
                     this.PreviousPage.Equals(input.PreviousPage))
-                ) && 
+                ) &&
                 (
                     this.LastPage == input.LastPage ||
                     (this.LastPage != null &&
                     this.LastPage.Equals(input.LastPage))
-                ) && 
+                ) &&
                 (
                     this.Users == input.Users ||
                     this.Users != null &&

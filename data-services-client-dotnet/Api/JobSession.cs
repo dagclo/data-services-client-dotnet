@@ -5,83 +5,90 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Quadient.DataServices.Utility;
+using System.Threading;
 
 namespace Quadient.DataServices.Api
 {
-    public class JobSession : IDisposable
+    internal class JobSession : IJobSession
     {
-        private IDictionary<string, string> Headers { get; set; }
-        public string JobId { get; set; }
-        private string Origin { get; set; }
-        private readonly Service _service;
+        public string JobId { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="credentials"></param>
-        /// <param name="configuration"></param>
-        /// <param name="origin">The originating product/application/service for which this job is being created.</param>
-        public JobSession(ICredentials credentials, IConfiguration configuration, string origin)
+        private readonly IServiceCaller _serviceCaller;
+
+        public JobSession(IServiceCaller serviceCaller, string jobId)
         {
-            Origin = origin;
-            _service = new Service(credentials, configuration);
+            _serviceCaller = new HeaderDecorationServiceCaller(serviceCaller, new Dictionary<string, string>() {
+                     {"Job-ID", jobId}
+                });
+            JobId = jobId;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="token">A unique token, a JSON Web Token (JWT), valid for a limited period of time, typically an hour. Used to provide in the 'Authorization' header of forthcoming requests.</param>
-        /// <param name="configuration"></param>
-        /// <param name="origin">The originating product/application/service for which this job is being created.</param>
-        public JobSession(ISessionToken token, IConfiguration configuration, string origin)
+        void IJobSession.UpdateJobStatus(JobStatus jobStatus, IDictionary<string, object> JobStatusDetails)
         {
-            Origin = origin;
-            _service = new Service(token, configuration);
-        }
-
-        internal JobSession(Service service, string origin)
-        {
-            Origin = origin;
-            _service = service;
-        }
-
-        /// <summary>
-        /// Creates a new job. By default the `owner` will be the currently authenticated user, and the `job_status` will be `CREATED`.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<JobInformationResponse> Initialize()
-        {
-            var request = new CreateJob(Origin);
-            var job = await Execute(request);
-            JobId = job.JobId;
-            Origin = job.Origin;
-            Headers = new Dictionary<string, string>
+            Model.Job.JobStatus status;
+            switch (jobStatus)
             {
-                {"Job-ID", JobId},
-                {"Origin", Origin}
-            };
-            return job;
+                case JobStatus.CANCELLED:
+                    status = Model.Job.JobStatus.CANCELLED;
+                    break;
+                case JobStatus.CREATED:
+                    status = Model.Job.JobStatus.CREATED;
+                    break;
+                case JobStatus.DELETED:
+                    status = Model.Job.JobStatus.DELETED;
+                    break;
+                case JobStatus.FAILURE:
+                    status = Model.Job.JobStatus.FAILURE;
+                    break;
+                case JobStatus.READY_TO_RUN:
+                    status = Model.Job.JobStatus.READYTORUN;
+                    break;
+                case JobStatus.STARTED:
+                    status = Model.Job.JobStatus.STARTED;
+                    break;
+                case JobStatus.SUCCESS:
+                    status = Model.Job.JobStatus.SUCCESS;
+                    break;
+                case JobStatus.WAITING:
+                    status = Model.Job.JobStatus.WAITING;
+                    break;
+                default:
+                    throw new ArgumentException("Unsupported job status: " + Enum.GetName(typeof(JobStatus), jobStatus));
+            }
+            _serviceCaller.Execute(new UpdateStatus(JobId, status, JobStatusDetails));
         }
 
-        /// <summary>
-        /// Execute the service call.
-        /// </summary>
-        /// <typeparam name="T">The input type for the service request.</typeparam>
-        /// <typeparam name="R">The return type from the service request.</typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <exception cref="BadRequestRestException"></exception>
-        /// <exception cref="InsufficientCreditsRestException"></exception>
-        /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-        public async Task<R> Execute<T, R>(IRequest<T, R> request)
+        void IJobSession.CloseJob(FiniteJobStatus jobStatus, IDictionary<string, object> JobStatusDetails)
         {
-            return await _service.Execute(request, Headers);
+            Model.Job.JobStatus status;
+            switch (jobStatus)
+            {
+                case FiniteJobStatus.FAILURE:
+                    status = Model.Job.JobStatus.FAILURE;
+                    break;
+                case FiniteJobStatus.CANCELLED:
+                    status = Model.Job.JobStatus.CANCELLED;
+                    break;
+                case FiniteJobStatus.DELETED:
+                    status = Model.Job.JobStatus.DELETED;
+                    break;
+                case FiniteJobStatus.SUCCESS:
+                    status = Model.Job.JobStatus.SUCCESS;
+                    break;
+                default:
+                    throw new ArgumentException("Unsupported job status: " + Enum.GetName(typeof(FiniteJobStatus), jobStatus));
+            }
+            _serviceCaller.Execute(new UpdateStatus(JobId, status, JobStatusDetails));
         }
 
-        public async void Dispose()
+        Task<R> IServiceCaller.Execute<R>(IRequest<R> request)
         {
-            await _service.Execute(new UpdateStatus(JobId, JobStatus.SUCCESS));
+            return _serviceCaller.Execute(request);
+        }
+
+        Task<R> IServiceCaller.Execute<R>(IRequest<R> request, CancellationToken cancellationToken)
+        {
+            return _serviceCaller.Execute(request, cancellationToken);
         }
     }
 }

@@ -56,80 +56,80 @@ namespace Quadient.DataServices.System.Model.User
             this.AdditionalDetails = AdditionalDetails;
             this.ExtSub = ExtSub;
         }
-        
+
         /// <summary>
         /// Gets or Sets Username
         /// </summary>
-        [DataMember(Name="username", EmitDefaultValue=false)]
+        [DataMember(Name = "username", EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or Sets EmailAddress
         /// </summary>
-        [DataMember(Name="email_address", EmitDefaultValue=false)]
+        [DataMember(Name = "email_address", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
         /// The user&#39;s given/first name.
         /// </summary>
         /// <value>The user&#39;s given/first name.</value>
-        [DataMember(Name="first_name", EmitDefaultValue=false)]
+        [DataMember(Name = "first_name", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The user&#39;s last name.
         /// </summary>
         /// <value>The user&#39;s last name.</value>
-        [DataMember(Name="last_name", EmitDefaultValue=false)]
+        [DataMember(Name = "last_name", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
         /// Allows setting the account&#39;s initial enabled state.
         /// </summary>
         /// <value>Allows setting the account&#39;s initial enabled state.</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool? Enabled { get; set; }
 
         /// <summary>
         /// Must conform the the password policy of the tenant.
         /// </summary>
         /// <value>Must conform the the password policy of the tenant.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
+        [DataMember(Name = "password", EmitDefaultValue = false)]
         public string Password { get; set; }
 
         /// <summary>
         /// A collection of currently existing groups that this user is to belong to.
         /// </summary>
         /// <value>A collection of currently existing groups that this user is to belong to.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
+        [DataMember(Name = "groups", EmitDefaultValue = false)]
         public List<string> Groups { get; set; }
 
         /// <summary>
         /// Defines the tenants that this user is a part of or has specific privileges against.
         /// </summary>
         /// <value>Defines the tenants that this user is a part of or has specific privileges against.</value>
-        [DataMember(Name="tenants", EmitDefaultValue=false)]
+        [DataMember(Name = "tenants", EmitDefaultValue = false)]
         public Dictionary<string, TenantInformation> Tenants { get; set; }
 
         /// <summary>
         /// How or why the user was created.
         /// </summary>
         /// <value>How or why the user was created.</value>
-        [DataMember(Name="origin", EmitDefaultValue=false)]
+        [DataMember(Name = "origin", EmitDefaultValue = false)]
         public string Origin { get; set; }
 
         /// <summary>
         /// Additional details about the user.
         /// </summary>
         /// <value>Additional details about the user.</value>
-        [DataMember(Name="additional_details", EmitDefaultValue=false)]
+        [DataMember(Name = "additional_details", EmitDefaultValue = false)]
         public Object AdditionalDetails { get; set; }
 
         /// <summary>
         /// url originating store of user
         /// </summary>
         /// <value>url originating store of user</value>
-        [DataMember(Name="ext_sub", EmitDefaultValue=false)]
+        [DataMember(Name = "ext_sub", EmitDefaultValue = false)]
         public string ExtSub { get; set; }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Quadient.DataServices.System.Model.User
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -184,57 +184,57 @@ namespace Quadient.DataServices.System.Model.User
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Username == input.Username ||
                     (this.Username != null &&
                     this.Username.Equals(input.Username))
-                ) && 
+                ) &&
                 (
                     this.EmailAddress == input.EmailAddress ||
                     (this.EmailAddress != null &&
                     this.EmailAddress.Equals(input.EmailAddress))
-                ) && 
+                ) &&
                 (
                     this.FirstName == input.FirstName ||
                     (this.FirstName != null &&
                     this.FirstName.Equals(input.FirstName))
-                ) && 
+                ) &&
                 (
                     this.LastName == input.LastName ||
                     (this.LastName != null &&
                     this.LastName.Equals(input.LastName))
-                ) && 
+                ) &&
                 (
                     this.Enabled == input.Enabled ||
                     (this.Enabled != null &&
                     this.Enabled.Equals(input.Enabled))
-                ) && 
+                ) &&
                 (
                     this.Password == input.Password ||
                     (this.Password != null &&
                     this.Password.Equals(input.Password))
-                ) && 
+                ) &&
                 (
                     this.Groups == input.Groups ||
                     this.Groups != null &&
                     this.Groups.SequenceEqual(input.Groups)
-                ) && 
+                ) &&
                 (
                     this.Tenants == input.Tenants ||
                     this.Tenants != null &&
                     this.Tenants.SequenceEqual(input.Tenants)
-                ) && 
+                ) &&
                 (
                     this.Origin == input.Origin ||
                     (this.Origin != null &&
                     this.Origin.Equals(input.Origin))
-                ) && 
+                ) &&
                 (
                     this.AdditionalDetails == input.AdditionalDetails ||
                     (this.AdditionalDetails != null &&
                     this.AdditionalDetails.Equals(input.AdditionalDetails))
-                ) && 
+                ) &&
                 (
                     this.ExtSub == input.ExtSub ||
                     (this.ExtSub != null &&
