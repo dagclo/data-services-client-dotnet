@@ -39,7 +39,7 @@ paths:
         schema:
           $ref: '#/definitions/WalkSequenceJobCreationRequest'
       responses:
-        '201':
+        '200':
           description: Successful response.
           schema:
             $ref: '#/definitions/JobSummary'
@@ -157,7 +157,6 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-
   /jobs/{job_id}/records:
     parameters:
     - name: job_id
@@ -180,6 +179,23 @@ paths:
           description: See additional details for the exact problem.
           schema:
             $ref: '#/definitions/Error'
+
+  /jobs/{job_id}/records/tables:
+    parameters:
+    - name: job_id
+      in: path
+      required: !!bool true
+      type: string
+      description: The `job_id` of interest.
+    get:
+      summary: Get record table information
+      description: |
+        Gets information about the set of tables that this job is storing records in.
+      responses:
+        '200':
+          description: Table information provided
+          schema:
+            $ref: '#/definitions/RecordTables'
 
   /jobs/{job_id}/records/pages:
     parameters:
@@ -373,7 +389,7 @@ definitions:
       preferred_address_type:
           $ref: '#/definitions/PreferredAddressType'
       require_cass_report:
-          description: Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false. 
+          description: Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to true. 
           type: boolean
       require_dpv_validated_secondary:
           description: Assign a +4 zip code only for those addresses with validated secondary information. When true. Defaults to false.
@@ -400,6 +416,28 @@ definitions:
         items:
           $ref: '#/definitions/JobSummary'
 
+  RecordTables:
+    type: object
+    properties:
+      tables:
+        type: array
+        items:
+          $ref: '#/definitions/RecordTable'
+  RecordTable:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The unique ID of the table.
+        example: bkt589caff028acm4f
+      role:
+        type: string
+        description: Role of the table in the job.
+        example: input
+      href:
+        type: string
+        description: A hypertext reference (URI) for the table.
+        example: /etl/v1/tables/bkt589caff028acm4f
 
   RecordPages:
     type: object
@@ -458,6 +496,8 @@ definitions:
       - SUCCESS
       - FAILURE
       - DELETED
+      - WAITING
+      - CANCELLED
   
   Casing:
     type: string

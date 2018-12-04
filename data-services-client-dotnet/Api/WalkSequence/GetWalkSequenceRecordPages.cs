@@ -14,7 +14,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 
 		public GetWalkSequenceRecordPages(string jobId, RecordKind kind)
 		{
-			ServicePath = $"services/walk-sequence/v1/jobs/{jobId}/records/pages";
+			ServicePath = $"{WalkSequenceClient.BASE_PATH}/v1/jobs/{jobId}/records/pages";
 			QueryStringParams = new Dictionary<string, string>
 				{
 					 {"kind", kind.ToString()}

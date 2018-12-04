@@ -13,7 +13,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 			Content = request;
 		}
 
-		public string ServicePath { get; } = "services/walk-sequence/v1/jobs";
+		public string ServicePath { get; } = $"{WalkSequenceClient.BASE_PATH}/jobs";
 
 		public HttpMethod Method { get; } = HttpMethod.Post;
 
