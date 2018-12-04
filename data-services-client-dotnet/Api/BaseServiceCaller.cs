@@ -102,7 +102,7 @@ namespace Quadient.DataServices.Api
             }
 
             if (!(Credentials is QuadientCloudCredentials)) _session.Token = _session.AccessToken;
-            _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
+                _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
             return _session;
         }
 
