@@ -22,102 +22,102 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.User
 {
-    /// <summary>
-    /// ServiceAccessDescriptorListing
-    /// </summary>
-    [DataContract]
-    public partial class ServiceAccessDescriptorListing : IEquatable<ServiceAccessDescriptorListing>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceAccessDescriptorListing" /> class.
-        /// </summary>
-        /// <param name="ServiceAccessDescriptors">A list of service access descriptors for the tenant..</param>
-        public ServiceAccessDescriptorListing(List<ServiceAccessDescriptor> ServiceAccessDescriptors = default(List<ServiceAccessDescriptor>))
-        {
-            this.ServiceAccessDescriptors = ServiceAccessDescriptors;
-        }
+	/// <summary>
+	/// ServiceAccessDescriptorListing
+	/// </summary>
+	[DataContract]
+	public partial class ServiceAccessDescriptorListing : IEquatable<ServiceAccessDescriptorListing>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ServiceAccessDescriptorListing" /> class.
+		/// </summary>
+		/// <param name="ServiceAccessDescriptors">A list of service access descriptors for the tenant..</param>
+		public ServiceAccessDescriptorListing(List<ServiceAccessDescriptor> ServiceAccessDescriptors = default(List<ServiceAccessDescriptor>))
+		{
+			this.ServiceAccessDescriptors = ServiceAccessDescriptors;
+		}
 
-        /// <summary>
-        /// A list of service access descriptors for the tenant.
-        /// </summary>
-        /// <value>A list of service access descriptors for the tenant.</value>
-        [DataMember(Name = "service_access_descriptors", EmitDefaultValue = false)]
-        public List<ServiceAccessDescriptor> ServiceAccessDescriptors { get; set; }
+		/// <summary>
+		/// A list of service access descriptors for the tenant.
+		/// </summary>
+		/// <value>A list of service access descriptors for the tenant.</value>
+		[DataMember(Name = "service_access_descriptors", EmitDefaultValue = false)]
+		public List<ServiceAccessDescriptor> ServiceAccessDescriptors { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class ServiceAccessDescriptorListing {\n");
-            sb.Append("  ServiceAccessDescriptors: ").Append(ServiceAccessDescriptors).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class ServiceAccessDescriptorListing {\n");
+			sb.Append("  ServiceAccessDescriptors: ").Append(ServiceAccessDescriptors).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ServiceAccessDescriptorListing);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as ServiceAccessDescriptorListing);
+		}
 
-        /// <summary>
-        /// Returns true if ServiceAccessDescriptorListing instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ServiceAccessDescriptorListing to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ServiceAccessDescriptorListing input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if ServiceAccessDescriptorListing instances are equal
+		/// </summary>
+		/// <param name="input">Instance of ServiceAccessDescriptorListing to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(ServiceAccessDescriptorListing input)
+		{
+			if (input == null)
+				return false;
 
-            return
-                (
-                    this.ServiceAccessDescriptors == input.ServiceAccessDescriptors ||
-                    this.ServiceAccessDescriptors != null &&
-                    this.ServiceAccessDescriptors.SequenceEqual(input.ServiceAccessDescriptors)
-                );
-        }
+			return
+				(
+					this.ServiceAccessDescriptors == input.ServiceAccessDescriptors ||
+					this.ServiceAccessDescriptors != null &&
+					this.ServiceAccessDescriptors.SequenceEqual(input.ServiceAccessDescriptors)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ServiceAccessDescriptors != null)
-                    hashCode = hashCode * 59 + this.ServiceAccessDescriptors.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.ServiceAccessDescriptors != null)
+					hashCode = hashCode * 59 + this.ServiceAccessDescriptors.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

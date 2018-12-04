@@ -22,102 +22,102 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.User
 {
-    /// <summary>
-    /// TenantInformation
-    /// </summary>
-    [DataContract]
-    public partial class TenantInformation : IEquatable<TenantInformation>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TenantInformation" /> class.
-        /// </summary>
-        /// <param name="Roles">A collection of currently existing roles names..</param>
-        public TenantInformation(List<string> Roles = default(List<string>))
-        {
-            this.Roles = Roles;
-        }
+	/// <summary>
+	/// TenantInformation
+	/// </summary>
+	[DataContract]
+	public partial class TenantInformation : IEquatable<TenantInformation>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TenantInformation" /> class.
+		/// </summary>
+		/// <param name="Roles">A collection of currently existing roles names..</param>
+		public TenantInformation(List<string> Roles = default(List<string>))
+		{
+			this.Roles = Roles;
+		}
 
-        /// <summary>
-        /// A collection of currently existing roles names.
-        /// </summary>
-        /// <value>A collection of currently existing roles names.</value>
-        [DataMember(Name = "roles", EmitDefaultValue = false)]
-        public List<string> Roles { get; set; }
+		/// <summary>
+		/// A collection of currently existing roles names.
+		/// </summary>
+		/// <value>A collection of currently existing roles names.</value>
+		[DataMember(Name = "roles", EmitDefaultValue = false)]
+		public List<string> Roles { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class TenantInformation {\n");
-            sb.Append("  Roles: ").Append(Roles).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class TenantInformation {\n");
+			sb.Append("  Roles: ").Append(Roles).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TenantInformation);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as TenantInformation);
+		}
 
-        /// <summary>
-        /// Returns true if TenantInformation instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TenantInformation to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TenantInformation input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if TenantInformation instances are equal
+		/// </summary>
+		/// <param name="input">Instance of TenantInformation to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(TenantInformation input)
+		{
+			if (input == null)
+				return false;
 
-            return
-                (
-                    this.Roles == input.Roles ||
-                    this.Roles != null &&
-                    this.Roles.SequenceEqual(input.Roles)
-                );
-        }
+			return
+				(
+					this.Roles == input.Roles ||
+					this.Roles != null &&
+					this.Roles.SequenceEqual(input.Roles)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Roles != null)
-                    hashCode = hashCode * 59 + this.Roles.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Roles != null)
+					hashCode = hashCode * 59 + this.Roles.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

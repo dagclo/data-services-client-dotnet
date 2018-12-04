@@ -22,151 +22,151 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.User
 {
-    /// <summary>
-    /// Usersummary
-    /// </summary>
-    [DataContract]
-    public partial class Usersummary : IEquatable<Usersummary>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Usersummary" /> class.
-        /// </summary>
-        /// <param name="Uri">An href to the user resource..</param>
-        /// <param name="Username">Username.</param>
-        /// <param name="EmailAddress">EmailAddress.</param>
-        /// <param name="Enabled">A global flag to disable/enable the account..</param>
-        public Usersummary(string Uri = default(string), string Username = default(string), string EmailAddress = default(string), bool? Enabled = default(bool?))
-        {
-            this.Uri = Uri;
-            this.Username = Username;
-            this.EmailAddress = EmailAddress;
-            this.Enabled = Enabled;
-        }
+	/// <summary>
+	/// Usersummary
+	/// </summary>
+	[DataContract]
+	public partial class Usersummary : IEquatable<Usersummary>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Usersummary" /> class.
+		/// </summary>
+		/// <param name="Uri">An href to the user resource..</param>
+		/// <param name="Username">Username.</param>
+		/// <param name="EmailAddress">EmailAddress.</param>
+		/// <param name="Enabled">A global flag to disable/enable the account..</param>
+		public Usersummary(string Uri = default(string), string Username = default(string), string EmailAddress = default(string), bool? Enabled = default(bool?))
+		{
+			this.Uri = Uri;
+			this.Username = Username;
+			this.EmailAddress = EmailAddress;
+			this.Enabled = Enabled;
+		}
 
-        /// <summary>
-        /// An href to the user resource.
-        /// </summary>
-        /// <value>An href to the user resource.</value>
-        [DataMember(Name = "uri", EmitDefaultValue = false)]
-        public string Uri { get; set; }
+		/// <summary>
+		/// An href to the user resource.
+		/// </summary>
+		/// <value>An href to the user resource.</value>
+		[DataMember(Name = "uri", EmitDefaultValue = false)]
+		public string Uri { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Username
-        /// </summary>
-        [DataMember(Name = "username", EmitDefaultValue = false)]
-        public string Username { get; set; }
+		/// <summary>
+		/// Gets or Sets Username
+		/// </summary>
+		[DataMember(Name = "username", EmitDefaultValue = false)]
+		public string Username { get; set; }
 
-        /// <summary>
-        /// Gets or Sets EmailAddress
-        /// </summary>
-        [DataMember(Name = "email_address", EmitDefaultValue = false)]
-        public string EmailAddress { get; set; }
+		/// <summary>
+		/// Gets or Sets EmailAddress
+		/// </summary>
+		[DataMember(Name = "email_address", EmitDefaultValue = false)]
+		public string EmailAddress { get; set; }
 
-        /// <summary>
-        /// A global flag to disable/enable the account.
-        /// </summary>
-        /// <value>A global flag to disable/enable the account.</value>
-        [DataMember(Name = "enabled", EmitDefaultValue = false)]
-        public bool? Enabled { get; set; }
+		/// <summary>
+		/// A global flag to disable/enable the account.
+		/// </summary>
+		/// <value>A global flag to disable/enable the account.</value>
+		[DataMember(Name = "enabled", EmitDefaultValue = false)]
+		public bool? Enabled { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Usersummary {\n");
-            sb.Append("  Uri: ").Append(Uri).Append("\n");
-            sb.Append("  Username: ").Append(Username).Append("\n");
-            sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
-            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class Usersummary {\n");
+			sb.Append("  Uri: ").Append(Uri).Append("\n");
+			sb.Append("  Username: ").Append(Username).Append("\n");
+			sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
+			sb.Append("  Enabled: ").Append(Enabled).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Usersummary);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as Usersummary);
+		}
 
-        /// <summary>
-        /// Returns true if Usersummary instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Usersummary to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Usersummary input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if Usersummary instances are equal
+		/// </summary>
+		/// <param name="input">Instance of Usersummary to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(Usersummary input)
+		{
+			if (input == null)
+				return false;
 
-            return
-                (
-                    this.Uri == input.Uri ||
-                    (this.Uri != null &&
-                    this.Uri.Equals(input.Uri))
-                ) &&
-                (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) &&
-                (
-                    this.EmailAddress == input.EmailAddress ||
-                    (this.EmailAddress != null &&
-                    this.EmailAddress.Equals(input.EmailAddress))
-                ) &&
-                (
-                    this.Enabled == input.Enabled ||
-                    (this.Enabled != null &&
-                    this.Enabled.Equals(input.Enabled))
-                );
-        }
+			return
+				(
+					this.Uri == input.Uri ||
+					(this.Uri != null &&
+					this.Uri.Equals(input.Uri))
+				) &&
+				(
+					this.Username == input.Username ||
+					(this.Username != null &&
+					this.Username.Equals(input.Username))
+				) &&
+				(
+					this.EmailAddress == input.EmailAddress ||
+					(this.EmailAddress != null &&
+					this.EmailAddress.Equals(input.EmailAddress))
+				) &&
+				(
+					this.Enabled == input.Enabled ||
+					(this.Enabled != null &&
+					this.Enabled.Equals(input.Enabled))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Uri != null)
-                    hashCode = hashCode * 59 + this.Uri.GetHashCode();
-                if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
-                if (this.EmailAddress != null)
-                    hashCode = hashCode * 59 + this.EmailAddress.GetHashCode();
-                if (this.Enabled != null)
-                    hashCode = hashCode * 59 + this.Enabled.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Uri != null)
+					hashCode = hashCode * 59 + this.Uri.GetHashCode();
+				if (this.Username != null)
+					hashCode = hashCode * 59 + this.Username.GetHashCode();
+				if (this.EmailAddress != null)
+					hashCode = hashCode * 59 + this.EmailAddress.GetHashCode();
+				if (this.Enabled != null)
+					hashCode = hashCode * 59 + this.Enabled.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

@@ -34,7 +34,7 @@ namespace Quadient.DataServices.Api.Etl
 
 		public async Task<IEtlServiceTable> CreateTable(Stream sourceStream)
 		{
-			var resp =  await _client.Execute(new TableCreationFileUploadRequest(sourceStream));
+			var resp = await _client.Execute(new TableCreationFileUploadRequest(sourceStream));
 			var tableId = resp.TableId;
 			var columnNamesInResponse = resp.ColumnNames;
 			return new EtlServiceTable(_client, tableId, columnNamesInResponse);
@@ -42,7 +42,7 @@ namespace Quadient.DataServices.Api.Etl
 
 		public async Task<IEtlServiceTable> CreateTable(string sourceFile)
 		{
-			var resp =  await _client.Execute(new TableCreationFileUploadRequest(sourceFile));
+			var resp = await _client.Execute(new TableCreationFileUploadRequest(sourceFile));
 			var tableId = resp.TableId;
 			var columnNamesInResponse = resp.ColumnNames;
 			return new EtlServiceTable(_client, tableId, columnNamesInResponse);

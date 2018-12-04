@@ -22,133 +22,133 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.User
 {
-    /// <summary>
-    /// PolicyItem
-    /// </summary>
-    [DataContract]
-    public partial class PolicyItem : IEquatable<PolicyItem>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyItem" /> class.
-        /// </summary>
-        /// <param name="PolicyId">PolicyId.</param>
-        /// <param name="PolicyPattern">PolicyPattern.</param>
-        /// <param name="PolicyType">PolicyType.</param>
-        public PolicyItem(string PolicyId = default(string), string PolicyPattern = default(string), string PolicyType = default(string))
-        {
-            this.PolicyId = PolicyId;
-            this.PolicyPattern = PolicyPattern;
-            this.PolicyType = PolicyType;
-        }
+	/// <summary>
+	/// PolicyItem
+	/// </summary>
+	[DataContract]
+	public partial class PolicyItem : IEquatable<PolicyItem>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PolicyItem" /> class.
+		/// </summary>
+		/// <param name="PolicyId">PolicyId.</param>
+		/// <param name="PolicyPattern">PolicyPattern.</param>
+		/// <param name="PolicyType">PolicyType.</param>
+		public PolicyItem(string PolicyId = default(string), string PolicyPattern = default(string), string PolicyType = default(string))
+		{
+			this.PolicyId = PolicyId;
+			this.PolicyPattern = PolicyPattern;
+			this.PolicyType = PolicyType;
+		}
 
-        /// <summary>
-        /// Gets or Sets PolicyId
-        /// </summary>
-        [DataMember(Name = "policy_id", EmitDefaultValue = false)]
-        public string PolicyId { get; set; }
+		/// <summary>
+		/// Gets or Sets PolicyId
+		/// </summary>
+		[DataMember(Name = "policy_id", EmitDefaultValue = false)]
+		public string PolicyId { get; set; }
 
-        /// <summary>
-        /// Gets or Sets PolicyPattern
-        /// </summary>
-        [DataMember(Name = "policy_pattern", EmitDefaultValue = false)]
-        public string PolicyPattern { get; set; }
+		/// <summary>
+		/// Gets or Sets PolicyPattern
+		/// </summary>
+		[DataMember(Name = "policy_pattern", EmitDefaultValue = false)]
+		public string PolicyPattern { get; set; }
 
-        /// <summary>
-        /// Gets or Sets PolicyType
-        /// </summary>
-        [DataMember(Name = "policy_type", EmitDefaultValue = false)]
-        public string PolicyType { get; set; }
+		/// <summary>
+		/// Gets or Sets PolicyType
+		/// </summary>
+		[DataMember(Name = "policy_type", EmitDefaultValue = false)]
+		public string PolicyType { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class PolicyItem {\n");
-            sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
-            sb.Append("  PolicyPattern: ").Append(PolicyPattern).Append("\n");
-            sb.Append("  PolicyType: ").Append(PolicyType).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class PolicyItem {\n");
+			sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
+			sb.Append("  PolicyPattern: ").Append(PolicyPattern).Append("\n");
+			sb.Append("  PolicyType: ").Append(PolicyType).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as PolicyItem);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as PolicyItem);
+		}
 
-        /// <summary>
-        /// Returns true if PolicyItem instances are equal
-        /// </summary>
-        /// <param name="input">Instance of PolicyItem to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PolicyItem input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if PolicyItem instances are equal
+		/// </summary>
+		/// <param name="input">Instance of PolicyItem to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(PolicyItem input)
+		{
+			if (input == null)
+				return false;
 
-            return
-                (
-                    this.PolicyId == input.PolicyId ||
-                    (this.PolicyId != null &&
-                    this.PolicyId.Equals(input.PolicyId))
-                ) &&
-                (
-                    this.PolicyPattern == input.PolicyPattern ||
-                    (this.PolicyPattern != null &&
-                    this.PolicyPattern.Equals(input.PolicyPattern))
-                ) &&
-                (
-                    this.PolicyType == input.PolicyType ||
-                    (this.PolicyType != null &&
-                    this.PolicyType.Equals(input.PolicyType))
-                );
-        }
+			return
+				(
+					this.PolicyId == input.PolicyId ||
+					(this.PolicyId != null &&
+					this.PolicyId.Equals(input.PolicyId))
+				) &&
+				(
+					this.PolicyPattern == input.PolicyPattern ||
+					(this.PolicyPattern != null &&
+					this.PolicyPattern.Equals(input.PolicyPattern))
+				) &&
+				(
+					this.PolicyType == input.PolicyType ||
+					(this.PolicyType != null &&
+					this.PolicyType.Equals(input.PolicyType))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PolicyId != null)
-                    hashCode = hashCode * 59 + this.PolicyId.GetHashCode();
-                if (this.PolicyPattern != null)
-                    hashCode = hashCode * 59 + this.PolicyPattern.GetHashCode();
-                if (this.PolicyType != null)
-                    hashCode = hashCode * 59 + this.PolicyType.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.PolicyId != null)
+					hashCode = hashCode * 59 + this.PolicyId.GetHashCode();
+				if (this.PolicyPattern != null)
+					hashCode = hashCode * 59 + this.PolicyPattern.GetHashCode();
+				if (this.PolicyType != null)
+					hashCode = hashCode * 59 + this.PolicyType.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

@@ -22,102 +22,102 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.User
 {
-    /// <summary>
-    /// GroupListingResponse
-    /// </summary>
-    [DataContract]
-    public partial class GroupListingResponse : IEquatable<GroupListingResponse>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupListingResponse" /> class.
-        /// </summary>
-        /// <param name="Groups">A list of existing groups..</param>
-        public GroupListingResponse(List<GroupListingItem> Groups = default(List<GroupListingItem>))
-        {
-            this.Groups = Groups;
-        }
+	/// <summary>
+	/// GroupListingResponse
+	/// </summary>
+	[DataContract]
+	public partial class GroupListingResponse : IEquatable<GroupListingResponse>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="GroupListingResponse" /> class.
+		/// </summary>
+		/// <param name="Groups">A list of existing groups..</param>
+		public GroupListingResponse(List<GroupListingItem> Groups = default(List<GroupListingItem>))
+		{
+			this.Groups = Groups;
+		}
 
-        /// <summary>
-        /// A list of existing groups.
-        /// </summary>
-        /// <value>A list of existing groups.</value>
-        [DataMember(Name = "groups", EmitDefaultValue = false)]
-        public List<GroupListingItem> Groups { get; set; }
+		/// <summary>
+		/// A list of existing groups.
+		/// </summary>
+		/// <value>A list of existing groups.</value>
+		[DataMember(Name = "groups", EmitDefaultValue = false)]
+		public List<GroupListingItem> Groups { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class GroupListingResponse {\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class GroupListingResponse {\n");
+			sb.Append("  Groups: ").Append(Groups).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as GroupListingResponse);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as GroupListingResponse);
+		}
 
-        /// <summary>
-        /// Returns true if GroupListingResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of GroupListingResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(GroupListingResponse input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if GroupListingResponse instances are equal
+		/// </summary>
+		/// <param name="input">Instance of GroupListingResponse to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(GroupListingResponse input)
+		{
+			if (input == null)
+				return false;
 
-            return
-                (
-                    this.Groups == input.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(input.Groups)
-                );
-        }
+			return
+				(
+					this.Groups == input.Groups ||
+					this.Groups != null &&
+					this.Groups.SequenceEqual(input.Groups)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Groups != null)
-                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Groups != null)
+					hashCode = hashCode * 59 + this.Groups.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

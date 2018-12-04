@@ -22,102 +22,102 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.Pricebook
 {
-    /// <summary>
-    /// ServicesEnumeration
-    /// </summary>
-    [DataContract]
-    public partial class ServicesEnumeration : IEquatable<ServicesEnumeration>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServicesEnumeration" /> class.
-        /// </summary>
-        /// <param name="Services">An array of valid service names that are known by the pricebook..</param>
-        public ServicesEnumeration(List<string> Services = default(List<string>))
-        {
-            this.Services = Services;
-        }
+	/// <summary>
+	/// ServicesEnumeration
+	/// </summary>
+	[DataContract]
+	public partial class ServicesEnumeration : IEquatable<ServicesEnumeration>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ServicesEnumeration" /> class.
+		/// </summary>
+		/// <param name="Services">An array of valid service names that are known by the pricebook..</param>
+		public ServicesEnumeration(List<string> Services = default(List<string>))
+		{
+			this.Services = Services;
+		}
 
-        /// <summary>
-        /// An array of valid service names that are known by the pricebook.
-        /// </summary>
-        /// <value>An array of valid service names that are known by the pricebook.</value>
-        [DataMember(Name = "services", EmitDefaultValue = false)]
-        public List<string> Services { get; set; }
+		/// <summary>
+		/// An array of valid service names that are known by the pricebook.
+		/// </summary>
+		/// <value>An array of valid service names that are known by the pricebook.</value>
+		[DataMember(Name = "services", EmitDefaultValue = false)]
+		public List<string> Services { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class ServicesEnumeration {\n");
-            sb.Append("  Services: ").Append(Services).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class ServicesEnumeration {\n");
+			sb.Append("  Services: ").Append(Services).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ServicesEnumeration);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as ServicesEnumeration);
+		}
 
-        /// <summary>
-        /// Returns true if ServicesEnumeration instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ServicesEnumeration to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ServicesEnumeration input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if ServicesEnumeration instances are equal
+		/// </summary>
+		/// <param name="input">Instance of ServicesEnumeration to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(ServicesEnumeration input)
+		{
+			if (input == null)
+				return false;
 
-            return
-                (
-                    this.Services == input.Services ||
-                    this.Services != null &&
-                    this.Services.SequenceEqual(input.Services)
-                );
-        }
+			return
+				(
+					this.Services == input.Services ||
+					this.Services != null &&
+					this.Services.SequenceEqual(input.Services)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Services != null)
-                    hashCode = hashCode * 59 + this.Services.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Services != null)
+					hashCode = hashCode * 59 + this.Services.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }
