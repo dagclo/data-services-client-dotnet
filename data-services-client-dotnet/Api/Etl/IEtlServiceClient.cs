@@ -9,18 +9,11 @@ namespace Quadient.DataServices.Api.Etl
 		Task<IEtlServiceFile> CreateFile(string sourceFile);
 		Task<IEtlServiceFile> CreateFile(Stream sourceStream);
 		Task<IEtlServiceFile> GetFile(string fileId);
-
 		Task deleteFile(string fileId);
-
 		Task<IEtlServiceTable> CreateTable(IList<string> columnNames);
-
 		Task<IEtlServiceTable> CreateTable(Stream sourceStream);
-		Task<IEtlServiceTable> CreateTable(File sourceFile);
-
+		Task<IEtlServiceTable> CreateTable(string sourceFile);
 		Task<IEtlServiceTable> getTable(string tableId);
-
 		Task deleteTable(string tableId);
-
 	}
-
 }

@@ -11,6 +11,6 @@ namespace Quadient.DataServices.Api.Etl
 		Task<Stream> Download();
 		Task<IEtlServiceTable> TransformToTable(bool deleteFile);
 		Task<IEtlServiceTable> TransformToTable(TransformRequest transformRequest);
-		Task deleteFile();
+		Task DeleteFile();
 	}
 }
