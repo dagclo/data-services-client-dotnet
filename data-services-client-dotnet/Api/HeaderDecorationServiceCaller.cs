@@ -14,6 +14,11 @@ using Quadient.DataServices.Utility;
 
 namespace Quadient.DataServices.Api
 {
+	/// <summary>
+	/// A wrapper which adds HTTP headers around calls to another IServiceCaller instance.
+	/// This is useful for controlling HTTP headers throughout the lifetime of a particular
+	/// scenario, for instance setting the Job-ID header for all requests made within a job.
+	/// </summary>
     internal class HeaderDecorationServiceCaller : IServiceCaller
     {
         private readonly IServiceCaller _innerCaller;

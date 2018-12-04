@@ -84,7 +84,8 @@ namespace Quadient.DataServices.Api
 
         private async Task<ISession> GetSession(CancellationToken cancellationToken)
         {
-            if (_session != null && _expiration > DateTime.Now) return _session;
+            if (_session != null && _expiration > DateTime.Now)
+                return _session;
             var request = GetAuthToken(Credentials);
             using (var httpRequest = new HttpRequestMessage(request.Method, request.ServicePath))
             {
@@ -100,7 +101,7 @@ namespace Quadient.DataServices.Api
             }
 
             if (!(Credentials is QuadientCloudCredentials)) _session.Token = _session.AccessToken;
-            _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
+                _expiration = DateTime.Now.AddMilliseconds(TokenExpiration);
             return _session;
         }
 
