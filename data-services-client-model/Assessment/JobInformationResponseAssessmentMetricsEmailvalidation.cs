@@ -22,117 +22,117 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Assessment
 {
-    /// <summary>
-    /// JobInformationResponseAssessmentMetricsEmailvalidation
-    /// </summary>
-    [DataContract]
-    public partial class JobInformationResponseAssessmentMetricsEmailvalidation : IEquatable<JobInformationResponseAssessmentMetricsEmailvalidation>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JobInformationResponseAssessmentMetricsEmailvalidation" /> class.
-        /// </summary>
-        /// <param name="Count">Count.</param>
-        /// <param name="Category">Category.</param>
-        public JobInformationResponseAssessmentMetricsEmailvalidation(int? Count = default(int?), CategoryMetrics Category = default(CategoryMetrics))
-        {
-            this.Count = Count;
-            this.Category = Category;
-        }
-        
-        /// <summary>
-        /// Gets or Sets Count
-        /// </summary>
-        [DataMember(Name="count", EmitDefaultValue=false)]
-        public int? Count { get; set; }
+	/// <summary>
+	/// JobInformationResponseAssessmentMetricsEmailvalidation
+	/// </summary>
+	[DataContract]
+	public partial class JobInformationResponseAssessmentMetricsEmailvalidation : IEquatable<JobInformationResponseAssessmentMetricsEmailvalidation>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JobInformationResponseAssessmentMetricsEmailvalidation" /> class.
+		/// </summary>
+		/// <param name="Count">Count.</param>
+		/// <param name="Category">Category.</param>
+		public JobInformationResponseAssessmentMetricsEmailvalidation(int? Count = default(int?), CategoryMetrics Category = default(CategoryMetrics))
+		{
+			this.Count = Count;
+			this.Category = Category;
+		}
+		
+		/// <summary>
+		/// Gets or Sets Count
+		/// </summary>
+		[DataMember(Name="count", EmitDefaultValue=false)]
+		public int? Count { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Category
-        /// </summary>
-        [DataMember(Name="category", EmitDefaultValue=false)]
-        public CategoryMetrics Category { get; set; }
+		/// <summary>
+		/// Gets or Sets Category
+		/// </summary>
+		[DataMember(Name="category", EmitDefaultValue=false)]
+		public CategoryMetrics Category { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class JobInformationResponseAssessmentMetricsEmailvalidation {\n");
-            sb.Append("  Count: ").Append(Count).Append("\n");
-            sb.Append("  Category: ").Append(Category).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class JobInformationResponseAssessmentMetricsEmailvalidation {\n");
+			sb.Append("  Count: ").Append(Count).Append("\n");
+			sb.Append("  Category: ").Append(Category).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as JobInformationResponseAssessmentMetricsEmailvalidation);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as JobInformationResponseAssessmentMetricsEmailvalidation);
+		}
 
-        /// <summary>
-        /// Returns true if JobInformationResponseAssessmentMetricsEmailvalidation instances are equal
-        /// </summary>
-        /// <param name="input">Instance of JobInformationResponseAssessmentMetricsEmailvalidation to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(JobInformationResponseAssessmentMetricsEmailvalidation input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if JobInformationResponseAssessmentMetricsEmailvalidation instances are equal
+		/// </summary>
+		/// <param name="input">Instance of JobInformationResponseAssessmentMetricsEmailvalidation to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(JobInformationResponseAssessmentMetricsEmailvalidation input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Count == input.Count ||
-                    (this.Count != null &&
-                    this.Count.Equals(input.Count))
-                ) && 
-                (
-                    this.Category == input.Category ||
-                    (this.Category != null &&
-                    this.Category.Equals(input.Category))
-                );
-        }
+			return 
+				(
+					this.Count == input.Count ||
+					(this.Count != null &&
+					this.Count.Equals(input.Count))
+				) && 
+				(
+					this.Category == input.Category ||
+					(this.Category != null &&
+					this.Category.Equals(input.Category))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Count != null)
-                    hashCode = hashCode * 59 + this.Count.GetHashCode();
-                if (this.Category != null)
-                    hashCode = hashCode * 59 + this.Category.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Count != null)
+					hashCode = hashCode * 59 + this.Count.GetHashCode();
+				if (this.Category != null)
+					hashCode = hashCode * 59 + this.Category.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

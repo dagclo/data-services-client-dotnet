@@ -22,118 +22,118 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Etl
 {
-    /// <summary>
-    /// TableUpdateResponse
-    /// </summary>
-    [DataContract]
-    public partial class TableUpdateResponse : IEquatable<TableUpdateResponse>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TableUpdateResponse" /> class.
-        /// </summary>
-        /// <param name="Updated">Updated.</param>
-        /// <param name="NewPageIds">A list of newly added page IDs for the table..</param>
-        public TableUpdateResponse(bool? Updated = default(bool?), List<string> NewPageIds = default(List<string>))
-        {
-            this.Updated = Updated;
-            this.NewPageIds = NewPageIds;
-        }
-        
-        /// <summary>
-        /// Gets or Sets Updated
-        /// </summary>
-        [DataMember(Name="updated", EmitDefaultValue=false)]
-        public bool? Updated { get; set; }
+	/// <summary>
+	/// TableUpdateResponse
+	/// </summary>
+	[DataContract]
+	public partial class TableUpdateResponse : IEquatable<TableUpdateResponse>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TableUpdateResponse" /> class.
+		/// </summary>
+		/// <param name="Updated">Updated.</param>
+		/// <param name="NewPageIds">A list of newly added page IDs for the table..</param>
+		public TableUpdateResponse(bool? Updated = default(bool?), List<string> NewPageIds = default(List<string>))
+		{
+			this.Updated = Updated;
+			this.NewPageIds = NewPageIds;
+		}
+		
+		/// <summary>
+		/// Gets or Sets Updated
+		/// </summary>
+		[DataMember(Name="updated", EmitDefaultValue=false)]
+		public bool? Updated { get; set; }
 
-        /// <summary>
-        /// A list of newly added page IDs for the table.
-        /// </summary>
-        /// <value>A list of newly added page IDs for the table.</value>
-        [DataMember(Name="new_page_ids", EmitDefaultValue=false)]
-        public List<string> NewPageIds { get; set; }
+		/// <summary>
+		/// A list of newly added page IDs for the table.
+		/// </summary>
+		/// <value>A list of newly added page IDs for the table.</value>
+		[DataMember(Name="new_page_ids", EmitDefaultValue=false)]
+		public List<string> NewPageIds { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class TableUpdateResponse {\n");
-            sb.Append("  Updated: ").Append(Updated).Append("\n");
-            sb.Append("  NewPageIds: ").Append(NewPageIds).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class TableUpdateResponse {\n");
+			sb.Append("  Updated: ").Append(Updated).Append("\n");
+			sb.Append("  NewPageIds: ").Append(NewPageIds).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TableUpdateResponse);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as TableUpdateResponse);
+		}
 
-        /// <summary>
-        /// Returns true if TableUpdateResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TableUpdateResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TableUpdateResponse input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if TableUpdateResponse instances are equal
+		/// </summary>
+		/// <param name="input">Instance of TableUpdateResponse to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(TableUpdateResponse input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Updated == input.Updated ||
-                    (this.Updated != null &&
-                    this.Updated.Equals(input.Updated))
-                ) && 
-                (
-                    this.NewPageIds == input.NewPageIds ||
-                    this.NewPageIds != null &&
-                    this.NewPageIds.SequenceEqual(input.NewPageIds)
-                );
-        }
+			return 
+				(
+					this.Updated == input.Updated ||
+					(this.Updated != null &&
+					this.Updated.Equals(input.Updated))
+				) && 
+				(
+					this.NewPageIds == input.NewPageIds ||
+					this.NewPageIds != null &&
+					this.NewPageIds.SequenceEqual(input.NewPageIds)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Updated != null)
-                    hashCode = hashCode * 59 + this.Updated.GetHashCode();
-                if (this.NewPageIds != null)
-                    hashCode = hashCode * 59 + this.NewPageIds.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Updated != null)
+					hashCode = hashCode * 59 + this.Updated.GetHashCode();
+				if (this.NewPageIds != null)
+					hashCode = hashCode * 59 + this.NewPageIds.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

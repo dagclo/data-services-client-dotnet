@@ -22,152 +22,152 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Address
 {
-    /// <summary>
-    /// The configuration of the correction request. These values are ignored for uncorrected addresses.
-    /// </summary>
-    [DataContract]
-    public partial class CorrectionRequestConfiguration : IEquatable<CorrectionRequestConfiguration>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionRequestConfiguration" /> class.
-        /// </summary>
-        /// <param name="MaximumAddressLineCount">The maximum number of address lines to present on output..</param>
-        /// <param name="MaximumRegionalLineCount">The maximum number of regional lines to present on output..</param>
-        /// <param name="OutputLanguage">Set the language to return on output. * &#x60;Preserve&#x60; (default) detects and preserves the input language and script. This works for Belarus, China, Greece, Japan, Kazakhstan, Macedonia, and Russia. For all other countries, it defaults to the native language and script. * &#x60;English&#x60; returns English for all countries, except Belgium, France, Germany, and the Netherlands.  * &#x60;Native&#x60; returns the country&#39;s official language in that country&#39;s script. For example, \&quot;Copenhagen\&quot; on input is returned as \&quot;København\&quot; on output. .</param>
-        /// <param name="OutputGroups">OutputGroups.</param>
-        public CorrectionRequestConfiguration(int? MaximumAddressLineCount = default(int?), int? MaximumRegionalLineCount = default(int?), Object OutputLanguage = default(Object), List<OutputGroup> OutputGroups = default(List<OutputGroup>))
-        {
-            this.MaximumAddressLineCount = MaximumAddressLineCount;
-            this.MaximumRegionalLineCount = MaximumRegionalLineCount;
-            this.OutputLanguage = OutputLanguage;
-            this.OutputGroups = OutputGroups;
-        }
-        
-        /// <summary>
-        /// The maximum number of address lines to present on output.
-        /// </summary>
-        /// <value>The maximum number of address lines to present on output.</value>
-        [DataMember(Name="maximum_address_line_count", EmitDefaultValue=false)]
-        public int? MaximumAddressLineCount { get; set; }
+	/// <summary>
+	/// The configuration of the correction request. These values are ignored for uncorrected addresses.
+	/// </summary>
+	[DataContract]
+	public partial class CorrectionRequestConfiguration : IEquatable<CorrectionRequestConfiguration>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionRequestConfiguration" /> class.
+		/// </summary>
+		/// <param name="MaximumAddressLineCount">The maximum number of address lines to present on output..</param>
+		/// <param name="MaximumRegionalLineCount">The maximum number of regional lines to present on output..</param>
+		/// <param name="OutputLanguage">Set the language to return on output. * &#x60;Preserve&#x60; (default) detects and preserves the input language and script. This works for Belarus, China, Greece, Japan, Kazakhstan, Macedonia, and Russia. For all other countries, it defaults to the native language and script. * &#x60;English&#x60; returns English for all countries, except Belgium, France, Germany, and the Netherlands.  * &#x60;Native&#x60; returns the country&#39;s official language in that country&#39;s script. For example, \&quot;Copenhagen\&quot; on input is returned as \&quot;København\&quot; on output. .</param>
+		/// <param name="OutputGroups">OutputGroups.</param>
+		public CorrectionRequestConfiguration(int? MaximumAddressLineCount = default(int?), int? MaximumRegionalLineCount = default(int?), Object OutputLanguage = default(Object), List<OutputGroup> OutputGroups = default(List<OutputGroup>))
+		{
+			this.MaximumAddressLineCount = MaximumAddressLineCount;
+			this.MaximumRegionalLineCount = MaximumRegionalLineCount;
+			this.OutputLanguage = OutputLanguage;
+			this.OutputGroups = OutputGroups;
+		}
+		
+		/// <summary>
+		/// The maximum number of address lines to present on output.
+		/// </summary>
+		/// <value>The maximum number of address lines to present on output.</value>
+		[DataMember(Name="maximum_address_line_count", EmitDefaultValue=false)]
+		public int? MaximumAddressLineCount { get; set; }
 
-        /// <summary>
-        /// The maximum number of regional lines to present on output.
-        /// </summary>
-        /// <value>The maximum number of regional lines to present on output.</value>
-        [DataMember(Name="maximum_regional_line_count", EmitDefaultValue=false)]
-        public int? MaximumRegionalLineCount { get; set; }
+		/// <summary>
+		/// The maximum number of regional lines to present on output.
+		/// </summary>
+		/// <value>The maximum number of regional lines to present on output.</value>
+		[DataMember(Name="maximum_regional_line_count", EmitDefaultValue=false)]
+		public int? MaximumRegionalLineCount { get; set; }
 
-        /// <summary>
-        /// Set the language to return on output. * &#x60;Preserve&#x60; (default) detects and preserves the input language and script. This works for Belarus, China, Greece, Japan, Kazakhstan, Macedonia, and Russia. For all other countries, it defaults to the native language and script. * &#x60;English&#x60; returns English for all countries, except Belgium, France, Germany, and the Netherlands.  * &#x60;Native&#x60; returns the country&#39;s official language in that country&#39;s script. For example, \&quot;Copenhagen\&quot; on input is returned as \&quot;København\&quot; on output. 
-        /// </summary>
-        /// <value>Set the language to return on output. * &#x60;Preserve&#x60; (default) detects and preserves the input language and script. This works for Belarus, China, Greece, Japan, Kazakhstan, Macedonia, and Russia. For all other countries, it defaults to the native language and script. * &#x60;English&#x60; returns English for all countries, except Belgium, France, Germany, and the Netherlands.  * &#x60;Native&#x60; returns the country&#39;s official language in that country&#39;s script. For example, \&quot;Copenhagen\&quot; on input is returned as \&quot;København\&quot; on output. </value>
-        [DataMember(Name="output_language", EmitDefaultValue=false)]
-        public Object OutputLanguage { get; set; }
+		/// <summary>
+		/// Set the language to return on output. * &#x60;Preserve&#x60; (default) detects and preserves the input language and script. This works for Belarus, China, Greece, Japan, Kazakhstan, Macedonia, and Russia. For all other countries, it defaults to the native language and script. * &#x60;English&#x60; returns English for all countries, except Belgium, France, Germany, and the Netherlands.  * &#x60;Native&#x60; returns the country&#39;s official language in that country&#39;s script. For example, \&quot;Copenhagen\&quot; on input is returned as \&quot;København\&quot; on output. 
+		/// </summary>
+		/// <value>Set the language to return on output. * &#x60;Preserve&#x60; (default) detects and preserves the input language and script. This works for Belarus, China, Greece, Japan, Kazakhstan, Macedonia, and Russia. For all other countries, it defaults to the native language and script. * &#x60;English&#x60; returns English for all countries, except Belgium, France, Germany, and the Netherlands.	* &#x60;Native&#x60; returns the country&#39;s official language in that country&#39;s script. For example, \&quot;Copenhagen\&quot; on input is returned as \&quot;København\&quot; on output. </value>
+		[DataMember(Name="output_language", EmitDefaultValue=false)]
+		public Object OutputLanguage { get; set; }
 
-        /// <summary>
-        /// Gets or Sets OutputGroups
-        /// </summary>
-        [DataMember(Name="output_groups", EmitDefaultValue=false)]
-        public List<OutputGroup> OutputGroups { get; set; }
+		/// <summary>
+		/// Gets or Sets OutputGroups
+		/// </summary>
+		[DataMember(Name="output_groups", EmitDefaultValue=false)]
+		public List<OutputGroup> OutputGroups { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CorrectionRequestConfiguration {\n");
-            sb.Append("  MaximumAddressLineCount: ").Append(MaximumAddressLineCount).Append("\n");
-            sb.Append("  MaximumRegionalLineCount: ").Append(MaximumRegionalLineCount).Append("\n");
-            sb.Append("  OutputLanguage: ").Append(OutputLanguage).Append("\n");
-            sb.Append("  OutputGroups: ").Append(OutputGroups).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class CorrectionRequestConfiguration {\n");
+			sb.Append("  MaximumAddressLineCount: ").Append(MaximumAddressLineCount).Append("\n");
+			sb.Append("  MaximumRegionalLineCount: ").Append(MaximumRegionalLineCount).Append("\n");
+			sb.Append("  OutputLanguage: ").Append(OutputLanguage).Append("\n");
+			sb.Append("  OutputGroups: ").Append(OutputGroups).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CorrectionRequestConfiguration);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as CorrectionRequestConfiguration);
+		}
 
-        /// <summary>
-        /// Returns true if CorrectionRequestConfiguration instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CorrectionRequestConfiguration to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CorrectionRequestConfiguration input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if CorrectionRequestConfiguration instances are equal
+		/// </summary>
+		/// <param name="input">Instance of CorrectionRequestConfiguration to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(CorrectionRequestConfiguration input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.MaximumAddressLineCount == input.MaximumAddressLineCount ||
-                    (this.MaximumAddressLineCount != null &&
-                    this.MaximumAddressLineCount.Equals(input.MaximumAddressLineCount))
-                ) && 
-                (
-                    this.MaximumRegionalLineCount == input.MaximumRegionalLineCount ||
-                    (this.MaximumRegionalLineCount != null &&
-                    this.MaximumRegionalLineCount.Equals(input.MaximumRegionalLineCount))
-                ) && 
-                (
-                    this.OutputLanguage == input.OutputLanguage ||
-                    (this.OutputLanguage != null &&
-                    this.OutputLanguage.Equals(input.OutputLanguage))
-                ) && 
-                (
-                    this.OutputGroups == input.OutputGroups ||
-                    this.OutputGroups != null &&
-                    this.OutputGroups.SequenceEqual(input.OutputGroups)
-                );
-        }
+			return 
+				(
+					this.MaximumAddressLineCount == input.MaximumAddressLineCount ||
+					(this.MaximumAddressLineCount != null &&
+					this.MaximumAddressLineCount.Equals(input.MaximumAddressLineCount))
+				) && 
+				(
+					this.MaximumRegionalLineCount == input.MaximumRegionalLineCount ||
+					(this.MaximumRegionalLineCount != null &&
+					this.MaximumRegionalLineCount.Equals(input.MaximumRegionalLineCount))
+				) && 
+				(
+					this.OutputLanguage == input.OutputLanguage ||
+					(this.OutputLanguage != null &&
+					this.OutputLanguage.Equals(input.OutputLanguage))
+				) && 
+				(
+					this.OutputGroups == input.OutputGroups ||
+					this.OutputGroups != null &&
+					this.OutputGroups.SequenceEqual(input.OutputGroups)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.MaximumAddressLineCount != null)
-                    hashCode = hashCode * 59 + this.MaximumAddressLineCount.GetHashCode();
-                if (this.MaximumRegionalLineCount != null)
-                    hashCode = hashCode * 59 + this.MaximumRegionalLineCount.GetHashCode();
-                if (this.OutputLanguage != null)
-                    hashCode = hashCode * 59 + this.OutputLanguage.GetHashCode();
-                if (this.OutputGroups != null)
-                    hashCode = hashCode * 59 + this.OutputGroups.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.MaximumAddressLineCount != null)
+					hashCode = hashCode * 59 + this.MaximumAddressLineCount.GetHashCode();
+				if (this.MaximumRegionalLineCount != null)
+					hashCode = hashCode * 59 + this.MaximumRegionalLineCount.GetHashCode();
+				if (this.OutputLanguage != null)
+					hashCode = hashCode * 59 + this.OutputLanguage.GetHashCode();
+				if (this.OutputGroups != null)
+					hashCode = hashCode * 59 + this.OutputGroups.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

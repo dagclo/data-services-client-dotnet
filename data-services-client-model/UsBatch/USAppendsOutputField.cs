@@ -1,7 +1,7 @@
 /* 
  * US-Appends
  *
- * The US Appends service is a Quadient Cloud Data Services offering designed to help you improve and enhance the quality of your US-based contact data. The service can be used as a component of regular list cleansing and maintenance. The service flags contact records that match entries on do-not-mail and deceased person lists. It identifies addresses within correctional facilities. It also provides and corrects secondary data for an address, such as apartment number or floor number.  This service can reduce mailing costs by identifying people that are unwilling or unable to respond or have an undeliverable address. It helps bring into focus for your assessment whether a potential communication recipient should be removed from a list.   ## Key functionality: * Flags records that match entries on do-not-mail, deceased person, and correctional facility lists. * Appends missing apartment number unit information to an address to improve address quality.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.  ## Outcome codes  ### Apartment Append `A1` - Apartment information confirmed to be correct for the individual. No changes made. `A2` - Apartment information present confirmed to be correct for the address. No changes made. `A4` - Not a highrise address. Address valid as input. `A5` - Multiple contact names in input. `C1` - Apartment information appended to address. `C4` - Lookup attempted. No apartment found. `E1` - Address was invalid as input. No changes made. `E2` - No contact name information supplied. No changes made. `E4` - No lookup attempted.  ### Name Append `C1` - Name appended. `C4` - Name not appended.  ### Gender Append `C1` - Gender added. `C2` - No gender added. `C3` - Multiple names. No gender assigned. `C4` - Ambiguous result. No gender assigned.  ## Field value definitions  ### Gender Append `gender`, possible values: `M` - Male `F` - Female `U` - Unable to assign / Ambiguous 
+ * The US Appends service is a Quadient Cloud Data Services offering designed to help you improve and enhance the quality of your US-based contact data. The service can be used as a component of regular list cleansing and maintenance. The service flags contact records that match entries on do-not-mail and deceased person lists. It identifies addresses within correctional facilities. It also provides and corrects secondary data for an address, such as apartment number or floor number.  This service can reduce mailing costs by identifying people that are unwilling or unable to respond or have an undeliverable address. It helps bring into focus for your assessment whether a potential communication recipient should be removed from a list.   ## Key functionality: * Flags records that match entries on do-not-mail, deceased person, and correctional facility lists. * Appends missing apartment number unit information to an address to improve address quality.  ## Job execution  The general flow to execute a batch job is to:  1. Create a job, specifying its configuration properties, and upload and download schema (input fields and output fields). You cannot change the job's configuration after creation.  2. Upload records you want to process via one or more calls to the `/jobs/{job_id}/records` endpoint. Records are uploaded in blocks. The records are stored on the server for processing.  3. Initiate processing by calling the `/jobs/{job_id}/_run` endpoint. 4. Wait for the job status to be updated to `SUCCESS` or `FAILED`. 5. Download the records. 6. Delete job when you are done by requesting a `DELETE` on the `/jobs/{job_id}` endpoint, removing input and output records.  ## Records  The upload of records must be complete prior to running the service. Records are categorized as `input` or `output`. The schema (fields and order) of the records is defined via the job creation call.  ## Pagination Records for a job are broken into pages (`page_id`) for retrieval. The collection of record page IDs is available via the `/jobs/{job_id}/records/pages` endpoint. Retrieve this collection as a precursor to downloading records. Each record page can then be retrieved by the client. Page IDs are immutable and can be retrieved in parallel. Record pages may also be retrieved multiple times if needed.  ## Outcome codes  ### Apartment Append `A1` - Apartment information confirmed to be correct for the individual. No changes made. `A2` - Apartment information present confirmed to be correct for the address. No changes made. `A4` - Not a highrise address. Address valid as input. `A5` - Multiple contact names in input. `C1` - Apartment information appended to address. `C4` - Lookup attempted. No apartment found. `E1` - Address was invalid as input. No changes made. `E2` - No contact name information supplied. No changes made. `E4` - No lookup attempted.	### Name Append `C1` - Name appended. `C4` - Name not appended.  ### Gender Append `C1` - Gender added. `C2` - No gender added. `C3` - Multiple names. No gender assigned. `C4` - Ambiguous result. No gender assigned.  ## Field value definitions  ### Gender Append `gender`, possible values: `M` - Male `F` - Female `U` - Unable to assign / Ambiguous 
  *
  * Generated by: https://github.com/swagger-api/swagger-codegen.git
  */
@@ -22,176 +22,176 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.UsBatch
 {
-    /// <summary>
-    /// Specifies the output fields that are populated.
-    /// </summary>
-    /// <value>Specifies the output fields that are populated.</value>
-    
-    [JsonConverter(typeof(StringEnumConverter))]
-    
-    public enum USAppendsOutputField
-    {
-        
-        /// <summary>
-        /// Enum Id for value: id
-        /// </summary>
-        [EnumMember(Value = "id")]
-        Id = 1,
-        
-        /// <summary>
-        /// Enum Isdonotmail for value: is_do_not_mail
-        /// </summary>
-        [EnumMember(Value = "is_do_not_mail")]
-        Isdonotmail = 2,
-        
-        /// <summary>
-        /// Enum Isprison for value: is_prison
-        /// </summary>
-        [EnumMember(Value = "is_prison")]
-        Isprison = 3,
-        
-        /// <summary>
-        /// Enum Isdeceased for value: is_deceased
-        /// </summary>
-        [EnumMember(Value = "is_deceased")]
-        Isdeceased = 4,
-        
-        /// <summary>
-        /// Enum Isnursinghome for value: is_nursing_home
-        /// </summary>
-        [EnumMember(Value = "is_nursing_home")]
-        Isnursinghome = 5,
-        
-        /// <summary>
-        /// Enum Deceaseddateofdeath for value: deceased_date_of_death
-        /// </summary>
-        [EnumMember(Value = "deceased_date_of_death")]
-        Deceaseddateofdeath = 6,
-        
-        /// <summary>
-        /// Enum Deceaseddateofbirth for value: deceased_date_of_birth
-        /// </summary>
-        [EnumMember(Value = "deceased_date_of_birth")]
-        Deceaseddateofbirth = 7,
-        
-        /// <summary>
-        /// Enum Apartmentunitinformation for value: apartment_unit_information
-        /// </summary>
-        [EnumMember(Value = "apartment_unit_information")]
-        Apartmentunitinformation = 8,
-        
-        /// <summary>
-        /// Enum Apartmentaddressline for value: apartment_address_line
-        /// </summary>
-        [EnumMember(Value = "apartment_address_line")]
-        Apartmentaddressline = 9,
-        
-        /// <summary>
-        /// Enum Apartmentappendcodes for value: apartment_append_codes
-        /// </summary>
-        [EnumMember(Value = "apartment_append_codes")]
-        Apartmentappendcodes = 10,
-        
-        /// <summary>
-        /// Enum Namefullname for value: name_full_name
-        /// </summary>
-        [EnumMember(Value = "name_full_name")]
-        Namefullname = 11,
-        
-        /// <summary>
-        /// Enum Namegivenname for value: name_given_name
-        /// </summary>
-        [EnumMember(Value = "name_given_name")]
-        Namegivenname = 12,
-        
-        /// <summary>
-        /// Enum Namemiddlename for value: name_middle_name
-        /// </summary>
-        [EnumMember(Value = "name_middle_name")]
-        Namemiddlename = 13,
-        
-        /// <summary>
-        /// Enum Namefamilyname for value: name_family_name
-        /// </summary>
-        [EnumMember(Value = "name_family_name")]
-        Namefamilyname = 14,
-        
-        /// <summary>
-        /// Enum Nameappendcodes for value: name_append_codes
-        /// </summary>
-        [EnumMember(Value = "name_append_codes")]
-        Nameappendcodes = 15,
-        
-        /// <summary>
-        /// Enum Gender for value: gender
-        /// </summary>
-        [EnumMember(Value = "gender")]
-        Gender = 16,
-        
-        /// <summary>
-        /// Enum Gendercodes for value: gender_codes
-        /// </summary>
-        [EnumMember(Value = "gender_codes")]
-        Gendercodes = 17,
-        
-        /// <summary>
-        /// Enum Custom1 for value: custom_1
-        /// </summary>
-        [EnumMember(Value = "custom_1")]
-        Custom1 = 18,
-        
-        /// <summary>
-        /// Enum Custom2 for value: custom_2
-        /// </summary>
-        [EnumMember(Value = "custom_2")]
-        Custom2 = 19,
-        
-        /// <summary>
-        /// Enum Custom3 for value: custom_3
-        /// </summary>
-        [EnumMember(Value = "custom_3")]
-        Custom3 = 20,
-        
-        /// <summary>
-        /// Enum Custom4 for value: custom_4
-        /// </summary>
-        [EnumMember(Value = "custom_4")]
-        Custom4 = 21,
-        
-        /// <summary>
-        /// Enum Custom5 for value: custom_5
-        /// </summary>
-        [EnumMember(Value = "custom_5")]
-        Custom5 = 22,
-        
-        /// <summary>
-        /// Enum Custom6 for value: custom_6
-        /// </summary>
-        [EnumMember(Value = "custom_6")]
-        Custom6 = 23,
-        
-        /// <summary>
-        /// Enum Custom7 for value: custom_7
-        /// </summary>
-        [EnumMember(Value = "custom_7")]
-        Custom7 = 24,
-        
-        /// <summary>
-        /// Enum Custom8 for value: custom_8
-        /// </summary>
-        [EnumMember(Value = "custom_8")]
-        Custom8 = 25,
-        
-        /// <summary>
-        /// Enum Custom9 for value: custom_9
-        /// </summary>
-        [EnumMember(Value = "custom_9")]
-        Custom9 = 26,
-        
-        /// <summary>
-        /// Enum Custom10 for value: custom_10
-        /// </summary>
-        [EnumMember(Value = "custom_10")]
-        Custom10 = 27
-    }
+	/// <summary>
+	/// Specifies the output fields that are populated.
+	/// </summary>
+	/// <value>Specifies the output fields that are populated.</value>
+	
+	[JsonConverter(typeof(StringEnumConverter))]
+	
+	public enum USAppendsOutputField
+	{
+		
+		/// <summary>
+		/// Enum Id for value: id
+		/// </summary>
+		[EnumMember(Value = "id")]
+		Id = 1,
+		
+		/// <summary>
+		/// Enum Isdonotmail for value: is_do_not_mail
+		/// </summary>
+		[EnumMember(Value = "is_do_not_mail")]
+		Isdonotmail = 2,
+		
+		/// <summary>
+		/// Enum Isprison for value: is_prison
+		/// </summary>
+		[EnumMember(Value = "is_prison")]
+		Isprison = 3,
+		
+		/// <summary>
+		/// Enum Isdeceased for value: is_deceased
+		/// </summary>
+		[EnumMember(Value = "is_deceased")]
+		Isdeceased = 4,
+		
+		/// <summary>
+		/// Enum Isnursinghome for value: is_nursing_home
+		/// </summary>
+		[EnumMember(Value = "is_nursing_home")]
+		Isnursinghome = 5,
+		
+		/// <summary>
+		/// Enum Deceaseddateofdeath for value: deceased_date_of_death
+		/// </summary>
+		[EnumMember(Value = "deceased_date_of_death")]
+		Deceaseddateofdeath = 6,
+		
+		/// <summary>
+		/// Enum Deceaseddateofbirth for value: deceased_date_of_birth
+		/// </summary>
+		[EnumMember(Value = "deceased_date_of_birth")]
+		Deceaseddateofbirth = 7,
+		
+		/// <summary>
+		/// Enum Apartmentunitinformation for value: apartment_unit_information
+		/// </summary>
+		[EnumMember(Value = "apartment_unit_information")]
+		Apartmentunitinformation = 8,
+		
+		/// <summary>
+		/// Enum Apartmentaddressline for value: apartment_address_line
+		/// </summary>
+		[EnumMember(Value = "apartment_address_line")]
+		Apartmentaddressline = 9,
+		
+		/// <summary>
+		/// Enum Apartmentappendcodes for value: apartment_append_codes
+		/// </summary>
+		[EnumMember(Value = "apartment_append_codes")]
+		Apartmentappendcodes = 10,
+		
+		/// <summary>
+		/// Enum Namefullname for value: name_full_name
+		/// </summary>
+		[EnumMember(Value = "name_full_name")]
+		Namefullname = 11,
+		
+		/// <summary>
+		/// Enum Namegivenname for value: name_given_name
+		/// </summary>
+		[EnumMember(Value = "name_given_name")]
+		Namegivenname = 12,
+		
+		/// <summary>
+		/// Enum Namemiddlename for value: name_middle_name
+		/// </summary>
+		[EnumMember(Value = "name_middle_name")]
+		Namemiddlename = 13,
+		
+		/// <summary>
+		/// Enum Namefamilyname for value: name_family_name
+		/// </summary>
+		[EnumMember(Value = "name_family_name")]
+		Namefamilyname = 14,
+		
+		/// <summary>
+		/// Enum Nameappendcodes for value: name_append_codes
+		/// </summary>
+		[EnumMember(Value = "name_append_codes")]
+		Nameappendcodes = 15,
+		
+		/// <summary>
+		/// Enum Gender for value: gender
+		/// </summary>
+		[EnumMember(Value = "gender")]
+		Gender = 16,
+		
+		/// <summary>
+		/// Enum Gendercodes for value: gender_codes
+		/// </summary>
+		[EnumMember(Value = "gender_codes")]
+		Gendercodes = 17,
+		
+		/// <summary>
+		/// Enum Custom1 for value: custom_1
+		/// </summary>
+		[EnumMember(Value = "custom_1")]
+		Custom1 = 18,
+		
+		/// <summary>
+		/// Enum Custom2 for value: custom_2
+		/// </summary>
+		[EnumMember(Value = "custom_2")]
+		Custom2 = 19,
+		
+		/// <summary>
+		/// Enum Custom3 for value: custom_3
+		/// </summary>
+		[EnumMember(Value = "custom_3")]
+		Custom3 = 20,
+		
+		/// <summary>
+		/// Enum Custom4 for value: custom_4
+		/// </summary>
+		[EnumMember(Value = "custom_4")]
+		Custom4 = 21,
+		
+		/// <summary>
+		/// Enum Custom5 for value: custom_5
+		/// </summary>
+		[EnumMember(Value = "custom_5")]
+		Custom5 = 22,
+		
+		/// <summary>
+		/// Enum Custom6 for value: custom_6
+		/// </summary>
+		[EnumMember(Value = "custom_6")]
+		Custom6 = 23,
+		
+		/// <summary>
+		/// Enum Custom7 for value: custom_7
+		/// </summary>
+		[EnumMember(Value = "custom_7")]
+		Custom7 = 24,
+		
+		/// <summary>
+		/// Enum Custom8 for value: custom_8
+		/// </summary>
+		[EnumMember(Value = "custom_8")]
+		Custom8 = 25,
+		
+		/// <summary>
+		/// Enum Custom9 for value: custom_9
+		/// </summary>
+		[EnumMember(Value = "custom_9")]
+		Custom9 = 26,
+		
+		/// <summary>
+		/// Enum Custom10 for value: custom_10
+		/// </summary>
+		[EnumMember(Value = "custom_10")]
+		Custom10 = 27
+	}
 }

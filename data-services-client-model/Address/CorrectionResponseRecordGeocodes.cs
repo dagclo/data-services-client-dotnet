@@ -22,211 +22,211 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Address
 {
-    /// <summary>
-    /// Defines an additional output group of fields for geocoding, enabled using the &#x60;output_groups&#x60; configuration setting.
-    /// </summary>
-    [DataContract]
-    public partial class CorrectionResponseRecordGeocodes : IEquatable<CorrectionResponseRecordGeocodes>, IValidatableObject
-    {
-        /// <summary>
-        /// Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). 
-        /// </summary>
-        /// <value>Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PrcEnum
-        {
-            
-            /// <summary>
-            /// Enum Zip3 for value: Zip-3
-            /// </summary>
-            [EnumMember(Value = "Zip-3")]
-            Zip3 = 1,
-            
-            /// <summary>
-            /// Enum Zip5 for value: Zip-5
-            /// </summary>
-            [EnumMember(Value = "Zip-5")]
-            Zip5 = 2,
-            
-            /// <summary>
-            /// Enum Zip7 for value: Zip-7
-            /// </summary>
-            [EnumMember(Value = "Zip-7")]
-            Zip7 = 3,
-            
-            /// <summary>
-            /// Enum Zip9 for value: Zip-9
-            /// </summary>
-            [EnumMember(Value = "Zip-9")]
-            Zip9 = 4,
-            
-            /// <summary>
-            /// Enum PartialPostcode for value: Partial Postcode
-            /// </summary>
-            [EnumMember(Value = "Partial Postcode")]
-            PartialPostcode = 5,
-            
-            /// <summary>
-            /// Enum Postcode for value: Postcode
-            /// </summary>
-            [EnumMember(Value = "Postcode")]
-            Postcode = 6,
-            
-            /// <summary>
-            /// Enum Locality for value: Locality
-            /// </summary>
-            [EnumMember(Value = "Locality")]
-            Locality = 7,
-            
-            /// <summary>
-            /// Enum Street for value: Street
-            /// </summary>
-            [EnumMember(Value = "Street")]
-            Street = 8,
-            
-            /// <summary>
-            /// Enum HouseNumber for value: House Number
-            /// </summary>
-            [EnumMember(Value = "House Number")]
-            HouseNumber = 9,
-            
-            /// <summary>
-            /// Enum ArrivalPoint for value: Arrival Point
-            /// </summary>
-            [EnumMember(Value = "Arrival Point")]
-            ArrivalPoint = 10,
-            
-            /// <summary>
-            /// Enum RoofTop for value: Roof Top
-            /// </summary>
-            [EnumMember(Value = "Roof Top")]
-            RoofTop = 11
-        }
+	/// <summary>
+	/// Defines an additional output group of fields for geocoding, enabled using the &#x60;output_groups&#x60; configuration setting.
+	/// </summary>
+	[DataContract]
+	public partial class CorrectionResponseRecordGeocodes : IEquatable<CorrectionResponseRecordGeocodes>, IValidatableObject
+	{
+		/// <summary>
+		/// Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). 
+		/// </summary>
+		/// <value>Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). </value>
+		[JsonConverter(typeof(StringEnumConverter))]
+		public enum PrcEnum
+		{
+			
+			/// <summary>
+			/// Enum Zip3 for value: Zip-3
+			/// </summary>
+			[EnumMember(Value = "Zip-3")]
+			Zip3 = 1,
+			
+			/// <summary>
+			/// Enum Zip5 for value: Zip-5
+			/// </summary>
+			[EnumMember(Value = "Zip-5")]
+			Zip5 = 2,
+			
+			/// <summary>
+			/// Enum Zip7 for value: Zip-7
+			/// </summary>
+			[EnumMember(Value = "Zip-7")]
+			Zip7 = 3,
+			
+			/// <summary>
+			/// Enum Zip9 for value: Zip-9
+			/// </summary>
+			[EnumMember(Value = "Zip-9")]
+			Zip9 = 4,
+			
+			/// <summary>
+			/// Enum PartialPostcode for value: Partial Postcode
+			/// </summary>
+			[EnumMember(Value = "Partial Postcode")]
+			PartialPostcode = 5,
+			
+			/// <summary>
+			/// Enum Postcode for value: Postcode
+			/// </summary>
+			[EnumMember(Value = "Postcode")]
+			Postcode = 6,
+			
+			/// <summary>
+			/// Enum Locality for value: Locality
+			/// </summary>
+			[EnumMember(Value = "Locality")]
+			Locality = 7,
+			
+			/// <summary>
+			/// Enum Street for value: Street
+			/// </summary>
+			[EnumMember(Value = "Street")]
+			Street = 8,
+			
+			/// <summary>
+			/// Enum HouseNumber for value: House Number
+			/// </summary>
+			[EnumMember(Value = "House Number")]
+			HouseNumber = 9,
+			
+			/// <summary>
+			/// Enum ArrivalPoint for value: Arrival Point
+			/// </summary>
+			[EnumMember(Value = "Arrival Point")]
+			ArrivalPoint = 10,
+			
+			/// <summary>
+			/// Enum RoofTop for value: Roof Top
+			/// </summary>
+			[EnumMember(Value = "Roof Top")]
+			RoofTop = 11
+		}
 
-        /// <summary>
-        /// Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). 
-        /// </summary>
-        /// <value>Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). </value>
-        [DataMember(Name="prc", EmitDefaultValue=false)]
-        public PrcEnum? Prc { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionResponseRecordGeocodes" /> class.
-        /// </summary>
-        /// <param name="Lat">Latitude coordinate..</param>
-        /// <param name="Lng">Longitude coordinate..</param>
-        /// <param name="Prc">Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). .</param>
-        public CorrectionResponseRecordGeocodes(double? Lat = default(double?), double? Lng = default(double?), PrcEnum? Prc = default(PrcEnum?))
-        {
-            this.Lat = Lat;
-            this.Lng = Lng;
-            this.Prc = Prc;
-        }
-        
-        /// <summary>
-        /// Latitude coordinate.
-        /// </summary>
-        /// <value>Latitude coordinate.</value>
-        [DataMember(Name="lat", EmitDefaultValue=false)]
-        public double? Lat { get; set; }
+		/// <summary>
+		/// Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). 
+		/// </summary>
+		/// <value>Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). </value>
+		[DataMember(Name="prc", EmitDefaultValue=false)]
+		public PrcEnum? Prc { get; set; }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionResponseRecordGeocodes" /> class.
+		/// </summary>
+		/// <param name="Lat">Latitude coordinate..</param>
+		/// <param name="Lng">Longitude coordinate..</param>
+		/// <param name="Prc">Defines the precision of the geocodes. Different regions may use different values. The &#x60;Zip-n&#x60; value represents the precision of a US ZIP Code. The most grandular, Zip-9, matches a full 9-digit code (from an individual mail box to a city block). The least grandular, Zip-3, matches the first 3 letters of a ZIP Code (roughly at the county level). .</param>
+		public CorrectionResponseRecordGeocodes(double? Lat = default(double?), double? Lng = default(double?), PrcEnum? Prc = default(PrcEnum?))
+		{
+			this.Lat = Lat;
+			this.Lng = Lng;
+			this.Prc = Prc;
+		}
+		
+		/// <summary>
+		/// Latitude coordinate.
+		/// </summary>
+		/// <value>Latitude coordinate.</value>
+		[DataMember(Name="lat", EmitDefaultValue=false)]
+		public double? Lat { get; set; }
 
-        /// <summary>
-        /// Longitude coordinate.
-        /// </summary>
-        /// <value>Longitude coordinate.</value>
-        [DataMember(Name="lng", EmitDefaultValue=false)]
-        public double? Lng { get; set; }
+		/// <summary>
+		/// Longitude coordinate.
+		/// </summary>
+		/// <value>Longitude coordinate.</value>
+		[DataMember(Name="lng", EmitDefaultValue=false)]
+		public double? Lng { get; set; }
 
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CorrectionResponseRecordGeocodes {\n");
-            sb.Append("  Lat: ").Append(Lat).Append("\n");
-            sb.Append("  Lng: ").Append(Lng).Append("\n");
-            sb.Append("  Prc: ").Append(Prc).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class CorrectionResponseRecordGeocodes {\n");
+			sb.Append("  Lat: ").Append(Lat).Append("\n");
+			sb.Append("  Lng: ").Append(Lng).Append("\n");
+			sb.Append("  Prc: ").Append(Prc).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CorrectionResponseRecordGeocodes);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as CorrectionResponseRecordGeocodes);
+		}
 
-        /// <summary>
-        /// Returns true if CorrectionResponseRecordGeocodes instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CorrectionResponseRecordGeocodes to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CorrectionResponseRecordGeocodes input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if CorrectionResponseRecordGeocodes instances are equal
+		/// </summary>
+		/// <param name="input">Instance of CorrectionResponseRecordGeocodes to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(CorrectionResponseRecordGeocodes input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Lat == input.Lat ||
-                    (this.Lat != null &&
-                    this.Lat.Equals(input.Lat))
-                ) && 
-                (
-                    this.Lng == input.Lng ||
-                    (this.Lng != null &&
-                    this.Lng.Equals(input.Lng))
-                ) && 
-                (
-                    this.Prc == input.Prc ||
-                    (this.Prc != null &&
-                    this.Prc.Equals(input.Prc))
-                );
-        }
+			return 
+				(
+					this.Lat == input.Lat ||
+					(this.Lat != null &&
+					this.Lat.Equals(input.Lat))
+				) && 
+				(
+					this.Lng == input.Lng ||
+					(this.Lng != null &&
+					this.Lng.Equals(input.Lng))
+				) && 
+				(
+					this.Prc == input.Prc ||
+					(this.Prc != null &&
+					this.Prc.Equals(input.Prc))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Lat != null)
-                    hashCode = hashCode * 59 + this.Lat.GetHashCode();
-                if (this.Lng != null)
-                    hashCode = hashCode * 59 + this.Lng.GetHashCode();
-                if (this.Prc != null)
-                    hashCode = hashCode * 59 + this.Prc.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Lat != null)
+					hashCode = hashCode * 59 + this.Lat.GetHashCode();
+				if (this.Lng != null)
+					hashCode = hashCode * 59 + this.Lng.GetHashCode();
+				if (this.Prc != null)
+					hashCode = hashCode * 59 + this.Prc.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

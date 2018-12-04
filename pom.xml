@@ -1,7 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <groupId>Quadient.DataServices</groupId>
-    <version>0.5-SNAPSHOT</version>
+	<groupId>Quadient.DataServices</groupId>
+	<version>0.5-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<artifactId>dataservices-client-dotnet</artifactId>
 	<properties>
 		<swagger.baseurl>https://data.quadientcloud.com</swagger.baseurl>
@@ -14,12 +17,12 @@
 				<version>2.3.1</version>
 				<configuration>
 					<language>csharp</language>
-                    <sourceFolder>test</sourceFolder>
+					<sourceFolder>test</sourceFolder>
 					<generateApis>false</generateApis>
-                    <generateModelTests>false</generateModelTests >
-                    <generateModelDocumentation>false</generateModelDocumentation>
-                    <generateSupportingFiles>false</generateSupportingFiles>
-                    <templateDirectory>swagger-templates</templateDirectory>                 
+					<generateModelTests>false</generateModelTests>
+					<generateModelDocumentation>false</generateModelDocumentation>
+					<generateSupportingFiles>false</generateSupportingFiles>
+					<templateDirectory>swagger-templates</templateDirectory>
 				</configuration>
 				<executions>
 					<execution>
@@ -31,10 +34,10 @@
 							<artifactId>dataservices-client-swagger-model-country</artifactId>
 							<inputSpec>${swagger.baseurl}/services/country-standardization/swagger.json</inputSpec>
 							<modelPackage>Country</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -46,10 +49,10 @@
 							<artifactId>dataservices-client-swagger-model-assessment</artifactId>
 							<inputSpec>${swagger.baseurl}/services/assessment/swagger.json</inputSpec>
 							<modelPackage>Assessment</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -61,10 +64,10 @@
 							<artifactId>dataservices-client-swagger-model-sentiment-analysis</artifactId>
 							<inputSpec>${swagger.baseurl}/services/sentiment-analysis/swagger.json</inputSpec>
 							<modelPackage>SentimentAnalysis</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -76,10 +79,10 @@
 							<artifactId>dataservices-client-swagger-model-address</artifactId>
 							<inputSpec>${swagger.baseurl}/services/address-correction/swagger.json</inputSpec>
 							<modelPackage>Address</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -91,10 +94,10 @@
 							<artifactId>dataservices-client-swagger-model-name</artifactId>
 							<inputSpec>${swagger.baseurl}/services/name-validation/swagger.json</inputSpec>
 							<modelPackage>Name</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -106,10 +109,10 @@
 							<artifactId>dataservices-client-swagger-model-email</artifactId>
 							<inputSpec>${swagger.baseurl}/services/email-validation/swagger.json</inputSpec>
 							<modelPackage>Email</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -121,13 +124,13 @@
 							<artifactId>dataservices-client-swagger-model-phone</artifactId>
 							<inputSpec>${swagger.baseurl}/services/phone-validation/swagger.json</inputSpec>
 							<modelPackage>Phone</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
-                    <execution>
+					<execution>
 						<id>generate-model-job</id>
 						<goals>
 							<goal>generate</goal>
@@ -136,10 +139,10 @@
 							<artifactId>dataservices-client-swagger-model-job</artifactId>
 							<inputSpec>${swagger.baseurl}/jobs/swagger.json</inputSpec>
 							<modelPackage>Job</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -151,12 +154,12 @@
 							<inputSpec>${project.basedir}/swagger/etl-swagger.yaml</inputSpec>
 							<modelPackage>Etl</modelPackage>
 							<configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
 							</configOptions>
 						</configuration>
 					</execution>
-                    <execution>
+					<execution>
 						<id>generate-model-us-appends</id>
 						<goals>
 							<goal>generate</goal>
@@ -165,12 +168,12 @@
 							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-us-appends.yaml</inputSpec>
 							<modelPackage>UsBatch</modelPackage>
 							<configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
 							</configOptions>
 						</configuration>
 					</execution>
-                    <execution>
+					<execution>
 						<id>generate-model-us-move-update</id>
 						<goals>
 							<goal>generate</goal>
@@ -179,12 +182,12 @@
 							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-us-move-update.yaml</inputSpec>
 							<modelPackage>UsBatch</modelPackage>
 							<configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
 							</configOptions>
 						</configuration>
 					</execution>
-                    <execution>
+					<execution>
 						<id>generate-model-walk-sequence</id>
 						<goals>
 							<goal>generate</goal>
@@ -193,12 +196,11 @@
 							<inputSpec>${project.basedir}/swagger/us-batch-services/swagger-walk-sequence.yaml</inputSpec>
 							<modelPackage>UsBatch</modelPackage>
 							<configOptions>
-                                <packageName>Quadient.DataServices.Model</packageName>
-                                <sourceFolder>data-services-client-model</sourceFolder>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
 							</configOptions>
 						</configuration>
 					</execution>
-					
 					<execution>
 						<id>generate-model-pricebook</id>
 						<goals>
@@ -208,10 +210,10 @@
 							<artifactId>dataservices-client-swagger-model-pricebook</artifactId>
 							<inputSpec>${swagger.baseurl}/pricebook/swagger.json</inputSpec>
 							<modelPackage>Pricebook</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.System.Model</packageName>
-                                <sourceFolder>data-services-client-system-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.System.Model</packageName>
+								<sourceFolder>data-services-client-system-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 					<execution>
@@ -223,15 +225,14 @@
 							<artifactId>dataservices-client-swagger-model-user</artifactId>
 							<inputSpec>${swagger.baseurl}/user/swagger.json</inputSpec>
 							<modelPackage>User</modelPackage>
-                            <configOptions>
-                                <packageName>Quadient.DataServices.System.Model</packageName>
-                                <sourceFolder>data-services-client-system-model</sourceFolder>
-                            </configOptions>
+							<configOptions>
+								<packageName>Quadient.DataServices.System.Model</packageName>
+								<sourceFolder>data-services-client-system-model</sourceFolder>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
@@ -265,6 +266,47 @@
 								</resource>
 							</resources>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.3</version>
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<basedir>${project.basedir}/data-services-client-system-model</basedir>
+					<filesToInclude>**/*.cs</filesToInclude>
+					<replacements>
+						<replacement>
+							<token>_Namespace</token>
+							<value>Namespace</value>
+						</replacement>
+					</replacements>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>ant-test</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<tasks>
+								<fixcrlf srcDir="${project.basedir}" includes="**/*.cs" tab="add" tablength="4" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

@@ -46,19 +46,19 @@ namespace Quadient.DataServices.System.Model.Pricebook
 			}
 			this.ServiceUse = ServiceUse;
 		}
-
+		
 		/// <summary>
 		/// Indicate whether strict validation should be used. Strict validation will reject unknown services.
 		/// </summary>
 		/// <value>Indicate whether strict validation should be used. Strict validation will reject unknown services.</value>
-		[DataMember(Name = "use_strict", EmitDefaultValue = false)]
+		[DataMember(Name="use_strict", EmitDefaultValue=false)]
 		public bool? UseStrict { get; set; }
 
 		/// <summary>
 		/// Maps services to overall &#x60;count&#x60;s as well as (optionally) break down/out of that count into tiers. The more breaking out of counts to tiers is done, the more precise the estimate will be. In general you can expect a rather pessimistic estimate when no tiers are specified. 
 		/// </summary>
 		/// <value>Maps services to overall &#x60;count&#x60;s as well as (optionally) break down/out of that count into tiers. The more breaking out of counts to tiers is done, the more precise the estimate will be. In general you can expect a rather pessimistic estimate when no tiers are specified. </value>
-		[DataMember(Name = "service_use", EmitDefaultValue = false)]
+		[DataMember(Name="service_use", EmitDefaultValue=false)]
 		public Dictionary<string, Dictionary<string, decimal?>> ServiceUse { get; set; }
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace Quadient.DataServices.System.Model.Pricebook
 			sb.Append("}\n");
 			return sb.ToString();
 		}
-
+  
 		/// <summary>
 		/// Returns the JSON string presentation of the object
 		/// </summary>
@@ -104,12 +104,12 @@ namespace Quadient.DataServices.System.Model.Pricebook
 			if (input == null)
 				return false;
 
-			return
+			return 
 				(
 					this.UseStrict == input.UseStrict ||
 					(this.UseStrict != null &&
 					this.UseStrict.Equals(input.UseStrict))
-				) &&
+				) && 
 				(
 					this.ServiceUse == input.ServiceUse ||
 					this.ServiceUse != null &&

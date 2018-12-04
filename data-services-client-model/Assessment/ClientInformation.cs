@@ -22,291 +22,291 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Assessment
 {
-    /// <summary>
-    /// Defines information about the end-user/receiver of the DQ assessment data.
-    /// </summary>
-    [DataContract]
-    public partial class ClientInformation : IEquatable<ClientInformation>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClientInformation" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected ClientInformation() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClientInformation" /> class.
-        /// </summary>
-        /// <param name="Organization">The organization/business that the data being assessed belongs to. (required).</param>
-        /// <param name="ContactName">ContactName (required).</param>
-        /// <param name="EmailAddress">EmailAddress (required).</param>
-        /// <param name="PhoneNumber">PhoneNumber.</param>
-        /// <param name="AddressLines">AddressLines (required).</param>
-        /// <param name="City">City (required).</param>
-        /// <param name="State">State.</param>
-        /// <param name="PostalCode">PostalCode (required).</param>
-        /// <param name="Country">Country (required).</param>
-        public ClientInformation(string Organization = default(string), string ContactName = default(string), string EmailAddress = default(string), string PhoneNumber = default(string), List<string> AddressLines = default(List<string>), string City = default(string), string State = default(string), string PostalCode = default(string), string Country = default(string))
-        {
-            // to ensure "Organization" is required (not null)
-            if (Organization == null)
-            {
-                throw new InvalidDataException("Organization is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.Organization = Organization;
-            }
-            // to ensure "ContactName" is required (not null)
-            if (ContactName == null)
-            {
-                throw new InvalidDataException("ContactName is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.ContactName = ContactName;
-            }
-            // to ensure "EmailAddress" is required (not null)
-            if (EmailAddress == null)
-            {
-                throw new InvalidDataException("EmailAddress is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.EmailAddress = EmailAddress;
-            }
-            // to ensure "AddressLines" is required (not null)
-            if (AddressLines == null)
-            {
-                throw new InvalidDataException("AddressLines is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.AddressLines = AddressLines;
-            }
-            // to ensure "City" is required (not null)
-            if (City == null)
-            {
-                throw new InvalidDataException("City is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.City = City;
-            }
-            // to ensure "PostalCode" is required (not null)
-            if (PostalCode == null)
-            {
-                throw new InvalidDataException("PostalCode is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.PostalCode = PostalCode;
-            }
-            // to ensure "Country" is required (not null)
-            if (Country == null)
-            {
-                throw new InvalidDataException("Country is a required property for ClientInformation and cannot be null");
-            }
-            else
-            {
-                this.Country = Country;
-            }
-            this.PhoneNumber = PhoneNumber;
-            this.State = State;
-        }
-        
-        /// <summary>
-        /// The organization/business that the data being assessed belongs to.
-        /// </summary>
-        /// <value>The organization/business that the data being assessed belongs to.</value>
-        [DataMember(Name="organization", EmitDefaultValue=false)]
-        public string Organization { get; set; }
+	/// <summary>
+	/// Defines information about the end-user/receiver of the DQ assessment data.
+	/// </summary>
+	[DataContract]
+	public partial class ClientInformation : IEquatable<ClientInformation>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ClientInformation" /> class.
+		/// </summary>
+		[JsonConstructorAttribute]
+		protected ClientInformation() { }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ClientInformation" /> class.
+		/// </summary>
+		/// <param name="Organization">The organization/business that the data being assessed belongs to. (required).</param>
+		/// <param name="ContactName">ContactName (required).</param>
+		/// <param name="EmailAddress">EmailAddress (required).</param>
+		/// <param name="PhoneNumber">PhoneNumber.</param>
+		/// <param name="AddressLines">AddressLines (required).</param>
+		/// <param name="City">City (required).</param>
+		/// <param name="State">State.</param>
+		/// <param name="PostalCode">PostalCode (required).</param>
+		/// <param name="Country">Country (required).</param>
+		public ClientInformation(string Organization = default(string), string ContactName = default(string), string EmailAddress = default(string), string PhoneNumber = default(string), List<string> AddressLines = default(List<string>), string City = default(string), string State = default(string), string PostalCode = default(string), string Country = default(string))
+		{
+			// to ensure "Organization" is required (not null)
+			if (Organization == null)
+			{
+				throw new InvalidDataException("Organization is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.Organization = Organization;
+			}
+			// to ensure "ContactName" is required (not null)
+			if (ContactName == null)
+			{
+				throw new InvalidDataException("ContactName is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.ContactName = ContactName;
+			}
+			// to ensure "EmailAddress" is required (not null)
+			if (EmailAddress == null)
+			{
+				throw new InvalidDataException("EmailAddress is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.EmailAddress = EmailAddress;
+			}
+			// to ensure "AddressLines" is required (not null)
+			if (AddressLines == null)
+			{
+				throw new InvalidDataException("AddressLines is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.AddressLines = AddressLines;
+			}
+			// to ensure "City" is required (not null)
+			if (City == null)
+			{
+				throw new InvalidDataException("City is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.City = City;
+			}
+			// to ensure "PostalCode" is required (not null)
+			if (PostalCode == null)
+			{
+				throw new InvalidDataException("PostalCode is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.PostalCode = PostalCode;
+			}
+			// to ensure "Country" is required (not null)
+			if (Country == null)
+			{
+				throw new InvalidDataException("Country is a required property for ClientInformation and cannot be null");
+			}
+			else
+			{
+				this.Country = Country;
+			}
+			this.PhoneNumber = PhoneNumber;
+			this.State = State;
+		}
+		
+		/// <summary>
+		/// The organization/business that the data being assessed belongs to.
+		/// </summary>
+		/// <value>The organization/business that the data being assessed belongs to.</value>
+		[DataMember(Name="organization", EmitDefaultValue=false)]
+		public string Organization { get; set; }
 
-        /// <summary>
-        /// Gets or Sets ContactName
-        /// </summary>
-        [DataMember(Name="contact_name", EmitDefaultValue=false)]
-        public string ContactName { get; set; }
+		/// <summary>
+		/// Gets or Sets ContactName
+		/// </summary>
+		[DataMember(Name="contact_name", EmitDefaultValue=false)]
+		public string ContactName { get; set; }
 
-        /// <summary>
-        /// Gets or Sets EmailAddress
-        /// </summary>
-        [DataMember(Name="email_address", EmitDefaultValue=false)]
-        public string EmailAddress { get; set; }
+		/// <summary>
+		/// Gets or Sets EmailAddress
+		/// </summary>
+		[DataMember(Name="email_address", EmitDefaultValue=false)]
+		public string EmailAddress { get; set; }
 
-        /// <summary>
-        /// Gets or Sets PhoneNumber
-        /// </summary>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
+		/// <summary>
+		/// Gets or Sets PhoneNumber
+		/// </summary>
+		[DataMember(Name="phone_number", EmitDefaultValue=false)]
+		public string PhoneNumber { get; set; }
 
-        /// <summary>
-        /// Gets or Sets AddressLines
-        /// </summary>
-        [DataMember(Name="address_lines", EmitDefaultValue=false)]
-        public List<string> AddressLines { get; set; }
+		/// <summary>
+		/// Gets or Sets AddressLines
+		/// </summary>
+		[DataMember(Name="address_lines", EmitDefaultValue=false)]
+		public List<string> AddressLines { get; set; }
 
-        /// <summary>
-        /// Gets or Sets City
-        /// </summary>
-        [DataMember(Name="city", EmitDefaultValue=false)]
-        public string City { get; set; }
+		/// <summary>
+		/// Gets or Sets City
+		/// </summary>
+		[DataMember(Name="city", EmitDefaultValue=false)]
+		public string City { get; set; }
 
-        /// <summary>
-        /// Gets or Sets State
-        /// </summary>
-        [DataMember(Name="state", EmitDefaultValue=false)]
-        public string State { get; set; }
+		/// <summary>
+		/// Gets or Sets State
+		/// </summary>
+		[DataMember(Name="state", EmitDefaultValue=false)]
+		public string State { get; set; }
 
-        /// <summary>
-        /// Gets or Sets PostalCode
-        /// </summary>
-        [DataMember(Name="postal_code", EmitDefaultValue=false)]
-        public string PostalCode { get; set; }
+		/// <summary>
+		/// Gets or Sets PostalCode
+		/// </summary>
+		[DataMember(Name="postal_code", EmitDefaultValue=false)]
+		public string PostalCode { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Country
-        /// </summary>
-        [DataMember(Name="country", EmitDefaultValue=false)]
-        public string Country { get; set; }
+		/// <summary>
+		/// Gets or Sets Country
+		/// </summary>
+		[DataMember(Name="country", EmitDefaultValue=false)]
+		public string Country { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class ClientInformation {\n");
-            sb.Append("  Organization: ").Append(Organization).Append("\n");
-            sb.Append("  ContactName: ").Append(ContactName).Append("\n");
-            sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  AddressLines: ").Append(AddressLines).Append("\n");
-            sb.Append("  City: ").Append(City).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class ClientInformation {\n");
+			sb.Append("  Organization: ").Append(Organization).Append("\n");
+			sb.Append("  ContactName: ").Append(ContactName).Append("\n");
+			sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
+			sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+			sb.Append("  AddressLines: ").Append(AddressLines).Append("\n");
+			sb.Append("  City: ").Append(City).Append("\n");
+			sb.Append("  State: ").Append(State).Append("\n");
+			sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+			sb.Append("  Country: ").Append(Country).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ClientInformation);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as ClientInformation);
+		}
 
-        /// <summary>
-        /// Returns true if ClientInformation instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ClientInformation to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ClientInformation input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if ClientInformation instances are equal
+		/// </summary>
+		/// <param name="input">Instance of ClientInformation to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(ClientInformation input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Organization == input.Organization ||
-                    (this.Organization != null &&
-                    this.Organization.Equals(input.Organization))
-                ) && 
-                (
-                    this.ContactName == input.ContactName ||
-                    (this.ContactName != null &&
-                    this.ContactName.Equals(input.ContactName))
-                ) && 
-                (
-                    this.EmailAddress == input.EmailAddress ||
-                    (this.EmailAddress != null &&
-                    this.EmailAddress.Equals(input.EmailAddress))
-                ) && 
-                (
-                    this.PhoneNumber == input.PhoneNumber ||
-                    (this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(input.PhoneNumber))
-                ) && 
-                (
-                    this.AddressLines == input.AddressLines ||
-                    this.AddressLines != null &&
-                    this.AddressLines.SequenceEqual(input.AddressLines)
-                ) && 
-                (
-                    this.City == input.City ||
-                    (this.City != null &&
-                    this.City.Equals(input.City))
-                ) && 
-                (
-                    this.State == input.State ||
-                    (this.State != null &&
-                    this.State.Equals(input.State))
-                ) && 
-                (
-                    this.PostalCode == input.PostalCode ||
-                    (this.PostalCode != null &&
-                    this.PostalCode.Equals(input.PostalCode))
-                ) && 
-                (
-                    this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
-                );
-        }
+			return 
+				(
+					this.Organization == input.Organization ||
+					(this.Organization != null &&
+					this.Organization.Equals(input.Organization))
+				) && 
+				(
+					this.ContactName == input.ContactName ||
+					(this.ContactName != null &&
+					this.ContactName.Equals(input.ContactName))
+				) && 
+				(
+					this.EmailAddress == input.EmailAddress ||
+					(this.EmailAddress != null &&
+					this.EmailAddress.Equals(input.EmailAddress))
+				) && 
+				(
+					this.PhoneNumber == input.PhoneNumber ||
+					(this.PhoneNumber != null &&
+					this.PhoneNumber.Equals(input.PhoneNumber))
+				) && 
+				(
+					this.AddressLines == input.AddressLines ||
+					this.AddressLines != null &&
+					this.AddressLines.SequenceEqual(input.AddressLines)
+				) && 
+				(
+					this.City == input.City ||
+					(this.City != null &&
+					this.City.Equals(input.City))
+				) && 
+				(
+					this.State == input.State ||
+					(this.State != null &&
+					this.State.Equals(input.State))
+				) && 
+				(
+					this.PostalCode == input.PostalCode ||
+					(this.PostalCode != null &&
+					this.PostalCode.Equals(input.PostalCode))
+				) && 
+				(
+					this.Country == input.Country ||
+					(this.Country != null &&
+					this.Country.Equals(input.Country))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Organization != null)
-                    hashCode = hashCode * 59 + this.Organization.GetHashCode();
-                if (this.ContactName != null)
-                    hashCode = hashCode * 59 + this.ContactName.GetHashCode();
-                if (this.EmailAddress != null)
-                    hashCode = hashCode * 59 + this.EmailAddress.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
-                if (this.AddressLines != null)
-                    hashCode = hashCode * 59 + this.AddressLines.GetHashCode();
-                if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
-                if (this.State != null)
-                    hashCode = hashCode * 59 + this.State.GetHashCode();
-                if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
-                if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Organization != null)
+					hashCode = hashCode * 59 + this.Organization.GetHashCode();
+				if (this.ContactName != null)
+					hashCode = hashCode * 59 + this.ContactName.GetHashCode();
+				if (this.EmailAddress != null)
+					hashCode = hashCode * 59 + this.EmailAddress.GetHashCode();
+				if (this.PhoneNumber != null)
+					hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
+				if (this.AddressLines != null)
+					hashCode = hashCode * 59 + this.AddressLines.GetHashCode();
+				if (this.City != null)
+					hashCode = hashCode * 59 + this.City.GetHashCode();
+				if (this.State != null)
+					hashCode = hashCode * 59 + this.State.GetHashCode();
+				if (this.PostalCode != null)
+					hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+				if (this.Country != null)
+					hashCode = hashCode * 59 + this.Country.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

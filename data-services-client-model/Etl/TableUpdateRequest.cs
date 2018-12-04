@@ -22,101 +22,101 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Etl
 {
-    /// <summary>
-    /// TableUpdateRequest
-    /// </summary>
-    [DataContract]
-    public partial class TableUpdateRequest : IEquatable<TableUpdateRequest>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TableUpdateRequest" /> class.
-        /// </summary>
-        /// <param name="Records">Records.</param>
-        public TableUpdateRequest(List<List<string>> Records = default(List<List<string>>))
-        {
-            this.Records = Records;
-        }
-        
-        /// <summary>
-        /// Gets or Sets Records
-        /// </summary>
-        [DataMember(Name="records", EmitDefaultValue=false)]
-        public List<List<string>> Records { get; set; }
+	/// <summary>
+	/// TableUpdateRequest
+	/// </summary>
+	[DataContract]
+	public partial class TableUpdateRequest : IEquatable<TableUpdateRequest>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TableUpdateRequest" /> class.
+		/// </summary>
+		/// <param name="Records">Records.</param>
+		public TableUpdateRequest(List<List<string>> Records = default(List<List<string>>))
+		{
+			this.Records = Records;
+		}
+		
+		/// <summary>
+		/// Gets or Sets Records
+		/// </summary>
+		[DataMember(Name="records", EmitDefaultValue=false)]
+		public List<List<string>> Records { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class TableUpdateRequest {\n");
-            sb.Append("  Records: ").Append(Records).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class TableUpdateRequest {\n");
+			sb.Append("  Records: ").Append(Records).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TableUpdateRequest);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as TableUpdateRequest);
+		}
 
-        /// <summary>
-        /// Returns true if TableUpdateRequest instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TableUpdateRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TableUpdateRequest input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if TableUpdateRequest instances are equal
+		/// </summary>
+		/// <param name="input">Instance of TableUpdateRequest to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(TableUpdateRequest input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Records == input.Records ||
-                    this.Records != null &&
-                    this.Records.SequenceEqual(input.Records)
-                );
-        }
+			return 
+				(
+					this.Records == input.Records ||
+					this.Records != null &&
+					this.Records.SequenceEqual(input.Records)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Records != null)
-                    hashCode = hashCode * 59 + this.Records.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Records != null)
+					hashCode = hashCode * 59 + this.Records.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

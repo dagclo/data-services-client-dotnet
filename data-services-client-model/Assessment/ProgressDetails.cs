@@ -22,119 +22,119 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Assessment
 {
-    /// <summary>
-    /// ProgressDetails
-    /// </summary>
-    [DataContract]
-    public partial class ProgressDetails : IEquatable<ProgressDetails>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProgressDetails" /> class.
-        /// </summary>
-        /// <param name="PctComplete">Percent completed (0 is not started, 100 is complete)..</param>
-        /// <param name="FailureReason">An optional description/reason for a job failure..</param>
-        public ProgressDetails(int? PctComplete = default(int?), string FailureReason = default(string))
-        {
-            this.PctComplete = PctComplete;
-            this.FailureReason = FailureReason;
-        }
-        
-        /// <summary>
-        /// Percent completed (0 is not started, 100 is complete).
-        /// </summary>
-        /// <value>Percent completed (0 is not started, 100 is complete).</value>
-        [DataMember(Name="pct_complete", EmitDefaultValue=false)]
-        public int? PctComplete { get; set; }
+	/// <summary>
+	/// ProgressDetails
+	/// </summary>
+	[DataContract]
+	public partial class ProgressDetails : IEquatable<ProgressDetails>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ProgressDetails" /> class.
+		/// </summary>
+		/// <param name="PctComplete">Percent completed (0 is not started, 100 is complete)..</param>
+		/// <param name="FailureReason">An optional description/reason for a job failure..</param>
+		public ProgressDetails(int? PctComplete = default(int?), string FailureReason = default(string))
+		{
+			this.PctComplete = PctComplete;
+			this.FailureReason = FailureReason;
+		}
+		
+		/// <summary>
+		/// Percent completed (0 is not started, 100 is complete).
+		/// </summary>
+		/// <value>Percent completed (0 is not started, 100 is complete).</value>
+		[DataMember(Name="pct_complete", EmitDefaultValue=false)]
+		public int? PctComplete { get; set; }
 
-        /// <summary>
-        /// An optional description/reason for a job failure.
-        /// </summary>
-        /// <value>An optional description/reason for a job failure.</value>
-        [DataMember(Name="failure_reason", EmitDefaultValue=false)]
-        public string FailureReason { get; set; }
+		/// <summary>
+		/// An optional description/reason for a job failure.
+		/// </summary>
+		/// <value>An optional description/reason for a job failure.</value>
+		[DataMember(Name="failure_reason", EmitDefaultValue=false)]
+		public string FailureReason { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class ProgressDetails {\n");
-            sb.Append("  PctComplete: ").Append(PctComplete).Append("\n");
-            sb.Append("  FailureReason: ").Append(FailureReason).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class ProgressDetails {\n");
+			sb.Append("  PctComplete: ").Append(PctComplete).Append("\n");
+			sb.Append("  FailureReason: ").Append(FailureReason).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ProgressDetails);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as ProgressDetails);
+		}
 
-        /// <summary>
-        /// Returns true if ProgressDetails instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ProgressDetails to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ProgressDetails input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if ProgressDetails instances are equal
+		/// </summary>
+		/// <param name="input">Instance of ProgressDetails to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(ProgressDetails input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.PctComplete == input.PctComplete ||
-                    (this.PctComplete != null &&
-                    this.PctComplete.Equals(input.PctComplete))
-                ) && 
-                (
-                    this.FailureReason == input.FailureReason ||
-                    (this.FailureReason != null &&
-                    this.FailureReason.Equals(input.FailureReason))
-                );
-        }
+			return 
+				(
+					this.PctComplete == input.PctComplete ||
+					(this.PctComplete != null &&
+					this.PctComplete.Equals(input.PctComplete))
+				) && 
+				(
+					this.FailureReason == input.FailureReason ||
+					(this.FailureReason != null &&
+					this.FailureReason.Equals(input.FailureReason))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PctComplete != null)
-                    hashCode = hashCode * 59 + this.PctComplete.GetHashCode();
-                if (this.FailureReason != null)
-                    hashCode = hashCode * 59 + this.FailureReason.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.PctComplete != null)
+					hashCode = hashCode * 59 + this.PctComplete.GetHashCode();
+				if (this.FailureReason != null)
+					hashCode = hashCode * 59 + this.FailureReason.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

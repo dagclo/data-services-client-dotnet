@@ -22,220 +22,220 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Address
 {
-    /// <summary>
-    /// CorrectionResponseRecord
-    /// </summary>
-    [DataContract]
-    public partial class CorrectionResponseRecord : IEquatable<CorrectionResponseRecord>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionResponseRecord" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected CorrectionResponseRecord() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionResponseRecord" /> class.
-        /// </summary>
-        /// <param name="Address">Address (required).</param>
-        /// <param name="Geocodes">Geocodes.</param>
-        /// <param name="Presort">Defines an additional output group of fields for presorting, enabled using the &#x60;output_groups&#x60; configuration setting..</param>
-        /// <param name="MoveUpdate">MoveUpdate.</param>
-        /// <param name="AddressTraits">AddressTraits.</param>
-        /// <param name="Suggestions">An array of suggested addresses, provided for cases in which the processing is unable to determine the address definitively, but finds candidates for suggestion. .</param>
-        /// <param name="Outcome">Outcome (required).</param>
-        public CorrectionResponseRecord(CorrectionResponseAddress Address = default(CorrectionResponseAddress), CorrectionResponseRecordGeocodes Geocodes = default(CorrectionResponseRecordGeocodes), Object Presort = default(Object), CorrectionResponseRecordMoveUpdate MoveUpdate = default(CorrectionResponseRecordMoveUpdate), CorrectionResponseRecordAddressTraits AddressTraits = default(CorrectionResponseRecordAddressTraits), List<CorrectionResponseAddress> Suggestions = default(List<CorrectionResponseAddress>), OutcomeDefinition Outcome = default(OutcomeDefinition))
-        {
-            // to ensure "Address" is required (not null)
-            if (Address == null)
-            {
-                throw new InvalidDataException("Address is a required property for CorrectionResponseRecord and cannot be null");
-            }
-            else
-            {
-                this.Address = Address;
-            }
-            // to ensure "Outcome" is required (not null)
-            if (Outcome == null)
-            {
-                throw new InvalidDataException("Outcome is a required property for CorrectionResponseRecord and cannot be null");
-            }
-            else
-            {
-                this.Outcome = Outcome;
-            }
-            this.Geocodes = Geocodes;
-            this.Presort = Presort;
-            this.MoveUpdate = MoveUpdate;
-            this.AddressTraits = AddressTraits;
-            this.Suggestions = Suggestions;
-        }
-        
-        /// <summary>
-        /// Gets or Sets Address
-        /// </summary>
-        [DataMember(Name="address", EmitDefaultValue=false)]
-        public CorrectionResponseAddress Address { get; set; }
+	/// <summary>
+	/// CorrectionResponseRecord
+	/// </summary>
+	[DataContract]
+	public partial class CorrectionResponseRecord : IEquatable<CorrectionResponseRecord>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionResponseRecord" /> class.
+		/// </summary>
+		[JsonConstructorAttribute]
+		protected CorrectionResponseRecord() { }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionResponseRecord" /> class.
+		/// </summary>
+		/// <param name="Address">Address (required).</param>
+		/// <param name="Geocodes">Geocodes.</param>
+		/// <param name="Presort">Defines an additional output group of fields for presorting, enabled using the &#x60;output_groups&#x60; configuration setting..</param>
+		/// <param name="MoveUpdate">MoveUpdate.</param>
+		/// <param name="AddressTraits">AddressTraits.</param>
+		/// <param name="Suggestions">An array of suggested addresses, provided for cases in which the processing is unable to determine the address definitively, but finds candidates for suggestion. .</param>
+		/// <param name="Outcome">Outcome (required).</param>
+		public CorrectionResponseRecord(CorrectionResponseAddress Address = default(CorrectionResponseAddress), CorrectionResponseRecordGeocodes Geocodes = default(CorrectionResponseRecordGeocodes), Object Presort = default(Object), CorrectionResponseRecordMoveUpdate MoveUpdate = default(CorrectionResponseRecordMoveUpdate), CorrectionResponseRecordAddressTraits AddressTraits = default(CorrectionResponseRecordAddressTraits), List<CorrectionResponseAddress> Suggestions = default(List<CorrectionResponseAddress>), OutcomeDefinition Outcome = default(OutcomeDefinition))
+		{
+			// to ensure "Address" is required (not null)
+			if (Address == null)
+			{
+				throw new InvalidDataException("Address is a required property for CorrectionResponseRecord and cannot be null");
+			}
+			else
+			{
+				this.Address = Address;
+			}
+			// to ensure "Outcome" is required (not null)
+			if (Outcome == null)
+			{
+				throw new InvalidDataException("Outcome is a required property for CorrectionResponseRecord and cannot be null");
+			}
+			else
+			{
+				this.Outcome = Outcome;
+			}
+			this.Geocodes = Geocodes;
+			this.Presort = Presort;
+			this.MoveUpdate = MoveUpdate;
+			this.AddressTraits = AddressTraits;
+			this.Suggestions = Suggestions;
+		}
+		
+		/// <summary>
+		/// Gets or Sets Address
+		/// </summary>
+		[DataMember(Name="address", EmitDefaultValue=false)]
+		public CorrectionResponseAddress Address { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Geocodes
-        /// </summary>
-        [DataMember(Name="geocodes", EmitDefaultValue=false)]
-        public CorrectionResponseRecordGeocodes Geocodes { get; set; }
+		/// <summary>
+		/// Gets or Sets Geocodes
+		/// </summary>
+		[DataMember(Name="geocodes", EmitDefaultValue=false)]
+		public CorrectionResponseRecordGeocodes Geocodes { get; set; }
 
-        /// <summary>
-        /// Defines an additional output group of fields for presorting, enabled using the &#x60;output_groups&#x60; configuration setting.
-        /// </summary>
-        /// <value>Defines an additional output group of fields for presorting, enabled using the &#x60;output_groups&#x60; configuration setting.</value>
-        [DataMember(Name="presort", EmitDefaultValue=false)]
-        public Object Presort { get; set; }
+		/// <summary>
+		/// Defines an additional output group of fields for presorting, enabled using the &#x60;output_groups&#x60; configuration setting.
+		/// </summary>
+		/// <value>Defines an additional output group of fields for presorting, enabled using the &#x60;output_groups&#x60; configuration setting.</value>
+		[DataMember(Name="presort", EmitDefaultValue=false)]
+		public Object Presort { get; set; }
 
-        /// <summary>
-        /// Gets or Sets MoveUpdate
-        /// </summary>
-        [DataMember(Name="move_update", EmitDefaultValue=false)]
-        public CorrectionResponseRecordMoveUpdate MoveUpdate { get; set; }
+		/// <summary>
+		/// Gets or Sets MoveUpdate
+		/// </summary>
+		[DataMember(Name="move_update", EmitDefaultValue=false)]
+		public CorrectionResponseRecordMoveUpdate MoveUpdate { get; set; }
 
-        /// <summary>
-        /// Gets or Sets AddressTraits
-        /// </summary>
-        [DataMember(Name="address_traits", EmitDefaultValue=false)]
-        public CorrectionResponseRecordAddressTraits AddressTraits { get; set; }
+		/// <summary>
+		/// Gets or Sets AddressTraits
+		/// </summary>
+		[DataMember(Name="address_traits", EmitDefaultValue=false)]
+		public CorrectionResponseRecordAddressTraits AddressTraits { get; set; }
 
-        /// <summary>
-        /// An array of suggested addresses, provided for cases in which the processing is unable to determine the address definitively, but finds candidates for suggestion. 
-        /// </summary>
-        /// <value>An array of suggested addresses, provided for cases in which the processing is unable to determine the address definitively, but finds candidates for suggestion. </value>
-        [DataMember(Name="suggestions", EmitDefaultValue=false)]
-        public List<CorrectionResponseAddress> Suggestions { get; set; }
+		/// <summary>
+		/// An array of suggested addresses, provided for cases in which the processing is unable to determine the address definitively, but finds candidates for suggestion. 
+		/// </summary>
+		/// <value>An array of suggested addresses, provided for cases in which the processing is unable to determine the address definitively, but finds candidates for suggestion. </value>
+		[DataMember(Name="suggestions", EmitDefaultValue=false)]
+		public List<CorrectionResponseAddress> Suggestions { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Outcome
-        /// </summary>
-        [DataMember(Name="outcome", EmitDefaultValue=false)]
-        public OutcomeDefinition Outcome { get; set; }
+		/// <summary>
+		/// Gets or Sets Outcome
+		/// </summary>
+		[DataMember(Name="outcome", EmitDefaultValue=false)]
+		public OutcomeDefinition Outcome { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CorrectionResponseRecord {\n");
-            sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  Geocodes: ").Append(Geocodes).Append("\n");
-            sb.Append("  Presort: ").Append(Presort).Append("\n");
-            sb.Append("  MoveUpdate: ").Append(MoveUpdate).Append("\n");
-            sb.Append("  AddressTraits: ").Append(AddressTraits).Append("\n");
-            sb.Append("  Suggestions: ").Append(Suggestions).Append("\n");
-            sb.Append("  Outcome: ").Append(Outcome).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class CorrectionResponseRecord {\n");
+			sb.Append("  Address: ").Append(Address).Append("\n");
+			sb.Append("  Geocodes: ").Append(Geocodes).Append("\n");
+			sb.Append("  Presort: ").Append(Presort).Append("\n");
+			sb.Append("  MoveUpdate: ").Append(MoveUpdate).Append("\n");
+			sb.Append("  AddressTraits: ").Append(AddressTraits).Append("\n");
+			sb.Append("  Suggestions: ").Append(Suggestions).Append("\n");
+			sb.Append("  Outcome: ").Append(Outcome).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CorrectionResponseRecord);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as CorrectionResponseRecord);
+		}
 
-        /// <summary>
-        /// Returns true if CorrectionResponseRecord instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CorrectionResponseRecord to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CorrectionResponseRecord input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if CorrectionResponseRecord instances are equal
+		/// </summary>
+		/// <param name="input">Instance of CorrectionResponseRecord to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(CorrectionResponseRecord input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                    this.Address.Equals(input.Address))
-                ) && 
-                (
-                    this.Geocodes == input.Geocodes ||
-                    (this.Geocodes != null &&
-                    this.Geocodes.Equals(input.Geocodes))
-                ) && 
-                (
-                    this.Presort == input.Presort ||
-                    (this.Presort != null &&
-                    this.Presort.Equals(input.Presort))
-                ) && 
-                (
-                    this.MoveUpdate == input.MoveUpdate ||
-                    (this.MoveUpdate != null &&
-                    this.MoveUpdate.Equals(input.MoveUpdate))
-                ) && 
-                (
-                    this.AddressTraits == input.AddressTraits ||
-                    (this.AddressTraits != null &&
-                    this.AddressTraits.Equals(input.AddressTraits))
-                ) && 
-                (
-                    this.Suggestions == input.Suggestions ||
-                    this.Suggestions != null &&
-                    this.Suggestions.SequenceEqual(input.Suggestions)
-                ) && 
-                (
-                    this.Outcome == input.Outcome ||
-                    (this.Outcome != null &&
-                    this.Outcome.Equals(input.Outcome))
-                );
-        }
+			return 
+				(
+					this.Address == input.Address ||
+					(this.Address != null &&
+					this.Address.Equals(input.Address))
+				) && 
+				(
+					this.Geocodes == input.Geocodes ||
+					(this.Geocodes != null &&
+					this.Geocodes.Equals(input.Geocodes))
+				) && 
+				(
+					this.Presort == input.Presort ||
+					(this.Presort != null &&
+					this.Presort.Equals(input.Presort))
+				) && 
+				(
+					this.MoveUpdate == input.MoveUpdate ||
+					(this.MoveUpdate != null &&
+					this.MoveUpdate.Equals(input.MoveUpdate))
+				) && 
+				(
+					this.AddressTraits == input.AddressTraits ||
+					(this.AddressTraits != null &&
+					this.AddressTraits.Equals(input.AddressTraits))
+				) && 
+				(
+					this.Suggestions == input.Suggestions ||
+					this.Suggestions != null &&
+					this.Suggestions.SequenceEqual(input.Suggestions)
+				) && 
+				(
+					this.Outcome == input.Outcome ||
+					(this.Outcome != null &&
+					this.Outcome.Equals(input.Outcome))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.Geocodes != null)
-                    hashCode = hashCode * 59 + this.Geocodes.GetHashCode();
-                if (this.Presort != null)
-                    hashCode = hashCode * 59 + this.Presort.GetHashCode();
-                if (this.MoveUpdate != null)
-                    hashCode = hashCode * 59 + this.MoveUpdate.GetHashCode();
-                if (this.AddressTraits != null)
-                    hashCode = hashCode * 59 + this.AddressTraits.GetHashCode();
-                if (this.Suggestions != null)
-                    hashCode = hashCode * 59 + this.Suggestions.GetHashCode();
-                if (this.Outcome != null)
-                    hashCode = hashCode * 59 + this.Outcome.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Address != null)
+					hashCode = hashCode * 59 + this.Address.GetHashCode();
+				if (this.Geocodes != null)
+					hashCode = hashCode * 59 + this.Geocodes.GetHashCode();
+				if (this.Presort != null)
+					hashCode = hashCode * 59 + this.Presort.GetHashCode();
+				if (this.MoveUpdate != null)
+					hashCode = hashCode * 59 + this.MoveUpdate.GetHashCode();
+				if (this.AddressTraits != null)
+					hashCode = hashCode * 59 + this.AddressTraits.GetHashCode();
+				if (this.Suggestions != null)
+					hashCode = hashCode * 59 + this.Suggestions.GetHashCode();
+				if (this.Outcome != null)
+					hashCode = hashCode * 59 + this.Outcome.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }
