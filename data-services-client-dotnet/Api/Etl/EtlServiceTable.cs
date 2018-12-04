@@ -50,7 +50,7 @@ namespace Quadient.DataServices.Api.Etl
 		{
 			if (_columnNames == null)
 			{
-				_columnNames = (await GetTableInformation()).ColumnNames;
+				_columnNames = (await GetTableInformation(true, false)).ColumnNames;
 			}
 			return _columnNames;
 		}
@@ -60,11 +60,11 @@ namespace Quadient.DataServices.Api.Etl
 		}
 		public async Task<IList<string>> GetPageIds()
 		{
-			return (await GetTableInformation()).PageIds;
+			return (await GetTableInformation(false, true)).PageIds;
 		}
-		private async Task<TableInformation> GetTableInformation()
+		private async Task<TableInformation> GetTableInformation(bool retrieveColumns, bool retrievePages)
 		{
-			return await _client.Execute(new TableInformationRequest(_tableId)); ;
+			return await _client.Execute(new TableInformationRequest(_tableId, retrieveColumns, retrievePages)); ;
 		}
 	}
 }

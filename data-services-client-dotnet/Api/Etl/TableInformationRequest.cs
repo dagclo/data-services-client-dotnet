@@ -15,5 +15,9 @@ namespace Quadient.DataServices.Api.Etl
 		{
 			ServicePath = $"etl/v1/tables/{tableId}";
 		}
+		public TableInformationRequest(string tableId, bool retrieveColumns, bool retrievePages)
+		{
+			ServicePath = $"etl/v1/tables/{tableId}?retrieveColumns={retrieveColumns}&retrievePages={retrievePages}";
+		}
 	}
 }
