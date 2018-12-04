@@ -22,140 +22,140 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Etl
 {
-    /// <summary>
-    /// TransformColumnMapping
-    /// </summary>
-    [DataContract]
-    public partial class TransformColumnMapping : IEquatable<TransformColumnMapping>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TransformColumnMapping" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected TransformColumnMapping() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TransformColumnMapping" /> class.
-        /// </summary>
-        /// <param name="SrcColumnIndex">The column index to transform. (required).</param>
-        /// <param name="DestColumnName">The name of the column in the newly created table. (required).</param>
-        public TransformColumnMapping(int? SrcColumnIndex = default(int?), string DestColumnName = default(string))
-        {
-            // to ensure "SrcColumnIndex" is required (not null)
-            if (SrcColumnIndex == null)
-            {
-                throw new InvalidDataException("SrcColumnIndex is a required property for TransformColumnMapping and cannot be null");
-            }
-            else
-            {
-                this.SrcColumnIndex = SrcColumnIndex;
-            }
-            // to ensure "DestColumnName" is required (not null)
-            if (DestColumnName == null)
-            {
-                throw new InvalidDataException("DestColumnName is a required property for TransformColumnMapping and cannot be null");
-            }
-            else
-            {
-                this.DestColumnName = DestColumnName;
-            }
-        }
-        
-        /// <summary>
-        /// The column index to transform.
-        /// </summary>
-        /// <value>The column index to transform.</value>
-        [DataMember(Name="src_column_index", EmitDefaultValue=false)]
-        public int? SrcColumnIndex { get; set; }
+	/// <summary>
+	/// TransformColumnMapping
+	/// </summary>
+	[DataContract]
+	public partial class TransformColumnMapping : IEquatable<TransformColumnMapping>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TransformColumnMapping" /> class.
+		/// </summary>
+		[JsonConstructorAttribute]
+		protected TransformColumnMapping() { }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TransformColumnMapping" /> class.
+		/// </summary>
+		/// <param name="SrcColumnIndex">The column index to transform. (required).</param>
+		/// <param name="DestColumnName">The name of the column in the newly created table. (required).</param>
+		public TransformColumnMapping(int? SrcColumnIndex = default(int?), string DestColumnName = default(string))
+		{
+			// to ensure "SrcColumnIndex" is required (not null)
+			if (SrcColumnIndex == null)
+			{
+				throw new InvalidDataException("SrcColumnIndex is a required property for TransformColumnMapping and cannot be null");
+			}
+			else
+			{
+				this.SrcColumnIndex = SrcColumnIndex;
+			}
+			// to ensure "DestColumnName" is required (not null)
+			if (DestColumnName == null)
+			{
+				throw new InvalidDataException("DestColumnName is a required property for TransformColumnMapping and cannot be null");
+			}
+			else
+			{
+				this.DestColumnName = DestColumnName;
+			}
+		}
+		
+		/// <summary>
+		/// The column index to transform.
+		/// </summary>
+		/// <value>The column index to transform.</value>
+		[DataMember(Name="src_column_index", EmitDefaultValue=false)]
+		public int? SrcColumnIndex { get; set; }
 
-        /// <summary>
-        /// The name of the column in the newly created table.
-        /// </summary>
-        /// <value>The name of the column in the newly created table.</value>
-        [DataMember(Name="dest_column_name", EmitDefaultValue=false)]
-        public string DestColumnName { get; set; }
+		/// <summary>
+		/// The name of the column in the newly created table.
+		/// </summary>
+		/// <value>The name of the column in the newly created table.</value>
+		[DataMember(Name="dest_column_name", EmitDefaultValue=false)]
+		public string DestColumnName { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class TransformColumnMapping {\n");
-            sb.Append("  SrcColumnIndex: ").Append(SrcColumnIndex).Append("\n");
-            sb.Append("  DestColumnName: ").Append(DestColumnName).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class TransformColumnMapping {\n");
+			sb.Append("  SrcColumnIndex: ").Append(SrcColumnIndex).Append("\n");
+			sb.Append("  DestColumnName: ").Append(DestColumnName).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TransformColumnMapping);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as TransformColumnMapping);
+		}
 
-        /// <summary>
-        /// Returns true if TransformColumnMapping instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TransformColumnMapping to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TransformColumnMapping input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if TransformColumnMapping instances are equal
+		/// </summary>
+		/// <param name="input">Instance of TransformColumnMapping to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(TransformColumnMapping input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.SrcColumnIndex == input.SrcColumnIndex ||
-                    (this.SrcColumnIndex != null &&
-                    this.SrcColumnIndex.Equals(input.SrcColumnIndex))
-                ) && 
-                (
-                    this.DestColumnName == input.DestColumnName ||
-                    (this.DestColumnName != null &&
-                    this.DestColumnName.Equals(input.DestColumnName))
-                );
-        }
+			return 
+				(
+					this.SrcColumnIndex == input.SrcColumnIndex ||
+					(this.SrcColumnIndex != null &&
+					this.SrcColumnIndex.Equals(input.SrcColumnIndex))
+				) && 
+				(
+					this.DestColumnName == input.DestColumnName ||
+					(this.DestColumnName != null &&
+					this.DestColumnName.Equals(input.DestColumnName))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.SrcColumnIndex != null)
-                    hashCode = hashCode * 59 + this.SrcColumnIndex.GetHashCode();
-                if (this.DestColumnName != null)
-                    hashCode = hashCode * 59 + this.DestColumnName.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.SrcColumnIndex != null)
+					hashCode = hashCode * 59 + this.SrcColumnIndex.GetHashCode();
+				if (this.DestColumnName != null)
+					hashCode = hashCode * 59 + this.DestColumnName.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

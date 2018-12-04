@@ -23,31 +23,100 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
 	/// <summary>
-	/// Controls where to place any firm information, if present. Organization information is a special type of business information.
+	/// RecordTables
 	/// </summary>
-	/// <value>Controls where to place any firm information, if present. Organization information is a special type of business information.</value>
-	
-	[JsonConverter(typeof(StringEnumConverter))]
-	
-	public enum OrganizationPlacement
+	[DataContract]
+	public partial class RecordTables : IEquatable<RecordTables>, IValidatableObject
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RecordTables" /> class.
+		/// </summary>
+		/// <param name="Tables">Tables.</param>
+		public RecordTables(List<RecordTable> Tables = default(List<RecordTable>))
+		{
+			this.Tables = Tables;
+		}
 		
 		/// <summary>
-		/// Enum Asinput for value: as_input
+		/// Gets or Sets Tables
 		/// </summary>
-		[EnumMember(Value = "as_input")]
-		Asinput = 1,
-		
+		[DataMember(Name="tables", EmitDefaultValue=false)]
+		public List<RecordTable> Tables { get; set; }
+
 		/// <summary>
-		/// Enum Movetoorganizationifempty for value: move_to_organization_if_empty
+		/// Returns the string presentation of the object
 		/// </summary>
-		[EnumMember(Value = "move_to_organization_if_empty")]
-		Movetoorganizationifempty = 2,
-		
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class RecordTables {\n");
+			sb.Append("  Tables: ").Append(Tables).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
+  
 		/// <summary>
-		/// Enum Movetoorganizationalways for value: move_to_organization_always
+		/// Returns the JSON string presentation of the object
 		/// </summary>
-		[EnumMember(Value = "move_to_organization_always")]
-		Movetoorganizationalways = 3
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
+
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as RecordTables);
+		}
+
+		/// <summary>
+		/// Returns true if RecordTables instances are equal
+		/// </summary>
+		/// <param name="input">Instance of RecordTables to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(RecordTables input)
+		{
+			if (input == null)
+				return false;
+
+			return 
+				(
+					this.Tables == input.Tables ||
+					this.Tables != null &&
+					this.Tables.SequenceEqual(input.Tables)
+				);
+		}
+
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Tables != null)
+					hashCode = hashCode * 59 + this.Tables.GetHashCode();
+				return hashCode;
+			}
+		}
+
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
 	}
+
 }

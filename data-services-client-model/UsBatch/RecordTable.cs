@@ -23,35 +23,44 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 namespace Quadient.DataServices.Model.UsBatch
 {
 	/// <summary>
-	/// ReportDescriptor
+	/// RecordTable
 	/// </summary>
 	[DataContract]
-	public partial class ReportDescriptor : IEquatable<ReportDescriptor>, IValidatableObject
+	public partial class RecordTable : IEquatable<RecordTable>, IValidatableObject
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ReportDescriptor" /> class.
+		/// Initializes a new instance of the <see cref="RecordTable" /> class.
 		/// </summary>
-		/// <param name="Id">An ID for retrieving the report..</param>
-		/// <param name="Name">The name of the report..</param>
-		public ReportDescriptor(string Id = default(string), string Name = default(string))
+		/// <param name="Id">The unique ID of the table..</param>
+		/// <param name="Role">Role of the table in the job..</param>
+		/// <param name="Href">A hypertext reference (URI) for the table..</param>
+		public RecordTable(string Id = default(string), string Role = default(string), string Href = default(string))
 		{
 			this.Id = Id;
-			this.Name = Name;
+			this.Role = Role;
+			this.Href = Href;
 		}
 		
 		/// <summary>
-		/// An ID for retrieving the report.
+		/// The unique ID of the table.
 		/// </summary>
-		/// <value>An ID for retrieving the report.</value>
+		/// <value>The unique ID of the table.</value>
 		[DataMember(Name="id", EmitDefaultValue=false)]
 		public string Id { get; set; }
 
 		/// <summary>
-		/// The name of the report.
+		/// Role of the table in the job.
 		/// </summary>
-		/// <value>The name of the report.</value>
-		[DataMember(Name="name", EmitDefaultValue=false)]
-		public string Name { get; set; }
+		/// <value>Role of the table in the job.</value>
+		[DataMember(Name="role", EmitDefaultValue=false)]
+		public string Role { get; set; }
+
+		/// <summary>
+		/// A hypertext reference (URI) for the table.
+		/// </summary>
+		/// <value>A hypertext reference (URI) for the table.</value>
+		[DataMember(Name="href", EmitDefaultValue=false)]
+		public string Href { get; set; }
 
 		/// <summary>
 		/// Returns the string presentation of the object
@@ -60,9 +69,10 @@ namespace Quadient.DataServices.Model.UsBatch
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
-			sb.Append("class ReportDescriptor {\n");
+			sb.Append("class RecordTable {\n");
 			sb.Append("  Id: ").Append(Id).Append("\n");
-			sb.Append("  Name: ").Append(Name).Append("\n");
+			sb.Append("  Role: ").Append(Role).Append("\n");
+			sb.Append("  Href: ").Append(Href).Append("\n");
 			sb.Append("}\n");
 			return sb.ToString();
 		}
@@ -83,15 +93,15 @@ namespace Quadient.DataServices.Model.UsBatch
 		/// <returns>Boolean</returns>
 		public override bool Equals(object input)
 		{
-			return this.Equals(input as ReportDescriptor);
+			return this.Equals(input as RecordTable);
 		}
 
 		/// <summary>
-		/// Returns true if ReportDescriptor instances are equal
+		/// Returns true if RecordTable instances are equal
 		/// </summary>
-		/// <param name="input">Instance of ReportDescriptor to be compared</param>
+		/// <param name="input">Instance of RecordTable to be compared</param>
 		/// <returns>Boolean</returns>
-		public bool Equals(ReportDescriptor input)
+		public bool Equals(RecordTable input)
 		{
 			if (input == null)
 				return false;
@@ -103,9 +113,14 @@ namespace Quadient.DataServices.Model.UsBatch
 					this.Id.Equals(input.Id))
 				) && 
 				(
-					this.Name == input.Name ||
-					(this.Name != null &&
-					this.Name.Equals(input.Name))
+					this.Role == input.Role ||
+					(this.Role != null &&
+					this.Role.Equals(input.Role))
+				) && 
+				(
+					this.Href == input.Href ||
+					(this.Href != null &&
+					this.Href.Equals(input.Href))
 				);
 		}
 
@@ -120,8 +135,10 @@ namespace Quadient.DataServices.Model.UsBatch
 				int hashCode = 41;
 				if (this.Id != null)
 					hashCode = hashCode * 59 + this.Id.GetHashCode();
-				if (this.Name != null)
-					hashCode = hashCode * 59 + this.Name.GetHashCode();
+				if (this.Role != null)
+					hashCode = hashCode * 59 + this.Role.GetHashCode();
+				if (this.Href != null)
+					hashCode = hashCode * 59 + this.Href.GetHashCode();
 				return hashCode;
 			}
 		}

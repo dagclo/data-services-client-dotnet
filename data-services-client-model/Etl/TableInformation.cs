@@ -22,150 +22,150 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Etl
 {
-    /// <summary>
-    /// TableInformation
-    /// </summary>
-    [DataContract]
-    public partial class TableInformation : IEquatable<TableInformation>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TableInformation" /> class.
-        /// </summary>
-        /// <param name="Uri">Uri.</param>
-        /// <param name="TableId">TableId.</param>
-        /// <param name="ColumnNames">ColumnNames.</param>
-        /// <param name="PageIds">A list of page IDs for this table. Each page contains a block of records..</param>
-        public TableInformation(string Uri = default(string), string TableId = default(string), List<string> ColumnNames = default(List<string>), List<string> PageIds = default(List<string>))
-        {
-            this.Uri = Uri;
-            this.TableId = TableId;
-            this.ColumnNames = ColumnNames;
-            this.PageIds = PageIds;
-        }
-        
-        /// <summary>
-        /// Gets or Sets Uri
-        /// </summary>
-        [DataMember(Name="uri", EmitDefaultValue=false)]
-        public string Uri { get; set; }
+	/// <summary>
+	/// TableInformation
+	/// </summary>
+	[DataContract]
+	public partial class TableInformation : IEquatable<TableInformation>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TableInformation" /> class.
+		/// </summary>
+		/// <param name="Uri">Uri.</param>
+		/// <param name="TableId">TableId.</param>
+		/// <param name="ColumnNames">ColumnNames.</param>
+		/// <param name="PageIds">A list of page IDs for this table. Each page contains a block of records..</param>
+		public TableInformation(string Uri = default(string), string TableId = default(string), List<string> ColumnNames = default(List<string>), List<string> PageIds = default(List<string>))
+		{
+			this.Uri = Uri;
+			this.TableId = TableId;
+			this.ColumnNames = ColumnNames;
+			this.PageIds = PageIds;
+		}
+		
+		/// <summary>
+		/// Gets or Sets Uri
+		/// </summary>
+		[DataMember(Name="uri", EmitDefaultValue=false)]
+		public string Uri { get; set; }
 
-        /// <summary>
-        /// Gets or Sets TableId
-        /// </summary>
-        [DataMember(Name="table_id", EmitDefaultValue=false)]
-        public string TableId { get; set; }
+		/// <summary>
+		/// Gets or Sets TableId
+		/// </summary>
+		[DataMember(Name="table_id", EmitDefaultValue=false)]
+		public string TableId { get; set; }
 
-        /// <summary>
-        /// Gets or Sets ColumnNames
-        /// </summary>
-        [DataMember(Name="column_names", EmitDefaultValue=false)]
-        public List<string> ColumnNames { get; set; }
+		/// <summary>
+		/// Gets or Sets ColumnNames
+		/// </summary>
+		[DataMember(Name="column_names", EmitDefaultValue=false)]
+		public List<string> ColumnNames { get; set; }
 
-        /// <summary>
-        /// A list of page IDs for this table. Each page contains a block of records.
-        /// </summary>
-        /// <value>A list of page IDs for this table. Each page contains a block of records.</value>
-        [DataMember(Name="page_ids", EmitDefaultValue=false)]
-        public List<string> PageIds { get; set; }
+		/// <summary>
+		/// A list of page IDs for this table. Each page contains a block of records.
+		/// </summary>
+		/// <value>A list of page IDs for this table. Each page contains a block of records.</value>
+		[DataMember(Name="page_ids", EmitDefaultValue=false)]
+		public List<string> PageIds { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class TableInformation {\n");
-            sb.Append("  Uri: ").Append(Uri).Append("\n");
-            sb.Append("  TableId: ").Append(TableId).Append("\n");
-            sb.Append("  ColumnNames: ").Append(ColumnNames).Append("\n");
-            sb.Append("  PageIds: ").Append(PageIds).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class TableInformation {\n");
+			sb.Append("  Uri: ").Append(Uri).Append("\n");
+			sb.Append("  TableId: ").Append(TableId).Append("\n");
+			sb.Append("  ColumnNames: ").Append(ColumnNames).Append("\n");
+			sb.Append("  PageIds: ").Append(PageIds).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TableInformation);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as TableInformation);
+		}
 
-        /// <summary>
-        /// Returns true if TableInformation instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TableInformation to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TableInformation input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if TableInformation instances are equal
+		/// </summary>
+		/// <param name="input">Instance of TableInformation to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(TableInformation input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Uri == input.Uri ||
-                    (this.Uri != null &&
-                    this.Uri.Equals(input.Uri))
-                ) && 
-                (
-                    this.TableId == input.TableId ||
-                    (this.TableId != null &&
-                    this.TableId.Equals(input.TableId))
-                ) && 
-                (
-                    this.ColumnNames == input.ColumnNames ||
-                    this.ColumnNames != null &&
-                    this.ColumnNames.SequenceEqual(input.ColumnNames)
-                ) && 
-                (
-                    this.PageIds == input.PageIds ||
-                    this.PageIds != null &&
-                    this.PageIds.SequenceEqual(input.PageIds)
-                );
-        }
+			return 
+				(
+					this.Uri == input.Uri ||
+					(this.Uri != null &&
+					this.Uri.Equals(input.Uri))
+				) && 
+				(
+					this.TableId == input.TableId ||
+					(this.TableId != null &&
+					this.TableId.Equals(input.TableId))
+				) && 
+				(
+					this.ColumnNames == input.ColumnNames ||
+					this.ColumnNames != null &&
+					this.ColumnNames.SequenceEqual(input.ColumnNames)
+				) && 
+				(
+					this.PageIds == input.PageIds ||
+					this.PageIds != null &&
+					this.PageIds.SequenceEqual(input.PageIds)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Uri != null)
-                    hashCode = hashCode * 59 + this.Uri.GetHashCode();
-                if (this.TableId != null)
-                    hashCode = hashCode * 59 + this.TableId.GetHashCode();
-                if (this.ColumnNames != null)
-                    hashCode = hashCode * 59 + this.ColumnNames.GetHashCode();
-                if (this.PageIds != null)
-                    hashCode = hashCode * 59 + this.PageIds.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Uri != null)
+					hashCode = hashCode * 59 + this.Uri.GetHashCode();
+				if (this.TableId != null)
+					hashCode = hashCode * 59 + this.TableId.GetHashCode();
+				if (this.ColumnNames != null)
+					hashCode = hashCode * 59 + this.ColumnNames.GetHashCode();
+				if (this.PageIds != null)
+					hashCode = hashCode * 59 + this.PageIds.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

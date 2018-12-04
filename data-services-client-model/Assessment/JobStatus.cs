@@ -22,37 +22,37 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Assessment
 {
-    /// <summary>
-    /// Defines jobStatus
-    /// </summary>
-    
-    [JsonConverter(typeof(StringEnumConverter))]
-    
-    public enum JobStatus
-    {
-        
-        /// <summary>
-        /// Enum CREATED for value: CREATED
-        /// </summary>
-        [EnumMember(Value = "CREATED")]
-        CREATED = 1,
-        
-        /// <summary>
-        /// Enum STARTED for value: STARTED
-        /// </summary>
-        [EnumMember(Value = "STARTED")]
-        STARTED = 2,
-        
-        /// <summary>
-        /// Enum SUCCESS for value: SUCCESS
-        /// </summary>
-        [EnumMember(Value = "SUCCESS")]
-        SUCCESS = 3,
-        
-        /// <summary>
-        /// Enum FAILURE for value: FAILURE
-        /// </summary>
-        [EnumMember(Value = "FAILURE")]
-        FAILURE = 4
-    }
+	/// <summary>
+	/// Defines jobStatus
+	/// </summary>
+	
+	[JsonConverter(typeof(StringEnumConverter))]
+	
+	public enum JobStatus
+	{
+		
+		/// <summary>
+		/// Enum CREATED for value: CREATED
+		/// </summary>
+		[EnumMember(Value = "CREATED")]
+		CREATED = 1,
+		
+		/// <summary>
+		/// Enum STARTED for value: STARTED
+		/// </summary>
+		[EnumMember(Value = "STARTED")]
+		STARTED = 2,
+		
+		/// <summary>
+		/// Enum SUCCESS for value: SUCCESS
+		/// </summary>
+		[EnumMember(Value = "SUCCESS")]
+		SUCCESS = 3,
+		
+		/// <summary>
+		/// Enum FAILURE for value: FAILURE
+		/// </summary>
+		[EnumMember(Value = "FAILURE")]
+		FAILURE = 4
+	}
 }

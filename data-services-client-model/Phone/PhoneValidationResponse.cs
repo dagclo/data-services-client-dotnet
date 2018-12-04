@@ -22,101 +22,101 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Phone
 {
-    /// <summary>
-    /// PhoneValidationResponse
-    /// </summary>
-    [DataContract]
-    public partial class PhoneValidationResponse : IEquatable<PhoneValidationResponse>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PhoneValidationResponse" /> class.
-        /// </summary>
-        /// <param name="PhoneNumbers">PhoneNumbers.</param>
-        public PhoneValidationResponse(List<PhoneValidationResponseRecord> PhoneNumbers = default(List<PhoneValidationResponseRecord>))
-        {
-            this.PhoneNumbers = PhoneNumbers;
-        }
-        
-        /// <summary>
-        /// Gets or Sets PhoneNumbers
-        /// </summary>
-        [DataMember(Name="phone_numbers", EmitDefaultValue=false)]
-        public List<PhoneValidationResponseRecord> PhoneNumbers { get; set; }
+	/// <summary>
+	/// PhoneValidationResponse
+	/// </summary>
+	[DataContract]
+	public partial class PhoneValidationResponse : IEquatable<PhoneValidationResponse>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PhoneValidationResponse" /> class.
+		/// </summary>
+		/// <param name="PhoneNumbers">PhoneNumbers.</param>
+		public PhoneValidationResponse(List<PhoneValidationResponseRecord> PhoneNumbers = default(List<PhoneValidationResponseRecord>))
+		{
+			this.PhoneNumbers = PhoneNumbers;
+		}
+		
+		/// <summary>
+		/// Gets or Sets PhoneNumbers
+		/// </summary>
+		[DataMember(Name="phone_numbers", EmitDefaultValue=false)]
+		public List<PhoneValidationResponseRecord> PhoneNumbers { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class PhoneValidationResponse {\n");
-            sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class PhoneValidationResponse {\n");
+			sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as PhoneValidationResponse);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as PhoneValidationResponse);
+		}
 
-        /// <summary>
-        /// Returns true if PhoneValidationResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of PhoneValidationResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PhoneValidationResponse input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if PhoneValidationResponse instances are equal
+		/// </summary>
+		/// <param name="input">Instance of PhoneValidationResponse to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(PhoneValidationResponse input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.PhoneNumbers == input.PhoneNumbers ||
-                    this.PhoneNumbers != null &&
-                    this.PhoneNumbers.SequenceEqual(input.PhoneNumbers)
-                );
-        }
+			return 
+				(
+					this.PhoneNumbers == input.PhoneNumbers ||
+					this.PhoneNumbers != null &&
+					this.PhoneNumbers.SequenceEqual(input.PhoneNumbers)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PhoneNumbers != null)
-                    hashCode = hashCode * 59 + this.PhoneNumbers.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.PhoneNumbers != null)
+					hashCode = hashCode * 59 + this.PhoneNumbers.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

@@ -22,102 +22,102 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Address
 {
-    /// <summary>
-    /// Defines an additional output group of fields for move_update processing, enabled using the &#x60;output_groups&#x60; configuration setting.
-    /// </summary>
-    [DataContract]
-    public partial class CorrectionResponseRecordMoveUpdate : IEquatable<CorrectionResponseRecordMoveUpdate>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionResponseRecordMoveUpdate" /> class.
-        /// </summary>
-        /// <param name="AddressCookie">An identifier that can be passed in with the corresponding record when running a move_update job in place of the record&#39;s address details..</param>
-        public CorrectionResponseRecordMoveUpdate(string AddressCookie = default(string))
-        {
-            this.AddressCookie = AddressCookie;
-        }
-        
-        /// <summary>
-        /// An identifier that can be passed in with the corresponding record when running a move_update job in place of the record&#39;s address details.
-        /// </summary>
-        /// <value>An identifier that can be passed in with the corresponding record when running a move_update job in place of the record&#39;s address details.</value>
-        [DataMember(Name="address_cookie", EmitDefaultValue=false)]
-        public string AddressCookie { get; set; }
+	/// <summary>
+	/// Defines an additional output group of fields for move_update processing, enabled using the &#x60;output_groups&#x60; configuration setting.
+	/// </summary>
+	[DataContract]
+	public partial class CorrectionResponseRecordMoveUpdate : IEquatable<CorrectionResponseRecordMoveUpdate>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionResponseRecordMoveUpdate" /> class.
+		/// </summary>
+		/// <param name="AddressCookie">An identifier that can be passed in with the corresponding record when running a move_update job in place of the record&#39;s address details..</param>
+		public CorrectionResponseRecordMoveUpdate(string AddressCookie = default(string))
+		{
+			this.AddressCookie = AddressCookie;
+		}
+		
+		/// <summary>
+		/// An identifier that can be passed in with the corresponding record when running a move_update job in place of the record&#39;s address details.
+		/// </summary>
+		/// <value>An identifier that can be passed in with the corresponding record when running a move_update job in place of the record&#39;s address details.</value>
+		[DataMember(Name="address_cookie", EmitDefaultValue=false)]
+		public string AddressCookie { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CorrectionResponseRecordMoveUpdate {\n");
-            sb.Append("  AddressCookie: ").Append(AddressCookie).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class CorrectionResponseRecordMoveUpdate {\n");
+			sb.Append("  AddressCookie: ").Append(AddressCookie).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CorrectionResponseRecordMoveUpdate);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as CorrectionResponseRecordMoveUpdate);
+		}
 
-        /// <summary>
-        /// Returns true if CorrectionResponseRecordMoveUpdate instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CorrectionResponseRecordMoveUpdate to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CorrectionResponseRecordMoveUpdate input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if CorrectionResponseRecordMoveUpdate instances are equal
+		/// </summary>
+		/// <param name="input">Instance of CorrectionResponseRecordMoveUpdate to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(CorrectionResponseRecordMoveUpdate input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.AddressCookie == input.AddressCookie ||
-                    (this.AddressCookie != null &&
-                    this.AddressCookie.Equals(input.AddressCookie))
-                );
-        }
+			return 
+				(
+					this.AddressCookie == input.AddressCookie ||
+					(this.AddressCookie != null &&
+					this.AddressCookie.Equals(input.AddressCookie))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AddressCookie != null)
-                    hashCode = hashCode * 59 + this.AddressCookie.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.AddressCookie != null)
+					hashCode = hashCode * 59 + this.AddressCookie.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }
