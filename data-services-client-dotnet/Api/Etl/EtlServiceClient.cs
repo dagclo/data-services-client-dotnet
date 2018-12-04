@@ -68,5 +68,4 @@ namespace Quadient.DataServices.Api.Etl
 			return Task.FromResult<IEtlServiceTable>(new EtlServiceTable(_client, tableId));
 		}
 	}
-
 }
