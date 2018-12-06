@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -169,10 +170,26 @@ namespace Quadient.DataServices.Api
                 using (var result = await _httpClient.SendAsync(httpRequest, cancellationToken))
                 {
                     await result.EnsureSuccessAsync();
+
+                    var resultType = typeof(R);
+                    if (resultType == typeof(Stream))
+                        return Cast<R>(await result.Content.ReadAsStreamAsync());
+                    if (resultType == typeof(byte[]))
+                        return Cast<R>(await result.Content.ReadAsByteArrayAsync());
                     var resultContent = await result.Content.ReadAsStringAsync();
+                    if (resultType == typeof(string))
+                        return Cast<R>(resultContent);
                     return DeserializeObject<R>(resultContent);
                 }
             }
+        }
+
+        /// <summary>
+        /// very silly hack method to do a cast to "R", see https://social.msdn.microsoft.com/Forums/en-US/fe14d396-bc35-4f98-851d-ce3c8663cd79/dynamic-casting-in-c-at-runtime
+        /// </summary>
+        private static T Cast<T>(object o)
+        {
+            return (T)o;
         }
 
         private Uri GetBaseAddress(bool isCloud = false)

@@ -11,7 +11,7 @@ namespace Quadient.DataServices.Api.UsBatch
             Body = request;
         }
         public string ServicePath { get; } = "services/us-appends/v1/jobs";
-        public HttpMethod Method { get; } = HttpMethod.Post;
+        public HttpMethod Method => HttpMethod.Post;
         public object Body { get; }
         public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
         public IDictionary<string, string> Headers { get; }

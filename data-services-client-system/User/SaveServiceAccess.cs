@@ -11,7 +11,7 @@ namespace Quadient.DataServices.System.User
     public class SaveServiceAccess : IRequest<ServiceAccessDescriptor>
     {
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Put;
+        public HttpMethod Method => HttpMethod.Put;
         public ServiceAccessRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
         public object Body => Content;

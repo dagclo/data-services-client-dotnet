@@ -11,7 +11,7 @@ namespace Quadient.DataServices.Api.WalkSequence
         }
 
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Post;
+        public HttpMethod Method => HttpMethod.Post;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
         public object Body => Content;

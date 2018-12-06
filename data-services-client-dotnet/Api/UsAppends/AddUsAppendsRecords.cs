@@ -12,7 +12,7 @@ namespace Quadient.DataServices.Api.UsBatch
             Body = new Records { _Records = records };
         }
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Post;
+        public HttpMethod Method => HttpMethod.Post;
         public IDictionary<string, string> QueryStringParams { get; }
         public object Body { get; }
         public IDictionary<string, string> Headers { get; }

@@ -11,7 +11,7 @@ namespace Quadient.DataServices.Api.UsBatch
         }
 
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Post;
+        public HttpMethod Method => HttpMethod.Post;
         public object Body { get; }
         public IDictionary<string, string> QueryStringParams { get; }
         public IDictionary<string, string> Headers { get; }

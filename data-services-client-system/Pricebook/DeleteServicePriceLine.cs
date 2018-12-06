@@ -10,7 +10,7 @@ namespace Quadient.DataServices.System.Pricebook
     public class DeleteServicePriceLine : IRequest<object>
     {
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Delete;
+        public HttpMethod Method => HttpMethod.Delete;
         public object Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
         public object Body => Content;

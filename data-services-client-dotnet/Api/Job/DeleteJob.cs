@@ -9,7 +9,7 @@ namespace Quadient.DataServices.Api.Job
     public class DeleteJob : IRequest<object>
     {
         public string ServicePath { get; }
-        public HttpMethod Method { get; } = HttpMethod.Delete;
+        public HttpMethod Method => HttpMethod.Delete;
         public object Body { get; }
         public IDictionary<string, string> Headers { get; }
         public IDictionary<string, string> QueryStringParams { get; }

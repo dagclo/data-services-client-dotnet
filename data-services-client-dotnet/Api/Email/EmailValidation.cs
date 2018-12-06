@@ -11,7 +11,7 @@ namespace Quadient.DataServices.Api.Email
     public class EmailValidation : IRequest<EmailValidationResponseBody>
     {
         public string ServicePath { get; } = "services/email-validation/v1/validate";
-        public HttpMethod Method { get; } = HttpMethod.Post;
+        public HttpMethod Method => HttpMethod.Post;
         private EmailValidationRequest Content { get; set; }
         public IDictionary<string, string> QueryStringParams { get; }
         public object Body => Content;
