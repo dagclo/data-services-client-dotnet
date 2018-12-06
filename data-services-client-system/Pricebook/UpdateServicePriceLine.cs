@@ -11,7 +11,7 @@ namespace Quadient.DataServices.System.Pricebook
 	public class UpdateServicePriceLine : IRequest<object>
 	{
 		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Put;
+		public HttpMethod Method => HttpMethod.Put;
 		public PriceUpdate Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;

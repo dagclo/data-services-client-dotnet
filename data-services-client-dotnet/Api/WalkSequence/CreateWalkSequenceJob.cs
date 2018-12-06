@@ -13,12 +13,9 @@ namespace Quadient.DataServices.Api.WalkSequence
 			Content = request;
 		}
 
-		public string ServicePath { get; } = $"{WalkSequenceClient.BASE_PATH}/jobs";
-
-		public HttpMethod Method { get; } = HttpMethod.Post;
-
+		public string ServicePath => $"{WalkSequenceClient.BASE_PATH}/jobs";
+		public HttpMethod Method => HttpMethod.Post;
 		public WalkSequenceJobCreationRequest Content { get; set; }
-
 		public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
 		public object Body => Content;
 		public IDictionary<string, string> Headers { get; }

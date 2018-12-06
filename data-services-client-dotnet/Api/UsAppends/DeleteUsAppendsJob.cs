@@ -3,6 +3,7 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
+<<<<<<< HEAD
 	public class DeleteUsAppendsJob : IRequest<object>
 	{
 		public DeleteUsAppendsJob(string jobId)
@@ -10,9 +11,24 @@ namespace Quadient.DataServices.Api.UsBatch
 			ServicePath = $"services/us-appends/v1/jobs/{jobId}";
 		}
 		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Delete;
+		public HttpMethod Method => HttpMethod.Delete;
 		public object Body { get; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public IDictionary<string, string> Headers { get; }
 	}
 }
+=======
+    public class DeleteUsAppendsJob : IRequest<object>
+    {
+        public DeleteUsAppendsJob(string jobId)
+        {
+            ServicePath = $"services/us-appends/v1/jobs/{jobId}";
+        }
+        public string ServicePath { get; }
+        public HttpMethod Method => HttpMethod.Delete;
+        public object Body { get; }
+        public IDictionary<string, string> QueryStringParams { get; }
+        public IDictionary<string, string> Headers { get; }
+    }
+}
+>>>>>>> EtlClient
