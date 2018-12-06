@@ -10,7 +10,7 @@ namespace Quadient.DataServices.Api.Job
     public class UpdateStatus : IRequest<JobStatusInformationResponse>
     {
         public string ServicePath { get; private set; }
-        public HttpMethod Method { get; } = HttpMethod.Put;
+        public HttpMethod Method => HttpMethod.Put;
         public IDictionary<string, string> QueryStringParams { get; }
         public object Body => Content;
         public IDictionary<string, string> Headers { get; }

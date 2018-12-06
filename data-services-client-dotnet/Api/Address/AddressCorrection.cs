@@ -10,7 +10,7 @@ namespace Quadient.DataServices.Api.Address
     public class AddressCorrection : IRequest<CorrectionResponse>
     {
         public string ServicePath { get; } = "services/address-correction/v1/correct";
-        public HttpMethod Method { get; } = HttpMethod.Post;
+        public HttpMethod Method => HttpMethod.Post;
         public IDictionary<string, string> QueryStringParams { get; }
         private CorrectionRequest Content { get; set; }
         public object Body => Content;

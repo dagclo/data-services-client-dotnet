@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Quadient.DataServices.Model.Etl;
 
 namespace Quadient.DataServices.Api.Etl
 {
@@ -27,33 +29,27 @@ namespace Quadient.DataServices.Api.Etl
 		public async Task<IEtlServiceTable> CreateTable(IList<string> columnNames)
 		{
 			var resp = await _client.Execute(new TableCreationSchemaRequest(columnNames));
-			var tableId = resp.TableId;
-			var columnNamesInResponse = resp.ColumnNames;
-			return new EtlServiceTable(_client, tableId, columnNamesInResponse);
+			return CreateTableFromResponse(resp);
 		}
 
 		public async Task<IEtlServiceTable> CreateTable(Stream sourceStream)
 		{
-			var resp =  await _client.Execute(new TableCreationFileUploadRequest(sourceStream));
-			var tableId = resp.TableId;
-			var columnNamesInResponse = resp.ColumnNames;
-			return new EtlServiceTable(_client, tableId, columnNamesInResponse);
+			var resp = await _client.Execute(new TableCreationFileUploadRequest(sourceStream));
+			return CreateTableFromResponse(resp);
 		}
 
 		public async Task<IEtlServiceTable> CreateTable(string sourceFile)
 		{
-			var resp =  await _client.Execute(new TableCreationFileUploadRequest(sourceFile));
-			var tableId = resp.TableId;
-			var columnNamesInResponse = resp.ColumnNames;
-			return new EtlServiceTable(_client, tableId, columnNamesInResponse);
+			var resp = await _client.Execute(new TableCreationFileUploadRequest(sourceFile));
+			return CreateTableFromResponse(resp);
 		}
 
-		public Task deleteFile(string fileId)
+		public Task DeleteFile(string fileId)
 		{
 			return new EtlServiceFile(_client, fileId).DeleteFile();
 		}
 
-		public Task deleteTable(string tableId)
+		public Task DeleteTable(string tableId)
 		{
 			return new EtlServiceTable(_client, tableId).DeleteTable();
 		}
@@ -63,9 +59,16 @@ namespace Quadient.DataServices.Api.Etl
 			return Task.FromResult<IEtlServiceFile>(new EtlServiceFile(_client, fileId));
 		}
 
-		public Task<IEtlServiceTable> getTable(string tableId)
+		public Task<IEtlServiceTable> GetTable(string tableId)
 		{
 			return Task.FromResult<IEtlServiceTable>(new EtlServiceTable(_client, tableId));
 		}
+		private IEtlServiceTable CreateTableFromResponse(TableInformation resp)
+		{
+			var tableId = resp.TableId;
+			var columnNamesInResponse = resp.ColumnNames;
+			return new EtlServiceTable(_client, tableId, columnNamesInResponse);
+		}
+
 	}
 }

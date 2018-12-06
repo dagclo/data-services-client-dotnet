@@ -8,8 +8,8 @@ namespace Quadient.DataServices.Api.Etl
 {
 	public class TableCreationSchemaRequest : IRequest<TableInformation>
 	{
-		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Post;
+		public string ServicePath => "etl/v1/tables";
+		public HttpMethod Method => HttpMethod.Post;
 		public object Body { get; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public IDictionary<string, string> Headers { get; }
@@ -20,7 +20,6 @@ namespace Quadient.DataServices.Api.Etl
 		{ }
 		public TableCreationSchemaRequest(TableCreationRequest req)
 		{
-			ServicePath = "etl/v1/tables";
 			Body = req;
 		}
 	}

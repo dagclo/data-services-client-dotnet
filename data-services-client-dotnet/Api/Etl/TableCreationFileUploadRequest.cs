@@ -7,8 +7,8 @@ namespace Quadient.DataServices.Api.Etl
 {
 	public class TableCreationFileUploadRequest : IRequest<TableInformation>
 	{
-		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Post;
+		public string ServicePath => "etl/v1/tables";
+		public HttpMethod Method => HttpMethod.Post;
 		public object Body { get; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public IDictionary<string, string> Headers { get; }
@@ -17,7 +17,6 @@ namespace Quadient.DataServices.Api.Etl
 		public TableCreationFileUploadRequest(string file) : this(new FileStream(file, FileMode.Open)) { }
 		public TableCreationFileUploadRequest(Stream stream)
 		{
-			ServicePath = "etl/v1/tables";
 			var formData = new MultipartFormDataContent();
 			HttpContent fileContent = new StreamContent(stream);
 			formData.Add(fileContent, "upfile");

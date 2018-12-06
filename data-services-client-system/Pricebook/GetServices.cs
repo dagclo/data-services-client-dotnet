@@ -11,7 +11,7 @@ namespace Quadient.DataServices.System.Pricebook
     public class GetServices : IRequest<ServicesEnumeration>
     {
         public string ServicePath { get; } = "pricebook/v1/services";
-        public HttpMethod Method { get; } = HttpMethod.Get;
+        public HttpMethod Method => HttpMethod.Get;
         public object Body { get; }
         public IDictionary<string, string> QueryStringParams { get; }
         public IDictionary<string, string> Headers { get; }
