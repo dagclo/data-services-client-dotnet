@@ -10,20 +10,12 @@ namespace Quadient.DataServices.Api.WalkSequence
 	{
 		private readonly IClient _client;
 		private RecordTables tables;
+		public WalkSequenceJobSession(IClient client, WalkSequenceJob job) : this(client, job.JobId) {}
+		public WalkSequenceJobSession(IClient client, JobSummary resp): this(client, resp.JobId) {}
 		public WalkSequenceJobSession(IClient client, string jobId)
 		{
 			_client = client;
 			JobId = jobId;
-		}
-		public WalkSequenceJobSession(IClient client, WalkSequenceJob job)
-		{
-			_client = client;
-			JobId = job.JobId;
-		}
-		public WalkSequenceJobSession(IClient client, JobSummary resp)
-		{
-			_client = client;
-			JobId = resp.JobId;
 		}
 		public string JobId { get; }
 		public Task<Records> DownloadRecords(string pageId)
