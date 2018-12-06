@@ -82,7 +82,7 @@ namespace Quadient.DataServices.Model.UsBatch
 		/// <param name="PmbPlacement">PmbPlacement.</param>
 		/// <param name="PreferAbbreviatedAddresses">When true, the abbreviated version of cities and street names if available. Note that not every city and street has an abbreviation. Defaults to false..</param>
 		/// <param name="PreferredAddressType">PreferredAddressType.</param>
-		/// <param name="RequireCassReport">Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false..</param>
+		/// <param name="RequireCassReport">Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to true..</param>
 		/// <param name="RequireDpvValidatedSecondary">Assign a +4 zip code only for those addresses with validated secondary information. When true. Defaults to false..</param>
 		/// <param name="UnitPlacement">UnitPlacement.</param>
 		public WalkSequenceConfiguration(AddressElementFormat? AddressElementFormat = default(AddressElementFormat?), Casing? AddressCasing = default(Casing?), AddressLineFormatting? AddressLineFormatting = default(AddressLineFormatting?), bool? ApplyCasingToOrganization = default(bool?), OrganizationPlacement? OrganizationPlacement = default(OrganizationPlacement?), bool? KeepExtraInformation = default(bool?), string ListProcessorName = default(string), string MailersAddress = default(string), string MailersCity = default(string), string MailersListName = default(string), string MailersName = default(string), string MailersState = default(string), string MailersZipcode = default(string), PmbPlacement? PmbPlacement = default(PmbPlacement?), bool? PreferAbbreviatedAddresses = default(bool?), PreferredAddressType? PreferredAddressType = default(PreferredAddressType?), bool? RequireCassReport = default(bool?), bool? RequireDpvValidatedSecondary = default(bool?), UnitPlacement? UnitPlacement = default(UnitPlacement?))
@@ -185,9 +185,9 @@ namespace Quadient.DataServices.Model.UsBatch
 
 
 		/// <summary>
-		/// Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false.
+		/// Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to true.
 		/// </summary>
-		/// <value>Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to false.</value>
+		/// <value>Allows opting-out of CASS™ 3553 report generation. May improve processing speed. Defaults to true.</value>
 		[DataMember(Name="require_cass_report", EmitDefaultValue=false)]
 		public bool? RequireCassReport { get; set; }
 

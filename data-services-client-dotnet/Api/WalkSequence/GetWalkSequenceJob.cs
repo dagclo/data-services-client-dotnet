@@ -8,7 +8,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 	{
 		public GetWalkSequenceJob(string jobId)
 		{
-			ServicePath = $"services/walk-sequence/v1/jobs/{jobId}";
+			ServicePath = $"{WalkSequenceClient.BASE_PATH}/jobs/{jobId}";
 		}
 
 		public string ServicePath { get; }
