@@ -9,7 +9,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 	internal class WalkSequenceJobSession : IWalkSequenceJobSession
 	{
 		private readonly IClient _client;
-		private RecordTables tables;
+		private RecordTables _tables;
 		public WalkSequenceJobSession(IClient client, WalkSequenceJob job) : this(client, job.JobId) {}
 		public WalkSequenceJobSession(IClient client, JobSummary resp): this(client, resp.JobId) {}
 		public WalkSequenceJobSession(IClient client, string jobId)
@@ -57,12 +57,12 @@ namespace Quadient.DataServices.Api.WalkSequence
 		}
 		public async Task<RecordTables> GetRecordTables()
 		{
-			if (tables == null)
+			if (_tables == null)
 			{
 				var req = SimpleRequest<RecordTables>.Get($"{WalkSequenceClient.BASE_PATH}/jobs/{JobId}/records/tables");
-				tables = await _client.Execute(req);
+				_tables = await _client.Execute(req);
 			}
-			return tables;
+			return _tables;
 		}
 		public Task Run()
 		{
