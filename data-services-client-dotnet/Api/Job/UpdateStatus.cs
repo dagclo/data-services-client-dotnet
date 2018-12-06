@@ -4,17 +4,31 @@ using Quadient.DataServices.Model.Job;
 
 namespace Quadient.DataServices.Api.Job
 {
+<<<<<<< HEAD
 	/// <summary>
 	/// Updates the status of a job. Only certain job status transitions are possible. You cannot go back from a finite state like `SUCCESS` or `FAILURE`, and you cannot go back to an initial state like `CREATED` once the job has started.
 	/// </summary>
 	public class UpdateStatus : IRequest<JobStatusInformationResponse>
 	{
 		public string ServicePath { get; private set; }
-		public HttpMethod Method { get; } = HttpMethod.Put;
+		public HttpMethod Method => HttpMethod.Put;
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;
 		public IDictionary<string, string> Headers { get; }
 		private JobStatusUpdateRequest Content { get; set; }
+=======
+    /// <summary>
+    /// Updates the status of a job. Only certain job status transitions are possible. You cannot go back from a finite state like `SUCCESS` or `FAILURE`, and you cannot go back to an initial state like `CREATED` once the job has started.
+    /// </summary>
+    public class UpdateStatus : IRequest<JobStatusInformationResponse>
+    {
+        public string ServicePath { get; private set; }
+        public HttpMethod Method => HttpMethod.Put;
+        public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
+        private JobStatusUpdateRequest Content { get; set; }
+>>>>>>> EtlClient
 
 		/// <summary>
 		/// Updates the status of a job. Only certain job status transitions are possible. You cannot go back from a finite state like `SUCCESS` or `FAILURE`, and you cannot go back to an initial state like `CREATED` once the job has started.

@@ -64,7 +64,7 @@ namespace Quadient.DataServices.Api.Etl
 		}
 		private async Task<TableInformation> GetTableInformation(bool retrieveColumns, bool retrievePages)
 		{
-			return await _client.Execute(new TableInformationRequest(_tableId, retrieveColumns, retrievePages)); ;
+			return await _client.Execute(new TableInformationRequest(_tableId, retrieveColumns, retrievePages));
 		}
 	}
 }

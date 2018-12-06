@@ -11,7 +11,7 @@ namespace Quadient.DataServices.System.Pricebook
 	public class SaveServicePrices : IRequest<Prices>
 	{
 		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Post;
+		public HttpMethod Method => HttpMethod.Post;
 		public PriceSettingRequest Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;

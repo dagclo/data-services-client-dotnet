@@ -4,14 +4,25 @@ using System.Net.Http;
 
 namespace Quadient.DataServices.Api.User
 {
+<<<<<<< HEAD
 	public abstract class AuthToken : IRequest<Session>
 	{
 		public string ServicePath { get; set; }
-		public HttpMethod Method { get; } = HttpMethod.Post;
+		public HttpMethod Method => HttpMethod.Post;
 		public ICredentials Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;
 		public IDictionary<string, string> Headers { get; }
+=======
+    public abstract class AuthToken : IRequest<Session>
+    {
+        public string ServicePath { get; set; }
+        public HttpMethod Method => HttpMethod.Post;
+        public ICredentials Content { get; set; }
+        public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
+>>>>>>> EtlClient
 
 		internal abstract HttpContent GetHttpContent();
 	}

@@ -34,8 +34,7 @@ namespace Quadient.DataServices.Api.Etl
 
 		public Task<IEtlServiceTable> TransformToTable(bool deleteFile)
 		{
-			TransformRequest req = new TransformRequest();
-			req.DeleteAfterTransform = deleteFile;
+			TransformRequest req = new TransformRequest(null, deleteFile, 0, null);
 			return TransformToTable(req);
 		}
 

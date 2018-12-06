@@ -10,7 +10,7 @@ namespace Quadient.DataServices.Api.Etl
 	public class TableAppendRecordsRequest : IRequest<TableUpdateResponse>
 	{
 		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Post;
+		public HttpMethod Method => HttpMethod.Post;
 		public object Body { get; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public IDictionary<string, string> Headers { get; }
@@ -22,11 +22,7 @@ namespace Quadient.DataServices.Api.Etl
 		}
 		private static TableUpdateRequest CreateRequest(IEnumerable<IList<string>> records)
 		{
-			var list = new List<List<string>>(); // the request class requires a List
-			foreach (IList<string> record in records)
-			{
-				list.Add(record.ToList());
-			}
+			var list = records.Select(r => r.ToList()).ToList();
 			return new TableUpdateRequest()
 			{
 				Records = list

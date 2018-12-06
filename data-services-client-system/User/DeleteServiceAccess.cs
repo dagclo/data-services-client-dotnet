@@ -10,7 +10,7 @@ namespace Quadient.DataServices.System.User
 	public class DeleteServiceAccess : IRequest<object>
 	{
 		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Delete;
+		public HttpMethod Method => HttpMethod.Delete;
 		public object Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;

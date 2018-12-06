@@ -11,7 +11,7 @@ namespace Quadient.DataServices.System.Pricebook
 	public class EstimatePrice : IRequest<CalculateResponse>
 	{
 		public string ServicePath { get; } = "pricebook/v1/estimate";
-		public HttpMethod Method { get; } = HttpMethod.Post;
+		public HttpMethod Method => HttpMethod.Post;
 		public EstimateDetails Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;

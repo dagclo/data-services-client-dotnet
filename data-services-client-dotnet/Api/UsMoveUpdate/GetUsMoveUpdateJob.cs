@@ -11,11 +11,22 @@ namespace Quadient.DataServices.Api.UsBatch
 			ServicePath = $"services/us-move-update/v1/jobs/{jobId}";
 		}
 
+<<<<<<< HEAD
 		public string ServicePath { get; }
-		public HttpMethod Method { get; } = HttpMethod.Get;
+		public HttpMethod Method => HttpMethod.Get;
 		public object Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;
 		public IDictionary<string, string> Headers { get; }
 	}
 }
+=======
+        public string ServicePath { get; }
+        public HttpMethod Method => HttpMethod.Get;
+        public object Content { get; set; }
+        public IDictionary<string, string> QueryStringParams { get; }
+        public object Body => Content;
+        public IDictionary<string, string> Headers { get; }
+    }
+}
+>>>>>>> EtlClient

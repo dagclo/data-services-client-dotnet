@@ -13,7 +13,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 
 		public string ServicePath { get; }
 
-		public HttpMethod Method { get; } = HttpMethod.Get;
+		public HttpMethod Method => HttpMethod.Get;
 
 		public object Content { get; set; }
 

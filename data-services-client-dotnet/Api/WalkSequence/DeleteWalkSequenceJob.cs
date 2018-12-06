@@ -12,7 +12,7 @@ namespace Quadient.DataServices.Api.WalkSequence
 
 		public string ServicePath { get; }
 
-		public HttpMethod Method { get; } = HttpMethod.Delete;
+		public HttpMethod Method => HttpMethod.Delete;
 
 		public object Content { get; set; }
 
