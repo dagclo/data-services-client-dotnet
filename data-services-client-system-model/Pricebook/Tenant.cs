@@ -22,117 +22,117 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.Pricebook
 {
-    /// <summary>
-    /// Tenant
-    /// </summary>
-    [DataContract]
-    public partial class Tenant : IEquatable<Tenant>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Tenant" /> class.
-        /// </summary>
-        /// <param name="TenantName">TenantName.</param>
-        /// <param name="UserIds">UserIds.</param>
-        public Tenant(string TenantName = default(string), List<string> UserIds = default(List<string>))
-        {
-            this.TenantName = TenantName;
-            this.UserIds = UserIds;
-        }
+	/// <summary>
+	/// Tenant
+	/// </summary>
+	[DataContract]
+	public partial class Tenant : IEquatable<Tenant>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Tenant" /> class.
+		/// </summary>
+		/// <param name="TenantName">TenantName.</param>
+		/// <param name="UserIds">UserIds.</param>
+		public Tenant(string TenantName = default(string), List<string> UserIds = default(List<string>))
+		{
+			this.TenantName = TenantName;
+			this.UserIds = UserIds;
+		}
+		
+		/// <summary>
+		/// Gets or Sets TenantName
+		/// </summary>
+		[DataMember(Name="tenant_name", EmitDefaultValue=false)]
+		public string TenantName { get; set; }
 
-        /// <summary>
-        /// Gets or Sets TenantName
-        /// </summary>
-        [DataMember(Name = "tenant_name", EmitDefaultValue = false)]
-        public string TenantName { get; set; }
+		/// <summary>
+		/// Gets or Sets UserIds
+		/// </summary>
+		[DataMember(Name="user_ids", EmitDefaultValue=false)]
+		public List<string> UserIds { get; set; }
 
-        /// <summary>
-        /// Gets or Sets UserIds
-        /// </summary>
-        [DataMember(Name = "user_ids", EmitDefaultValue = false)]
-        public List<string> UserIds { get; set; }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class Tenant {\n");
+			sb.Append("  TenantName: ").Append(TenantName).Append("\n");
+			sb.Append("  UserIds: ").Append(UserIds).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
+  
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Tenant {\n");
-            sb.Append("  TenantName: ").Append(TenantName).Append("\n");
-            sb.Append("  UserIds: ").Append(UserIds).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as Tenant);
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns true if Tenant instances are equal
+		/// </summary>
+		/// <param name="input">Instance of Tenant to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(Tenant input)
+		{
+			if (input == null)
+				return false;
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Tenant);
-        }
+			return 
+				(
+					this.TenantName == input.TenantName ||
+					(this.TenantName != null &&
+					this.TenantName.Equals(input.TenantName))
+				) && 
+				(
+					this.UserIds == input.UserIds ||
+					this.UserIds != null &&
+					this.UserIds.SequenceEqual(input.UserIds)
+				);
+		}
 
-        /// <summary>
-        /// Returns true if Tenant instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Tenant to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Tenant input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.TenantName != null)
+					hashCode = hashCode * 59 + this.TenantName.GetHashCode();
+				if (this.UserIds != null)
+					hashCode = hashCode * 59 + this.UserIds.GetHashCode();
+				return hashCode;
+			}
+		}
 
-            return
-                (
-                    this.TenantName == input.TenantName ||
-                    (this.TenantName != null &&
-                    this.TenantName.Equals(input.TenantName))
-                ) &&
-                (
-                    this.UserIds == input.UserIds ||
-                    this.UserIds != null &&
-                    this.UserIds.SequenceEqual(input.UserIds)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.TenantName != null)
-                    hashCode = hashCode * 59 + this.TenantName.GetHashCode();
-                if (this.UserIds != null)
-                    hashCode = hashCode * 59 + this.UserIds.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

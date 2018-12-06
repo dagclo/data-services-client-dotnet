@@ -22,136 +22,136 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Phone
 {
-    /// <summary>
-    /// PhoneValidationRequestRecord
-    /// </summary>
-    [DataContract]
-    public partial class PhoneValidationRequestRecord : IEquatable<PhoneValidationRequestRecord>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PhoneValidationRequestRecord" /> class.
-        /// </summary>
-        /// <param name="Id">User-specified reference id or name for the job. For example, My Job ID...</param>
-        /// <param name="Country">The country code or name. The ISO 3166 2-letter country code is preferred..</param>
-        /// <param name="PhoneNumber">The phone number to be validated..</param>
-        public PhoneValidationRequestRecord(string Id = default(string), string Country = default(string), string PhoneNumber = default(string))
-        {
-            this.Id = Id;
-            this.Country = Country;
-            this.PhoneNumber = PhoneNumber;
-        }
-        
-        /// <summary>
-        /// User-specified reference id or name for the job. For example, My Job ID..
-        /// </summary>
-        /// <value>User-specified reference id or name for the job. For example, My Job ID..</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+	/// <summary>
+	/// PhoneValidationRequestRecord
+	/// </summary>
+	[DataContract]
+	public partial class PhoneValidationRequestRecord : IEquatable<PhoneValidationRequestRecord>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PhoneValidationRequestRecord" /> class.
+		/// </summary>
+		/// <param name="Id">User-specified reference id or name for the job. For example, My Job ID...</param>
+		/// <param name="Country">The country code or name. The ISO 3166 2-letter country code is preferred..</param>
+		/// <param name="PhoneNumber">The phone number to be validated..</param>
+		public PhoneValidationRequestRecord(string Id = default(string), string Country = default(string), string PhoneNumber = default(string))
+		{
+			this.Id = Id;
+			this.Country = Country;
+			this.PhoneNumber = PhoneNumber;
+		}
+		
+		/// <summary>
+		/// User-specified reference id or name for the job. For example, My Job ID..
+		/// </summary>
+		/// <value>User-specified reference id or name for the job. For example, My Job ID..</value>
+		[DataMember(Name="id", EmitDefaultValue=false)]
+		public string Id { get; set; }
 
-        /// <summary>
-        /// The country code or name. The ISO 3166 2-letter country code is preferred.
-        /// </summary>
-        /// <value>The country code or name. The ISO 3166 2-letter country code is preferred.</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
-        public string Country { get; set; }
+		/// <summary>
+		/// The country code or name. The ISO 3166 2-letter country code is preferred.
+		/// </summary>
+		/// <value>The country code or name. The ISO 3166 2-letter country code is preferred.</value>
+		[DataMember(Name="country", EmitDefaultValue=false)]
+		public string Country { get; set; }
 
-        /// <summary>
-        /// The phone number to be validated.
-        /// </summary>
-        /// <value>The phone number to be validated.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
+		/// <summary>
+		/// The phone number to be validated.
+		/// </summary>
+		/// <value>The phone number to be validated.</value>
+		[DataMember(Name="phone_number", EmitDefaultValue=false)]
+		public string PhoneNumber { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class PhoneValidationRequestRecord {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class PhoneValidationRequestRecord {\n");
+			sb.Append("  Id: ").Append(Id).Append("\n");
+			sb.Append("  Country: ").Append(Country).Append("\n");
+			sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as PhoneValidationRequestRecord);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as PhoneValidationRequestRecord);
+		}
 
-        /// <summary>
-        /// Returns true if PhoneValidationRequestRecord instances are equal
-        /// </summary>
-        /// <param name="input">Instance of PhoneValidationRequestRecord to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PhoneValidationRequestRecord input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if PhoneValidationRequestRecord instances are equal
+		/// </summary>
+		/// <param name="input">Instance of PhoneValidationRequestRecord to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(PhoneValidationRequestRecord input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
-                ) && 
-                (
-                    this.PhoneNumber == input.PhoneNumber ||
-                    (this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(input.PhoneNumber))
-                );
-        }
+			return 
+				(
+					this.Id == input.Id ||
+					(this.Id != null &&
+					this.Id.Equals(input.Id))
+				) && 
+				(
+					this.Country == input.Country ||
+					(this.Country != null &&
+					this.Country.Equals(input.Country))
+				) && 
+				(
+					this.PhoneNumber == input.PhoneNumber ||
+					(this.PhoneNumber != null &&
+					this.PhoneNumber.Equals(input.PhoneNumber))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Id != null)
+					hashCode = hashCode * 59 + this.Id.GetHashCode();
+				if (this.Country != null)
+					hashCode = hashCode * 59 + this.Country.GetHashCode();
+				if (this.PhoneNumber != null)
+					hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

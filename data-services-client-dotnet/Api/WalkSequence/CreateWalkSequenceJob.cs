@@ -6,21 +6,21 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.WalkSequence
 {
-    public class CreateWalkSequenceJob : IRequest<JobSummary>
-    {
-        public CreateWalkSequenceJob(WalkSequenceJobCreationRequest request)
-        {
-            Content = request;
-        }
+	public class CreateWalkSequenceJob : IRequest<JobSummary>
+	{
+		public CreateWalkSequenceJob(WalkSequenceJobCreationRequest request)
+		{
+			Content = request;
+		}
 
-        public string ServicePath { get; } = "services/walk-sequence/v1/jobs";
+		public string ServicePath => "services/walk-sequence/v1/jobs";
 
-        public HttpMethod Method => HttpMethod.Post;
+		public HttpMethod Method => HttpMethod.Post;
 
-        public WalkSequenceJobCreationRequest Content { get; set; }
+		public WalkSequenceJobCreationRequest Content { get; set; }
 
-        public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
-        public object Body => Content;
-        public IDictionary<string, string> Headers { get; }
-    }
+		public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
+		public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
+	}
 }

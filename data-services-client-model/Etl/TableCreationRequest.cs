@@ -22,101 +22,101 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Etl
 {
-    /// <summary>
-    /// TableCreationRequest
-    /// </summary>
-    [DataContract]
-    public partial class TableCreationRequest : IEquatable<TableCreationRequest>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TableCreationRequest" /> class.
-        /// </summary>
-        /// <param name="ColumnNames">ColumnNames.</param>
-        public TableCreationRequest(List<string> ColumnNames = default(List<string>))
-        {
-            this.ColumnNames = ColumnNames;
-        }
-        
-        /// <summary>
-        /// Gets or Sets ColumnNames
-        /// </summary>
-        [DataMember(Name="column_names", EmitDefaultValue=false)]
-        public List<string> ColumnNames { get; set; }
+	/// <summary>
+	/// TableCreationRequest
+	/// </summary>
+	[DataContract]
+	public partial class TableCreationRequest : IEquatable<TableCreationRequest>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TableCreationRequest" /> class.
+		/// </summary>
+		/// <param name="ColumnNames">ColumnNames.</param>
+		public TableCreationRequest(List<string> ColumnNames = default(List<string>))
+		{
+			this.ColumnNames = ColumnNames;
+		}
+		
+		/// <summary>
+		/// Gets or Sets ColumnNames
+		/// </summary>
+		[DataMember(Name="column_names", EmitDefaultValue=false)]
+		public List<string> ColumnNames { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class TableCreationRequest {\n");
-            sb.Append("  ColumnNames: ").Append(ColumnNames).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class TableCreationRequest {\n");
+			sb.Append("  ColumnNames: ").Append(ColumnNames).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TableCreationRequest);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as TableCreationRequest);
+		}
 
-        /// <summary>
-        /// Returns true if TableCreationRequest instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TableCreationRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TableCreationRequest input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if TableCreationRequest instances are equal
+		/// </summary>
+		/// <param name="input">Instance of TableCreationRequest to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(TableCreationRequest input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.ColumnNames == input.ColumnNames ||
-                    this.ColumnNames != null &&
-                    this.ColumnNames.SequenceEqual(input.ColumnNames)
-                );
-        }
+			return 
+				(
+					this.ColumnNames == input.ColumnNames ||
+					this.ColumnNames != null &&
+					this.ColumnNames.SequenceEqual(input.ColumnNames)
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ColumnNames != null)
-                    hashCode = hashCode * 59 + this.ColumnNames.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.ColumnNames != null)
+					hashCode = hashCode * 59 + this.ColumnNames.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

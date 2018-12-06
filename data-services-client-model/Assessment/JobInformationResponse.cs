@@ -22,249 +22,249 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Assessment
 {
-    /// <summary>
-    /// JobInformationResponse
-    /// </summary>
-    [DataContract]
-    public partial class JobInformationResponse : IEquatable<JobInformationResponse>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JobInformationResponse" /> class.
-        /// </summary>
-        /// <param name="JobId">JobId.</param>
-        /// <param name="Name">A user-provided name for the job..</param>
-        /// <param name="Description">An optional user-provided text describing the job..</param>
-        /// <param name="CreatedAt">The time of job creation.</param>
-        /// <param name="Owner">The user_id of the job-owning user..</param>
-        /// <param name="ClientInformation">ClientInformation.</param>
-        /// <param name="Services">Services.</param>
-        /// <param name="JobStatus">JobStatus.</param>
-        /// <param name="ProgressDetails">ProgressDetails.</param>
-        /// <param name="AssessmentMetrics">AssessmentMetrics.</param>
-        public JobInformationResponse(string JobId = default(string), string Name = default(string), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string Owner = default(string), ClientInformation ClientInformation = default(ClientInformation), ServicesArray Services = default(ServicesArray), JobStatus JobStatus = default(JobStatus), ProgressDetails ProgressDetails = default(ProgressDetails), JobInformationResponseAssessmentMetrics AssessmentMetrics = default(JobInformationResponseAssessmentMetrics))
-        {
-            this.JobId = JobId;
-            this.Name = Name;
-            this.Description = Description;
-            this.CreatedAt = CreatedAt;
-            this.Owner = Owner;
-            this.ClientInformation = ClientInformation;
-            this.Services = Services;
-            this.JobStatus = JobStatus;
-            this.ProgressDetails = ProgressDetails;
-            this.AssessmentMetrics = AssessmentMetrics;
-        }
-        
-        /// <summary>
-        /// Gets or Sets JobId
-        /// </summary>
-        [DataMember(Name="job_id", EmitDefaultValue=false)]
-        public string JobId { get; set; }
+	/// <summary>
+	/// JobInformationResponse
+	/// </summary>
+	[DataContract]
+	public partial class JobInformationResponse : IEquatable<JobInformationResponse>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JobInformationResponse" /> class.
+		/// </summary>
+		/// <param name="JobId">JobId.</param>
+		/// <param name="Name">A user-provided name for the job..</param>
+		/// <param name="Description">An optional user-provided text describing the job..</param>
+		/// <param name="CreatedAt">The time of job creation.</param>
+		/// <param name="Owner">The user_id of the job-owning user..</param>
+		/// <param name="ClientInformation">ClientInformation.</param>
+		/// <param name="Services">Services.</param>
+		/// <param name="JobStatus">JobStatus.</param>
+		/// <param name="ProgressDetails">ProgressDetails.</param>
+		/// <param name="AssessmentMetrics">AssessmentMetrics.</param>
+		public JobInformationResponse(string JobId = default(string), string Name = default(string), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string Owner = default(string), ClientInformation ClientInformation = default(ClientInformation), ServicesArray Services = default(ServicesArray), JobStatus JobStatus = default(JobStatus), ProgressDetails ProgressDetails = default(ProgressDetails), JobInformationResponseAssessmentMetrics AssessmentMetrics = default(JobInformationResponseAssessmentMetrics))
+		{
+			this.JobId = JobId;
+			this.Name = Name;
+			this.Description = Description;
+			this.CreatedAt = CreatedAt;
+			this.Owner = Owner;
+			this.ClientInformation = ClientInformation;
+			this.Services = Services;
+			this.JobStatus = JobStatus;
+			this.ProgressDetails = ProgressDetails;
+			this.AssessmentMetrics = AssessmentMetrics;
+		}
+		
+		/// <summary>
+		/// Gets or Sets JobId
+		/// </summary>
+		[DataMember(Name="job_id", EmitDefaultValue=false)]
+		public string JobId { get; set; }
 
-        /// <summary>
-        /// A user-provided name for the job.
-        /// </summary>
-        /// <value>A user-provided name for the job.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+		/// <summary>
+		/// A user-provided name for the job.
+		/// </summary>
+		/// <value>A user-provided name for the job.</value>
+		[DataMember(Name="name", EmitDefaultValue=false)]
+		public string Name { get; set; }
 
-        /// <summary>
-        /// An optional user-provided text describing the job.
-        /// </summary>
-        /// <value>An optional user-provided text describing the job.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
+		/// <summary>
+		/// An optional user-provided text describing the job.
+		/// </summary>
+		/// <value>An optional user-provided text describing the job.</value>
+		[DataMember(Name="description", EmitDefaultValue=false)]
+		public string Description { get; set; }
 
-        /// <summary>
-        /// The time of job creation
-        /// </summary>
-        /// <value>The time of job creation</value>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
+		/// <summary>
+		/// The time of job creation
+		/// </summary>
+		/// <value>The time of job creation</value>
+		[DataMember(Name="created_at", EmitDefaultValue=false)]
+		public DateTime? CreatedAt { get; set; }
 
-        /// <summary>
-        /// The user_id of the job-owning user.
-        /// </summary>
-        /// <value>The user_id of the job-owning user.</value>
-        [DataMember(Name="owner", EmitDefaultValue=false)]
-        public string Owner { get; set; }
+		/// <summary>
+		/// The user_id of the job-owning user.
+		/// </summary>
+		/// <value>The user_id of the job-owning user.</value>
+		[DataMember(Name="owner", EmitDefaultValue=false)]
+		public string Owner { get; set; }
 
-        /// <summary>
-        /// Gets or Sets ClientInformation
-        /// </summary>
-        [DataMember(Name="client_information", EmitDefaultValue=false)]
-        public ClientInformation ClientInformation { get; set; }
+		/// <summary>
+		/// Gets or Sets ClientInformation
+		/// </summary>
+		[DataMember(Name="client_information", EmitDefaultValue=false)]
+		public ClientInformation ClientInformation { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Services
-        /// </summary>
-        [DataMember(Name="services", EmitDefaultValue=false)]
-        public ServicesArray Services { get; set; }
+		/// <summary>
+		/// Gets or Sets Services
+		/// </summary>
+		[DataMember(Name="services", EmitDefaultValue=false)]
+		public ServicesArray Services { get; set; }
 
-        /// <summary>
-        /// Gets or Sets JobStatus
-        /// </summary>
-        [DataMember(Name="job_status", EmitDefaultValue=false)]
-        public JobStatus JobStatus { get; set; }
+		/// <summary>
+		/// Gets or Sets JobStatus
+		/// </summary>
+		[DataMember(Name="job_status", EmitDefaultValue=false)]
+		public JobStatus JobStatus { get; set; }
 
-        /// <summary>
-        /// Gets or Sets ProgressDetails
-        /// </summary>
-        [DataMember(Name="progress_details", EmitDefaultValue=false)]
-        public ProgressDetails ProgressDetails { get; set; }
+		/// <summary>
+		/// Gets or Sets ProgressDetails
+		/// </summary>
+		[DataMember(Name="progress_details", EmitDefaultValue=false)]
+		public ProgressDetails ProgressDetails { get; set; }
 
-        /// <summary>
-        /// Gets or Sets AssessmentMetrics
-        /// </summary>
-        [DataMember(Name="assessment_metrics", EmitDefaultValue=false)]
-        public JobInformationResponseAssessmentMetrics AssessmentMetrics { get; set; }
+		/// <summary>
+		/// Gets or Sets AssessmentMetrics
+		/// </summary>
+		[DataMember(Name="assessment_metrics", EmitDefaultValue=false)]
+		public JobInformationResponseAssessmentMetrics AssessmentMetrics { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class JobInformationResponse {\n");
-            sb.Append("  JobId: ").Append(JobId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
-            sb.Append("  ClientInformation: ").Append(ClientInformation).Append("\n");
-            sb.Append("  Services: ").Append(Services).Append("\n");
-            sb.Append("  JobStatus: ").Append(JobStatus).Append("\n");
-            sb.Append("  ProgressDetails: ").Append(ProgressDetails).Append("\n");
-            sb.Append("  AssessmentMetrics: ").Append(AssessmentMetrics).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class JobInformationResponse {\n");
+			sb.Append("  JobId: ").Append(JobId).Append("\n");
+			sb.Append("  Name: ").Append(Name).Append("\n");
+			sb.Append("  Description: ").Append(Description).Append("\n");
+			sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+			sb.Append("  Owner: ").Append(Owner).Append("\n");
+			sb.Append("  ClientInformation: ").Append(ClientInformation).Append("\n");
+			sb.Append("  Services: ").Append(Services).Append("\n");
+			sb.Append("  JobStatus: ").Append(JobStatus).Append("\n");
+			sb.Append("  ProgressDetails: ").Append(ProgressDetails).Append("\n");
+			sb.Append("  AssessmentMetrics: ").Append(AssessmentMetrics).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as JobInformationResponse);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as JobInformationResponse);
+		}
 
-        /// <summary>
-        /// Returns true if JobInformationResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of JobInformationResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(JobInformationResponse input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if JobInformationResponse instances are equal
+		/// </summary>
+		/// <param name="input">Instance of JobInformationResponse to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(JobInformationResponse input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.JobId == input.JobId ||
-                    (this.JobId != null &&
-                    this.JobId.Equals(input.JobId))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
-                ) && 
-                (
-                    this.Owner == input.Owner ||
-                    (this.Owner != null &&
-                    this.Owner.Equals(input.Owner))
-                ) && 
-                (
-                    this.ClientInformation == input.ClientInformation ||
-                    (this.ClientInformation != null &&
-                    this.ClientInformation.Equals(input.ClientInformation))
-                ) && 
-                (
-                    this.Services == input.Services ||
-                    (this.Services != null &&
-                    this.Services.Equals(input.Services))
-                ) && 
-                (
-                    this.JobStatus == input.JobStatus ||
-                    (this.JobStatus != null &&
-                    this.JobStatus.Equals(input.JobStatus))
-                ) && 
-                (
-                    this.ProgressDetails == input.ProgressDetails ||
-                    (this.ProgressDetails != null &&
-                    this.ProgressDetails.Equals(input.ProgressDetails))
-                ) && 
-                (
-                    this.AssessmentMetrics == input.AssessmentMetrics ||
-                    (this.AssessmentMetrics != null &&
-                    this.AssessmentMetrics.Equals(input.AssessmentMetrics))
-                );
-        }
+			return 
+				(
+					this.JobId == input.JobId ||
+					(this.JobId != null &&
+					this.JobId.Equals(input.JobId))
+				) && 
+				(
+					this.Name == input.Name ||
+					(this.Name != null &&
+					this.Name.Equals(input.Name))
+				) && 
+				(
+					this.Description == input.Description ||
+					(this.Description != null &&
+					this.Description.Equals(input.Description))
+				) && 
+				(
+					this.CreatedAt == input.CreatedAt ||
+					(this.CreatedAt != null &&
+					this.CreatedAt.Equals(input.CreatedAt))
+				) && 
+				(
+					this.Owner == input.Owner ||
+					(this.Owner != null &&
+					this.Owner.Equals(input.Owner))
+				) && 
+				(
+					this.ClientInformation == input.ClientInformation ||
+					(this.ClientInformation != null &&
+					this.ClientInformation.Equals(input.ClientInformation))
+				) && 
+				(
+					this.Services == input.Services ||
+					(this.Services != null &&
+					this.Services.Equals(input.Services))
+				) && 
+				(
+					this.JobStatus == input.JobStatus ||
+					(this.JobStatus != null &&
+					this.JobStatus.Equals(input.JobStatus))
+				) && 
+				(
+					this.ProgressDetails == input.ProgressDetails ||
+					(this.ProgressDetails != null &&
+					this.ProgressDetails.Equals(input.ProgressDetails))
+				) && 
+				(
+					this.AssessmentMetrics == input.AssessmentMetrics ||
+					(this.AssessmentMetrics != null &&
+					this.AssessmentMetrics.Equals(input.AssessmentMetrics))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.JobId != null)
-                    hashCode = hashCode * 59 + this.JobId.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.Owner != null)
-                    hashCode = hashCode * 59 + this.Owner.GetHashCode();
-                if (this.ClientInformation != null)
-                    hashCode = hashCode * 59 + this.ClientInformation.GetHashCode();
-                if (this.Services != null)
-                    hashCode = hashCode * 59 + this.Services.GetHashCode();
-                if (this.JobStatus != null)
-                    hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
-                if (this.ProgressDetails != null)
-                    hashCode = hashCode * 59 + this.ProgressDetails.GetHashCode();
-                if (this.AssessmentMetrics != null)
-                    hashCode = hashCode * 59 + this.AssessmentMetrics.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.JobId != null)
+					hashCode = hashCode * 59 + this.JobId.GetHashCode();
+				if (this.Name != null)
+					hashCode = hashCode * 59 + this.Name.GetHashCode();
+				if (this.Description != null)
+					hashCode = hashCode * 59 + this.Description.GetHashCode();
+				if (this.CreatedAt != null)
+					hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+				if (this.Owner != null)
+					hashCode = hashCode * 59 + this.Owner.GetHashCode();
+				if (this.ClientInformation != null)
+					hashCode = hashCode * 59 + this.ClientInformation.GetHashCode();
+				if (this.Services != null)
+					hashCode = hashCode * 59 + this.Services.GetHashCode();
+				if (this.JobStatus != null)
+					hashCode = hashCode * 59 + this.JobStatus.GetHashCode();
+				if (this.ProgressDetails != null)
+					hashCode = hashCode * 59 + this.ProgressDetails.GetHashCode();
+				if (this.AssessmentMetrics != null)
+					hashCode = hashCode * 59 + this.AssessmentMetrics.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

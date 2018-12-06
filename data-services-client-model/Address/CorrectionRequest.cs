@@ -22,130 +22,130 @@ using SwaggerDateConverter = Quadient.DataServices.Model.Client.SwaggerDateConve
 
 namespace Quadient.DataServices.Model.Address
 {
-    /// <summary>
-    /// CorrectionRequest
-    /// </summary>
-    [DataContract]
-    public partial class CorrectionRequest : IEquatable<CorrectionRequest>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionRequest" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected CorrectionRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CorrectionRequest" /> class.
-        /// </summary>
-        /// <param name="Addresses">Addresses (required).</param>
-        /// <param name="Configuration">Configuration.</param>
-        public CorrectionRequest(List<CorrectionRequestAddress> Addresses = default(List<CorrectionRequestAddress>), CorrectionRequestConfiguration Configuration = default(CorrectionRequestConfiguration))
-        {
-            // to ensure "Addresses" is required (not null)
-            if (Addresses == null)
-            {
-                throw new InvalidDataException("Addresses is a required property for CorrectionRequest and cannot be null");
-            }
-            else
-            {
-                this.Addresses = Addresses;
-            }
-            this.Configuration = Configuration;
-        }
-        
-        /// <summary>
-        /// Gets or Sets Addresses
-        /// </summary>
-        [DataMember(Name="addresses", EmitDefaultValue=false)]
-        public List<CorrectionRequestAddress> Addresses { get; set; }
+	/// <summary>
+	/// CorrectionRequest
+	/// </summary>
+	[DataContract]
+	public partial class CorrectionRequest : IEquatable<CorrectionRequest>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionRequest" /> class.
+		/// </summary>
+		[JsonConstructorAttribute]
+		protected CorrectionRequest() { }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CorrectionRequest" /> class.
+		/// </summary>
+		/// <param name="Addresses">Addresses (required).</param>
+		/// <param name="Configuration">Configuration.</param>
+		public CorrectionRequest(List<CorrectionRequestAddress> Addresses = default(List<CorrectionRequestAddress>), CorrectionRequestConfiguration Configuration = default(CorrectionRequestConfiguration))
+		{
+			// to ensure "Addresses" is required (not null)
+			if (Addresses == null)
+			{
+				throw new InvalidDataException("Addresses is a required property for CorrectionRequest and cannot be null");
+			}
+			else
+			{
+				this.Addresses = Addresses;
+			}
+			this.Configuration = Configuration;
+		}
+		
+		/// <summary>
+		/// Gets or Sets Addresses
+		/// </summary>
+		[DataMember(Name="addresses", EmitDefaultValue=false)]
+		public List<CorrectionRequestAddress> Addresses { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Configuration
-        /// </summary>
-        [DataMember(Name="configuration", EmitDefaultValue=false)]
-        public CorrectionRequestConfiguration Configuration { get; set; }
+		/// <summary>
+		/// Gets or Sets Configuration
+		/// </summary>
+		[DataMember(Name="configuration", EmitDefaultValue=false)]
+		public CorrectionRequestConfiguration Configuration { get; set; }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CorrectionRequest {\n");
-            sb.Append("  Addresses: ").Append(Addresses).Append("\n");
-            sb.Append("  Configuration: ").Append(Configuration).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class CorrectionRequest {\n");
+			sb.Append("  Addresses: ").Append(Addresses).Append("\n");
+			sb.Append("  Configuration: ").Append(Configuration).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
   
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CorrectionRequest);
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as CorrectionRequest);
+		}
 
-        /// <summary>
-        /// Returns true if CorrectionRequest instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CorrectionRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CorrectionRequest input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Returns true if CorrectionRequest instances are equal
+		/// </summary>
+		/// <param name="input">Instance of CorrectionRequest to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(CorrectionRequest input)
+		{
+			if (input == null)
+				return false;
 
-            return 
-                (
-                    this.Addresses == input.Addresses ||
-                    this.Addresses != null &&
-                    this.Addresses.SequenceEqual(input.Addresses)
-                ) && 
-                (
-                    this.Configuration == input.Configuration ||
-                    (this.Configuration != null &&
-                    this.Configuration.Equals(input.Configuration))
-                );
-        }
+			return 
+				(
+					this.Addresses == input.Addresses ||
+					this.Addresses != null &&
+					this.Addresses.SequenceEqual(input.Addresses)
+				) && 
+				(
+					this.Configuration == input.Configuration ||
+					(this.Configuration != null &&
+					this.Configuration.Equals(input.Configuration))
+				);
+		}
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Addresses != null)
-                    hashCode = hashCode * 59 + this.Addresses.GetHashCode();
-                if (this.Configuration != null)
-                    hashCode = hashCode * 59 + this.Configuration.GetHashCode();
-                return hashCode;
-            }
-        }
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.Addresses != null)
+					hashCode = hashCode * 59 + this.Addresses.GetHashCode();
+				if (this.Configuration != null)
+					hashCode = hashCode * 59 + this.Configuration.GetHashCode();
+				return hashCode;
+			}
+		}
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

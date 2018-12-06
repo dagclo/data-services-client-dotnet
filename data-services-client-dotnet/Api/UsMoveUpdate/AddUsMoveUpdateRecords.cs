@@ -4,6 +4,23 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
+<<<<<<< HEAD
+	public class AddUsMoveUpdateRecords : IRequest<object>
+	{
+		public AddUsMoveUpdateRecords(string jobId, List<List<string>> records)
+		{
+			ServicePath = $"services/us-move-update/v1/jobs/{jobId}/records";
+			Content = new Records { _Records = records };
+		}
+		public string ServicePath { get; }
+		public HttpMethod Method => HttpMethod.Post;
+		public Records Content { get; }
+		public IDictionary<string, string> QueryStringParams { get; }
+		public object Body => Content;
+		public IDictionary<string, string> Headers { get; }
+	}
+}
+=======
     public class AddUsMoveUpdateRecords : IRequest<object>
     {
         public AddUsMoveUpdateRecords(string jobId, List<List<string>> records)
@@ -19,3 +36,4 @@ namespace Quadient.DataServices.Api.UsBatch
         public IDictionary<string, string> Headers { get; }
     }
 }
+>>>>>>> EtlClient

@@ -22,118 +22,118 @@ using SwaggerDateConverter = Quadient.DataServices.System.Model.Client.SwaggerDa
 
 namespace Quadient.DataServices.System.Model.Pricebook
 {
-    /// <summary>
-    /// Prices
-    /// </summary>
-    [DataContract]
-    public partial class Prices : IEquatable<Prices>, IValidatableObject
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Prices" /> class.
-        /// </summary>
-        /// <param name="ServiceName">ServiceName.</param>
-        /// <param name="PriceLines">The price rules that exits for the service.</param>
-        public Prices(string ServiceName = default(string), List<PriceLine> PriceLines = default(List<PriceLine>))
-        {
-            this.ServiceName = ServiceName;
-            this.PriceLines = PriceLines;
-        }
+	/// <summary>
+	/// Prices
+	/// </summary>
+	[DataContract]
+	public partial class Prices : IEquatable<Prices>, IValidatableObject
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Prices" /> class.
+		/// </summary>
+		/// <param name="ServiceName">ServiceName.</param>
+		/// <param name="PriceLines">The price rules that exits for the service.</param>
+		public Prices(string ServiceName = default(string), List<PriceLine> PriceLines = default(List<PriceLine>))
+		{
+			this.ServiceName = ServiceName;
+			this.PriceLines = PriceLines;
+		}
+		
+		/// <summary>
+		/// Gets or Sets ServiceName
+		/// </summary>
+		[DataMember(Name="service_name", EmitDefaultValue=false)]
+		public string ServiceName { get; set; }
 
-        /// <summary>
-        /// Gets or Sets ServiceName
-        /// </summary>
-        [DataMember(Name = "service_name", EmitDefaultValue = false)]
-        public string ServiceName { get; set; }
+		/// <summary>
+		/// The price rules that exits for the service
+		/// </summary>
+		/// <value>The price rules that exits for the service</value>
+		[DataMember(Name="price_lines", EmitDefaultValue=false)]
+		public List<PriceLine> PriceLines { get; set; }
 
-        /// <summary>
-        /// The price rules that exits for the service
-        /// </summary>
-        /// <value>The price rules that exits for the service</value>
-        [DataMember(Name = "price_lines", EmitDefaultValue = false)]
-        public List<PriceLine> PriceLines { get; set; }
+		/// <summary>
+		/// Returns the string presentation of the object
+		/// </summary>
+		/// <returns>String presentation of the object</returns>
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.Append("class Prices {\n");
+			sb.Append("  ServiceName: ").Append(ServiceName).Append("\n");
+			sb.Append("  PriceLines: ").Append(PriceLines).Append("\n");
+			sb.Append("}\n");
+			return sb.ToString();
+		}
+  
+		/// <summary>
+		/// Returns the JSON string presentation of the object
+		/// </summary>
+		/// <returns>JSON string presentation of the object</returns>
+		public string ToJson()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.Indented);
+		}
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Prices {\n");
-            sb.Append("  ServiceName: ").Append(ServiceName).Append("\n");
-            sb.Append("  PriceLines: ").Append(PriceLines).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+		/// <summary>
+		/// Returns true if objects are equal
+		/// </summary>
+		/// <param name="input">Object to be compared</param>
+		/// <returns>Boolean</returns>
+		public override bool Equals(object input)
+		{
+			return this.Equals(input as Prices);
+		}
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+		/// <summary>
+		/// Returns true if Prices instances are equal
+		/// </summary>
+		/// <param name="input">Instance of Prices to be compared</param>
+		/// <returns>Boolean</returns>
+		public bool Equals(Prices input)
+		{
+			if (input == null)
+				return false;
 
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Prices);
-        }
+			return 
+				(
+					this.ServiceName == input.ServiceName ||
+					(this.ServiceName != null &&
+					this.ServiceName.Equals(input.ServiceName))
+				) && 
+				(
+					this.PriceLines == input.PriceLines ||
+					this.PriceLines != null &&
+					this.PriceLines.SequenceEqual(input.PriceLines)
+				);
+		}
 
-        /// <summary>
-        /// Returns true if Prices instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Prices to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Prices input)
-        {
-            if (input == null)
-                return false;
+		/// <summary>
+		/// Gets the hash code
+		/// </summary>
+		/// <returns>Hash code</returns>
+		public override int GetHashCode()
+		{
+			unchecked // Overflow is fine, just wrap
+			{
+				int hashCode = 41;
+				if (this.ServiceName != null)
+					hashCode = hashCode * 59 + this.ServiceName.GetHashCode();
+				if (this.PriceLines != null)
+					hashCode = hashCode * 59 + this.PriceLines.GetHashCode();
+				return hashCode;
+			}
+		}
 
-            return
-                (
-                    this.ServiceName == input.ServiceName ||
-                    (this.ServiceName != null &&
-                    this.ServiceName.Equals(input.ServiceName))
-                ) &&
-                (
-                    this.PriceLines == input.PriceLines ||
-                    this.PriceLines != null &&
-                    this.PriceLines.SequenceEqual(input.PriceLines)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ServiceName != null)
-                    hashCode = hashCode * 59 + this.ServiceName.GetHashCode();
-                if (this.PriceLines != null)
-                    hashCode = hashCode * 59 + this.PriceLines.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-    }
+		/// <summary>
+		/// To validate all properties of the instance
+		/// </summary>
+		/// <param name="validationContext">Validation context</param>
+		/// <returns>Validation Result</returns>
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			yield break;
+		}
+	}
 
 }

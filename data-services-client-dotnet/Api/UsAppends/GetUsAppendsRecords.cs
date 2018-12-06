@@ -4,13 +4,22 @@ using Quadient.DataServices.Model.UsBatch;
 
 namespace Quadient.DataServices.Api.UsBatch
 {
-    public class GetUsAppendsRecords : IRequest<Records>
-    {
-        public GetUsAppendsRecords(string jobId, string pageId)
-        {
-            ServicePath = $"services/us-appends/v1/jobs/{jobId}/records/{pageId}";
-        }
+	public class GetUsAppendsRecords : IRequest<Records>
+	{
+		public GetUsAppendsRecords(string jobId, string pageId)
+		{
+			ServicePath = $"services/us-appends/v1/jobs/{jobId}/records/{pageId}";
+		}
 
+<<<<<<< HEAD
+		public string ServicePath { get; }
+		public HttpMethod Method => HttpMethod.Get;
+		public object Body { get; }
+		public IDictionary<string, string> QueryStringParams { get; }
+		public IDictionary<string, string> Headers { get; }
+	}
+}
+=======
         public string ServicePath { get; }
         public HttpMethod Method => HttpMethod.Get;
         public object Body { get; }
@@ -18,3 +27,4 @@ namespace Quadient.DataServices.Api.UsBatch
         public IDictionary<string, string> Headers { get; }
     }
 }
+>>>>>>> EtlClient
