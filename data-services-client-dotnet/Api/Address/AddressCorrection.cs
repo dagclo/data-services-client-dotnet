@@ -4,31 +4,17 @@ using Quadient.DataServices.Model.Address;
 
 namespace Quadient.DataServices.Api.Address
 {
-<<<<<<< HEAD
 	/// <summary>
 	/// Processes an array of addresses using the Address Correction engine.
 	/// </summary>
 	public class AddressCorrection : IRequest<CorrectionResponse>
 	{
-		public string ServicePath { get; } = "services/address-correction/v1/correct";
+		public string ServicePath => "services/address-correction/v1/correct";
 		public HttpMethod Method => HttpMethod.Post;
 		public IDictionary<string, string> QueryStringParams { get; }
 		private CorrectionRequest Content { get; set; }
 		public object Body => Content;
 		public IDictionary<string, string> Headers { get; }
-=======
-    /// <summary>
-    /// Processes an array of addresses using the Address Correction engine.
-    /// </summary>
-    public class AddressCorrection : IRequest<CorrectionResponse>
-    {
-        public string ServicePath { get; } = "services/address-correction/v1/correct";
-        public HttpMethod Method => HttpMethod.Post;
-        public IDictionary<string, string> QueryStringParams { get; }
-        private CorrectionRequest Content { get; set; }
-        public object Body => Content;
-        public IDictionary<string, string> Headers { get; }
->>>>>>> EtlClient
 
 		public AddressCorrection()
 		{

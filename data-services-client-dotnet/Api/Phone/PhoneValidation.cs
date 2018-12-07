@@ -5,31 +5,17 @@ using Quadient.DataServices.Model.Phone;
 
 namespace Quadient.DataServices.Api.Phone
 {
-<<<<<<< HEAD
 	/// <summary>
 	/// Validates a set of phone numbers
 	/// </summary>
 	public class PhoneValidation : IRequest<PhoneValidationResponse>
 	{
-		public string ServicePath { get; } = "services/phone-validation/v1/validate";
+		public string ServicePath => "services/phone-validation/v1/validate";
 		public HttpMethod Method => HttpMethod.Post;
 		public PhoneValidationRequest Content { get; set; }
 		public IDictionary<string, string> QueryStringParams { get; }
 		public object Body => Content;
 		public IDictionary<string, string> Headers { get; }
-=======
-    /// <summary>
-    /// Validates a set of phone numbers
-    /// </summary>
-    public class PhoneValidation : IRequest<PhoneValidationResponse>
-    {
-        public string ServicePath { get; } = "services/phone-validation/v1/validate";
-        public HttpMethod Method => HttpMethod.Post;
-        public PhoneValidationRequest Content { get; set; }
-        public IDictionary<string, string> QueryStringParams { get; }
-        public object Body => Content;
-        public IDictionary<string, string> Headers { get; }
->>>>>>> EtlClient
 
 		/// <summary>
 		/// Validates a set of phone numbers

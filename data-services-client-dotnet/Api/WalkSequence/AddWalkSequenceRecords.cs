@@ -15,7 +15,6 @@ namespace Quadient.DataServices.Api.WalkSequence
 			Content = records;
 		}
 
-<<<<<<< HEAD
 		public string ServicePath { get; }
 		public HttpMethod Method => HttpMethod.Post;
 		public Records Content { get; set; }
@@ -24,22 +23,8 @@ namespace Quadient.DataServices.Api.WalkSequence
 		public IDictionary<string, string> Headers { get; }
 		private static Records CreateRequest(IEnumerable<IList<string>> records)
 		{
-			var list = new List<List<string>>(); // the request class requires a List
-			foreach (IList<string> record in records)
-			{
-				list.Add(record.ToList());
-			}
+			var list = records.Select(r => r.ToList()).ToList(); // the request class requires a List
 			return new Records(list);
 		}
 	}
 }
-=======
-        public string ServicePath { get; }
-        public HttpMethod Method => HttpMethod.Post;
-        public Records Content { get; set; }
-        public IDictionary<string, string> QueryStringParams { get; }
-        public object Body => Content;
-        public IDictionary<string, string> Headers { get; }
-    }
-}
->>>>>>> EtlClient
