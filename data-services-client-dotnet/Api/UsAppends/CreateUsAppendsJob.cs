@@ -13,7 +13,7 @@ namespace Quadient.DataServices.Api.UsBatch
 		public string ServicePath => "services/us-appends/v1/jobs";
 		public HttpMethod Method => HttpMethod.Post;
 		public object Body { get; }
-		public IDictionary<string, string> QueryStringParams { get; }
+		public IDictionary<string, string> QueryStringParams { get; } = new Dictionary<string, string>();
 		public IDictionary<string, string> Headers { get; }
 	}
 }
