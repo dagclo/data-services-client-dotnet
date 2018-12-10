@@ -14,7 +14,7 @@ namespace Quadient.DataServices.Api.Url
 		public IDictionary<string, string> Headers { get; }
 
 		/// <summary>
-		/// Validates a set of phone numbers
+		/// Validates a set of urls
 		/// </summary>
 		public UrlValidation()
 		{
@@ -32,8 +32,8 @@ namespace Quadient.DataServices.Api.Url
 		/// <summary>
 		/// Validates a set of urls
 		/// </summary>
-		/// <param name="configuration">Configuration options to set for the data quality engine. Omit if you want to use the default behavior. The default behavior assumes that the phone number includes a country code.</param>
-		/// <param name="phoneNumbers"></param>
+		/// <param name="configuration">Configuration options to set for the data quality engine. Omit if you want to use the default behavior. The default behavior assumes that the protocol is http</param>
+		/// <param name="urls"></param>
 		public UrlValidation(UrlValidationRequestConfiguration configuration,
 			List<UrlValidationRequestRecord> records)
 		{
@@ -41,9 +41,9 @@ namespace Quadient.DataServices.Api.Url
 		}
 
 		/// <summary>
-		/// Validates a set of phone numbers
+		/// Validates a set of urls
 		/// </summary>
-		/// <param name="configuration">Configuration options to set for the data quality engine. Omit if you want to use the default behavior. The default behavior assumes that the phone number includes a country code.</param>
+		/// <param name="configuration">Configuration options to set for the data quality engine. Omit if you want to use the default behavior. The default behavior assumes that the protocol is http</param>
 		/// <param name="urls"></param>
 		public UrlValidation(UrlValidationRequestConfiguration configuration, IEnumerable<string> urls)
 		{
