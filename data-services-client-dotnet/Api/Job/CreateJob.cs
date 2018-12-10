@@ -36,9 +36,8 @@ namespace Quadient.DataServices.Api.Job
 
 		public CreateJob(JobCreationDetails details)
 		{
-			Body = new JobCreationRequest()
+			Body = new JobCreationRequest(Origin: details.Origin ?? Constants.Origin)
 			{
-				Origin = details.Origin ?? Constants.Origin,
 				ParentJob = details.ParentJob,
 				AdditionalDetails = details.AdditionalDetails,
 				ExpectedServices = details.ExpectedServices?.ToList(),
