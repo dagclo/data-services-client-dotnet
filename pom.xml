@@ -101,6 +101,21 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>generate-model-url</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<artifactId>dataservices-client-swagger-model-url</artifactId>
+							<inputSpec>${swagger.baseurl}/services/url-validation/swagger.json</inputSpec>
+							<modelPackage>Url</modelPackage>
+							<configOptions>
+								<packageName>Quadient.DataServices.Model</packageName>
+								<sourceFolder>data-services-client-model</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+					<execution>
 						<id>generate-model-email</id>
 						<goals>
 							<goal>generate</goal>

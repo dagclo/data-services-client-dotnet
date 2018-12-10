@@ -14,12 +14,12 @@ namespace Quadient.DataServices.Api.WalkSequence
 		public async Task<IWalkSequenceJobSession> CreateJob(WalkSequenceJobCreationRequest req)
 		{
 			var resp = await _client.Execute(new CreateWalkSequenceJob(req));
-			return new WalkSequenceJobSession(resp);
+			return new WalkSequenceJobSession(_client, resp);
 		}
 		public async Task<IWalkSequenceJobSession> GetJob(string jobId)
 		{
 			var resp = await _client.Execute(new GetWalkSequenceJob(jobId));
-			return new WalkSequenceJobSession(resp);
+			return new WalkSequenceJobSession(_client, resp);
 		}
 		public Task<JobSummaryCollection> GetJobs()
 		{
