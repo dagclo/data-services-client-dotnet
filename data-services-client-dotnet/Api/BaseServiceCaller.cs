@@ -161,10 +161,18 @@ namespace Quadient.DataServices.Api
 					}
 				}
 
-				if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
+				var body = request.Body;
+				if (body != null)
 				{
-					httpRequest.Content = new StringContent(SerializeObject(request.Body), Encoding.UTF8,
-						 "application/json");
+					if (body is HttpContent)
+					{
+						httpRequest.Content = (HttpContent)body;
+					}
+					else if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
+					{
+						httpRequest.Content = new StringContent(SerializeObject(request.Body), Encoding.UTF8,
+							"application/json");
+					}
 				}
 
 				using (var result = await _httpClient.SendAsync(httpRequest, cancellationToken))
