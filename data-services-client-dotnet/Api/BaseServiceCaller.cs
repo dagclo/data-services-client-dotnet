@@ -164,9 +164,9 @@ namespace Quadient.DataServices.Api
 				var body = request.Body;
 				if (body != null)
 				{
-					if (body is HttpContent)
+					if (body is HttpContent httpContentBody)
 					{
-						httpRequest.Content = (HttpContent)body;
+						httpRequest.Content = httpContentBody;
 					}
 					else if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
 					{
