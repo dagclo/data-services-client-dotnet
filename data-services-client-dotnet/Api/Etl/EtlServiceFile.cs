@@ -19,7 +19,7 @@ namespace Quadient.DataServices.Api.Etl
 
 		public Task DeleteFile()
 		{
-			return _client.Execute(new TableDeleteRequest(_fileId));
+			return _client.Execute(new FileDeleteRequest(_fileId));
 		}
 
 		public Task<Stream> Download()
