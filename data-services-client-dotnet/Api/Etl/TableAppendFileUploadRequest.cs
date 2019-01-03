@@ -13,15 +13,14 @@ namespace Quadient.DataServices.Api.Etl
 		public IDictionary<string, string> QueryStringParams { get; }
 		public IDictionary<string, string> Headers { get; }
 
-		public TableAppendFileUploadRequest(string tableId, FileInfo fileInfo) : this(tableId, fileInfo.OpenRead()) { }
-		public TableAppendFileUploadRequest(string tableId, string file) : this(tableId, new FileStream(file, FileMode.Open)) { }
-		public TableAppendFileUploadRequest(string tableId, Stream stream)
+		public TableAppendFileUploadRequest(string tableId, FileInfo fileInfo) : this(tableId, fileInfo.Name, fileInfo.OpenRead()) { }
+		public TableAppendFileUploadRequest(string tableId, string sourceFile) : this(tableId, new FileInfo(sourceFile)) { }
+		public TableAppendFileUploadRequest(string tableId, string fileName, Stream stream)
 		{
 			ServicePath = $"etl/v1/tables/{tableId}";
 			var formData = new MultipartFormDataContent();
 			HttpContent fileContent = new StreamContent(stream);
-			FileStream fs = stream as FileStream;
-			formData.Add(fileContent, "upfile", fs.Name);
+			formData.Add(fileContent, "upfile", fileName);
 			Body = formData;
 		}
 	}

@@ -17,7 +17,7 @@ namespace Quadient.DataServices.Api.Etl
 		/// <summary>
 		/// Creates a file in Quadient Data Services by uploading it from a stream of bytes.
 		/// </summary>
-		Task<IEtlServiceFile> CreateFile(Stream sourceStream);
+		Task<IEtlServiceFile> CreateFile(string fileName, Stream sourceStream);
 		/// <summary>
 		/// Gets an existing file in Quadient Data Services.
 		/// </summary>
@@ -33,7 +33,7 @@ namespace Quadient.DataServices.Api.Etl
 		/// <summary>
 		/// Creates a table in Quadient Data Services by uploading a stream of bytes to be interpreted as a data source of the table.
 		/// </summary>
-		Task<IEtlServiceTable> CreateTable(Stream sourceStream);
+		Task<IEtlServiceTable> CreateTable(string fileName, Stream sourceStream);
 		/// <summary>
 		/// Creates a table in Quadient Data Services by uploading a local file to be interpreted as a data source of the table.
 		/// </summary>
