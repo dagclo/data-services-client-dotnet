@@ -19,7 +19,8 @@ namespace Quadient.DataServices.Api.Etl
 		{
 			var formData = new MultipartFormDataContent();
 			HttpContent fileContent = new StreamContent(stream);
-			formData.Add(fileContent, "upfile");
+			FileStream fs = stream as FileStream;
+			formData.Add(fileContent, "upfile", fs.Name);
 			Body = formData;
 		}
 	}
