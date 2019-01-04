@@ -25,11 +25,11 @@ namespace Quadient.DataServices.Api.Etl
 		/// <summary>
 		/// Appends the contents of a local file's data to the table
 		/// </summary>
-		Task<TableUpdateResponse> AppendFile(string file);
+		Task<TableUpdateResponse> AppendFile(string sourceFile);
 		/// <summary>
 		/// Appends the contents of a stream of data to the table
 		/// </summary>
-		Task<TableUpdateResponse> AppendStream(Stream stream);
+		Task<TableUpdateResponse> AppendStream(string fileName, Stream stream);
 		/// <summary>
 		/// Appends records to the table
 		/// </summary>
