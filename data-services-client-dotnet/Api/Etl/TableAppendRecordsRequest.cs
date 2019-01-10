@@ -18,6 +18,7 @@ namespace Quadient.DataServices.Api.Etl
 
 		public TableAppendRecordsRequest(string tableId, TableUpdateRequest req)
 		{
+			ServicePath = $"etl/v1/tables/{tableId}";
 			Body = req;
 		}
 		private static TableUpdateRequest CreateRequest(IEnumerable<IList<string>> records)

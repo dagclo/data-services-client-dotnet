@@ -20,9 +20,9 @@ namespace Quadient.DataServices.Api.Etl
 			return new EtlServiceFile(_client, resp.FileId);
 		}
 
-		public async Task<IEtlServiceFile> CreateFile(Stream sourceStream)
+		public async Task<IEtlServiceFile> CreateFile(string fileName, Stream sourceStream)
 		{
-			var resp = await _client.Execute(new FileUploadRequest(sourceStream));
+			var resp = await _client.Execute(new FileUploadRequest(fileName, sourceStream));
 			return new EtlServiceFile(_client, resp.FileId);
 		}
 
@@ -32,9 +32,9 @@ namespace Quadient.DataServices.Api.Etl
 			return CreateTableFromResponse(resp);
 		}
 
-		public async Task<IEtlServiceTable> CreateTable(Stream sourceStream)
+		public async Task<IEtlServiceTable> CreateTable(string fileName, Stream sourceStream)
 		{
-			var resp = await _client.Execute(new TableCreationFileUploadRequest(sourceStream));
+			var resp = await _client.Execute(new TableCreationFileUploadRequest(fileName, sourceStream));
 			return CreateTableFromResponse(resp);
 		}
 

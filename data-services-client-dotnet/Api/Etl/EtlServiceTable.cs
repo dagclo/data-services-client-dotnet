@@ -22,17 +22,17 @@ namespace Quadient.DataServices.Api.Etl
 		{
 			return _client.Execute(new TableDeleteRequest(_tableId));
 		}
-		public Task<TableUpdateResponse> AppendFile(string file)
+		public Task<TableUpdateResponse> AppendFile(string sourceFile)
 		{
-			return _client.Execute(new TableAppendFileUploadRequest(_tableId, file));
+			return _client.Execute(new TableAppendFileUploadRequest(_tableId, sourceFile));
 		}
 		public Task<TableUpdateResponse> AppendRecords(IEnumerable<IList<string>> records)
 		{
 			return _client.Execute(new TableAppendRecordsRequest(_tableId, records));
 		}
-		public Task<TableUpdateResponse> AppendStream(Stream stream)
+		public Task<TableUpdateResponse> AppendStream(string fileName, Stream stream)
 		{
-			return _client.Execute(new TableAppendFileUploadRequest(_tableId, stream));
+			return _client.Execute(new TableAppendFileUploadRequest(_tableId, fileName, stream));
 		}
 		public Task DeletePage(string pageId)
 		{
